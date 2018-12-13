@@ -12,13 +12,26 @@ import GoogleSignIn
 class LoginInMenuViewController: UIViewController,GIDSignInUIDelegate{
 
     @IBOutlet weak var signInButton: GIDSignInButton!
+    @IBOutlet weak var iglooSignIn: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
-        //        GIDSignIn.sharedInstance()!.signInSilently()
+        //GIDSignIn.sharedInstance()!.signInSilently()
+        //展现圆角
+        iglooSignIn.layer.cornerRadius = 8
+        iglooSignIn.layer.masksToBounds = true
     }
     
+    //MARK:igloo SignIn
+    
+    @IBAction func goToNextVC() {
+        performSegue(withIdentifier: "segueToSignIn", sender: nil)
+    }
+    
+    
+    //MARK: Google Sign In
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error?) {
         print("结束SignIn")
     }

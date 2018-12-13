@@ -18,5 +18,10 @@ class MainViewController: UIViewController {
         performSegue(withIdentifier: "loginMenuSegue", sender: nil)
     }
     
+    
+    @IBAction func unwind(_ unwindSegue: UIStoryboardSegue) {
+        //do nothing...
+    }
+    
 }
 

@@ -38,8 +38,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="bMN-aB-hVp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1140" y="-705"/>
+            <point key="canvasLocation" x="1182" y="-707"/>
         </scene>
         <!--Login In Menu View Controller-->
         <scene sceneID="Hs4-Ua-DjP">
@@ -57,22 +58,47 @@
                                     <constraint firstAttribute="height" constant="48" id="v9O-gw-RR7"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEn-wV-jGZ">
+                                <rect key="frame" x="103.5" y="463" width="168" height="48"/>
+                                <color key="backgroundColor" red="0.027450980392156862" green="0.46274509803921571" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <state key="normal" title="使用igloo账号登陆">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToNextVC" destination="W5Z-gb-Wcz" eventType="touchUpInside" id="3k9-gh-jt1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjJ-4c-KrY">
+                                <rect key="frame" x="16" y="20" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="bMN-aB-hVp" kind="unwind" unwindAction="unwind:" id="o9W-qA-V41"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="XoH-IL-JvG" firstAttribute="top" secondItem="UEn-wV-jGZ" secondAttribute="bottom" constant="18" id="0Yx-Nc-F8R"/>
+                            <constraint firstItem="UEn-wV-jGZ" firstAttribute="height" secondItem="XoH-IL-JvG" secondAttribute="height" id="Ph3-k0-QAQ"/>
+                            <constraint firstItem="UEn-wV-jGZ" firstAttribute="trailing" secondItem="XoH-IL-JvG" secondAttribute="trailing" id="RZn-jj-y5b"/>
+                            <constraint firstItem="TjJ-4c-KrY" firstAttribute="leading" secondItem="Rrw-hW-Syw" secondAttribute="leadingMargin" id="bq7-k1-5hG"/>
+                            <constraint firstItem="UEn-wV-jGZ" firstAttribute="leading" secondItem="XoH-IL-JvG" secondAttribute="leading" id="j4e-5F-I0v"/>
                             <constraint firstItem="XoH-IL-JvG" firstAttribute="centerX" secondItem="Z3J-my-glK" secondAttribute="centerX" id="unN-5c-bLt"/>
+                            <constraint firstItem="TjJ-4c-KrY" firstAttribute="top" secondItem="Z3J-my-glK" secondAttribute="top" id="uxA-pP-fqv"/>
                             <constraint firstItem="Z3J-my-glK" firstAttribute="bottom" secondItem="XoH-IL-JvG" secondAttribute="bottom" constant="90" id="zVS-hI-5kC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Z3J-my-glK"/>
                     </view>
                     <connections>
+                        <outlet property="iglooSignIn" destination="UEn-wV-jGZ" id="ATQ-3V-okL"/>
                         <outlet property="signInButton" destination="XoH-IL-JvG" id="4gr-15-6GY"/>
-                        <segue destination="t5d-tx-BIS" kind="show" id="oPX-Ig-eZt"/>
+                        <segue destination="t5d-tx-BIS" kind="show" identifier="segueToSignIn" id="oPX-Ig-eZt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVM-Ah-hZR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1876" y="-706"/>
+            <point key="canvasLocation" x="1954" y="-707"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="0l7-UF-txi">
