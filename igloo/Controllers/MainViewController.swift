@@ -8,13 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
-
+    @IBAction func login(_ sender: UIButton) {
+        performSegue(withIdentifier: "loginMenuSegue", sender: nil)
+    }
+    
 }
 

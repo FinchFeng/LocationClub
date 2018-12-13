@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130DEBC221C2526100B9ABC2 /* LoginInMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130DEBC121C2526100B9ABC2 /* LoginInMenuViewController.swift */; };
+		130DEBC421C252AA00B9ABC2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130DEBC321C252AA00B9ABC2 /* SignInViewController.swift */; };
+		130DEBC621C252BE00B9ABC2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130DEBC521C252BE00B9ABC2 /* SignUpViewController.swift */; };
 		133194EE21BA675E00C25D8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133194ED21BA675E00C25D8F /* AppDelegate.swift */; };
-		133194F021BA675E00C25D8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133194EF21BA675E00C25D8F /* ViewController.swift */; };
+		133194F021BA675E00C25D8F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133194EF21BA675E00C25D8F /* MainViewController.swift */; };
 		133194F321BA675E00C25D8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 133194F121BA675E00C25D8F /* Main.storyboard */; };
 		133194F521BA676000C25D8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 133194F421BA676000C25D8F /* Assets.xcassets */; };
 		133194F821BA676000C25D8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 133194F621BA676000C25D8F /* LaunchScreen.storyboard */; };
 		1331950321BA676000C25D8F /* iglooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1331950221BA676000C25D8F /* iglooTests.swift */; };
+		958BE839CA3C65F4E1A3736A /* Pods_iglooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 541BC0812C1BC65EF4B0322E /* Pods_iglooTests.framework */; };
+		9E6A1A33D0E7F10D99B1078D /* Pods_igloo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC1CC220E8C042057767982 /* Pods_igloo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,9 +31,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		130DEBC121C2526100B9ABC2 /* LoginInMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInMenuViewController.swift; sourceTree = "<group>"; };
+		130DEBC321C252AA00B9ABC2 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		130DEBC521C252BE00B9ABC2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		133194EA21BA675E00C25D8F /* igloo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = igloo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		133194ED21BA675E00C25D8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		133194EF21BA675E00C25D8F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		133194EF21BA675E00C25D8F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		133194F221BA675E00C25D8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		133194F421BA676000C25D8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		133194F721BA676000C25D8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +44,12 @@
 		133194FE21BA676000C25D8F /* iglooTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iglooTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1331950221BA676000C25D8F /* iglooTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iglooTests.swift; sourceTree = "<group>"; };
 		1331950421BA676000C25D8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FDD38D271674D90FAFE483E /* Pods-iglooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iglooTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iglooTests/Pods-iglooTests.release.xcconfig"; sourceTree = "<group>"; };
+		541BC0812C1BC65EF4B0322E /* Pods_iglooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iglooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63E278768D7CC5304CA8D080 /* Pods-igloo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-igloo.release.xcconfig"; path = "Pods/Target Support Files/Pods-igloo/Pods-igloo.release.xcconfig"; sourceTree = "<group>"; };
+		8DC1CC220E8C042057767982 /* Pods_igloo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_igloo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2801E97E383206C937835C2 /* Pods-igloo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-igloo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-igloo/Pods-igloo.debug.xcconfig"; sourceTree = "<group>"; };
+		E5DDB68DDBED8578EB97A9A4 /* Pods-iglooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iglooTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iglooTests/Pods-iglooTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E6A1A33D0E7F10D99B1078D /* Pods_igloo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,18 +65,64 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				958BE839CA3C65F4E1A3736A /* Pods_iglooTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		130DEBBC21C2518E00B9ABC2 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				133194ED21BA675E00C25D8F /* AppDelegate.swift */,
+				133194F421BA676000C25D8F /* Assets.xcassets */,
+				133194F621BA676000C25D8F /* LaunchScreen.storyboard */,
+			);
+			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		130DEBBD21C251A400B9ABC2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				133194EF21BA675E00C25D8F /* MainViewController.swift */,
+				130DEBC121C2526100B9ABC2 /* LoginInMenuViewController.swift */,
+				130DEBC321C252AA00B9ABC2 /* SignInViewController.swift */,
+				130DEBC521C252BE00B9ABC2 /* SignUpViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		130DEBBE21C251B900B9ABC2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		130DEBBF21C251BE00B9ABC2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		130DEBC021C251CB00B9ABC2 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				133194F121BA675E00C25D8F /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		133194E121BA675E00C25D8F = {
 			isa = PBXGroup;
 			children = (
 				133194EC21BA675E00C25D8F /* igloo */,
 				1331950121BA676000C25D8F /* iglooTests */,
 				133194EB21BA675E00C25D8F /* Products */,
+				88F3DB99ED5D1DC24C7A0C1E /* Pods */,
+				54016C8FE3E1821C538C322C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,11 +138,11 @@
 		133194EC21BA675E00C25D8F /* igloo */ = {
 			isa = PBXGroup;
 			children = (
-				133194ED21BA675E00C25D8F /* AppDelegate.swift */,
-				133194EF21BA675E00C25D8F /* ViewController.swift */,
-				133194F121BA675E00C25D8F /* Main.storyboard */,
-				133194F421BA676000C25D8F /* Assets.xcassets */,
-				133194F621BA676000C25D8F /* LaunchScreen.storyboard */,
+				130DEBC021C251CB00B9ABC2 /* Storyboard */,
+				130DEBBF21C251BE00B9ABC2 /* Model */,
+				130DEBBE21C251B900B9ABC2 /* View */,
+				130DEBBD21C251A400B9ABC2 /* Controllers */,
+				130DEBBC21C2518E00B9ABC2 /* SupportFiles */,
 				133194F921BA676000C25D8F /* Info.plist */,
 			);
 			path = igloo;
@@ -96,6 +157,26 @@
 			path = iglooTests;
 			sourceTree = "<group>";
 		};
+		54016C8FE3E1821C538C322C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8DC1CC220E8C042057767982 /* Pods_igloo.framework */,
+				541BC0812C1BC65EF4B0322E /* Pods_iglooTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		88F3DB99ED5D1DC24C7A0C1E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2801E97E383206C937835C2 /* Pods-igloo.debug.xcconfig */,
+				63E278768D7CC5304CA8D080 /* Pods-igloo.release.xcconfig */,
+				E5DDB68DDBED8578EB97A9A4 /* Pods-iglooTests.debug.xcconfig */,
+				4FDD38D271674D90FAFE483E /* Pods-iglooTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +184,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1331950721BA676000C25D8F /* Build configuration list for PBXNativeTarget "igloo" */;
 			buildPhases = (
+				CEABC5B69ED37E7738E05884 /* [CP] Check Pods Manifest.lock */,
 				133194E621BA675E00C25D8F /* Sources */,
 				133194E721BA675E00C25D8F /* Frameworks */,
 				133194E821BA675E00C25D8F /* Resources */,
+				50772274CE932FA7C655975F /* [CP] Embed Pods Frameworks */,
+				FC4BE19AD21C774FD814E589 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -120,6 +204,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1331950A21BA676000C25D8F /* Build configuration list for PBXNativeTarget "iglooTests" */;
 			buildPhases = (
+				664383F66C4022260C2FC055 /* [CP] Check Pods Manifest.lock */,
 				133194FA21BA676000C25D8F /* Sources */,
 				133194FB21BA676000C25D8F /* Frameworks */,
 				133194FC21BA676000C25D8F /* Resources */,
@@ -192,13 +277,111 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		50772274CE932FA7C655975F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-igloo/Pods-igloo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-igloo/Pods-igloo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		664383F66C4022260C2FC055 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iglooTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CEABC5B69ED37E7738E05884 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-igloo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC4BE19AD21C774FD814E589 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-igloo/Pods-igloo-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-igloo/Pods-igloo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		133194E621BA675E00C25D8F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				133194F021BA675E00C25D8F /* ViewController.swift in Sources */,
+				130DEBC421C252AA00B9ABC2 /* SignInViewController.swift in Sources */,
+				133194F021BA675E00C25D8F /* MainViewController.swift in Sources */,
 				133194EE21BA675E00C25D8F /* AppDelegate.swift in Sources */,
+				130DEBC221C2526100B9ABC2 /* LoginInMenuViewController.swift in Sources */,
+				130DEBC621C252BE00B9ABC2 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +541,7 @@
 		};
 		1331950821BA676000C25D8F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2801E97E383206C937835C2 /* Pods-igloo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -377,6 +561,7 @@
 		};
 		1331950921BA676000C25D8F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63E278768D7CC5304CA8D080 /* Pods-igloo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -396,6 +581,7 @@
 		};
 		1331950B21BA676000C25D8F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5DDB68DDBED8578EB97A9A4 /* Pods-iglooTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -417,6 +603,7 @@
 		};
 		1331950C21BA676000C25D8F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FDD38D271674D90FAFE483E /* Pods-iglooTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
