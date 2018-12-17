@@ -16,6 +16,9 @@
 		133194F521BA676000C25D8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 133194F421BA676000C25D8F /* Assets.xcassets */; };
 		133194F821BA676000C25D8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 133194F621BA676000C25D8F /* LaunchScreen.storyboard */; };
 		1331950321BA676000C25D8F /* iglooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1331950221BA676000C25D8F /* iglooTests.swift */; };
+		138F0A5521C3602400466873 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0A5421C3602400466873 /* NetworkManager.swift */; };
+		138F0A5721C3604000466873 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0A5621C3604000466873 /* Constants.swift */; };
+		13DBF1BD21C78961001A03BA /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DBF1BC21C78961001A03BA /* TestViewController.swift */; };
 		958BE839CA3C65F4E1A3736A /* Pods_iglooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 541BC0812C1BC65EF4B0322E /* Pods_iglooTests.framework */; };
 		9E6A1A33D0E7F10D99B1078D /* Pods_igloo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC1CC220E8C042057767982 /* Pods_igloo.framework */; };
 /* End PBXBuildFile section */
@@ -44,6 +47,9 @@
 		133194FE21BA676000C25D8F /* iglooTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iglooTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1331950221BA676000C25D8F /* iglooTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iglooTests.swift; sourceTree = "<group>"; };
 		1331950421BA676000C25D8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		138F0A5421C3602400466873 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		138F0A5621C3604000466873 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		13DBF1BC21C78961001A03BA /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		4FDD38D271674D90FAFE483E /* Pods-iglooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iglooTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iglooTests/Pods-iglooTests.release.xcconfig"; sourceTree = "<group>"; };
 		541BC0812C1BC65EF4B0322E /* Pods_iglooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iglooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E278768D7CC5304CA8D080 /* Pods-igloo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-igloo.release.xcconfig"; path = "Pods/Target Support Files/Pods-igloo/Pods-igloo.release.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +109,8 @@
 		130DEBBF21C251BE00B9ABC2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				138F0A5421C3602400466873 /* NetworkManager.swift */,
+				138F0A5621C3604000466873 /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -111,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				133194F121BA675E00C25D8F /* Main.storyboard */,
+				13DBF1BC21C78961001A03BA /* TestViewController.swift */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -287,6 +296,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-igloo/Pods-igloo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -295,6 +305,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -377,9 +388,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				138F0A5521C3602400466873 /* NetworkManager.swift in Sources */,
 				130DEBC421C252AA00B9ABC2 /* SignInViewController.swift in Sources */,
+				13DBF1BD21C78961001A03BA /* TestViewController.swift in Sources */,
 				133194F021BA675E00C25D8F /* MainViewController.swift in Sources */,
 				133194EE21BA675E00C25D8F /* AppDelegate.swift in Sources */,
+				138F0A5721C3604000466873 /* Constants.swift in Sources */,
 				130DEBC221C2526100B9ABC2 /* LoginInMenuViewController.swift in Sources */,
 				130DEBC621C252BE00B9ABC2 /* SignUpViewController.swift in Sources */,
 			);
