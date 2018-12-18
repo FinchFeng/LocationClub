@@ -24,18 +24,46 @@ class Network {
         //配置地址
         let url = Constants.backendURL + "iglooLogin/"
         //发送方法
-        Alamofire.request(url, method: .post, parameters: parameters ,encoding: URLEncoding(destination: .methodDependent))
+        sendRuquest(url: url, method: .post, parameters: parameters, action: action)
+        
+    }
+    
+    //获取验证码
+    static func gettingCode(phoneNumber:String,action: @escaping ([String:Any])->Void){//调用前检查手机号格式
+        
+        //配置参数
+        let parameters = [Constants.phoneNumber:phoneNumber]
+        //配置Url
+        let url = Constants.backendURL + "gettingCode/"
+        //发送方法
+        sendRuquest(url: url, method: .post, parameters: parameters, action: action)
+        
+    }
+    
+    //注册
+    static func signUp(phoneNumber:String,code:String,password:String,action: @escaping ([String:Any])->Void){
+        let parameters = [Constants.phoneNumber:phoneNumber,Constants.code:code,Constants.password:password]
+        let url = Constants.backendURL + "signIn/"
+        sendRuquest(url: url, method: .post, parameters: parameters, action: action)
+    }
+    
+    
+    
+    //MARK:辅助方法
+    static func sendRuquest(url:String,method:HTTPMethod,parameters:Parameters,action: @escaping ([String:Any])->Void){
+        //发送方法
+        Alamofire.request(url, method: method, parameters: parameters ,encoding: URLEncoding(destination: .methodDependent))
             .responseJSON{ response in
                 //检查数据是否传输到位
                 if response.result.isSuccess, let JSONDict = response.value! as? [String:Any]{
-                    print(JSONDict[Constants.usersOwenPlacesDefaultJsonKey] as! [String])
                     //执行传入的Block
-                    action(JSONDict)
+                    DispatchQueue.main.async {
+                        action(JSONDict)
+                    }
                 }else{
                     print("错误")
                 }
         }
-        
     }
     
 }
