@@ -20,7 +20,11 @@ class MainViewController: UIViewController {
     
     
     @IBAction func unwind(_ unwindSegue: UIStoryboardSegue) {
-        //do nothing...
+       //登陆后的信息处理
+    }
+    
+    @IBAction func unwindFromIglooLogin(_ unwindSegue:UIStoryboardSegue){
+        //登陆后的信息处理
     }
     
 }

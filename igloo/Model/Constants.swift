@@ -9,6 +9,7 @@
 import Foundation
 
 class Constants {
+    //MARK: 后端的Keys
     static let backendURL =  "http://127.0.0.1:8000/location/"
     
     //JsonKeys
@@ -64,4 +65,8 @@ class Constants {
     
     //Contact Us
     static let content = "content"
+    static let success = "success"
+    
+    //MARK:储存的keys
+    static let isLogin = "isLogin"
 }

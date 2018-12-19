@@ -11,10 +11,19 @@ import GoogleSignIn
 
 class LoginInMenuViewController: UIViewController,GIDSignInUIDelegate{
 
+    //MARK:Properties
+    
     @IBOutlet weak var signInButton: GIDSignInButton!
     @IBOutlet weak var iglooSignIn: UIButton!
+    var model = LoginModel()
+    //model登陆方法
+    lazy var loginBlock = {
+        [weak self] (number:String,password:String,action: @escaping (Bool)->Void) in
+        //解包确认这个VC是否存在
+        self!.model.loginWithIgloo(phoneNumber: number, password: password, action: action)
+    }
     
-    
+    //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
@@ -30,8 +39,28 @@ class LoginInMenuViewController: UIViewController,GIDSignInUIDelegate{
         performSegue(withIdentifier: "segueToSignIn", sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier! == "segueToSignIn"{
+            let nextVC = segue.destination as! SignInViewController
+            //传递block
+            nextVC.loginBlock = self.loginBlock
+        }
+    }
     
     //MARK: Google Sign In
+    
+    func googleSignIn(googleID:String,googleName:String) {
+        model.loginWithGoogle(googleID: googleID, GoogleName: googleName) { (result) in
+            if result == true {
+                self.performSegue(withIdentifier: "unwindToMain", sender: nil)
+            }
+        }
+    }
+    
+    
+    
+    //GoogleSDK Method
+    
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error?) {
         print("结束SignIn")
     }
@@ -56,5 +85,7 @@ class LoginInMenuViewController: UIViewController,GIDSignInUIDelegate{
     @IBAction func unwind(_ unwindSegue: UIStoryboardSegue) {
         //do nothing...
     }
-
+    
+    //Test
+    
 }

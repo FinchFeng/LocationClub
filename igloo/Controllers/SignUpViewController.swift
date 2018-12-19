@@ -10,20 +10,35 @@ import UIKit
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var phoneNumber: UITextField!
+    @IBOutlet weak var verifyCode: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var passwordForVerify: UITextField!
+    
+    @IBOutlet weak var getCodeButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func getVerifyCode() {
+        //验证手机号？
+        Network.gettingCode(phoneNumber: phoneNumber.text!) { (result) in
+            //获取成功的UI展示
+        }
     }
-    */
-
+    
+    
+    @IBAction func signUp() {
+        //验证密码
+        if let text = password.text,let textForVertify = password.text,text == textForVertify{
+            Network.signUp(phoneNumber: phoneNumber.text!, code: verifyCode.text!, password: password.text!) { (result) in
+                //更改界面
+            }
+        }
+    }
+    
+    
 }

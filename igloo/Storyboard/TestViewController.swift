@@ -30,6 +30,10 @@ class TestViewController: UIViewController {
 //        Network.signUp(phoneNumber: "17864266604", code: "9080", password: "12345", action: {_ in
 //            print("signUp")
 //        })
+        print(LoginModel.login)
+        print(LoginModel.owenLikedLocationIDArray)
+        print(LoginModel.iglooID)
+        
     }
     
     

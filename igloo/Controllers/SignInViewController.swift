@@ -12,7 +12,8 @@ class SignInViewController: UIViewController {
 
     @IBOutlet weak var phoneNumber: UITextField!
     @IBOutlet weak var password: UITextField!
-    
+    //上一个VC传递来的Block
+    var loginBlock:((String,String, @escaping (Bool)->Void)->Void)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,20 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func SignUpAction(_ sender: UIButton) {
+        //进行信息检查
+        let number = phoneNumber.text!
+        let password = self.password.text!
         //给后台发送登陆请求
+        loginBlock(number,password,{(result) in
+            if result == true{
+                print("登陆成功")
+                self.performSegue(withIdentifier: "unwindToMain", sender: nil)
+            }else{
+                print("登陆失败")
+                //展示这个信息
+                
+            }
+        })
         
     }
     

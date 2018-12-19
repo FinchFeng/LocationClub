@@ -28,12 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
             let givenName = user.profile.givenName!
             let familyName = user.profile.familyName!
             let email = user.profile.email!
-//            let currentVC = window!.rootViewController! as! ViewController
-            let userImageUrl = user.profile.imageURL(withDimension: 40)
-            let resultString = userId + " " + fullName + " " + givenName + " " + familyName + " " + email + " " + userImageUrl!.path
-//            currentVC.textView.text = resultString
+            let currentVC = window!.rootViewController!.presentedViewController! as! LoginInMenuViewController
+            let resultString = userId + " " + fullName + " " + givenName + " " + familyName + " " + email
             print(resultString)
-            print(idToken.count)
+//            print(idToken.count)
+            //从VC登陆
+            currentVC.googleSignIn(googleID: idToken, googleName: fullName)
             // ...
         }
     }
