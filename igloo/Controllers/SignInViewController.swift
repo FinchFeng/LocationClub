@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var phoneNumber: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -17,7 +17,8 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        phoneNumber.delegate = self
+        password.delegate = self
     }
     
     @IBAction func SignUpAction(_ sender: UIButton) {
@@ -47,6 +48,11 @@ class SignInViewController: UIViewController {
     //UnWind
     @IBAction func unwind(_ unwindSegue: UIStoryboardSegue) {
         //do nothing...
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
 }

@@ -29,8 +29,8 @@ class LoginInMenuViewController: UIViewController,GIDSignInUIDelegate{
         GIDSignIn.sharedInstance().uiDelegate = self
         //GIDSignIn.sharedInstance()!.signInSilently()
         //展现圆角
-        iglooSignIn.layer.cornerRadius = 8
-        iglooSignIn.layer.masksToBounds = true
+//        iglooSignIn.layer.cornerRadius = 8
+//        iglooSignIn.layer.masksToBounds = true
     }
     
     //MARK:igloo SignIn

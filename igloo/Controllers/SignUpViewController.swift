@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var phoneNumber: UITextField!
     @IBOutlet weak var verifyCode: UITextField!
@@ -16,10 +16,24 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordForVerify: UITextField!
     @IBOutlet weak var getCodeButton: UIButton!
     
+    let defaultColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        changeTextFieldStyle(phoneNumber)
+        changeTextFieldStyle(verifyCode)
+        changeTextFieldStyle(password)
+        changeTextFieldStyle(passwordForVerify)
     }
+    
+    func changeTextFieldStyle(_ textField:UITextField) {
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = defaultColor.cgColor
+        textField.layer.cornerRadius = 3
+        textField.layer.masksToBounds = true
+        textField.delegate = self//代理配置
+    }
+    
     //MARK:自动计数按钮
     var timer:Timer!
     var canGetCodeNow:Bool = true
@@ -61,6 +75,7 @@ class SignUpViewController: UIViewController {
         //启动计时器
         timer.fire()
     }
+    
     //MARK: 网络方法
     @IBAction func getVerifyCode() {
         if canGetCodeNow == false { return }
@@ -69,7 +84,7 @@ class SignUpViewController: UIViewController {
             Network.gettingCode(phoneNumber: phoneNumber.text!) { (result) in
                 //获取成功的UI展示
                 //过一段时间才能再次获取
-                self.startClocking(time: 5)
+                self.startClocking(time: 60)
             }
         }else{
             //展示提醒
@@ -106,7 +121,11 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
     
     
 }
