@@ -32,7 +32,12 @@ class SignInViewController: UIViewController {
             }else{
                 print("登陆失败")
                 //展示这个信息
-                
+                let alert = UIAlertController(title: "用户名或者密码输入错误", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "好的", style: .destructive, handler: nil))
+                //清空密码
+                self.present(alert, animated: true, completion: { () in
+                    self.password.text = ""
+                })
             }
         })
         

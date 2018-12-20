@@ -8,16 +8,3 @@
 
 import Foundation
 
-class SignUpModel {
-    
-    
-    
-    func getCode(phoneNumber:String) {
-        
-    }
-    
-    func signUp(code:String,number:String,password:String){
-        <#function body#>
-    }
-    
-}
