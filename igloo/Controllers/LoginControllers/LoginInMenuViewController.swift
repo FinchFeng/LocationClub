@@ -40,7 +40,7 @@ class LoginInMenuViewController: UIViewController,GIDSignInUIDelegate{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier! == "segueToSignIn"{
+        if let id = segue.identifier , id == "segueToSignIn"{
             let nextVC = segue.destination as! SignInViewController
             //传递block
             nextVC.loginBlock = self.loginBlock

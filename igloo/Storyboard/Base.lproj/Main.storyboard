@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PMe-13-G3b">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,37 +10,38 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--探索-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="igloo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="igloo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WTR-cj-tF6">
-                                <rect key="frame" x="168.5" y="328.5" width="38" height="30"/>
-                                <state key="normal" title="Login"/>
-                                <connections>
-                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dm0-oB-bWx"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="WTR-cj-tF6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tpV-rL-oXY"/>
-                            <constraint firstItem="WTR-cj-tF6" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="zYT-1I-3sQ"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <segue destination="C8o-eC-gCb" kind="presentation" identifier="loginMenuSegue" id="EUz-KO-jiE"/>
-                    </connections>
+                    <tabBarItem key="tabBarItem" title="探索" image="exploreTabImage" id="UMd-eG-Emd" userLabel="探索"/>
+                    <navigationItem key="navigationItem" id="HdU-i1-bnc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="bMN-aB-hVp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1182" y="-707"/>
+            <point key="canvasLocation" x="3913" y="-707"/>
+        </scene>
+        <!--我的地点-->
+        <scene sceneID="Fef-iP-GNC">
+            <objects>
+                <viewController id="85c-2a-R3I" customClass="MyLocationsViewController" customModule="igloo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s6s-Sq-Vzy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="q1I-d6-6vQ"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="我的地点" image="myLocaitonTabImage" id="kgN-dx-Pwo" userLabel="我的地点"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SvJ-yJ-cqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3913" y="-1469"/>
         </scene>
         <!--Login In Menu View Controller-->
         <scene sceneID="Hs4-Ua-DjP">
@@ -82,7 +83,7 @@
                                     <color key="titleColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="bMN-aB-hVp" kind="unwind" identifier="unwindToMain" unwindAction="unwind:" id="o9W-qA-V41"/>
+                                    <segue destination="Wcr-R6-YAG" kind="unwind" identifier="unwindToMain" unwindAction="unwind:" id="wRP-uW-bGO"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iglooIcon" translatesAutoresizingMaskIntoConstraints="NO" id="5Ix-CB-EqB">
@@ -136,7 +137,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVM-Ah-hZR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="0fW-MO-ryq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2871.1999999999998" y="-707.49625187406298"/>
+            <point key="canvasLocation" x="4770" y="-2253"/>
         </scene>
         <!--Test View Controller-->
         <scene sceneID="idH-Er-LWf">
@@ -181,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AMn-8i-I0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1181.5999999999999" y="20.239880059970016"/>
+            <point key="canvasLocation" x="2358" y="143"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="0l7-UF-txi">
@@ -305,13 +306,13 @@
                     <connections>
                         <outlet property="password" destination="9JA-NW-8JR" id="iyQ-b8-OKR"/>
                         <outlet property="phoneNumber" destination="JKJ-y1-6xj" id="MqW-P0-hi4"/>
-                        <segue destination="bMN-aB-hVp" kind="unwind" identifier="unwindToMain" unwindAction="unwindFromIglooLogin:" id="tkM-qu-ojo"/>
+                        <segue destination="Wcr-R6-YAG" kind="unwind" identifier="unwindToMain" unwindAction="unwindFromIglooLogin:" id="csJ-id-9vE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ey-iN-Pv9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="g60-Ge-nQL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3748" y="-707.49625187406298"/>
+            <point key="canvasLocation" x="5649" y="-2253"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="9hg-eV-UJ1">
@@ -488,7 +489,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQ4-xp-qgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4600.8000000000002" y="-707.49625187406298"/>
+            <point key="canvasLocation" x="6502" y="-2253"/>
         </scene>
         <!--Sign Up Success View Controller-->
         <scene sceneID="yvF-f1-Ws3">
@@ -548,7 +549,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOc-Ea-26U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5476" y="-707"/>
+            <point key="canvasLocation" x="7377" y="-2253"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jfg-Eg-oRk">
@@ -565,14 +566,80 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E45-oU-hQG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1932" y="-707.49625187406298"/>
+            <point key="canvasLocation" x="3913" y="-2253"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="7PI-9m-7gw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PMe-13-G3b" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="9BL-2i-yvW"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gNM-ZM-2Vu">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cNA-5G-Lum" kind="relationship" relationship="rootViewController" id="7Ag-Ws-PwK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x1A-JY-23D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2228" y="-707"/>
+        </scene>
+        <!--Main Tab Bar Controller-->
+        <scene sceneID="i2H-Of-2MB">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cNA-5G-Lum" customClass="MainTabBarController" customModule="igloo" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="wZe-Rx-vLY"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hTw-WP-57u">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBar>
+                    <connections>
+                        <segue destination="85c-2a-R3I" kind="relationship" relationship="viewControllers" id="0Oh-Jj-Ohz"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="frq-1P-FHC"/>
+                        <segue destination="YwH-lZ-PZN" kind="relationship" relationship="viewControllers" id="aE2-en-KMb"/>
+                        <segue destination="C8o-eC-gCb" kind="presentation" identifier="loginMenuSegue" id="5RM-w8-OBr"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jeo-og-4j6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Wcr-R6-YAG" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3060" y="-707.49625187406298"/>
+        </scene>
+        <!--设置-->
+        <scene sceneID="Rno-Ai-MAq">
+            <objects>
+                <viewController id="YwH-lZ-PZN" customClass="SettingViewController" customModule="igloo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pIY-0w-pdY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="iN8-h8-yEd"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="设置" image="SettingTabImage" id="zPk-Wj-mFv"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZQ1-RN-E33" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3913" y="103"/>
         </scene>
     </scenes>
     <resources>
         <image name="GoBackButtonImage" width="12" height="16"/>
         <image name="GoBackButtonImageWhite" width="12" height="16"/>
+        <image name="SettingTabImage" width="25" height="25"/>
+        <image name="exploreTabImage" width="21" height="28"/>
         <image name="iglooIcon" width="144" height="195"/>
         <image name="iglooIconWhite" width="144" height="195"/>
+        <image name="myLocaitonTabImage" width="27" height="26"/>
         <image name="showOffBar" width="852" height="123"/>
         <image name="success" width="174" height="174"/>
     </resources>
