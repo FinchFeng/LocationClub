@@ -16,7 +16,7 @@
 		133194F821BA676000C25D8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 133194F621BA676000C25D8F /* LaunchScreen.storyboard */; };
 		1331950321BA676000C25D8F /* iglooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1331950221BA676000C25D8F /* iglooTests.swift */; };
 		1362C2BE21C8867F0088494A /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1362C2BD21C8867F0088494A /* LoginModel.swift */; };
-		1362C2C021C9EAEF0088494A /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1362C2BF21C9EAEF0088494A /* SignUpModel.swift */; };
+		1362C2C021C9EAEF0088494A /* DataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1362C2BF21C9EAEF0088494A /* DataClass.swift */; };
 		13670BB221CA3FCA002AB6D9 /* SignUpSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13670BB121CA3FCA002AB6D9 /* SignUpSuccessViewController.swift */; };
 		138E842321CC785500DC2CB8 /* MyLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138E842221CC785500DC2CB8 /* MyLocationsViewController.swift */; };
 		138E842521CC787100DC2CB8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138E842421CC787100DC2CB8 /* MapViewController.swift */; };
@@ -54,7 +54,7 @@
 		1331950221BA676000C25D8F /* iglooTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iglooTests.swift; sourceTree = "<group>"; };
 		1331950421BA676000C25D8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1362C2BD21C8867F0088494A /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
-		1362C2BF21C9EAEF0088494A /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		1362C2BF21C9EAEF0088494A /* DataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataClass.swift; sourceTree = "<group>"; };
 		13670BB121CA3FCA002AB6D9 /* SignUpSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessViewController.swift; sourceTree = "<group>"; };
 		138E842221CC785500DC2CB8 /* MyLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationsViewController.swift; sourceTree = "<group>"; };
 		138E842421CC787100DC2CB8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 				138F0A5421C3602400466873 /* NetworkManager.swift */,
 				138F0A5621C3604000466873 /* Constants.swift */,
 				1362C2BD21C8867F0088494A /* LoginModel.swift */,
-				1362C2BF21C9EAEF0088494A /* SignUpModel.swift */,
+				1362C2BF21C9EAEF0088494A /* DataClass.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -429,7 +429,7 @@
 				133194EE21BA675E00C25D8F /* AppDelegate.swift in Sources */,
 				138F0A5721C3604000466873 /* Constants.swift in Sources */,
 				138E842721CC8BBB00DC2CB8 /* MainTabBarController.swift in Sources */,
-				1362C2C021C9EAEF0088494A /* SignUpModel.swift in Sources */,
+				1362C2C021C9EAEF0088494A /* DataClass.swift in Sources */,
 				130DEBC221C2526100B9ABC2 /* LoginInMenuViewController.swift in Sources */,
 				130DEBC621C252BE00B9ABC2 /* SignUpViewController.swift in Sources */,
 			);

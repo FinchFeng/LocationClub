@@ -12,12 +12,19 @@ class TestViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let image = #imageLiteral(resourceName: "beatlesAndAli")
+        //crop it !
+        let radio:CGFloat = 376/153
+        let newImage = crop(image: image, radio: radio)
+        print(newImage.size)
+        
+        imageView.image = newImage
+        
     }
     
     @IBOutlet weak var textView: UITextView!
     
+    @IBOutlet weak var imageView: UIImageView!
     
     @IBAction func hitButton() {
 //        Network.login(withGoogle:false,number: "17864266604", password: "12345") { JSON in
@@ -34,6 +41,20 @@ class TestViewController: UIViewController {
         print(LoginModel.owenLikedLocationIDArray)
         print(LoginModel.iglooID)
         
+    }
+    
+    func crop(image:UIImage,radio:CGFloat) -> UIImage {
+        //确定新照片的rect
+        let oldHeight = CGFloat(image.cgImage!.height)
+        let width = CGFloat(image.cgImage!.width)
+        let centerY = oldHeight/2
+        let height = width/radio
+        let newImageRect = CGRect(x: 0, y: centerY-height/2, width: width, height: height)
+        //调用方法进行裁剪
+        let newCGImage = image.cgImage!.cropping(to: newImageRect)!
+        let newImage:UIImage = UIImage(cgImage: newCGImage,scale:image.scale,
+                                       orientation:image.imageOrientation)
+        return newImage
     }
     
     

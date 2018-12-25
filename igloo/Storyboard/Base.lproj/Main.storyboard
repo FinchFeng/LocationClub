@@ -164,6 +164,12 @@
                                     <action selector="hitButton" destination="sqk-kQ-xwi" eventType="touchUpInside" id="bba-xI-Yqi"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ali" translatesAutoresizingMaskIntoConstraints="NO" id="rpH-cb-HEH">
+                                <rect key="frame" x="0.0" y="267" width="375" height="153"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rpH-cb-HEH" secondAttribute="height" multiplier="376:153" id="aYk-A8-vFH"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -171,18 +177,22 @@
                             <constraint firstItem="11h-dt-7Q1" firstAttribute="leading" secondItem="ylU-hB-jqD" secondAttribute="leading" constant="164" id="8Xf-qg-6cM"/>
                             <constraint firstItem="11h-dt-7Q1" firstAttribute="centerX" secondItem="kus-jR-0WW" secondAttribute="centerX" id="ZFs-iU-HeB"/>
                             <constraint firstItem="eXc-d7-xra" firstAttribute="leading" secondItem="kus-jR-0WW" secondAttribute="leadingMargin" id="a6Y-eP-K6g"/>
+                            <constraint firstItem="rpH-cb-HEH" firstAttribute="centerX" secondItem="ylU-hB-jqD" secondAttribute="centerX" id="fjJ-QF-OrI"/>
+                            <constraint firstItem="rpH-cb-HEH" firstAttribute="width" secondItem="kus-jR-0WW" secondAttribute="width" id="mUE-W9-JaL"/>
+                            <constraint firstItem="rpH-cb-HEH" firstAttribute="centerY" secondItem="ylU-hB-jqD" secondAttribute="centerY" id="mjj-bX-zf9"/>
                             <constraint firstItem="eXc-d7-xra" firstAttribute="top" secondItem="ylU-hB-jqD" secondAttribute="top" id="oWa-2N-EFv"/>
                             <constraint firstAttribute="bottom" secondItem="11h-dt-7Q1" secondAttribute="bottom" constant="20" symbolic="YES" id="vrT-do-zwg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ylU-hB-jqD"/>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="rpH-cb-HEH" id="i9x-Tg-yWJ"/>
                         <outlet property="textView" destination="eXc-d7-xra" id="Rup-1C-xDE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AMn-8i-I0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2358" y="143"/>
+            <point key="canvasLocation" x="2357.5999999999999" y="142.57871064467767"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="0l7-UF-txi">
@@ -636,6 +646,7 @@
         <image name="GoBackButtonImage" width="12" height="16"/>
         <image name="GoBackButtonImageWhite" width="12" height="16"/>
         <image name="SettingTabImage" width="25" height="25"/>
+        <image name="ali" width="778" height="800"/>
         <image name="exploreTabImage" width="21" height="28"/>
         <image name="iglooIcon" width="144" height="195"/>
         <image name="iglooIconWhite" width="144" height="195"/>

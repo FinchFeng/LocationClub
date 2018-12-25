@@ -23,18 +23,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
             print("Nice Sign In")
             // Perform any operations on signed in user here. 登陆成功
             let userId = user.userID!                  // For client-side use only!
-            let idToken = user.authentication.idToken! // 使用这个变量来进行辨认
+//            let idToken = user.authentication.idToken! // 使用这个变量来进行辨认
             let fullName = user.profile.name!
-            let givenName = user.profile.givenName!
-            let familyName = user.profile.familyName!
-            let email = user.profile.email!
-            let currentVC = window!.rootViewController!.presentedViewController! as! LoginInMenuViewController
-            let resultString = userId + " " + fullName + " " + givenName + " " + familyName + " " + email
-            print(resultString)
-//            print(idToken.count)
-            //从VC登陆
-            currentVC.googleSignIn(googleID: idToken, googleName: fullName)
-            // ...
+//            let givenName = user.profile.givenName!
+//            let familyName = user.profile.familyName!
+//            let email = user.profile.email!
+            print("GoogleID: ",userId)
+//            let rootController = window!.rootViewController!.navigationController!.viewControllers.last! as! LoginInMenuViewController
+            if let currentVC = UIApplication.topViewController() as? LoginInMenuViewController{
+//                let resultString = userId + " " + fullName + " " + givenName + " " + familyName + " " + email
+//                print(resultString)
+                //从VC登陆
+                currentVC.googleSignIn(googleID: userId, googleName: fullName)
+            }
         }
     }
     
@@ -82,3 +83,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 
 }
 
+extension UIApplication {//递归找到最前面的VC
+    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
+    }
+}

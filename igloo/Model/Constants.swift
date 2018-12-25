@@ -50,6 +50,7 @@ class Constants {
     static let visitNoteWord = "visitNoteWord"
     static let imageURL = "imageURL"
     static let createdTime = "createdTime"
+    static let imageURLArray = "imageURLArray"
     
     //Json For getLocatinID
     static let spanX = "spanX"
