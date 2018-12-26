@@ -67,12 +67,18 @@ class Network {
     }
     
     //使用泛型(带有Protocal) 把JSON直接转化为Codable Class
-    static func decoderLocationInfoRank1<T:Codable>(jsonData:Data,type:T.Type) -> T? {
+    static func decoderJson<T:Codable>(jsonData:Data,type:T.Type) -> T? {
         if let newData = try? JSONDecoder().decode(type, from: jsonData){
             return newData
         }else{
             return nil
         }
+    }
+    
+    //把Codable转化为JSON
+    static func changeCodable<T:Codable>(object:T)->Data{
+        let jsonData:Data = try! JSONEncoder().encode(object)
+        return jsonData
     }
     
 }

@@ -12,13 +12,13 @@ class TestViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let image = #imageLiteral(resourceName: "beatlesAndAli")
-        //crop it !
-        let radio:CGFloat = 376/153
-        let newImage = crop(image: image, radio: radio)
-        print(newImage.size)
-        
-        imageView.image = newImage
+//        let image = #imageLiteral(resourceName: "beatlesAndAli")
+//        //crop it !
+//        let radio:CGFloat = 376/153
+//        let newImage = crop(image: image, radio: radio)
+//        print(newImage.size)
+//
+//        imageView.image = newImage
         
     }
     
@@ -37,11 +37,21 @@ class TestViewController: UIViewController {
 //        Network.signUp(phoneNumber: "17864266604", code: "9080", password: "12345", action: {_ in
 //            print("signUp")
 //        })
-        print(LoginModel.login)
-        print(LoginModel.owenLikedLocationIDArray)
-        print(LoginModel.iglooID)
-        
+//        print(LoginModel.login)
+//        print(LoginModel.owenLikedLocationIDArray)
+//        print(LoginModel.iglooID)
+        //图片储存
+//        print(ImageSaver.saveImage(image: #imageLiteral(resourceName: "ali")))
+//        let image = ImageSaver.getImage(name: "ali.jpeg")
+//        print(image)
+        //CodableSaver
+        let data = LocationInfoRank4(locationLikedAmount:3)
+        print(CodableSaver.save(rawData: data))
+        let codableData = CodableSaver.getData()
+        print(codableData!.locationLikedAmount)
     }
+    
+    
     
     func crop(image:UIImage,radio:CGFloat) -> UIImage {
         //确定新照片的rect
