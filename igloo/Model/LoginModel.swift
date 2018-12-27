@@ -20,7 +20,7 @@ class LoginModel {
            return login
         }
     }
-    //公开用户喜欢或者拥有地点
+    //公开 iglooID 用户喜欢或者拥有地点
     static var iglooID:String{
         get{
             return UserDefaults.standard.object(forKey: Constants.iglooID) as! String

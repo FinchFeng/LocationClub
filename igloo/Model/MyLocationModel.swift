@@ -10,7 +10,7 @@ import Foundation
 
 class MyLocationModel {
     
-    //MARK: Login S
+    //MARK: Login
     //注意UserDefualt的数据 没有登陆怎么处理 两种情况一种没有本地数据进行登陆 第二种有本地数据进行登陆在
     //退出登陆之后删除本地数据
     

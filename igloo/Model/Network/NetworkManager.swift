@@ -12,6 +12,8 @@ import WebKit
 
 class Network {
     
+    //MARK:登陆接口
+    
     //登陆接口igloo
     static func login(withGoogle:Bool,GoogleId:String? = nil,GoogleName:String? = nil,number:String? = nil,password:String? = nil,action: @escaping ([String:Any])->Void ){
         //配置参数
@@ -47,7 +49,21 @@ class Network {
         sendRuquest(url: url, method: .post, parameters: parameters, action: action)
     }
     
+    //MARK: LocationInfo
     
+    //登陆之后才能使用
+    static func createNewLocationToServer(locaitonID:String,data:LocationInfoLocal,action:@escaping ([String:Any])->Void){
+        //locationInfoLocal转化为parameters参数
+        var parameters = Shower.changeLocationInfoToParameters(data: data)
+        //获取LocaitonID iglooID
+        parameters[Constants.iglooID] = LoginModel.iglooID
+        parameters[Constants.locationID] = locaitonID
+        //url
+        let url = Constants.backendURL + "addLocation/"
+        sendRuquest(url: url, method: .get, parameters: parameters, action: action)
+    }
+    
+    //登陆
     
     //MARK:辅助方法
     static func sendRuquest(url:String,method:HTTPMethod,parameters:Parameters,action: @escaping ([String:Any])->Void){
