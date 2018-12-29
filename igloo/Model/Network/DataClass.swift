@@ -11,9 +11,7 @@ import UIKit
 
 //LocationInfo
 
-//LocationInfo
-
-struct LocationInfoLocal:Codable{//此类储存在本地,可以直接喂给View吃
+struct LocationInfoLocal:Codable{//此类储存在本地,可以直接喂给ViewController吃
     
     //使用LocationInfo1和[VisitedNoted]来进行创建
     init(locationID:String,rank1Data:LocationInfoRank1,rank2Data:LocationInfoRank2,visitedNoteArray:[VisitedNote]) {
@@ -95,11 +93,11 @@ struct LocationInfoRank4:Codable{
 //VisitedNote
 
 struct VisitedNote:Codable{
-    //visited ID 使用属于的地点的ID+系统时间
-    var visitNoteID:String
+    //visited ID 使用属于的地点的ID+系统时间 直接把VisitedNote作为LocationInfo的也一个子类
+
     //其他数据
     var visitNoteWord :String
-    var imageURLArray:[String]
+    var imageURLArray:[String]//使用这个URL作为储存的path
     var createdTime:String
 }
 

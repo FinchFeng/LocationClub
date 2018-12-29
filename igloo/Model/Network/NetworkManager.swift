@@ -63,7 +63,49 @@ class Network {
         sendRuquest(url: url, method: .get, parameters: parameters, action: action)
     }
     
-    //登陆
+    //获取地点信息 注意顶级信息在这里代表全部信息
+    static func getLocationInfo(locationID:String,rank:Int,landingAction: @escaping (Any)->Void){//
+        let locationUrl = Constants.backendURL + "getLocation/"
+        switch rank {
+        case 1://获取全部地址信息
+            let paramenters1 = [Constants.locationID:locationID,Constants.rankOfLocationInfo:"1"]
+            let paramenters2 = [Constants.locationID:locationID,Constants.rankOfLocationInfo:"2"]
+            //数据储存器
+            var rank1Data:Data?
+            var rank2Data:Data?
+            var visitedNoteIDArray:[String] = []
+            //手写链式调用Request
+            Alamofire.request(locationUrl, method: .get, parameters: paramenters1,encoding: URLEncoding(destination: .methodDependent))
+                .responseJSON { (response) in//第一次返回一个Rank1数据
+                    //使用Shower来更改为Swift类型
+                    if response.result.isSuccess, let data = response.data {
+                        rank1Data = data
+                        //获取VisitedNoteID数组
+                        if let rank1class = Shower.decoderJson(jsonData: data, type: LocationInfoRank1.self){
+                            visitedNoteIDArray = rank1class.VisitedNoteID
+//                            print(visitedNoteIDArray)
+                        }else{
+                            print("出错鸟")
+                            return
+                        }
+                    }
+                    //进行rank2data的请求
+                    Alamofire.request(locationUrl, method: .get, parameters: paramenters2, encoding: URLEncoding(destination: .methodDependent)).responseJSON(completionHandler: { (response) in
+                        if let data = response.data {
+                            rank2Data = data
+//                            if let rank2 = Shower.decoderJson(jsonData: data, type: LocationInfoRank2.self){
+//                                print(rank2)
+//                            }
+                            //进行递归的数组信息获取 并且在最后一个Block执行Block
+                            getVisitNotes(locationID:locationID,IDs: visitedNoteIDArray, dataArray: [],
+                                          rankData: [rank1Data!,rank2Data!], finalBlock: landingAction)
+                        }
+                    })
+                    
+                }
+        default: return
+        }
+    }
     
     //MARK:辅助方法
     static func sendRuquest(url:String,method:HTTPMethod,parameters:Parameters,action: @escaping ([String:Any])->Void){
@@ -81,6 +123,39 @@ class Network {
                 }
         }
     }
+    
+    static func getVisitNotes(locationID:String,IDs: [String],dataArray: [Data],rankData:[Data],finalBlock: @escaping (Any)->Void){//当IDs空的时候就停止递归
+        let url = Constants.backendURL + "getVisitedNoteInfo/"
+        //检查是否结束了
+        if IDs.isEmpty {//结束那么所有数据到手
+            //组装LocationInfo
+            if let locationInfo = Shower.assemble(locationID:locationID, rank1Data: rankData[0], rank2Data: rankData[1], VisitedNotedArray: dataArray){
+                //执行最后的操作
+                finalBlock(locationInfo)
+            }
+            return
+        }else{
+            Alamofire.request(url, method: .get, parameters: [Constants.VisitedNoteID:IDs.first!], encoding: URLEncoding(destination: .methodDependent))
+                .responseJSON { (JSONRespond) in
+                    if let data = JSONRespond.data {
+//                        print(data)
+//                        if let visitedNote = Shower.decoderJson(jsonData: data, type: VisitedNote.self){
+//                            print(visitedNote)
+//                        }
+                        //存入数组
+                        var nextDataArray = dataArray
+                        nextDataArray.append(data)
+                        //删除被获取的id
+                        var nextIDs = IDs
+                        nextIDs.remove(at:0)
+                        //继续递归
+                        getVisitNotes(locationID:locationID,IDs: nextIDs, dataArray: nextDataArray, rankData: rankData,finalBlock: finalBlock)
+                    }
+            }
+        }
+    }
+    
+    
     
     
     

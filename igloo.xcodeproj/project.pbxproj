@@ -12,6 +12,7 @@
 		130DEBC621C252BE00B9ABC2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130DEBC521C252BE00B9ABC2 /* SignUpViewController.swift */; };
 		130EA74321D46358009769ED /* Shower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130EA74221D46358009769ED /* Shower.swift */; };
 		130EA74521D4762F009769ED /* MyLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130EA74421D4762F009769ED /* MyLocationModel.swift */; };
+		130EA74721D70F7C009769ED /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130EA74621D70F7C009769ED /* Extension.swift */; };
 		133194EE21BA675E00C25D8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133194ED21BA675E00C25D8F /* AppDelegate.swift */; };
 		133194F321BA675E00C25D8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 133194F121BA675E00C25D8F /* Main.storyboard */; };
 		133194F521BA676000C25D8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 133194F421BA676000C25D8F /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		130DEBC521C252BE00B9ABC2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		130EA74221D46358009769ED /* Shower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shower.swift; sourceTree = "<group>"; };
 		130EA74421D4762F009769ED /* MyLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationModel.swift; sourceTree = "<group>"; };
+		130EA74621D70F7C009769ED /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		133194EA21BA675E00C25D8F /* igloo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = igloo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		133194ED21BA675E00C25D8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		133194F221BA675E00C25D8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				138F0A5421C3602400466873 /* NetworkManager.swift */,
 				1362C2BF21C9EAEF0088494A /* DataClass.swift */,
 				130EA74221D46358009769ED /* Shower.swift */,
+				130EA74621D70F7C009769ED /* Extension.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				138E842921CC90B500DC2CB8 /* SettingViewController.swift in Sources */,
 				138E842521CC787100DC2CB8 /* MapViewController.swift in Sources */,
 				1362C2BE21C8867F0088494A /* LoginModel.swift in Sources */,
+				130EA74721D70F7C009769ED /* Extension.swift in Sources */,
 				133194EE21BA675E00C25D8F /* AppDelegate.swift in Sources */,
 				138F0A5721C3604000466873 /* Constants.swift in Sources */,
 				138E842721CC8BBB00DC2CB8 /* MainTabBarController.swift in Sources */,

@@ -45,10 +45,14 @@ class TestViewController: UIViewController {
 //        let image = ImageSaver.getImage(name: "ali.jpeg")
 //        print(image)
         //CodableSaver
-        let data = LocationInfoRank4(locationLikedAmount:3)
-        print(CodableSaver.save(rawData: data))
-        let codableData = CodableSaver.getData()
-        print(codableData!.locationLikedAmount)
+//        let data = LocationInfoRank4(locationLikedAmount:3)
+//        print(CodableSaver.save(rawData: data))
+//        let codableData = CodableSaver.getData()
+//        print(codableData!.locationLikedAmount)
+        Network.getLocationInfo(locationID: "1", rank: 1, landingAction: { result in
+            let location = result as! LocationInfoLocal
+            print(location)
+        })
     }
     
     
