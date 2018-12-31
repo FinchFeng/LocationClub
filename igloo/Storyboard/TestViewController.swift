@@ -49,8 +49,10 @@ class TestViewController: UIViewController {
 //        print(CodableSaver.save(rawData: data))
 //        let codableData = CodableSaver.getData()
 //        print(codableData!.locationLikedAmount)
-        Network.getLocationInfo(locationID: "1", rank: 1, landingAction: { result in
-            let location = result as! LocationInfoLocal
+        
+        //Getlocaiton方法测试
+        Network.getLocationInfo(locationID: "1", rank: 4, landingAction: { result in
+            let location = result as! LocationInfoRank4
             print(location)
         })
     }

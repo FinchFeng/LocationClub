@@ -30,6 +30,8 @@ class Network {
         
     }
     
+    
+    
     //获取验证码
     static func gettingCode(phoneNumber:String,action: @escaping ([String:Any])->Void){//调用前检查手机号格式
         
@@ -51,6 +53,8 @@ class Network {
     
     //MARK: LocationInfo
     
+    
+    
     //登陆之后才能使用
     static func createNewLocationToServer(locaitonID:String,data:LocationInfoLocal,action:@escaping ([String:Any])->Void){
         //locationInfoLocal转化为parameters参数
@@ -63,13 +67,41 @@ class Network {
         sendRuquest(url: url, method: .get, parameters: parameters, action: action)
     }
     
+    
+    
     //获取地点信息 注意顶级信息在这里代表全部信息
     static func getLocationInfo(locationID:String,rank:Int,landingAction: @escaping (Any)->Void){//
+        
         let locationUrl = Constants.backendURL + "getLocation/"
+        
+        //内部方法—————使用这个方法来获取2到4rank的数据
+        func getRankData(_ rank:Int){
+            let paramenters = [Constants.locationID:locationID,Constants.rankOfLocationInfo:String(rank)]
+            Alamofire.request(locationUrl, method: .get, parameters: paramenters, encoding: URLEncoding(destination: .methodDependent)).responseJSON(completionHandler: { (response) in
+                if let data = response.data {
+                    //直接Decode Json
+                    var dataForUse:Codable?
+                    print(rank)
+                    switch rank{
+                    case 2: dataForUse = Shower.decoderJson(jsonData: data, type: LocationInfoRank2.self)
+                    case 3: dataForUse = Shower.decoderJson(jsonData: data, type: LocationInfoRank3.self)
+                    case 4: dataForUse = Shower.decoderJson(jsonData: data, type: LocationInfoRank4.self)
+                    default : return
+                    }
+                    //执行LandingAction
+                    if let data = dataForUse{
+                        landingAction(data)
+                    }else{
+                        print("无数据")
+                    }
+                }
+            })
+        }
+        
+        let paramenters1 = [Constants.locationID:locationID,Constants.rankOfLocationInfo:"1"]
+        let paramenters2 = [Constants.locationID:locationID,Constants.rankOfLocationInfo:"2"]
         switch rank {
         case 1://获取全部地址信息
-            let paramenters1 = [Constants.locationID:locationID,Constants.rankOfLocationInfo:"1"]
-            let paramenters2 = [Constants.locationID:locationID,Constants.rankOfLocationInfo:"2"]
             //数据储存器
             var rank1Data:Data?
             var rank2Data:Data?
@@ -78,7 +110,7 @@ class Network {
             Alamofire.request(locationUrl, method: .get, parameters: paramenters1,encoding: URLEncoding(destination: .methodDependent))
                 .responseJSON { (response) in//第一次返回一个Rank1数据
                     //使用Shower来更改为Swift类型
-                    if response.result.isSuccess, let data = response.data {
+                    if let data = response.data {
                         rank1Data = data
                         //获取VisitedNoteID数组
                         if let rank1class = Shower.decoderJson(jsonData: data, type: LocationInfoRank1.self){
@@ -93,9 +125,6 @@ class Network {
                     Alamofire.request(locationUrl, method: .get, parameters: paramenters2, encoding: URLEncoding(destination: .methodDependent)).responseJSON(completionHandler: { (response) in
                         if let data = response.data {
                             rank2Data = data
-//                            if let rank2 = Shower.decoderJson(jsonData: data, type: LocationInfoRank2.self){
-//                                print(rank2)
-//                            }
                             //进行递归的数组信息获取 并且在最后一个Block执行Block
                             getVisitNotes(locationID:locationID,IDs: visitedNoteIDArray, dataArray: [],
                                           rankData: [rank1Data!,rank2Data!], finalBlock: landingAction)
@@ -103,11 +132,19 @@ class Network {
                     })
                     
                 }
-        default: return
+        default:
+            if 2 <= rank , rank <= 4{
+                getRankData(rank)//其他级别使用这个方法
+            }else{
+                print("超出范围")
+            }
         }
+        
+        
+        
     }
     
-    //MARK:辅助方法
+    //MARK:辅助方法 使用这个方法运行登陆功能👇（因为它没有Codable类）
     static func sendRuquest(url:String,method:HTTPMethod,parameters:Parameters,action: @escaping ([String:Any])->Void){
         //发送方法
         Alamofire.request(url, method: method, parameters: parameters ,encoding: URLEncoding(destination: .methodDependent))
@@ -138,10 +175,6 @@ class Network {
             Alamofire.request(url, method: .get, parameters: [Constants.VisitedNoteID:IDs.first!], encoding: URLEncoding(destination: .methodDependent))
                 .responseJSON { (JSONRespond) in
                     if let data = JSONRespond.data {
-//                        print(data)
-//                        if let visitedNote = Shower.decoderJson(jsonData: data, type: VisitedNote.self){
-//                            print(visitedNote)
-//                        }
                         //存入数组
                         var nextDataArray = dataArray
                         nextDataArray.append(data)
