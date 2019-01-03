@@ -51,10 +51,13 @@ class TestViewController: UIViewController {
 //        print(codableData!.locationLikedAmount)
         
         //Getlocaiton方法测试
-        Network.getLocationInfo(locationID: "1", rank: 4, landingAction: { result in
-            let location = result as! LocationInfoRank4
-            print(location)
-        })
+//        Network.getLocationInfo(locationID: "1", rank: 4, landingAction: { result in
+//            let location = result as! LocationInfoRank4
+//            print(location)
+//        })
+        
+        //changLocation测试
+        Network.changeLocationData(key: Constants.locationName, data: "Starbucka", locationID: "1")
     }
     
     

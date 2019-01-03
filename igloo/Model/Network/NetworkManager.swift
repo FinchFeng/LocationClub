@@ -53,8 +53,6 @@ class Network {
     
     //MARK: LocationInfo
     
-    
-    
     //登陆之后才能使用
     static func createNewLocationToServer(locaitonID:String,data:LocationInfoLocal,action:@escaping ([String:Any])->Void){
         //locationInfoLocal转化为parameters参数
@@ -144,7 +142,43 @@ class Network {
         
     }
     
-    //MARK:辅助方法 使用这个方法运行登陆功能👇（因为它没有Codable类）
+    //更改Location信息 登陆之后才能使用⚠️
+    static func changeLocationData(key:String,data:String,locationID:String){
+        //从UserDefault中获取iglooID
+        let iglooID = LoginModel.iglooID
+        //配置Url
+        let url = Constants.backendURL + "changeLocationInfo/"
+        //配置参数
+        let parameters = ["key":key,"data":data,Constants.iglooID:iglooID,Constants.locationID:locationID]
+        //发送参数
+        sendRuquest(url: url, method: .get, parameters: parameters) { (JSON) in
+            if let result = JSON["success"] as? Bool{
+                print("更改Location信息 " + String(result))
+            }else{
+                //错误信息
+            }
+        }
+    }
+    
+    //删除Locaition
+    static func deleteLocation(locationID:String){
+        //从UserDefault中获取iglooID
+        let iglooID = LoginModel.iglooID
+        //配置Url
+        let url = Constants.backendURL + "changeLocationInfo/"
+        //配置参数
+        let parameters = ["key":"delete",Constants.iglooID:iglooID,Constants.locationID:locationID]
+        //发送参数
+        sendRuquest(url: url, method: .get, parameters: parameters) { (JSON) in
+            if let result = JSON["success"] as? String{
+                print("删除Location信息 " + result)
+            }
+        }
+    }
+    
+    //MARK:辅助方法
+    
+    //使用这个方法运行没有Codable类的功能
     static func sendRuquest(url:String,method:HTTPMethod,parameters:Parameters,action: @escaping ([String:Any])->Void){
         //发送方法
         Alamofire.request(url, method: method, parameters: parameters ,encoding: URLEncoding(destination: .methodDependent))
@@ -161,6 +195,7 @@ class Network {
         }
     }
     
+    //递归获取方法 等待加入图片获取
     static func getVisitNotes(locationID:String,IDs: [String],dataArray: [Data],rankData:[Data],finalBlock: @escaping (Any)->Void){//当IDs空的时候就停止递归
         let url = Constants.backendURL + "getVisitedNoteInfo/"
         //检查是否结束了

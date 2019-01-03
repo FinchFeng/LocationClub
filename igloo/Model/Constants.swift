@@ -25,7 +25,6 @@ class Constants {
     static let userName = "userName"
     // For return
     static let iglooID = "iglooID"
-    static let totalLikedAmount = "totalLikedAmount"
     
     //JSONKey for AddIn LocationInfo
     static let locationName = "locationName"
