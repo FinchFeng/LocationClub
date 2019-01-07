@@ -56,9 +56,23 @@ class TestViewController: UIViewController {
 //            print(location)
 //        })
         
-        //changLocation测试
-        Network.changeLocationData(key: Constants.locationName, data: "Starbucka", locationID: "1")
+        //创建一个地点
+//        let rank1 = LocationInfoRank1(locationName: "cocoCoffee" ,iconKindString: "Coffee" ,locationDescription: "hhhh" ,locationLatitudeKey: 3 ,locationLongitudeKey: 6 ,isPublic: true ,locationLikedAmount: 0 ,VisitedNoteID: [])
+//        let rank2Data = LocationInfoRank2(locationName: "cocoCoffee" ,locationInfoWord: "nearby upc" ,locationLikedAmount: 0 ,locationInfoImageURL: "aaa" )
+//        let locationData = LocationInfoLocal(locationID: "2", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
+//        Network.createNewLocationToServer(locaitonID: "2", data: locationData) { (JSON) in
+//            print("函数已经返回")
+//        }
+        
+        //changLocation测试 登陆之后使用
+//        Network.changeLocationData(key: Constants.locationName, data: "Starbucka", locationID: "1")
+        
+        //点赞之交测试
+//        Network.likedOrNot(cancel: true, location: "1") { (result) in
+//            print(result)
+//        }
     }
+    
     
     
     

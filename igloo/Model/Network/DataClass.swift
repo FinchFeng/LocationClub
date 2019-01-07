@@ -2,7 +2,7 @@
 //  SignUpModel.swift
 //  igloo
 //
-//  Created by 冯奕琦 on 2018/12/19.
+//  Created by 冯奕琦 on 2018/12/19.《
 //  Copyright © 2018 冯奕琦. All rights reserved.
 //
 
@@ -12,8 +12,9 @@ import UIKit
 //LocationInfo
 
 struct LocationInfoLocal:Codable{//此类储存在本地,可以直接喂给ViewController吃
+    //🔧 使用一个方法让用户直接创建LocationInfoLocal
     
-    //使用LocationInfo1和[VisitedNoted]来进行创建
+    //使用LocationInfo1和[VisitedNoted]来进行创建(后端数据进行获取)
     init(locationID:String,rank1Data:LocationInfoRank1,rank2Data:LocationInfoRank2,visitedNoteArray:[VisitedNote]) {
         self.locationID = locationID
         //Rank2

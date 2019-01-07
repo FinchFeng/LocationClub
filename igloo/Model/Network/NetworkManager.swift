@@ -51,14 +51,15 @@ class Network {
         sendRuquest(url: url, method: .post, parameters: parameters, action: action)
     }
     
-    //MARK: LocationInfo
+
+    //MARK: 地点操作
     
-    //登陆之后才能使用
+    //创建地点 登陆之后才能使用
     static func createNewLocationToServer(locaitonID:String,data:LocationInfoLocal,action:@escaping ([String:Any])->Void){
         //locationInfoLocal转化为parameters参数
         var parameters = Shower.changeLocationInfoToParameters(data: data)
-        //获取LocaitonID iglooID
-        parameters[Constants.iglooID] = LoginModel.iglooID
+        //获取LocaitonID iglooID ⚠️测试的时候使用静态iglooID
+        parameters[Constants.iglooID] = "173795138"
         parameters[Constants.locationID] = locaitonID
         //url
         let url = Constants.backendURL + "addLocation/"
@@ -139,7 +140,6 @@ class Network {
         }
         
         
-        
     }
     
     //更改Location信息 登陆之后才能使用⚠️
@@ -175,8 +175,32 @@ class Network {
             }
         }
     }
+    //MARK: 查找区域内地点 使用Map的区域类型？
+//    static func getLocationsIn(span:){
+//
+//    }
     
-    //MARK:辅助方法
+    //MARK: 赞👍 与赞的取消 使用同一个方法
+    //需要登陆过才能使用
+    static func likedOrNot(cancel:Bool,location:String,landingAction:@escaping (Bool)->Void){
+        //唯一的不同就是URL
+        let url = Constants.backendURL + (cancel ? "unliked/" :"liked/")
+        //⚠️使用静态igloo测试 LoginModel.iglooID
+        let parameters = [Constants.iglooID:"175291387",Constants.locationID:location]
+        sendRuquest(url: url, method: .get, parameters: parameters) { (JSONs) in
+            if let success = JSONs["success"] as? Bool {
+                //执行成功代码
+                landingAction(success)
+            }
+        }
+    }
+
+    
+    //MARK: 图片上传下载(不能直接调用？)
+    
+    //MARK: 联系我们
+    
+    //MARK: 辅助方法
     
     //使用这个方法运行没有Codable类的功能
     static func sendRuquest(url:String,method:HTTPMethod,parameters:Parameters,action: @escaping ([String:Any])->Void){
