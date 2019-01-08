@@ -60,6 +60,7 @@ class TestViewController: UIViewController {
 //        let rank1 = LocationInfoRank1(locationName: "cocoCoffee" ,iconKindString: "Coffee" ,locationDescription: "hhhh" ,locationLatitudeKey: 3 ,locationLongitudeKey: 6 ,isPublic: true ,locationLikedAmount: 0 ,VisitedNoteID: [])
 //        let rank2Data = LocationInfoRank2(locationName: "cocoCoffee" ,locationInfoWord: "nearby upc" ,locationLikedAmount: 0 ,locationInfoImageURL: "aaa" )
 //        let locationData = LocationInfoLocal(locationID: "2", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
+        
 //        Network.createNewLocationToServer(locaitonID: "2", data: locationData) { (JSON) in
 //            print("函数已经返回")
 //        }
@@ -71,6 +72,9 @@ class TestViewController: UIViewController {
 //        Network.likedOrNot(cancel: true, location: "1") { (result) in
 //            print(result)
 //        }
+        
+        //联系我们测试
+        Network.contactUs(string: "谢谢")
     }
     
     

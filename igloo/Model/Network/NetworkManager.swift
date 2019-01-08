@@ -182,7 +182,7 @@ class Network {
     
     //MARK: 赞👍 与赞的取消 使用同一个方法
     //需要登陆过才能使用
-    static func likedOrNot(cancel:Bool,location:String,landingAction:@escaping (Bool)->Void){
+    static func liked(cancel:Bool,location:String,landingAction:@escaping (Bool)->Void){
         //唯一的不同就是URL
         let url = Constants.backendURL + (cancel ? "unliked/" :"liked/")
         //⚠️使用静态igloo测试 LoginModel.iglooID
@@ -199,6 +199,16 @@ class Network {
     //MARK: 图片上传下载(不能直接调用？)
     
     //MARK: 联系我们
+    
+    static func contactUs(string:String){
+        let url = Constants.backendURL + "contact/"
+        //使用静态iglooID
+        let parameters = [Constants.iglooID:"175291387",Constants.content:string]
+        //发送函数
+        sendRuquest(url: url, method: .get, parameters: parameters) { (JSON) in
+            //do nothing
+        }
+    }
     
     //MARK: 辅助方法
     
