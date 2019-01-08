@@ -12,9 +12,23 @@ import UIKit
 //LocationInfo
 
 struct LocationInfoLocal:Codable{//此类储存在本地,可以直接喂给ViewController吃
-    //🔧 使用一个方法让用户直接创建LocationInfoLocal
-    
-    //使用LocationInfo1和[VisitedNoted]来进行创建(后端数据进行获取)
+    //使用一个方法让用户直接创建LocationInfoLocal
+    init(locationID:String,locationName:String,iconKindString:String,locationDescription:String,
+         locationLatitudeKey:Double,locationLongitudeKey:Double,isPublic:Bool,locationLikedAmount:Int,
+         locationInfoWord:String,locationInfoImageURL:String,VisitedNoteID:[VisitedNote]) {
+        self.locationID = locationID
+        self.locationName = locationName
+        self.iconKindString = iconKindString
+        self.locationDescription = locationDescription
+        self.locationLatitudeKey = locationLatitudeKey
+        self.locationLongitudeKey = locationLongitudeKey
+        self.isPublic = isPublic
+        self.locationLikedAmount = locationLikedAmount
+        self.locationInfoWord = locationInfoWord
+        self.locationInfoImageURL = locationInfoImageURL
+        self.VisitedNoteID = VisitedNoteID
+    }
+    //使用LocationInfo1和[VisitedNoted]来进行创建(后端数据获取)
     init(locationID:String,rank1Data:LocationInfoRank1,rank2Data:LocationInfoRank2,visitedNoteArray:[VisitedNote]) {
         self.locationID = locationID
         //Rank2
@@ -95,7 +109,7 @@ struct LocationInfoRank4:Codable{
 
 struct VisitedNote:Codable{
     //visited ID 使用属于的地点的ID+系统时间 直接把VisitedNote作为LocationInfo的也一个子类
-
+    
     //其他数据
     var visitNoteWord :String
     var imageURLArray:[String]//使用这个URL作为储存的path
@@ -110,7 +124,7 @@ class ImageSaver {
     static func saveImage(image: UIImage) -> Bool {
         do {
             guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
-                    return false
+                return false
             }
             try data.write(to: document.appendingPathComponent(fileName))
         }catch{
