@@ -53,7 +53,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                     canGetCodeNow = true
                 }else{
                     //更新到Button Title
-                    timingLabel.text = "("+String(time)+"s)"
+                    timingLabel.text = ""+String(time)+"s"
                 }
             }
         }
@@ -97,8 +97,9 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     
     
     @IBAction func signUp() {
-        //验证密码
-        if let text = password.text,let textForVertify = password.text,text == textForVertify{
+        //检查密码框中的文字是否符合规范
+        if phoneNumber.text != nil , let text = password.text,let textForVertify = password.text,text == textForVertify,text.count>6{
+            //向后台验证密码
             Network.signUp(phoneNumber: phoneNumber.text!, code: verifyCode.text!, password: password.text!) { (result) in
                 //是否注册成功
                 let success = result[Constants.success] as! Bool
@@ -114,10 +115,18 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                 }
             }
         }else{
-            //密码不匹配
-            let alert = UIAlertController(title: "确认密码不匹配", message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "好的", style: .destructive, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            //判断是不匹配还是密码过短
+            if let text = password.text , text.count <= 6 {
+                //密码长度不大于6
+                let alert = UIAlertController(title: "请设置密码长度大于6个字符", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "好的", style: .destructive, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }else{
+                //密码不匹配
+                let alert = UIAlertController(title: "确认密码不匹配", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "好的", style: .destructive, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
     

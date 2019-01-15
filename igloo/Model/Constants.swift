@@ -9,6 +9,11 @@
 import Foundation
 
 class Constants {
+    
+    //MARK:静态文字
+    static let welcomeLoginString = "登陆后使用igloo探索整个世界"
+    static let loginButtonString = "igloo账号登陆"
+    
     //MARK: 后端的Keys
     static let backendURL =  "http://127.0.0.1:8000/location/"
     
@@ -19,6 +24,7 @@ class Constants {
     static let usersLikePlacesDefaultJsonKey = "likedPlaceId"
     static let locationVisitnoteDefaultJsonKey = "VisitedNoteID"
     static let visitNoteImagesDefaultJsonKey = "imageURL"
+    static let havePaid = "havePaid"
     //JsonKey for Login
     static let thirdPartyID = "thirdPartyID"
     static let userImageURL = "userImageURL"

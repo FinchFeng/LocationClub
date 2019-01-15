@@ -15,6 +15,8 @@ class LoginInMenuViewController: UIViewController,GIDSignInUIDelegate{
     
     @IBOutlet weak var signInButton: GIDSignInButton!
     @IBOutlet weak var iglooSignIn: UIButton!
+    @IBOutlet weak var welcomeLoginLabel: UILabel!
+    
     var model = LoginModel()
     //model登陆方法
     lazy var loginBlock = {
@@ -27,6 +29,9 @@ class LoginInMenuViewController: UIViewController,GIDSignInUIDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
+        //填写文字
+        welcomeLoginLabel.text = Constants.welcomeLoginString
+        iglooSignIn.setTitle(Constants.loginButtonString, for: .normal)
         //GIDSignIn.sharedInstance()!.signInSilently()
         //展现圆角
 //        iglooSignIn.layer.cornerRadius = 8

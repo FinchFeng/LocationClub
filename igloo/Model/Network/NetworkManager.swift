@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import WebKit
+import MapKit
 
 class Network {
     
@@ -196,7 +197,18 @@ class Network {
     }
 
     
-    //MARK: 图片上传下载(不能直接调用？)
+    //MARK: 图片上传下载
+    //对于外部来说直接传入URL就可以获取图片(不能直接调用？)
+    
+    static func getImage(at url:String,landingAction:@escaping (UIImage)->Void){
+        //获取图片
+        //转换成为UIImage
+        //执行Action
+    }
+    
+    static func sendImage(to url:String,landingAction:@escaping(Bool)->Void){
+        
+    }
     
     //MARK: 联系我们
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sqk-kQ-xwi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PMe-13-G3b">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -63,7 +63,7 @@
                                 <rect key="frame" x="117.5" y="493" width="140" height="36"/>
                                 <color key="backgroundColor" red="0.027450980392156862" green="0.46274509803921571" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <state key="normal" title="igloo账号登陆">
+                                <state key="normal" title="????">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -93,14 +93,14 @@
                                     <constraint firstAttribute="width" secondItem="5Ix-CB-EqB" secondAttribute="height" multiplier="48:65" id="p4v-Hx-RSn"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登陆后使用igloo探索整个世界" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5C-Qn-sfN">
-                                <rect key="frame" x="79.5" y="197" width="216" height="19.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="????????????????" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5C-Qn-sfN">
+                                <rect key="frame" x="122.5" y="197" width="130.5" height="20"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="showOffBar" translatesAutoresizingMaskIntoConstraints="NO" id="9v1-t4-roB">
-                                <rect key="frame" x="45.5" y="228.5" width="284" height="41"/>
+                                <rect key="frame" x="45.5" y="229" width="284" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="9v1-t4-roB" secondAttribute="height" multiplier="284:41" id="ShW-T4-Sy7"/>
                                     <constraint firstAttribute="height" constant="41" id="YHh-at-8Qu"/>
@@ -131,6 +131,7 @@
                     <connections>
                         <outlet property="iglooSignIn" destination="UEn-wV-jGZ" id="ATQ-3V-okL"/>
                         <outlet property="signInButton" destination="XoH-IL-JvG" id="4gr-15-6GY"/>
+                        <outlet property="welcomeLoginLabel" destination="j5C-Qn-sfN" id="RFK-m3-wl8"/>
                         <segue destination="t5d-tx-BIS" kind="show" identifier="segueToSignIn" id="oPX-Ig-eZt"/>
                     </connections>
                 </viewController>
@@ -531,14 +532,14 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="success" translatesAutoresizingMaskIntoConstraints="NO" id="QNM-fB-9CI">
-                                <rect key="frame" x="158.5" y="180" width="58" height="58"/>
+                                <rect key="frame" x="158.5" y="183.5" width="58" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="58" id="crF-7Z-7rm"/>
                                     <constraint firstAttribute="height" constant="58" id="pOw-FK-tGc"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册成功！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shh-nj-MhP">
-                                <rect key="frame" x="145.5" y="262" width="102" height="24"/>
+                                <rect key="frame" x="145.5" y="265.5" width="102" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -546,8 +547,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="QNM-fB-9CI" firstAttribute="centerY" secondItem="F2Z-9h-Ufy" secondAttribute="centerY" multiplier="0.618" id="B5g-KK-gdg"/>
                             <constraint firstItem="shh-nj-MhP" firstAttribute="top" secondItem="QNM-fB-9CI" secondAttribute="bottom" constant="24" id="T9t-NB-Xea"/>
-                            <constraint firstItem="QNM-fB-9CI" firstAttribute="top" secondItem="F2Z-9h-Ufy" secondAttribute="top" multiplier="9" id="ZeO-0E-diY"/>
                             <constraint firstItem="F2Z-9h-Ufy" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="shh-nj-MhP" secondAttribute="trailing" constant="127.5" id="gRl-GB-twe"/>
                             <constraint firstItem="QNM-fB-9CI" firstAttribute="centerX" secondItem="F2Z-9h-Ufy" secondAttribute="centerX" id="toc-Yu-hT2"/>
                             <constraint firstItem="3Mq-eS-UUz" firstAttribute="centerX" secondItem="F2Z-9h-Ufy" secondAttribute="centerX" id="tvE-VW-cGV"/>
