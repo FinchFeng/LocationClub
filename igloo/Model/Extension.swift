@@ -5,7 +5,7 @@
 //  Created by 冯奕琦 on 2018/12/29.
 //  Copyright © 2018 冯奕琦. All rights reserved.
 //
-
+import MapKit
 import Foundation
 
 extension Date {
@@ -41,5 +41,15 @@ extension Date {
         return currentComponents
     }
     
-    
+}
+
+extension MKCoordinateRegion{
+    //生成使用经纬度描述的区域
+    func getLatitudeLongitudeSpan()->(latitudeMax:Double,latitudeMin:Double,longtitudeMax:Double,longtitudeMin:Double){
+        let latitudeMax = self.center.latitude + self.span.latitudeDelta/2
+        let latitudeMin = self.center.latitude - self.span.latitudeDelta/2
+        let longtitudeMax = self.center.longitude + self.span.longitudeDelta/2
+        let longtitudeMin = self.center.longitude - self.span.longitudeDelta/2
+        return (latitudeMax,latitudeMin,longtitudeMax,longtitudeMin)
+    }
 }

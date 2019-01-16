@@ -6,6 +6,7 @@
 //  Copyright © 2018 冯奕琦. All rights reserved.
 //
 
+import MapKit
 import UIKit
 
 class TestViewController: UIViewController {
@@ -50,9 +51,9 @@ class TestViewController: UIViewController {
 //        let codableData = CodableSaver.getData()
 //        print(codableData!.locationLikedAmount)
         
-        //Getlocaiton方法测试
-//        Network.getLocationInfo(locationID: "1", rank: 4, landingAction: { result in
-//            let location = result as! LocationInfoRank4
+//        Getlocaiton方法测试
+//        Network.getLocationInfo(locationID: "2", rank: 1, landingAction: { result in
+//            let location = result as! LocationInfoLocal
 //            print(location)
 //        })
         
@@ -60,7 +61,7 @@ class TestViewController: UIViewController {
 //        let rank1 = LocationInfoRank1(locationName: "cocoCoffee" ,iconKindString: "Coffee" ,locationDescription: "hhhh" ,locationLatitudeKey: 3 ,locationLongitudeKey: 6 ,isPublic: true ,locationLikedAmount: 0 ,VisitedNoteID: [])
 //        let rank2Data = LocationInfoRank2(locationName: "cocoCoffee" ,locationInfoWord: "nearby upc" ,locationLikedAmount: 0 ,locationInfoImageURL: "aaa" )
 //        let locationData = LocationInfoLocal(locationID: "2", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
-        
+//
 //        Network.createNewLocationToServer(locaitonID: "2", data: locationData) { (JSON) in
 //            print("函数已经返回")
 //        }
@@ -74,7 +75,18 @@ class TestViewController: UIViewController {
 //        }
         
         //联系我们测试
-        Network.contactUs(string: "谢谢")
+//        Network.contactUs(string: "谢谢")
+        
+        //查找一个区域中的地点测试
+//        let locationRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 2, longitude: 5),span:MKCoordinateSpan(latitudeDelta: 4, longitudeDelta: 4))
+//        Network.getLocationsIn(span: locationRegion) { (dataArray) in
+//            for data in dataArray{
+//                print(data)
+//                Network.getLocationInfo(locationID: data.0, rank: 2, landingAction: { data in
+//                    print(data as! LocationInfoRank2)
+//                })
+//            }
+//        }
     }
     
     

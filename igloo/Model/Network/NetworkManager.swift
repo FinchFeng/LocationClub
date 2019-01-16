@@ -60,7 +60,7 @@ class Network {
         //locationInfoLocal转化为parameters参数
         var parameters = Shower.changeLocationInfoToParameters(data: data)
         //获取LocaitonID iglooID ⚠️测试的时候使用静态iglooID
-        parameters[Constants.iglooID] = "173795138"
+        parameters[Constants.iglooID] = "241927599"
         parameters[Constants.locationID] = locaitonID
         //url
         let url = Constants.backendURL + "addLocation/"
@@ -177,9 +177,34 @@ class Network {
         }
     }
     //MARK: 查找区域内地点 使用Map的区域类型？
-//    static func getLocationsIn(span:){
-//
-//    }
+    static func getLocationsIn(span:MKCoordinateRegion,landingAction:@escaping ( [(String,LocationInfoRank3)] )->Void){
+        //配置参数
+        let url = Constants.backendURL + "searchSpan/"
+        let spanForUse = span.getLatitudeLongitudeSpan()
+//        print(spanForUse)
+        let parameters = [Constants.spanX:spanForUse.latitudeMin,Constants.spanY:spanForUse.longtitudeMin,
+            Constants.spanHeigh:span.span.longitudeDelta,Constants.spanWidth:span.span.latitudeDelta]
+//        print(parameters)
+        //发送请求
+        sendRuquest(url: url, method: .get, parameters: parameters) { (JSON) in
+            //数据处理
+            let rawDataArray = JSON["data"] as! [[String:Any]]
+            var resultArray:[(String,LocationInfoRank3)] = []
+            for locations in rawDataArray{
+                //对每个location数据进行处理
+                let locationID = locations[Constants.locationID] as! String
+                let latitude = locations[Constants.locationLatitudeKey] as! Double
+                let longitude = locations[Constants.locationLongitudeKey] as! Double
+                let iconKind = locations[Constants.iconKindString] as! String
+                //加入结果数组
+                resultArray.append((locationID,
+                                    LocationInfoRank3(locationLatitudeKey:latitude, locationLongitudeKey:longitude,
+                                                      iconKindString:iconKind)))
+            }
+            //执行处理闭包
+            landingAction(resultArray)
+        }
+    }
     
     //MARK: 赞👍 与赞的取消 使用同一个方法
     //需要登陆过才能使用
@@ -187,7 +212,7 @@ class Network {
         //唯一的不同就是URL
         let url = Constants.backendURL + (cancel ? "unliked/" :"liked/")
         //⚠️使用静态igloo测试 LoginModel.iglooID
-        let parameters = [Constants.iglooID:"175291387",Constants.locationID:location]
+        let parameters = [Constants.iglooID:"241927599",Constants.locationID:location]
         sendRuquest(url: url, method: .get, parameters: parameters) { (JSONs) in
             if let success = JSONs["success"] as? Bool {
                 //执行成功代码
@@ -215,7 +240,7 @@ class Network {
     static func contactUs(string:String){
         let url = Constants.backendURL + "contact/"
         //使用静态iglooID
-        let parameters = [Constants.iglooID:"175291387",Constants.content:string]
+        let parameters = [Constants.iglooID:"241927599",Constants.content:string]
         //发送函数
         sendRuquest(url: url, method: .get, parameters: parameters) { (JSON) in
             //do nothing
