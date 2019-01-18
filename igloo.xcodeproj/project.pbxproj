@@ -28,6 +28,7 @@
 		138E842B21CD19B200DC2CB8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138E842A21CD19B200DC2CB8 /* MainTabBarController.swift */; };
 		138F0A5521C3602400466873 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0A5421C3602400466873 /* NetworkManager.swift */; };
 		138F0A5721C3604000466873 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0A5621C3604000466873 /* Constants.swift */; };
+		13ADBD7921F00D0100D32138 /* ImagePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ADBD7821F00D0100D32138 /* ImagePool.swift */; };
 		13DBF1BD21C78961001A03BA /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DBF1BC21C78961001A03BA /* TestViewController.swift */; };
 		958BE839CA3C65F4E1A3736A /* Pods_iglooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 541BC0812C1BC65EF4B0322E /* Pods_iglooTests.framework */; };
 		9E6A1A33D0E7F10D99B1078D /* Pods_igloo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC1CC220E8C042057767982 /* Pods_igloo.framework */; };
@@ -69,6 +70,7 @@
 		138E842A21CD19B200DC2CB8 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		138F0A5421C3602400466873 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		138F0A5621C3604000466873 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		13ADBD7821F00D0100D32138 /* ImagePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePool.swift; sourceTree = "<group>"; };
 		13DBF1BC21C78961001A03BA /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		4FDD38D271674D90FAFE483E /* Pods-iglooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iglooTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iglooTests/Pods-iglooTests.release.xcconfig"; sourceTree = "<group>"; };
 		541BC0812C1BC65EF4B0322E /* Pods_iglooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iglooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,11 +133,11 @@
 		130DEBBF21C251BE00B9ABC2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				13ADBD7721F00CB900D32138 /* ModesForVC */,
 				130EA74121D46343009769ED /* Network */,
 				130EA74621D70F7C009769ED /* Extension.swift */,
 				138F0A5621C3604000466873 /* Constants.swift */,
-				1362C2BD21C8867F0088494A /* LoginModel.swift */,
-				130EA74421D4762F009769ED /* MyLocationModel.swift */,
+				13ADBD7821F00D0100D32138 /* ImagePool.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -210,6 +212,15 @@
 				13670BB121CA3FCA002AB6D9 /* SignUpSuccessViewController.swift */,
 			);
 			path = LoginControllers;
+			sourceTree = "<group>";
+		};
+		13ADBD7721F00CB900D32138 /* ModesForVC */ = {
+			isa = PBXGroup;
+			children = (
+				1362C2BD21C8867F0088494A /* LoginModel.swift */,
+				130EA74421D4762F009769ED /* MyLocationModel.swift */,
+			);
+			path = ModesForVC;
 			sourceTree = "<group>";
 		};
 		54016C8FE3E1821C538C322C /* Frameworks */ = {
@@ -450,6 +461,7 @@
 				1362C2C021C9EAEF0088494A /* DataClass.swift in Sources */,
 				130EA74521D4762F009769ED /* MyLocationModel.swift in Sources */,
 				130DEBC221C2526100B9ABC2 /* LoginInMenuViewController.swift in Sources */,
+				13ADBD7921F00D0100D32138 /* ImagePool.swift in Sources */,
 				130DEBC621C252BE00B9ABC2 /* SignUpViewController.swift in Sources */,
 				130EA74321D46358009769ED /* Shower.swift in Sources */,
 			);
@@ -625,7 +637,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fengyiqi.igloo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -645,7 +657,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fengyiqi.igloo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

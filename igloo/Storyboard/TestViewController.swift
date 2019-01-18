@@ -20,7 +20,7 @@ class TestViewController: UIViewController {
 //        print(newImage.size)
 //
 //        imageView.image = newImage
-        
+//        print(self.view.frame.size)
     }
     
     @IBOutlet weak var textView: UITextView!
@@ -87,6 +87,20 @@ class TestViewController: UIViewController {
 //                })
 //            }
 //        }
+        //VisitedNote创建与删除
+//        let dateString = Date.changeDateToString(date: Date())
+//        Network.createVisitedNote(locationID: "2", data: VisitedNote(visitNoteWord:"aa",imageURLArray:[],createdTime:dateString))
+//            Network.deleteVisitedNote(id: "21")
+        //获取图片
+//        Network.getImage(at: "uploads/4A8E6687-E905-4053-94B8-2786F4461319-3876-000005BE98C0017A_tmp.JPG") { image in
+//            self.imageView.image = image
+//        }
+        //发送图片
+//        let image = imageView.image!
+//        Network.send(filename:"21-1", image: image, visiteNoteID: "21") { (result) in
+//            print(result)
+//        }
+        
     }
     
     

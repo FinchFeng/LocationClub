@@ -53,3 +53,10 @@ extension MKCoordinateRegion{
         return (latitudeMax,latitudeMin,longtitudeMax,longtitudeMin)
     }
 }
+
+extension Data{
+    func getSizeWithMB()->Float {
+        let rawByteCount = Float(self.count)
+        return rawByteCount/(1024*1024)
+    }
+}

@@ -57,7 +57,7 @@ class Network {
     
     //创建地点 登陆之后才能使用
     static func createNewLocationToServer(locaitonID:String,data:LocationInfoLocal,action:@escaping ([String:Any])->Void){
-        //locationInfoLocal转化为parameters参数
+        //locationInfoLocal转化为parameters参数 VisitedNote需要等待这个方法返回之后进行添加🔧
         var parameters = Shower.changeLocationInfoToParameters(data: data)
         //获取LocaitonID iglooID ⚠️测试的时候使用静态iglooID
         parameters[Constants.iglooID] = "241927599"
@@ -176,6 +176,35 @@ class Network {
             }
         }
     }
+    //MARK: 访问记录创建与删除
+    
+    static func createVisitedNote(locationID:String,data:VisitedNote){
+        //参数配置
+        let parameters = [Constants.VisitedNoteID:"21",Constants.visitNoteWord:data.visitNoteWord,
+                          Constants.locationID:locationID,Constants.createdTime:data.createdTime]
+        //Send it!
+        sendRuquest(url: Constants.backendURL+"newVisitNote/", method: .get, parameters: parameters) { (JSON) in
+            if JSON["success"] as! Bool == true {
+                print("创建VisitedNoted成功")
+                //发送图片🔧
+                
+            }
+        }
+        
+        
+    }
+    
+    static func deleteVisitedNote(id:String){
+        //配置参数
+        let parameters = [Constants.iglooID:"241927599",Constants.VisitedNoteID:id]
+        //Send it!
+        sendRuquest(url: Constants.backendURL+"deleteVisitedNote/", method: .get, parameters: parameters) { (JSON) in
+            if JSON["success"] as! Bool == true {
+                print("删除VisitedNoted成功")
+            }
+        }
+    }
+    
     //MARK: 查找区域内地点 使用Map的区域类型？
     static func getLocationsIn(span:MKCoordinateRegion,landingAction:@escaping ( [(String,LocationInfoRank3)] )->Void){
         //配置参数
@@ -226,12 +255,62 @@ class Network {
     //对于外部来说直接传入URL就可以获取图片(不能直接调用？)
     
     static func getImage(at url:String,landingAction:@escaping (UIImage)->Void){
-        //获取图片
-        //转换成为UIImage
-        //执行Action
+        //检查缓存
+        if let image = ImageChecker.getImage(url: url){
+            landingAction(image)
+        }else{
+            //获取图片
+            let parameters:Parameters = [Constants.imageURL:url]
+            Alamofire.request(Constants.backendURL+"getImage/",method: .get,
+                              parameters: parameters,encoding: URLEncoding(destination: .methodDependent))
+                .responseData { (response) in
+                    let data = response.result.value!
+                    //转换成为UIImage
+                    let image = UIImage(data: data )!
+                    //加入缓存
+                    ImageChecker.set(image: image, url: url)
+                    //执行Action
+                    landingAction(image)
+            }
+            
+        }
+        
     }
     
-    static func sendImage(to url:String,landingAction:@escaping(Bool)->Void){
+    static func send(filename:String,image: UIImage,locationID:String? = nil,visiteNoteID:String? = nil,
+                     landingAction:@escaping(Bool)->Void){
+        //判断要往location添加,还是VisitedNote
+        var sendToLocation:Bool = false
+        var id:String!
+        if let lid = locationID{ id = lid;sendToLocation = true }
+        if let vid = visiteNoteID{ id = vid }
+        //配置parameters
+        let url = Constants.backendURL + (sendToLocation ? "newLocationInfoImage/" : "newVisitNoteInfoImage/")
+        //发送数据
+        let imageData = image.jpegData(compressionQuality: 1)!
+        //使用upload方法
+        Alamofire.upload(multipartFormData: { (dataToSend) in
+            //添加图片数据 带有文件名称
+            dataToSend.append(imageData, withName: "image", fileName: filename+".jpg", mimeType: "image/jpeg")
+            //添加locationID 或 VisitedNoteID
+            let name = sendToLocation ? Constants.locationID : Constants.VisitedNoteID
+            //将String转换为Data才能发送
+            dataToSend.append(id!.data(using: .utf8, allowLossyConversion: false)!, withName: name)
+        }, to: url,
+           encodingCompletion:  { encodingResult in //报错机制
+            switch encodingResult {
+            case .success(let upload, _, _):
+                upload.responseJSON { response in
+                    debugPrint(response)
+                    landingAction(true)
+                }
+            case .failure(let encodingError):
+                print(encodingError)
+                landingAction(false)
+            }
+        })
+        
+        //更改名字
         
     }
     
