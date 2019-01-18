@@ -89,18 +89,22 @@ class TestViewController: UIViewController {
 //        }
         //VisitedNote创建与删除
 //        let dateString = Date.changeDateToString(date: Date())
-//        Network.createVisitedNote(locationID: "2", data: VisitedNote(visitNoteWord:"aa",imageURLArray:[],createdTime:dateString))
-//            Network.deleteVisitedNote(id: "21")
+//        Network.createVisitedNote(locationID: "2",visitNoteID:"test",
+//                                  data: VisitedNote(visitNoteWord:"aaddd",imageURLArray:[],createdTime:dateString),
+//                                  imageArray:[imageView.image!,imageView.image!])
+
+//            Network.deleteVisitedNote(id: "2112")
         //获取图片
 //        Network.getImage(at: "uploads/4A8E6687-E905-4053-94B8-2786F4461319-3876-000005BE98C0017A_tmp.JPG") { image in
 //            self.imageView.image = image
 //        }
         //发送图片
 //        let image = imageView.image!
-//        Network.send(filename:"21-1", image: image, visiteNoteID: "21") { (result) in
+//        Network.send(filename:"21-1", image: image, visitNoteID: "21") { (result) in
 //            print(result)
 //        }
-        
+        //更改LocationInfoImage
+//        Network.changeLocationInfoImage(locationID: "2", image: imageView.image!)
     }
     
     

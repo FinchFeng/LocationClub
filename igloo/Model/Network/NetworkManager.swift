@@ -177,17 +177,46 @@ class Network {
         }
     }
     //MARK: 访问记录创建与删除
-    
-    static func createVisitedNote(locationID:String,data:VisitedNote){
+    //data(visitNote)中的imageArray一定要为空，直接在后面传入 [UIImage]
+    static func createVisitedNote(locationID:String,visitNoteID:String,data:VisitedNote,imageArray:[UIImage]){
+        //使用递归一次性发送多张图片
+        let imageArrayNumber = imageArray.count
+        func sendImageArray(imageArray:[UIImage]){
+            if let firstImage = imageArray.first {
+                //使用VisitNoteID加顺序进行命名
+                let name = visitNoteID + "-" + String(imageArrayNumber-imageArray.count)
+                send(filename: name, image: firstImage, visitNoteID:visitNoteID) { (result) in
+                    if result == true {
+                        var newImageArray = imageArray
+                        newImageArray.remove(at: 0)
+                        //加入ImagePool
+                        let url = "uploads/" + name + ".jpg"
+                        ImageChecker.set(image: firstImage, url: url)
+                        //删除第一个image 递归余下的image
+                        sendImageArray(imageArray: newImageArray)
+                    }
+                }
+            }else{
+                return
+            }
+        }
+        
         //参数配置
-        let parameters = [Constants.VisitedNoteID:"21",Constants.visitNoteWord:data.visitNoteWord,
+        let parameters = [Constants.VisitedNoteID:visitNoteID,Constants.visitNoteWord:data.visitNoteWord,
                           Constants.locationID:locationID,Constants.createdTime:data.createdTime]
         //Send it!
         sendRuquest(url: Constants.backendURL+"newVisitNote/", method: .get, parameters: parameters) { (JSON) in
             if JSON["success"] as! Bool == true {
                 print("创建VisitedNoted成功")
-                //发送图片🔧
-                
+                //发送图片
+                //递归获取避免回调地狱
+                sendImageArray(imageArray: imageArray)
+//                for (index,image) in imageArray.enumerated(){
+//                    let fileName = visitNoteID + "-" + String(index)
+//                    Network.send(filename: fileName, image: image,visitNoteID:visitNoteID, landingAction: { (result) in
+//                        print(result)
+//                    })
+//                }
             }
         }
         
@@ -252,8 +281,7 @@ class Network {
 
     
     //MARK: 图片上传下载
-    //对于外部来说直接传入URL就可以获取图片(不能直接调用？)
-    
+    //对于外部来说直接传入URL就可以获取图片
     static func getImage(at url:String,landingAction:@escaping (UIImage)->Void){
         //检查缓存
         if let image = ImageChecker.getImage(url: url){
@@ -276,14 +304,26 @@ class Network {
         }
         
     }
-    
-    static func send(filename:String,image: UIImage,locationID:String? = nil,visiteNoteID:String? = nil,
+    //使用这个方法更改代表Locationd的那个Image
+    static func changeLocationInfoImage(locationID:String,image:UIImage){
+        let name = String(locationID)+"InfoImage"
+        let url =  "uploads/" + name + ".jpg"
+        send(filename: name, image: image,locationID: locationID) { (result) in
+            if result == true {
+                ImageChecker.set(image: image, url: url)
+                print("更改成功")
+            }
+        }
+    }
+//    (不能直接调用!)
+    private static func send(filename:String,image: UIImage,
+                     locationID:String? = nil,visitNoteID:String? = nil,
                      landingAction:@escaping(Bool)->Void){
         //判断要往location添加,还是VisitedNote
         var sendToLocation:Bool = false
         var id:String!
         if let lid = locationID{ id = lid;sendToLocation = true }
-        if let vid = visiteNoteID{ id = vid }
+        if let vid = visitNoteID{ id = vid }
         //配置parameters
         let url = Constants.backendURL + (sendToLocation ? "newLocationInfoImage/" : "newVisitNoteInfoImage/")
         //发送数据
