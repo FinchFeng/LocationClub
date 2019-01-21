@@ -14,11 +14,11 @@ class ImageChecker {
     //缓存策略为退出前都有保存
     static var pool:[String:UIImage] = [:]
     
-    static func getImage(url:String)->UIImage?{
+    class func getImage(url:String)->UIImage?{
         return pool[url]
     }
     
-    static func set(image:UIImage,url:String){
+    class func set(image:UIImage,url:String){
         pool[url] = image
     }
     
@@ -38,6 +38,16 @@ class ImageChecker {
         return UIImage(data: resultData)!
     }
     
+}
+
+class LocalImagePool:ImageChecker {
+    //加入local图片池的图片全部都保存在本机
+//    override class func set(image:UIImage,url:String){
+//
+//    }
+//    override class func getImage(url:String)->UIImage?{
+//        return pool[url]
+//    }
 }
 
 

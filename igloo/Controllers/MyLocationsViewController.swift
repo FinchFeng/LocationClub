@@ -10,21 +10,32 @@ import UIKit
 
 class MyLocationsViewController: UIViewController {
 
+    //MARK:Model
+    let dataArray:[(LocationInfoRank2,LocationInfoRank3)] = []
+    let data = (LocationInfoRank2(locationName:"环岛路栈桥",locationInfoWord:"厦门 亚洲海湾",
+                                  locationLikedAmount:12,locationInfoImageURL:"imageTest"),
+                LocationInfoRank3(locationLatitudeKey:2.3,locationLongitudeKey:3.1,iconKindString:"Views"))
+    
+    //MARK:Outlet
+    @IBOutlet weak var locationTableView: MarsTableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        //储存Image到本地图片池
+        let image = #imageLiteral(resourceName: "locationTestImage")
+        LocalImagePool.set(image: image, url: "imageTest")
+        //配置tableView
+        locationTableView.setDataIn(locationDataArray: dataArray)
+        locationTableView.addCell(data: data)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func buttonTaped() {
+        locationTableView.deleteCell(index:0)
+        
     }
-    */
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
 }
