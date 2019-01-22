@@ -23,7 +23,7 @@ class MyLocationsViewController: UIViewController {
         super.viewDidLoad()
         //储存Image到本地图片池
         let image = #imageLiteral(resourceName: "locationTestImage")
-//        LocalImagePool.set(image: image, url: "imageTest")
+        LocalImagePool.set(image: image, url: "imageTest")
         //配置tableView
         locationTableView.setDataIn(locationDataArray: dataArray)
 //        locationTableView.addCell(data: data)

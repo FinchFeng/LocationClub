@@ -117,22 +117,3 @@ struct VisitedNote:Codable{
 }
 
 
-//基于这两个方法来进行数据储存的设计
-
-
-class CodableSaver {
-    static let fileName = "codable"
-    static let document = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let path = document.appendingPathComponent(fileName).path
-    static func save(rawData: LocationInfoRank4)-> Bool {
-        let data = Shower.changeCodable(object: rawData)
-        try! data.write(to: document.appendingPathComponent(fileName))
-        return true
-    }
-    static func getData()->LocationInfoRank4?{//FileName不变
-        let url = document.appendingPathComponent(fileName)
-        let data = try! Data(contentsOf: url)
-        let codableData = Shower.decoderJson(jsonData: data, type: LocationInfoRank4.self)
-        return codableData
-    }
-}
