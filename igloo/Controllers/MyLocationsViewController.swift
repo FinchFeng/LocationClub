@@ -13,7 +13,7 @@ class MyLocationsViewController: UIViewController {
     //MARK:Model
     let dataArray:[(LocationInfoRank2,LocationInfoRank3)] = []
     let data = (LocationInfoRank2(locationName:"环岛路栈桥",locationInfoWord:"厦门 亚洲海湾",
-                                  locationLikedAmount:12,locationInfoImageURL:"nil"),
+                                  locationLikedAmount:12,locationInfoImageURL:"imageTest"),
                 LocationInfoRank3(locationLatitudeKey: 37.334922,locationLongitudeKey:-122.009033,iconKindString:"Views"))
     
     //MARK:Outlet
@@ -23,7 +23,7 @@ class MyLocationsViewController: UIViewController {
         super.viewDidLoad()
         //储存Image到本地图片池
         let image = #imageLiteral(resourceName: "locationTestImage")
-        LocalImagePool.set(image: image, url: "imageTest")
+//        LocalImagePool.set(image: image, url: "imageTest")
         //配置tableView
         locationTableView.setDataIn(locationDataArray: dataArray)
 //        locationTableView.addCell(data: data)

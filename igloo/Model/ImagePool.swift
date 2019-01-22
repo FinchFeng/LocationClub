@@ -40,15 +40,55 @@ class ImageChecker {
     
 }
 
-class LocalImagePool:ImageChecker {
+class LocalImagePool {
     //加入local图片池的图片全部都保存在本机 注意父类的Pool
-//    override class func set(image:UIImage,url:String){
-//
-//    }
-//    override class func getImage(url:String)->UIImage?{
-//        return pool[url]
-//    }
+    static var pool:[String:UIImage] = [:]{
+        didSet{
+            print(pool)
+        }
+    }
+    class func set(image:UIImage,url:String){
+        //进行图片储存
+        ImageSaver.save(image: image,fileName:url)
+        //加入pool
+        pool[url] = image
+    }
+    
+    class func getImage(url:String)->UIImage?{
+        if let imageInPool = pool[url]{
+            return imageInPool
+        }else{
+            //去文档系统中获取
+            if let image = ImageSaver.getImage(filename: url){
+                //储存到Pool
+                pool[url] = image
+                return image
+            }else{
+                return nil
+            }
+        }
+    }
 }
-
+class ImageSaver {
+    static let document = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    @discardableResult static func save(image: UIImage,fileName:String) -> Bool {
+        do {
+            guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
+                return false
+            }
+            try data.write(to: document.appendingPathComponent(fileName))
+        }catch{
+            print(error)
+            return false
+        }
+        return true
+    }
+    static func getImage(filename:String)->UIImage?{//FileName不变
+        let url = document.appendingPathComponent(filename)
+        let data = try? Data(contentsOf: url)
+        let image = UIImage(data: data!)
+        return image
+    }
+}
 
 

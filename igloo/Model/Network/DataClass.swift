@@ -118,28 +118,7 @@ struct VisitedNote:Codable{
 
 
 //基于这两个方法来进行数据储存的设计
-class ImageSaver {
-    static let fileName = "ali.jpg"
-    static let document = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static func saveImage(image: UIImage) -> Bool {
-        do {
-            guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
-                return false
-            }
-            try data.write(to: document.appendingPathComponent(fileName))
-        }catch{
-            print(error)
-            return false
-        }
-        return true
-    }
-    static func getImage()->UIImage?{//FileName不变
-        let url = document.appendingPathComponent(fileName)
-        let data = try? Data(contentsOf: url)
-        let image = UIImage(data: data!)
-        return image
-    }
-}
+
 
 class CodableSaver {
     static let fileName = "codable"
