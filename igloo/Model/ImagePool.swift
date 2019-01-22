@@ -41,7 +41,7 @@ class ImageChecker {
 }
 
 class LocalImagePool:ImageChecker {
-    //加入local图片池的图片全部都保存在本机
+    //加入local图片池的图片全部都保存在本机 注意父类的Pool
 //    override class func set(image:UIImage,url:String){
 //
 //    }

@@ -21,6 +21,8 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
         //delegate的装入
         self.delegate = self
         self.dataSource = self
+        //刷新
+        self.reloadData()
     }
     
     //MARK:添加Cell或者删除Cell 使用之前TableView需要处于最顶部
@@ -40,7 +42,7 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
     
     var locationCellHeight:CGFloat {
         let weight = self.frame.width
-        return weight/MarsTableView.locationCellRadio
+        return weight/Constants.locationCellRadio
     }
     
     
@@ -52,7 +54,6 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //注意一下获取Height的时候View的Width有没有加载⚠️
         return locationCellHeight
     }
     
@@ -62,14 +63,19 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell") as! LocationCell
         let data = locationDataArray[indexPath.row]
         //获取image
-        let image:UIImage!
+        var image:UIImage = UIImage()//默认Image
         let imageURL = data.rank2.locationInfoImageURL
         if imageURL == "nil"{
-            //获取地图截图🔧
-            image = UIImage()
+            //获取地图截图
+            MapSnapShotter.getMapImageForCell(latitude: data.rank3.locationLatitudeKey,
+                                       longitude: data.rank3.locationLongitudeKey) { (mapImage) in
+                image = mapImage
+                //重新装入数据，刷新这个Cell
+                self.reloadRows(at: [indexPath], with: .automatic)
+            }
         }else{
             //从本地获取
-            image = LocalImagePool.getImage(url:imageURL)
+            image = LocalImagePool.getImage(url:imageURL)!
         }
         //loadtheData
         cell.set(data: data.rank2, image: image)
@@ -78,7 +84,3 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
     
 }
 
-extension MarsTableView{
-    //不变的参数
-    static var locationCellRadio:CGFloat = 2.31
-}
