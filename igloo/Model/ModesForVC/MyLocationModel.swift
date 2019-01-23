@@ -21,7 +21,26 @@ class MyLocationModel {
     
     //情况处理
     func loginHander() {
-        //处理两种情况
+        //对id进行处理 本地的检查是否isPublic是的话上传 云端的检查进行下载
+        for id in LoginModel.owenLocationIDArray {
+            //检查这个id是不是本地的
+            if let locationData = CodableSaver.getData(fileName: id){
+                //本地的检查是否public
+                if locationData.isPublic {
+                    //上传云端
+                    Network.createNewLocationToServer(locaitonID: id, data: locationData) { (JSON) in
+                        print("本地location数据id为" + id + "上传成功")
+                    }
+                }
+            }else{
+                //非本地的下载到本地
+                Network.getLocationInfo(locationID: id, rank: 1) { (data) in
+                    let data = data as! LocationInfoLocal
+                    //进行本地添加
+                    self.localLocationDataArray.insert(data, at: 0)
+                }
+            }
+        }
         
     }
     
@@ -138,9 +157,13 @@ class CodableSaver {//使用Json转换为Data类型
     }
     static func getData(fileName:String)->LocationInfoLocal?{//FileName不变
         let url = document.appendingPathComponent(fileName)
-        let data = try! Data(contentsOf: url)
-        let codableData = Shower.decoderJson(jsonData: data, type: LocationInfoLocal.self)
-        return codableData
+        let data = try? Data(contentsOf: url)
+        if let actualData = data {
+            let codableData = Shower.decoderJson(jsonData: actualData, type: LocationInfoLocal.self)
+            return codableData
+        }else{
+            return nil
+        }
     }
 }
 

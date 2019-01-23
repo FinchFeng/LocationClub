@@ -86,8 +86,12 @@ class ImageSaver {
     static func getImage(filename:String)->UIImage?{//FileName不变
         let url = document.appendingPathComponent(filename)
         let data = try? Data(contentsOf: url)
-        let image = UIImage(data: data!)
-        return image
+        if let actualData = data{
+            let image = UIImage(data: actualData)
+            return image
+        }else{
+            return nil
+        }
     }
 }
 

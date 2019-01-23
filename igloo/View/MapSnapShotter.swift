@@ -11,7 +11,7 @@ import MapKit
 
 class MapSnapShotter{
     
-    static var imagePool:[String:UIImage] = [:]
+    
     
     static func changeToString(latitude:Double,longitude:Double)->String{
         return "(" + String(latitude) + "," + String(longitude) + ")"
@@ -21,7 +21,7 @@ class MapSnapShotter{
     static func getMapImageForCell(latitude:Double,longitude:Double,completeAction:@escaping (UIImage)->Void){
         //检查池子里面有没有 Cell使用的Image
         let locationString = changeToString(latitude: latitude, longitude: longitude) + "ForCell"
-        if let oldImage = imagePool[locationString]{
+        if let oldImage = LocalImagePool.getImage(url: locationString){
             completeAction(oldImage)
         }else{
             //进行同步获取
@@ -47,7 +47,7 @@ class MapSnapShotter{
                     return
                 }
                 //添加到Pool里
-                imagePool[locationString] = snapshot.image
+                LocalImagePool.set(image: snapshot.image, url: locationString)
                 DispatchQueue.main.async {
                     //执行UI的改变
                     completeAction(snapshot.image)

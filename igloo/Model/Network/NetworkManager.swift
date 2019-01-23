@@ -316,7 +316,7 @@ class Network {
         }
     }
 //    (不能直接调用!)
-    private static func send(filename:String,image: UIImage,
+     static func send(filename:String,image: UIImage,
                      locationID:String? = nil,visitNoteID:String? = nil,
                      landingAction:@escaping(Bool)->Void){
         //判断要往location添加,还是VisitedNote

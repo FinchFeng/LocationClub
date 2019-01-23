@@ -14,29 +14,45 @@ class MyLocationsViewController: UIViewController {
     
     let model:MyLocationModel = MyLocationModel()
     
-    let dataArray:[(LocationInfoRank2,LocationInfoRank3)] = []
-    let data = (LocationInfoRank2(locationName:"环岛路栈桥",locationInfoWord:"厦门 亚洲海湾",
-                                  locationLikedAmount:12,locationInfoImageURL:"imageTest"),
-                LocationInfoRank3(locationLatitudeKey: 37.334922,locationLongitudeKey:-122.009033,iconKindString:"Views"))
+    //转换为tableView可以读入读形式
+    var dataArrayForTableView:[(LocationInfoRank2,LocationInfoRank3)] {
+        var resultArray :[(LocationInfoRank2,LocationInfoRank3)] = []
+        for data in model.localLocationDataArray{
+            let rank2 = data.changeDataTo(rank: 2) as! LocationInfoRank2
+            let rank3 = data.changeDataTo(rank: 3) as! LocationInfoRank3
+            resultArray.append((rank2,rank3))
+        }
+        return resultArray
+    }
     
     //MARK:Outlet
     @IBOutlet weak var locationTableView: MarsTableView!
     
+    //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         //储存Image到本地图片池
-        let image = #imageLiteral(resourceName: "locationTestImage")
-        LocalImagePool.set(image: image, url: "imageTest")
+//        let image = #imageLiteral(resourceName: "locationTestImage")
+//        LocalImagePool.set(image: image, url: "imageTest")
         //配置tableView
-        locationTableView.setDataIn(locationDataArray: dataArray)
-//        locationTableView.addCell(data: data)
-        print("Login" + String(LoginModel.login))
+        locationTableView.setDataIn(locationDataArray:dataArrayForTableView)
+    }
+    
+    //MARK:functions
+    
+    func hadLogin()  {
+        print("hadLoginFrom MylocationViewController")
+        model.loginHander()
+        //标记下一次展现这个页面需要重新刷新TableView
     }
     
     @IBAction func buttonTaped() {
         //测试成功
 //        deleteLocation()
-//        testAddNewLocationData()
+        testAddNewLocationData()
+//        deleteLocation()
+        print(LoginModel.owenLocationIDArray)
+        print(model.localLocationDataArray)
 //        print(model.localLocationDataArray)
 //          locationTableView.addCell(data: data)
 //        locationTableView.deleteCell(index:0)
@@ -47,25 +63,30 @@ class MyLocationsViewController: UIViewController {
     func testAddNewLocationData() {
         let rank1 = LocationInfoRank1(locationName: "Beef Noodle" ,iconKindString: "Restaurant" ,locationDescription: "A lots of beef" ,locationLatitudeKey: 37.334922 ,locationLongitudeKey: -122.009033 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])
         let rank2Data = LocationInfoRank2(locationName: "Beef Noodle" ,locationInfoWord: "nearby my home" ,locationLikedAmount: 10 ,locationInfoImageURL: "nil" )
-        let locationData = LocationInfoLocal(locationID: "3", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
+        let locationData = LocationInfoLocal(locationID: "4", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
         model.addLocationInfo(data: locationData)
     }
-    
+
     func editLocationData() {
         let rank1 = LocationInfoRank1(locationName: "Noodles" ,iconKindString: "Restaurant" ,locationDescription: "A lots of beef" ,locationLatitudeKey: 37.334922 ,locationLongitudeKey: -122.009033 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])
         let rank2Data = LocationInfoRank2(locationName: "Beef Noodle" ,locationInfoWord: "nearby my home" ,locationLikedAmount: 10 ,locationInfoImageURL: "nil" )
         let newData = LocationInfoLocal(locationID: "3", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
         model.editLocationInfo(newData: newData, key: Constants.isPublic, value: "false")
     }
-    
+
     func deleteLocation() {
         model.deleteLocaitonInfo(id: "3")
+        
     }
-    
-    
+
+
     override func viewWillDisappear(_ animated: Bool) {
         //注意要滑动TableView到顶端
         super.viewWillDisappear(animated)
     }
-    
+
 }
+//    let dataArray:[(LocationInfoRank2,LocationInfoRank3)] = []
+//    let data = (LocationInfoRank2(locationName:"环岛路栈桥",locationInfoWord:"厦门 亚洲海湾",
+//                                  locationLikedAmount:12,locationInfoImageURL:"imageTest"),
+//                LocationInfoRank3(locationLatitudeKey: 37.334922,locationLongitudeKey:-122.009033,iconKindString:"Views"))

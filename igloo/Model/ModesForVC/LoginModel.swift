@@ -35,7 +35,7 @@ class LoginModel {
     }
     static var owenLocationIDArray:[String]{
         get{
-            return UserDefaults.standard.object(forKey: Constants.usersOwenPlacesDefaultJsonKey) as! [String]
+            return (UserDefaults.standard.object(forKey: Constants.usersOwenPlacesDefaultJsonKey) as? [String]) ?? [] //没有的话就返回空数组
         }
         set{
             UserDefaults.standard.set(newValue, forKey: Constants.usersOwenPlacesDefaultJsonKey)
@@ -73,7 +73,17 @@ class LoginModel {
                 self.defaults.set(googleID, forKey: Constants.thirdPartyID)
                 //储存JSON
                 LoginModel.iglooID = JSON[Constants.iglooID] as! String
-                LoginModel.owenLocationIDArray = JSON[Constants.usersOwenPlacesDefaultJsonKey] as! [String]
+                //与本地locationID进行合并
+                let serverLocationIDs = JSON[Constants.usersOwenPlacesDefaultJsonKey] as! [String]
+                var resultArray = LoginModel.owenLocationIDArray
+                //查看是否有相同的Location
+                for id in serverLocationIDs{
+                    if resultArray.index(of:id) == nil {
+                        resultArray.insert(id, at: 0)
+                    }
+                }
+                LoginModel.owenLocationIDArray = resultArray
+                //获取喜欢的地点IDS
                 LoginModel.owenLikedLocationIDArray = JSON[Constants.usersOwenPlacesDefaultJsonKey] as! [String]
             }
             action(result)//界面操作block
@@ -93,7 +103,17 @@ class LoginModel {
                 self.defaults.set(password, forKey: Constants.password)
                 //储存JSON
                 LoginModel.iglooID = JSON[Constants.iglooID] as! String
-                LoginModel.owenLocationIDArray = JSON[Constants.usersOwenPlacesDefaultJsonKey] as! [String]
+                //与本地locationID进行合并
+                let serverLocationIDs = JSON[Constants.usersOwenPlacesDefaultJsonKey] as! [String]
+                var resultArray = LoginModel.owenLocationIDArray
+                //查看是否有相同的Location
+                for id in serverLocationIDs{
+                    if resultArray.index(of:id) == nil {
+                        resultArray.insert(id, at: 0)
+                    }
+                }
+                LoginModel.owenLocationIDArray = resultArray
+                //获取喜欢的地点IDS
                 LoginModel.owenLikedLocationIDArray = JSON[Constants.usersOwenPlacesDefaultJsonKey] as! [String]
             }
             action(result)//界面操作block
@@ -103,6 +123,8 @@ class LoginModel {
     //退出登陆
     func logout()  {
         isLogin = false
+        //禁用喜欢的功能
+        LoginModel.owenLikedLocationIDArray = []
     }
     
     
