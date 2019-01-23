@@ -60,7 +60,7 @@ class Network {
         //locationInfoLocal转化为parameters参数 VisitedNote需要等待这个方法返回之后进行添加🔧
         var parameters = Shower.changeLocationInfoToParameters(data: data)
         //获取LocaitonID iglooID ⚠️测试的时候使用静态iglooID
-        parameters[Constants.iglooID] = "241927599"
+        parameters[Constants.iglooID] = LoginModel.iglooID
         parameters[Constants.locationID] = locaitonID
         //url
         let url = Constants.backendURL + "addLocation/"
@@ -225,7 +225,7 @@ class Network {
     
     static func deleteVisitedNote(id:String){
         //配置参数
-        let parameters = [Constants.iglooID:"241927599",Constants.VisitedNoteID:id]
+        let parameters = [Constants.iglooID:LoginModel.iglooID,Constants.VisitedNoteID:id]
         //Send it!
         sendRuquest(url: Constants.backendURL+"deleteVisitedNote/", method: .get, parameters: parameters) { (JSON) in
             if JSON["success"] as! Bool == true {
@@ -270,7 +270,7 @@ class Network {
         //唯一的不同就是URL
         let url = Constants.backendURL + (cancel ? "unliked/" :"liked/")
         //⚠️使用静态igloo测试 LoginModel.iglooID
-        let parameters = [Constants.iglooID:"241927599",Constants.locationID:location]
+        let parameters = [Constants.iglooID:LoginModel.iglooID,Constants.locationID:location]
         sendRuquest(url: url, method: .get, parameters: parameters) { (JSONs) in
             if let success = JSONs["success"] as? Bool {
                 //执行成功代码
@@ -358,8 +358,8 @@ class Network {
     
     static func contactUs(string:String){
         let url = Constants.backendURL + "contact/"
-        //使用静态iglooID
-        let parameters = [Constants.iglooID:"241927599",Constants.content:string]
+        //使用静态iglooID⚠️
+        let parameters = [Constants.iglooID:LoginModel.iglooID,Constants.content:string]
         //发送函数
         sendRuquest(url: url, method: .get, parameters: parameters) { (JSON) in
             //do nothing

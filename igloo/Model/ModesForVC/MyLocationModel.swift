@@ -30,6 +30,7 @@ class MyLocationModel {
     var localLocationDataArray:[LocationInfoLocal]!{
         didSet{
             print("localLocationDataArray我被写入了")
+            print(localLocationDataArray)
             //restore all data
             storeAll(datas: localLocationDataArray)
         }
@@ -59,9 +60,9 @@ class MyLocationModel {
     }
     
     
-    //MARK: LocationInfo
+    //MARK: 增加 保存 更改 删除LocationInfo
     
-    //增加 保存 更改 删除LocationInfo
+    
     
     func addLocationInfo(data:LocationInfoLocal){
         //本地添加
@@ -79,7 +80,7 @@ class MyLocationModel {
     
     func editLocationInfo(newData:LocationInfoLocal,key:String,value:String) {//key data 用于更新后端 使用这两个参数更新后端
         //查看是否公开
-        if newData.isPublic && LoginModel.login && (newData.isPublic == false && key == Constants.isPublic){//对后端进行更改
+        if LoginModel.login && (newData.isPublic || (newData.isPublic == false && key == Constants.isPublic)){//对后端进行更改
             //查看是不是isPublic改变了
             if key == Constants.isPublic {
                 //查看是改变为公开还是不公开
@@ -90,7 +91,7 @@ class MyLocationModel {
                     }
                 }else{
                     //后端删除这个location
-                    Network.deleteVisitedNote(id: newData.locationID)
+                    Network.deleteLocation(locationID: newData.locationID)
                 }
             }else{
                 //后端修改data

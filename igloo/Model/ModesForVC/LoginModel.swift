@@ -16,8 +16,12 @@ class LoginModel {
     //公开登陆状态
     static var login:Bool{
         get{
-           let login = UserDefaults.standard.object(forKey: Constants.isLogin) as! Bool
-           return login
+            //如果没有储存过就返回false
+            if let login = UserDefaults.standard.object(forKey: Constants.isLogin) as? Bool{
+                return login
+            }else{
+                return false
+            }
         }
     }
     //公开 iglooID 用户喜欢或者拥有地点
