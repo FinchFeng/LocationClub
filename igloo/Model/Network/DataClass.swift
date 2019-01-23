@@ -15,7 +15,7 @@ struct LocationInfoLocal:Codable{//此类储存在本地,可以直接喂给ViewC
     //使用一个方法让用户直接创建LocationInfoLocal
     init(locationID:String,locationName:String,iconKindString:String,locationDescription:String,
          locationLatitudeKey:Double,locationLongitudeKey:Double,isPublic:Bool,locationLikedAmount:Int,
-         locationInfoWord:String,locationInfoImageURL:String,VisitedNoteID:[VisitedNote]) {
+         locationInfoWord:String,locationInfoImageURL:String,VisitedNoteID:[VisitedNote],noteIDs:[String]) {
         self.locationID = locationID
         self.locationName = locationName
         self.iconKindString = iconKindString
@@ -27,6 +27,7 @@ struct LocationInfoLocal:Codable{//此类储存在本地,可以直接喂给ViewC
         self.locationInfoWord = locationInfoWord
         self.locationInfoImageURL = locationInfoImageURL
         self.VisitedNoteID = VisitedNoteID
+        self.noteIDs = noteIDs
     }
     //使用LocationInfo1和[VisitedNoted]来进行创建(后端数据获取)
     init(locationID:String,rank1Data:LocationInfoRank1,rank2Data:LocationInfoRank2,visitedNoteArray:[VisitedNote]) {
@@ -42,11 +43,13 @@ struct LocationInfoLocal:Codable{//此类储存在本地,可以直接喂给ViewC
         self.locationLongitudeKey = rank1Data.locationLongitudeKey
         self.isPublic = rank1Data.isPublic
         self.locationLikedAmount = rank1Data.locationLikedAmount
+        self.noteIDs = rank1Data.VisitedNoteID
         //visitedNote
         self.VisitedNoteID = visitedNoteArray
     }
     //用户本地创建 坐标加创建时间注意时间不能重复
     var locationID:String
+    var noteIDs:[String]
     //数据可更改
     var locationName:String
     var iconKindString:String

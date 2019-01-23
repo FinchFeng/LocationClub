@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MyLocationModel {
     
@@ -14,7 +15,7 @@ class MyLocationModel {
     init() {
         //从LoginModel中读入
         let savedLocationID = LoginModel.owenLocationIDArray
-        localLocationDataArray = getLocationArrayFromFile(locationIDs: savedLocationID)
+        locationDataArray = getLocationArrayFromFile(locationIDs: savedLocationID)
     }
     
     //MARK: Login
@@ -37,7 +38,7 @@ class MyLocationModel {
                 Network.getLocationInfo(locationID: id, rank: 1) { (data) in
                     let data = data as! LocationInfoLocal
                     //进行本地添加
-                    self.localLocationDataArray.insert(data, at: 0)
+                    self.locationDataArray.insert(data, at: 0)
                 }
             }
         }
@@ -46,12 +47,13 @@ class MyLocationModel {
     
     //MARK:数据持久化
     
-    var localLocationDataArray:[LocationInfoLocal]!{
+    var locationDataArray:[LocationInfoLocal]!{
         didSet{
             print("localLocationDataArray我被写入了")
-            print(localLocationDataArray)
             //restore all data
-            storeAll(datas: localLocationDataArray)
+            storeAll(datas: locationDataArray)
+            print(locationDataArray)
+            print(LoginModel.owenLocationIDArray)
         }
     }
     
@@ -81,8 +83,6 @@ class MyLocationModel {
     
     //MARK: 增加 保存 更改 删除LocationInfo
     
-    
-    
     func addLocationInfo(data:LocationInfoLocal){
         //本地添加
         //查看是否公开
@@ -93,7 +93,7 @@ class MyLocationModel {
             }
         }
         //未登陆只进行本地添加
-        localLocationDataArray.insert(data, at: 0)
+        locationDataArray.insert(data, at: 0)
         
     }
     
@@ -118,10 +118,10 @@ class MyLocationModel {
             }
         }
         //只进行本地修改
-        for (index,data) in localLocationDataArray.enumerated(){
+        for (index,data) in locationDataArray.enumerated(){
             if data.locationID == newData.locationID{
                 //进行更改
-                localLocationDataArray[index] = newData
+                locationDataArray[index] = newData
                 break
             }
         }
@@ -131,7 +131,7 @@ class MyLocationModel {
     
     func deleteLocaitonInfo(id:String)  {
         //本地删除 后端删除
-        for (index,data) in localLocationDataArray.enumerated(){
+        for (index,data) in locationDataArray.enumerated(){
             if data.locationID == id {
                 //对data进行操作
                 if data.isPublic {
@@ -139,12 +139,59 @@ class MyLocationModel {
                     Network.deleteLocation(locationID: id)
                 }
                 //本地删除
-                localLocationDataArray.remove(at: index)
+                locationDataArray.remove(at: index)
                 break
             }
         }
     }
+    
+    //MARK: 添加删除某一个Location下的VisitNoted
+    
+    func addNewVisitNoteTo(locationID:String,visitNoteID:String,data:VisitedNote,imageArray:[UIImage]){
+        //找到这个location
+        for (index,value) in locationDataArray.enumerated(){
+            if value.locationID == locationID {
+                //查看是否需要后端创建
+                if value.isPublic {
+                    Network.createVisitedNote(locationID: locationID, visitNoteID: visitNoteID, data: data, imageArray: imageArray)
+                }
+                //本地添加这个visitedNote
+                var locationData = value
+                locationData.VisitedNoteID.append(data)//添加两个记录
+                locationData.noteIDs.append(visitNoteID)
+                //把这个更改的Location移到最前面
+                locationDataArray.remove(at: index)
+                locationDataArray.insert(locationData, at: 0)
+                return
+            }
+        }
+    }
+    
+    func deleteVisitNoteFrom(locationID:String,visitNoteID:String){
+        //找到这个location
+        for (index,value) in locationDataArray.enumerated(){
+            if value.locationID == locationID {
+                //查看后端是否需要删除
+                if value.isPublic {
+                    Network.deleteVisitedNote(id: visitNoteID)
+                }
+                //删除本地visitNote
+                for (index,notes) in locationDataArray[index].noteIDs.enumerated(){
+                    if notes == locationID{
+                        //删除两个记录
+                        locationDataArray[index].noteIDs.remove(at: index)
+                        locationDataArray[index].VisitedNoteID.remove(at: index)
+                    }
+                }
+                
+            }
+        }
+    }
+    
 }
+
+
+
 
 //基于这个方法来进行数据储存的设计
 

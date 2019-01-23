@@ -17,7 +17,7 @@ class MyLocationsViewController: UIViewController {
     //转换为tableView可以读入读形式
     var dataArrayForTableView:[(LocationInfoRank2,LocationInfoRank3)] {
         var resultArray :[(LocationInfoRank2,LocationInfoRank3)] = []
-        for data in model.localLocationDataArray{
+        for data in model.locationDataArray{
             let rank2 = data.changeDataTo(rank: 2) as! LocationInfoRank2
             let rank3 = data.changeDataTo(rank: 3) as! LocationInfoRank3
             resultArray.append((rank2,rank3))
@@ -54,7 +54,7 @@ class MyLocationsViewController: UIViewController {
     }
     
     func deleteLocation(index:Int)  {
-        let id = model.localLocationDataArray[index].locationID
+        let id = model.locationDataArray[index].locationID
         model.deleteLocaitonInfo(id: id)
         reloadTableViewData()
     }
@@ -73,7 +73,7 @@ class MyLocationsViewController: UIViewController {
 //                addLocation(data: locationData)
         print(LoginModel.login)
         print(LoginModel.owenLocationIDArray)
-        print(model.localLocationDataArray)
+        print(model.locationDataArray)
 //        deleteLocation(index: 0)
         changeLocationData(newData: locationData, key: Constants.locationName, value: "BNoodles")//两个都要更改
     }
