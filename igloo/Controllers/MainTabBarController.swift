@@ -16,7 +16,9 @@ class MainTabBarController: UITabBarController {
     
 
     func login() {
-        performSegue(withIdentifier: "loginMenuSegue", sender: nil)
+        if LoginModel.login == false {
+            performSegue(withIdentifier: "loginMenuSegue", sender: nil)
+        }
     }
     
     func hadLogin(){

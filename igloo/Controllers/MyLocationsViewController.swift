@@ -24,6 +24,29 @@ class MyLocationsViewController: UIViewController {
         }
         return resultArray
     }
+    //MARK: NavigationBar
+    
+    lazy var leftBarItem:UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "编辑", style: UIBarButtonItem.Style.plain, target: self, action: #selector(editTableView))
+        //设置颜色
+        button.tintColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
+        return button
+    }()
+    
+    lazy var rightBarItem:UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "new", style: UIBarButtonItem.Style.plain, target: self, action: #selector(newLocationData))
+        //设置颜色
+        button.tintColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
+        return button
+    }()
+    
+    @objc func editTableView() {
+        print("开始更改tableView")
+    }
+    
+    @objc func newLocationData(){
+        
+    }
     
     //MARK:Outlet
     @IBOutlet weak var locationTableView: MarsTableView!
@@ -33,10 +56,27 @@ class MyLocationsViewController: UIViewController {
         locationTableView.setDataIn(locationDataArray:dataArrayForTableView)
     }
     
+    var needToReloadTableViewData:Bool = false
+    
     //MARK: Lifecycle
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadTableViewData()
+        //给tabBarController设置顶栏
+        let tabBarVC = self.tabBarController!
+        tabBarVC.title = "我的地点"
+        tabBarVC.navigationItem.leftBarButtonItem = leftBarItem
+        tabBarVC.navigationItem.rightBarButtonItem = rightBarItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if needToReloadTableViewData {//检查是否需要重新填装tableView
+            needToReloadTableViewData = false
+            reloadTableViewData()
+        }
     }
     
     //MARK:functions
@@ -45,6 +85,7 @@ class MyLocationsViewController: UIViewController {
     func hadLogin()  {
         model.loginHander()
         //标记下一次展现这个页面需要重新刷新TableView
+        needToReloadTableViewData = true
     }
     
     func addLocation(data:LocationInfoLocal) {
@@ -67,9 +108,9 @@ class MyLocationsViewController: UIViewController {
     //MARK:测试区
     
     @IBAction func buttonTaped() {
-                let rank1 = LocationInfoRank1(locationName: "Beef Noodle" ,iconKindString: "Restaurant" ,locationDescription: "A lots of beef" ,locationLatitudeKey: 37.334922 ,locationLongitudeKey: -122.009033 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])//重复性在这里要注意⚠️
-                let rank2Data = LocationInfoRank2(locationName: "Beef Noodle" ,locationInfoWord: "nearby my home" ,locationLikedAmount: 10 ,locationInfoImageURL: "nil" )
-                let locationData = LocationInfoLocal(locationID: "2", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
+//                let rank1 = LocationInfoRank1(locationName: "Beef Noodle" ,iconKindString: "Restaurant" ,locationDescription: "A lots of beef" ,locationLatitudeKey: 37.334922 ,locationLongitudeKey: -122.009033 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])//重复性在这里要注意⚠️
+//                let rank2Data = LocationInfoRank2(locationName: "Beef Noodle" ,locationInfoWord: "nearby my home" ,locationLikedAmount: 10 ,locationInfoImageURL: "nil" )
+//                let locationData = LocationInfoLocal(locationID: "2", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
 //                addLocation(data: locationData)
         
 //        deleteLocation(index: 0)
@@ -78,7 +119,7 @@ class MyLocationsViewController: UIViewController {
         //写入图片
 //        LocalImagePool.set(image: #imageLiteral(resourceName: "beatlesAndAli"), url: "test")
 //        model.addNewVisitNoteTo(locationID: "4", visitNoteID: "2-1", data: VisitedNote(visitNoteWord:"nice noodle",imageURLArray:["test"],createdTime:Date.currentDateString()), imageArray: [#imageLiteral(resourceName: "beatlesAndAli")])
-            model.deleteVisitNoteFrom(locationID: "4", visitNoteID: "2-1")
+//            model.deleteVisitNoteFrom(locationID: "4", visitNoteID: "2-1")
         
         print(LoginModel.login)
         print(LoginModel.owenLocationIDArray)

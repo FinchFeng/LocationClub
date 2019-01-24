@@ -12,9 +12,16 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         //尝试登陆
-        let rootVC  = self.tabBarController! as! MainTabBarController
-        rootVC.login()
+        if LoginModel.login == false {
+            let rootVC  = self.tabBarController! as! MainTabBarController
+            rootVC.login()
+        }
     }
     
 
