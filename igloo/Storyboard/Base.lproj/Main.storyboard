@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="3913" y="-707"/>
         </scene>
-        <!--我的地点-->
+        <!--SegueToGreatLocation-->
         <scene sceneID="Fef-iP-GNC">
             <objects>
-                <viewController id="85c-2a-R3I" customClass="MyLocationsViewController" customModule="igloo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SegueToGreatLocation" id="85c-2a-R3I" customClass="MyLocationsViewController" customModule="igloo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s6s-Sq-Vzy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,11 +147,27 @@
                     <tabBarItem key="tabBarItem" title="我的地点" image="myLocaitonTabImage" id="kgN-dx-Pwo" userLabel="我的地点"/>
                     <connections>
                         <outlet property="locationTableView" destination="6tC-lE-bUK" id="heB-M6-WmG"/>
+                        <segue destination="PJO-Ff-0N9" kind="presentation" id="VRt-x1-aWf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SvJ-yJ-cqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3912.8000000000002" y="-1469.4152923538231"/>
+        </scene>
+        <!--Great Location Info View Controller-->
+        <scene sceneID="cgY-Jx-RS8">
+            <objects>
+                <viewController id="PJO-Ff-0N9" customClass="GreatLocationInfoViewController" customModule="igloo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ppA-dC-TiV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="u2L-tT-Pfh"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mUa-8u-G9Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4769" y="-1469"/>
         </scene>
         <!--Login In Menu View Controller-->
         <scene sceneID="Hs4-Ua-DjP">
