@@ -67,15 +67,22 @@ class MyLocationsViewController: UIViewController {
     //MARK:测试区
     
     @IBAction func buttonTaped() {
-                let rank1 = LocationInfoRank1(locationName: "BNoodles" ,iconKindString: "Restaurant" ,locationDescription: "A lots of beef" ,locationLatitudeKey: 37.334922 ,locationLongitudeKey: -122.009033 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])
+                let rank1 = LocationInfoRank1(locationName: "Beef Noodle" ,iconKindString: "Restaurant" ,locationDescription: "A lots of beef" ,locationLatitudeKey: 37.334922 ,locationLongitudeKey: -122.009033 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])//重复性在这里要注意⚠️
                 let rank2Data = LocationInfoRank2(locationName: "Beef Noodle" ,locationInfoWord: "nearby my home" ,locationLikedAmount: 10 ,locationInfoImageURL: "nil" )
-                let locationData = LocationInfoLocal(locationID: "4", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
+                let locationData = LocationInfoLocal(locationID: "2", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
 //                addLocation(data: locationData)
+        
+//        deleteLocation(index: 0)
+//        changeLocationData(newData: locationData, key: Constants.locationName, value: "BNoodles")//两个都要更改
+        
+        //写入图片
+//        LocalImagePool.set(image: #imageLiteral(resourceName: "beatlesAndAli"), url: "test")
+//        model.addNewVisitNoteTo(locationID: "4", visitNoteID: "2-1", data: VisitedNote(visitNoteWord:"nice noodle",imageURLArray:["test"],createdTime:Date.currentDateString()), imageArray: [#imageLiteral(resourceName: "beatlesAndAli")])
+            model.deleteVisitNoteFrom(locationID: "4", visitNoteID: "2-1")
+        
         print(LoginModel.login)
         print(LoginModel.owenLocationIDArray)
         print(model.locationDataArray)
-//        deleteLocation(index: 0)
-        changeLocationData(newData: locationData, key: Constants.locationName, value: "BNoodles")//两个都要更改
     }
     
     

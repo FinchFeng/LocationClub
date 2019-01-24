@@ -9,13 +9,17 @@
 import Foundation
 import UIKit
 
-class ImageChecker {
+class ImageChecker {//网络方法链接的Pool
     
     //缓存策略为退出前都有保存
     static var pool:[String:UIImage] = [:]
     
     class func getImage(url:String)->UIImage?{
-        return pool[url]
+        if let networkCacheImage = pool[url] {
+            return networkCacheImage
+        }else{//也可以获取Local的资源
+            return LocalImagePool.getImage(url:url)
+        }
     }
     
     class func set(image:UIImage,url:String){
@@ -40,7 +44,7 @@ class ImageChecker {
     
 }
 
-class LocalImagePool {
+class LocalImagePool {//是ImageChecker的子集
     //加入local图片池的图片全部都保存在本机 注意父类的Pool
     static var pool:[String:UIImage] = [:]{
         didSet{

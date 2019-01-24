@@ -23,6 +23,7 @@ class MyLocationModel {
     //情况处理
     func loginHander() {
         //对id进行处理 本地的检查是否isPublic是的话上传 云端的检查进行下载
+        print("loginHander  ",LoginModel.owenLocationIDArray)
         for id in LoginModel.owenLocationIDArray {
             //检查这个id是不是本地的
             if let locationData = CodableSaver.getData(fileName: id){
@@ -103,7 +104,7 @@ class MyLocationModel {
             //查看是不是isPublic改变了
             if key == Constants.isPublic {
                 //查看是改变为公开还是不公开
-                if newData.isPublic{
+                if newData.isPublic && LoginModel.login{
                     //后端添加这个newData
                     Network.createNewLocationToServer(locaitonID: newData.locationID, data: newData) { (JSON) in
                         print("成功添加")
@@ -134,7 +135,7 @@ class MyLocationModel {
         for (index,data) in locationDataArray.enumerated(){
             if data.locationID == id {
                 //对data进行操作
-                if data.isPublic {
+                if data.isPublic && LoginModel.login {
                     //后端删除
                     Network.deleteLocation(locationID: id)
                 }
@@ -152,7 +153,7 @@ class MyLocationModel {
         for (index,value) in locationDataArray.enumerated(){
             if value.locationID == locationID {
                 //查看是否需要后端创建
-                if value.isPublic {
+                if value.isPublic && LoginModel.login{
                     Network.createVisitedNote(locationID: locationID, visitNoteID: visitNoteID, data: data, imageArray: imageArray)
                 }
                 //本地添加这个visitedNote
@@ -172,12 +173,12 @@ class MyLocationModel {
         for (index,value) in locationDataArray.enumerated(){
             if value.locationID == locationID {
                 //查看后端是否需要删除
-                if value.isPublic {
+                if value.isPublic && LoginModel.login{
                     Network.deleteVisitedNote(id: visitNoteID)
                 }
                 //删除本地visitNote
                 for (index,notes) in locationDataArray[index].noteIDs.enumerated(){
-                    if notes == locationID{
+                    if notes == visitNoteID{
                         //删除两个记录
                         locationDataArray[index].noteIDs.remove(at: index)
                         locationDataArray[index].VisitedNoteID.remove(at: index)

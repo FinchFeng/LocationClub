@@ -41,6 +41,10 @@ extension Date {
         return currentComponents
     }
     
+    static func currentDateString()->String{
+        return changeDateToString(date: Date())
+    }
+    
 }
 
 extension MKCoordinateRegion{
