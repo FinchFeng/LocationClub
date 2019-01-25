@@ -78,14 +78,3 @@ class Constants {
     static let isLogin = "isLogin"
 }
 
-extension Constants {
-    
-    //MARK: 界面数据
-    
-    static let locationCellRadio:CGFloat = 2.31
-    static var locationCellSize:CGSize {
-        let width = UIScreen.main.bounds.width
-        return CGSize(width: width, height: width/locationCellRadio)
-    }
-    static let lengthOfMapSnap = 0.008//MarsView的地图截图
-}
