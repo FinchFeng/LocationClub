@@ -147,7 +147,7 @@
                     <tabBarItem key="tabBarItem" title="我的地点" image="myLocaitonTabImage" id="kgN-dx-Pwo" userLabel="我的地点"/>
                     <connections>
                         <outlet property="locationTableView" destination="6tC-lE-bUK" id="heB-M6-WmG"/>
-                        <segue destination="PJO-Ff-0N9" kind="presentation" id="VRt-x1-aWf"/>
+                        <segue destination="PJO-Ff-0N9" kind="show" identifier="SegueToGreatLocationInfo" id="VRt-x1-aWf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SvJ-yJ-cqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -161,13 +161,27 @@
                     <view key="view" contentMode="scaleToFill" id="ppA-dC-TiV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3M-uq-Esb" customClass="MapViewForGreatLocation" customModule="igloo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="top" secondItem="x3M-uq-Esb" secondAttribute="top" id="6s5-JZ-Hua"/>
+                            <constraint firstItem="x3M-uq-Esb" firstAttribute="height" secondItem="ppA-dC-TiV" secondAttribute="height" multiplier="230/667" id="ZB8-14-gdq"/>
+                            <constraint firstItem="u2L-tT-Pfh" firstAttribute="trailing" secondItem="x3M-uq-Esb" secondAttribute="trailing" id="dsB-QN-GH6"/>
+                            <constraint firstItem="x3M-uq-Esb" firstAttribute="leading" secondItem="u2L-tT-Pfh" secondAttribute="leading" id="jMC-jN-Qi9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="u2L-tT-Pfh"/>
                     </view>
+                    <connections>
+                        <outlet property="map" destination="x3M-uq-Esb" id="H5D-EB-WlA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mUa-8u-G9Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4769" y="-1469"/>
+            <point key="canvasLocation" x="4768.8000000000002" y="-1469.4152923538231"/>
         </scene>
         <!--Login In Menu View Controller-->
         <scene sceneID="Hs4-Ua-DjP">

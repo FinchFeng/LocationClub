@@ -18,5 +18,5 @@ extension Constants {
         let width = UIScreen.main.bounds.width
         return CGSize(width: width, height: width/locationCellRadio)
     }
-    static let lengthOfMapSnap = 0.008//MarsView的地图截图
+    
 }

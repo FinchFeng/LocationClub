@@ -26,14 +26,21 @@ class MapViewForGreatLocation: MKMapView,MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         //对titile的分类创建AnnotionView 进行reuse的注册 ⚠️ 因为只展现一个所以不需要
         let data = annotation
+        let title = annotation.title!!//两次解包？
         let view = StaticAnnotionView(annotation: data, reuseIdentifier: nil)
-//        view.image = annotionImage 图片问题等等再解决🔧
+        view.image = Constants.getIconStruct(name: title).image
         return view
     }
     
 //    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
 //        //MKAnotationView被选中了 🔧
 //    }
+    
+    func addNewLocation(data:LocationInfoRank3){
+        //生成Data
+        let locationData = AnnotionData(rank3Data: data)
+        self.addAnnotation(locationData)
+    }
     
 }
 
@@ -43,6 +50,12 @@ class AnnotionData:NSObject,MKAnnotation{//地点数据
         self.coordinate = coordinate
         self.title = title
     }
+
+    convenience init(rank3Data:LocationInfoRank3) {
+        let coordinate = CLLocationCoordinate2D(latitude: rank3Data.locationLatitudeKey, longitude: rank3Data.locationLongitudeKey)
+        self.init(coordinate:coordinate,title:rank3Data.iconKindString)
+    }
+
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?

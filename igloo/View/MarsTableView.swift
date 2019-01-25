@@ -10,6 +10,7 @@ import UIKit
 
 class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
     
+    var segueTpGreatInfoDelegate:SegueTpGreatInfoDelegate!
     
     //MARK:使用[(Rank2,Rank3)]作为数据源,进行init
     
@@ -58,6 +59,12 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
         return locationCellHeight
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        //Segue到下个VC
+        segueTpGreatInfoDelegate.didSelectCell(index: indexPath.row)
+    }
+    
     //MARK: DataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,3 +92,6 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
     
 }
 
+protocol SegueTpGreatInfoDelegate {
+    func didSelectCell(index:Int)
+}

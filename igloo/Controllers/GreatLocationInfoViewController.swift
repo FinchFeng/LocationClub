@@ -7,15 +7,34 @@
 //
 
 import UIKit
+import MapKit
 
 class GreatLocationInfoViewController: UIViewController {
 
+    
+    @IBOutlet weak var map: MapViewForGreatLocation!
+    
+    var locationData:LocationInfoLocal!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        //隐藏TopBar 返回的时候要再把它显示出来
+        self.navigationController!.setNavigationBarHidden(true, animated: false)
+        //配置Map
+        let coordinates = CLLocationCoordinate2DMake(locationData.locationLatitudeKey, locationData.locationLongitudeKey)
+        var mapRegion = MKCoordinateRegion()
+        let mapRegionSpan = Constants.lengthOfGreatInfoMap
+        mapRegion.center = coordinates
+        mapRegion.span.latitudeDelta = mapRegionSpan
+        mapRegion.span.longitudeDelta = mapRegionSpan
+        map.setRegion(mapRegion, animated: false)
+        map.addNewLocation(data: locationData.changeDataTo(rank: 3) as! LocationInfoRank3)
     }
     
+    //Segue之前进行配置
+    func setDataIn(data:LocationInfoLocal) {
+        self.locationData = data
+    }
 
     /*
     // MARK: - Navigation

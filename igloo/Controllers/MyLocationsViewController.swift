@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyLocationsViewController: UIViewController {
+class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
 
     //MARK:Model
     
@@ -63,7 +63,9 @@ class MyLocationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //初始化TableVIew
         reloadTableViewData()
+        locationTableView.segueTpGreatInfoDelegate = self
         //给tabBarController设置顶栏
         let tabBarVC = self.tabBarController!
         tabBarVC.title = "我的地点"
@@ -79,7 +81,7 @@ class MyLocationsViewController: UIViewController {
         }
     }
     
-    //MARK:functions
+    //MARK:Functions
     
     
     func hadLogin()  {
@@ -103,6 +105,29 @@ class MyLocationsViewController: UIViewController {
     func changeLocationData(newData: LocationInfoLocal, key: String, value: String) {
         model.editLocationInfo(newData: newData, key: key, value: value)
         reloadTableViewData()
+    }
+    
+    //MARK:Segue
+    
+    var dataSendToGreatInfo:LocationInfoLocal?
+    
+    func didSelectCell(index:Int){
+        //获取LocationInfolocal数据
+        self.dataSendToGreatInfo = model.locationDataArray[index]
+        //segue到下一个ViewController
+        performSegue(withIdentifier: "SegueToGreatLocationInfo", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //判断segue
+        if let id = segue.identifier,id == "SegueToGreatLocationInfo"{//显示GreatInfo
+            if let data = self.dataSendToGreatInfo{
+                if let nextVC = segue.destination as? GreatLocationInfoViewController{
+                    //读入数据
+                    nextVC.setDataIn(data: data)
+                }
+            }
+        }
     }
     
     //MARK:测试区
