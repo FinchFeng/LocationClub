@@ -14,7 +14,8 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
     }
     
-
+    var justBackFromLoginInMenu:Bool = false
+    
     func login() {
         if LoginModel.login == false {
             performSegue(withIdentifier: "loginMenuSegue", sender: nil)
@@ -32,6 +33,7 @@ class MainTabBarController: UITabBarController {
     
     @IBAction func unwind(_ unwindSegue: UIStoryboardSegue) {//fromLoginMe
         print("segueFromLogin")
+        justBackFromLoginInMenu = true
         //登陆后的信息处理
         if LoginModel.login {
             hadLogin()

@@ -144,7 +144,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="q1I-d6-6vQ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="我的地点" image="myLocaitonTabImage" id="kgN-dx-Pwo" userLabel="我的地点"/>
+                    <tabBarItem key="tabBarItem" title="我的地点" image="mylocaitionImage" id="kgN-dx-Pwo" userLabel="我的地点"/>
                     <connections>
                         <outlet property="locationTableView" destination="6tC-lE-bUK" id="heB-M6-WmG"/>
                         <segue destination="PJO-Ff-0N9" kind="show" identifier="SegueToGreatLocationInfo" id="VRt-x1-aWf"/>
@@ -165,6 +165,13 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3M-uq-Esb" customClass="MapViewForGreatLocation" customModule="igloo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojE-Of-aiQ">
+                                <rect key="frame" x="294" y="158" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -793,7 +800,7 @@
         <image name="exploreTabImage" width="21" height="28"/>
         <image name="iglooIcon" width="144" height="195"/>
         <image name="iglooIconWhite" width="144" height="195"/>
-        <image name="myLocaitonTabImage" width="27" height="26"/>
+        <image name="mylocaitionImage" width="27" height="26"/>
         <image name="showOffBar" width="852" height="123"/>
         <image name="success" width="174" height="174"/>
     </resources>

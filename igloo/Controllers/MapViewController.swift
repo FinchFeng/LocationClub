@@ -17,6 +17,12 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let tabVC =  self.tabBarController as? MainTabBarController{
+            if tabVC.justBackFromLoginInMenu == true{
+                tabVC.justBackFromLoginInMenu = false
+                return
+            }
+        }
         //尝试登陆
         if LoginModel.login == false {
             let rootVC  = self.tabBarController! as! MainTabBarController

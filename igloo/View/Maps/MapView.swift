@@ -28,7 +28,7 @@ class MapViewForGreatLocation: MKMapView,MKMapViewDelegate {
         let data = annotation
         let title = annotation.title!!//两次解包？
         let view = StaticAnnotionView(annotation: data, reuseIdentifier: nil)
-        view.image = Constants.getIconStruct(name: title).image
+        view.image = Constants.getIconStruct(name: title).highlightImage
         return view
     }
     
