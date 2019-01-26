@@ -149,16 +149,29 @@ class MyLocationModel {
     //MARK: 添加删除某一个Location下的VisitNoted
     
     func addNewVisitNoteTo(locationID:String,visitNoteID:String,data:VisitedNote,imageArray:[UIImage]){
+        //添加URL到VisitedNote数据中
+        var finalData = data
+        for (index,image) in imageArray.enumerated() {
+            let radioString = String(Int(image.size.width))+"_"+String(Int(image.size.height))//比例大小字符串
+            let name = visitNoteID + "-" + String(index) + "_" + radioString
+            //缓存到本地
+            let url = "uploads/" + name + ".jpg"
+            print(url)
+            LocalImagePool.set(image: image, url: url)
+            //添加到data里
+            finalData.imageURLArray.append(url)
+        }
+        
         //找到这个location
         for (index,value) in locationDataArray.enumerated(){
             if value.locationID == locationID {
                 //查看是否需要后端创建
                 if value.isPublic && LoginModel.login{
-                    Network.createVisitedNote(locationID: locationID, visitNoteID: visitNoteID, data: data, imageArray: imageArray)
+                    Network.createVisitedNote(locationID: locationID, visitNoteID: visitNoteID, data: finalData, imageArray: imageArray)
                 }
                 //本地添加这个visitedNote
                 var locationData = value
-                locationData.VisitedNoteID.append(data)//添加两个记录
+                locationData.VisitedNoteID.append(finalData)//添加两个记录
                 locationData.noteIDs.append(visitNoteID)
                 //把这个更改的Location移到最前面
                 locationDataArray.remove(at: index)

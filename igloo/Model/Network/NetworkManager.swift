@@ -180,18 +180,19 @@ class Network {
     //data(visitNote)中的imageArray一定要为空，直接在后面传入 [UIImage]
     static func createVisitedNote(locationID:String,visitNoteID:String,data:VisitedNote,imageArray:[UIImage]){
         //使用递归一次性发送多张图片
-        let imageArrayNumber = imageArray.count
+        let count = imageArray.count
         func sendImageArray(imageArray:[UIImage]){
             if let firstImage = imageArray.first {
-                //使用VisitNoteID加顺序进行命名
-                let name = visitNoteID + "-" + String(imageArrayNumber-imageArray.count)
+                let index = count-imageArray.count
+                //从data中获取name
+                let url = data.imageURLArray[index]
+                let name = String(url[url.index(url.startIndex, offsetBy: 7)...])
+                print("}}}}}}}}}}}}}")
+                print(name)
                 send(filename: name, image: firstImage, visitNoteID:visitNoteID) { (result) in
                     if result == true {
                         var newImageArray = imageArray
                         newImageArray.remove(at: 0)
-                        //加入ImagePool
-                        let url = "uploads/" + name + ".jpg"
-                        ImageChecker.set(image: firstImage, url: url)
                         //删除第一个image 递归余下的image
                         sendImageArray(imageArray: newImageArray)
                     }
@@ -211,12 +212,6 @@ class Network {
                 //发送图片
                 //递归获取避免回调地狱
                 sendImageArray(imageArray: imageArray)
-//                for (index,image) in imageArray.enumerated(){
-//                    let fileName = visitNoteID + "-" + String(index)
-//                    Network.send(filename: fileName, image: image,visitNoteID:visitNoteID, landingAction: { (result) in
-//                        print(result)
-//                    })
-//                }
             }
         }
         

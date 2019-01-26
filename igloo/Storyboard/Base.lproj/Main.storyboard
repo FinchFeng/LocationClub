@@ -208,7 +208,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iL-e3-hUn">
-                                                    <rect key="frame" x="333" y="14" width="22" height="22"/>
+                                                    <rect key="frame" x="338" y="14" width="22" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="JTG-fQ-DOp"/>
                                                         <constraint firstAttribute="width" secondItem="4iL-e3-hUn" secondAttribute="height" multiplier="1:1" id="ejj-qG-EKz"/>
@@ -217,10 +217,11 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="4iL-e3-hUn" secondAttribute="trailing" constant="20" symbolic="YES" id="23a-9y-7KF"/>
+                                                <constraint firstAttribute="trailing" secondItem="4iL-e3-hUn" secondAttribute="trailing" constant="15" id="23a-9y-7KF"/>
                                                 <constraint firstItem="4iL-e3-hUn" firstAttribute="centerY" secondItem="ZZU-vE-ua9" secondAttribute="centerY" id="Bm0-0s-WpR"/>
                                                 <constraint firstItem="74E-HD-g7v" firstAttribute="leading" secondItem="ZZU-vE-ua9" secondAttribute="leading" constant="20" symbolic="YES" id="LRd-p5-jnc"/>
                                                 <constraint firstItem="74E-HD-g7v" firstAttribute="centerY" secondItem="ZZU-vE-ua9" secondAttribute="centerY" id="cTT-F7-du0"/>
+                                                <constraint firstItem="4iL-e3-hUn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="74E-HD-g7v" secondAttribute="trailing" constant="100" id="krI-PD-3t9"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
