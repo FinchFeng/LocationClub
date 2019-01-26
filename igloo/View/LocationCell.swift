@@ -26,12 +26,12 @@ class LocationCell: UITableViewCell {
         self.likeAmount.text = String(data.locationLikedAmount)
         self.locationInfoImage.image = image
         //添加效果
-        labelBlur(label: locationName)
-        labelBlur(label: locaitonInfoWord)
-        labelBlur(label: likeAmount)
+        LocationCell.labelBlur(label: locationName)
+        LocationCell.labelBlur(label: locaitonInfoWord)
+        LocationCell.labelBlur(label: likeAmount)
     }
     
-    func labelBlur(label:UILabel) {
+    static func labelBlur(label:UILabel) {
         label.layer.shadowColor = UIColor.black.cgColor
         label.layer.shadowRadius = 4.0
         label.layer.shadowOpacity = 0.5
