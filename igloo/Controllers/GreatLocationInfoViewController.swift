@@ -15,7 +15,8 @@ class GreatLocationInfoViewController: UIViewController {
     @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var locationDescrptionLabel: UILabel!
     @IBOutlet weak var LikeAmountLabel: UILabel!
-    
+    @IBOutlet weak var visitNoteTableView: VisitNoteTableView!
+    @IBOutlet var mapViewCell: UIView!
     
     var locationData:LocationInfoLocal!
     
@@ -23,7 +24,6 @@ class GreatLocationInfoViewController: UIViewController {
         super.viewDidLoad()
         //隐藏TopBar 返回的时候要再把它显示出来
         self.navigationController!.setNavigationBarHidden(true, animated: false)
-        //配置Map
         let coordinates = CLLocationCoordinate2DMake(locationData.locationLatitudeKey, locationData.locationLongitudeKey)
         var mapRegion = MKCoordinateRegion()
         let mapRegionSpan = Constants.lengthOfGreatInfoMap
@@ -34,7 +34,14 @@ class GreatLocationInfoViewController: UIViewController {
         map.addNewLocation(data: locationData.changeDataTo(rank: 3) as! LocationInfoRank3)
         //配置Label数据
         setAllLabel()
+        //配置tableView
+        visitNoteTableView.setDataIn(data: locationData.VisitedNoteID)
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        visitNoteTableView.sendSubviewToBack(mapViewCell)
+//    }
     
     //Segue之前进行配置
     func setDataIn(data:LocationInfoLocal) {

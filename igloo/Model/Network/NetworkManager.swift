@@ -186,9 +186,9 @@ class Network {
                 let index = count-imageArray.count
                 //从data中获取name
                 let url = data.imageURLArray[index]
-                let name = String(url[url.index(url.startIndex, offsetBy: 7)...])
-                print("}}}}}}}}}}}}}")
-                print(name)
+                let name = String(url[url.index(url.startIndex, offsetBy: 7)...url.index(url.endIndex,offsetBy:-5)])
+//                print("}}}}}}}}}}}}}")
+//                print(name)
                 send(filename: name, image: firstImage, visitNoteID:visitNoteID) { (result) in
                     if result == true {
                         var newImageArray = imageArray

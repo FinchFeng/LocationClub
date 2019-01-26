@@ -19,4 +19,11 @@ extension Constants {
         return CGSize(width: width, height: width/locationCellRadio)
     }
     
+    //VisitNote有关
+    static let visitNoteWordMaxNumber:Int = 200
+    static let visitNotePictureMaxWidth:CGFloat = 0.7*UIScreen.main.bounds.width
+    static var displayScale:CGFloat {
+        return UIScreen.main.scale
+    }
+    
 }
