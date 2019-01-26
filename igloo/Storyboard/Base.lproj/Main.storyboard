@@ -162,7 +162,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UsO-DQ-vxs" customClass="VisitNoteTableView" customModule="igloo" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UsO-DQ-vxs" customClass="VisitNoteTableView" customModule="igloo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="-50" width="375" height="717"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" id="nMf-1D-lLG">
@@ -227,23 +227,23 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addVisitNoteCell" rowHeight="50" id="Mnq-0E-Hz9" customClass="AddVisitNoteCell" customModule="igloo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="278" width="375" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addVisitNoteCell" rowHeight="60" id="Mnq-0E-Hz9" customClass="AddVisitNoteCell" customModule="igloo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="278" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mnq-0E-Hz9" id="ZZU-vE-ua9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="到访记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74E-HD-g7v">
-                                                    <rect key="frame" x="20" y="16.5" width="58" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                    <rect key="frame" x="20" y="21.5" width="58" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
                                                     <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iL-e3-hUn">
-                                                    <rect key="frame" x="338" y="14" width="22" height="22"/>
+                                                    <rect key="frame" x="334" y="17" width="26" height="26"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="22" id="JTG-fQ-DOp"/>
+                                                        <constraint firstAttribute="height" constant="26" id="JTG-fQ-DOp"/>
                                                         <constraint firstAttribute="width" secondItem="4iL-e3-hUn" secondAttribute="height" multiplier="1:1" id="ejj-qG-EKz"/>
                                                     </constraints>
                                                     <state key="normal" image="Add Detail"/>
@@ -264,10 +264,10 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VisitNoteCell" rowHeight="232" id="g3M-Fh-dDj" customClass="VisitNoteCell" customModule="igloo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="328" width="375" height="232"/>
+                                        <rect key="frame" x="0.0" y="338" width="375" height="232"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g3M-Fh-dDj" id="tSW-RV-G4o">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="231.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="232"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aOvalForVisitNote" translatesAutoresizingMaskIntoConstraints="NO" id="sFd-Sh-Xhs">
@@ -277,20 +277,20 @@
                                                         <constraint firstAttribute="width" constant="10" id="F4i-si-eTV"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VisitNote Word VisitNote " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OS1-XO-7uN">
-                                                    <rect key="frame" x="38" y="0.0" width="317" height="19.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="VisitNote Word VisitNote " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OS1-XO-7uN">
+                                                    <rect key="frame" x="48" y="0.0" width="307" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmb-Mw-Yv4">
-                                                    <rect key="frame" x="38" y="203.5" width="32" height="17"/>
+                                                    <rect key="frame" x="48" y="204" width="32" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                     <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UB2-TR-AGQ">
-                                                    <rect key="frame" x="38" y="27.5" width="337" height="168"/>
+                                                    <rect key="frame" x="48" y="28" width="327" height="168"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="168" id="vQx-iS-Rj9"/>
@@ -308,7 +308,7 @@
                                                 <constraint firstItem="qmb-Mw-Yv4" firstAttribute="leading" secondItem="UB2-TR-AGQ" secondAttribute="leading" id="daG-De-nH2"/>
                                                 <constraint firstAttribute="bottom" secondItem="qmb-Mw-Yv4" secondAttribute="bottom" constant="11" id="sf1-Zk-SF5"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qmb-Mw-Yv4" secondAttribute="trailing" constant="100" id="vJl-ZQ-hKz"/>
-                                                <constraint firstItem="OS1-XO-7uN" firstAttribute="leading" secondItem="sFd-Sh-Xhs" secondAttribute="trailing" constant="8" symbolic="YES" id="vXl-CZ-5Hc"/>
+                                                <constraint firstItem="OS1-XO-7uN" firstAttribute="leading" secondItem="sFd-Sh-Xhs" secondAttribute="trailing" constant="18" id="vXl-CZ-5Hc"/>
                                                 <constraint firstItem="sFd-Sh-Xhs" firstAttribute="bottom" secondItem="OS1-XO-7uN" secondAttribute="firstBaseline" id="zil-Qg-Isn"/>
                                             </constraints>
                                         </tableViewCellContentView>

@@ -142,7 +142,7 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
 //        changeLocationData(newData: locationData, key: Constants.locationName, value: "BNoodles")//两个都要更改
         
         //写入图片
-//        model.addNewVisitNoteTo(locationID: "4", visitNoteID: "2-1", data: VisitedNote(visitNoteWord:"nice noodle",imageURLArray:[],createdTime:Date.currentDateString()), imageArray: [ #imageLiteral(resourceName: "beatlesAndAli") ])//自动
+        model.addNewVisitNoteTo(locationID: "4", visitNoteID: "2-1", data: VisitedNote(visitNoteWord:"nice noodle",imageURLArray:[],createdTime:Date.currentDateString()), imageArray: [ #imageLiteral(resourceName: "ali") ])//自动
 //        model.deleteVisitNoteFrom(locationID: "4", visitNoteID: "2-1")
         
         print(LoginModel.login)

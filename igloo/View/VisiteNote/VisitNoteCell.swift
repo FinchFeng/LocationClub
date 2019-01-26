@@ -34,13 +34,19 @@ class VisitNoteCell: UITableViewCell {
             //获取分辨率
             let result = getRadio(string: imageName)
             print(Constants.displayScale)
-            var width = result.0 //除于屏幕显示倍数
+            var width = result.0 
             var height = result.1
             //创建一个ImageView占位
+            //控制大小
             if width > Constants.visitNotePictureMaxWidth{
                 //减小图片的大小
                 height = Constants.visitNotePictureMaxWidth*height/width
                 width = Constants.visitNotePictureMaxWidth
+            }
+            if height > Constants.visitNotePictureMaxWidth{
+                //减小图片的大小
+                width = Constants.visitNotePictureMaxWidth*width/height
+                height = Constants.visitNotePictureMaxWidth
             }
             print("Image Size is ")
             print(width)
