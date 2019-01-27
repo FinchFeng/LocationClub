@@ -43,9 +43,22 @@ class GreatLocationInfoViewController: UIViewController {
 //        visitNoteTableView.sendSubviewToBack(mapViewCell)
 //    }
     
-    //Segue之前进行配置
+    //被Segue之前进行配置
     func setDataIn(data:LocationInfoLocal) {
         self.locationData = data
+    }
+    
+    //Segue到下一个
+    @IBAction func segueToBigMap(_ sender: Any) {
+        performSegue(withIdentifier: "segueToBigMap", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let id = segue.identifier , id == "segueToBigMap"{
+            if let nextVC = segue.destination as? BigMapViewController{
+                nextVC.setDataIn(data: self.locationData)
+            }
+        }
     }
     
     func setAllLabel() {

@@ -14,7 +14,7 @@ extension Constants{
     
     static let lengthOfMapSnap = 0.008//MarsView的地图截图
     static let lengthOfGreatInfoMap = 0.015
-    
+    static let lengthOfBigMap = 0.02
     static func getIconStruct(name:String)->Icon!{//中文或者英文都可以
         for icon in Icon.iconsArray{
             if icon.kind == name || icon.kindInChinese == name {
