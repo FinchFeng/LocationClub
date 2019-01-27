@@ -46,5 +46,8 @@ class MainTabBarController: UITabBarController {
             hadLogin()
         }
     }
+    
+    @IBAction func unwindFromOther(_ unwindSegue:UIStoryboardSegue){
+    }
 
 }

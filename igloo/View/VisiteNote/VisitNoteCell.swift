@@ -55,7 +55,7 @@ class VisitNoteCell: UITableViewCell {
             imageContainerHeightConstraint.constant = height
             //构建ImageView
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
-            imageView.backgroundColor = UIColor.gray
+            imageView.backgroundColor = UIColor.lightGray
             imageVIewContainer.addSubview(imageView)
             //对image进行获取
             Network.getImage(at: imageName) { (image) in

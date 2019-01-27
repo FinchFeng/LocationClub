@@ -84,5 +84,14 @@ class GreatLocationInfoViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func backToMyLocation() {
+        performSegue(withIdentifier: "unwindFromOther", sender: nil)
+        //显示TopBar
+        self.navigationController!.setNavigationBarHidden(false, animated: false)
+    }
+    
+    @IBAction func unwind(_ segue:UIStoryboardSegue){
+        
+    }
+    
 }

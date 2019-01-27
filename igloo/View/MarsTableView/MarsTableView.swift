@@ -71,7 +71,7 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell") as! LocationCell
         let data = locationDataArray[indexPath.row]
         //获取image
-        var image:UIImage = UIImage()//默认Image
+        var image:UIImage = #imageLiteral(resourceName: "defualtMapImage")//默认Image
         let imageURL = data.rank2.locationInfoImageURL
         if imageURL == "nil"{
             //获取地图截图
@@ -83,7 +83,7 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
             }
         }else{
             //从本地获取
-            image = LocalImagePool.getImage(url:imageURL)!
+            image = ImageChecker.getImage(url:imageURL)!
         }
         //loadtheData
         cell.set(data: data.rank2, image: image)
