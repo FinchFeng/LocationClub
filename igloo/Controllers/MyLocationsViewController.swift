@@ -135,16 +135,19 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
     @IBAction func buttonTaped() {
 //                let rank1 = LocationInfoRank1(locationName: "Beef Noodle" ,iconKindString: "Restaurant" ,locationDescription: "A lots of beef" ,locationLatitudeKey: 37.334922 ,locationLongitudeKey: -122.009033 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])//重复性在这里要注意⚠️
 //                let rank2Data = LocationInfoRank2(locationName: "Beef Noodle" ,locationInfoWord: "nearby my home" ,locationLikedAmount: 10 ,locationInfoImageURL: "nil" )
-//                let locationData = LocationInfoLocal(locationID: "2", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
+//                let locationData = LocationInfoLocal(locationID: "4", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
 //                addLocation(data: locationData)
         
 //        deleteLocation(index: 0)
 //        changeLocationData(newData: locationData, key: Constants.locationName, value: "BNoodles")//两个都要更改
         
         //写入图片
-        model.addNewVisitNoteTo(locationID: "4", visitNoteID: "2-1", data: VisitedNote(visitNoteWord:"nice noodle",imageURLArray:[],createdTime:Date.currentDateString()), imageArray: [ #imageLiteral(resourceName: "ali") ])//自动
+        
+//        model.addNewVisitNoteTo(locationID: "4", visitNoteID: "2-1", data: VisitedNote(visitNoteWord:"nice noodle",imageURLArray:[],createdTime:Date.currentDateString()), imageArray: [ #imageLiteral(resourceName: "ali") ])//自动
 //        model.deleteVisitNoteFrom(locationID: "4", visitNoteID: "2-1")
         
+//        LocalImagePool.set(image:  #imageLiteral(resourceName: "ali"), url: "uploads/2-1-0_389_400.jpg")
+//        print(ImageChecker.getImage(url: "uploads/2-1-0_389_400.jpg"))
         print(LoginModel.login)
         print(LoginModel.owenLocationIDArray)
         print(model.locationDataArray)

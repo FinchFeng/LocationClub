@@ -73,14 +73,15 @@ class LocalImagePool {//是ImageChecker的子集
         }
     }
 }
-class ImageSaver {
+class ImageSaver {//储存的时候删除 "uploads/"
     static let document = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     @discardableResult static func save(image: UIImage,fileName:String) -> Bool {
+        let fileNameWithOutUploads = String(fileName[fileName.index(fileName.startIndex, offsetBy: 7)...])
         do {
             guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
                 return false
             }
-            try data.write(to: document.appendingPathComponent(fileName))
+            try data.write(to: document.appendingPathComponent(fileNameWithOutUploads))
         }catch{
             print(error)
             return false
@@ -88,7 +89,8 @@ class ImageSaver {
         return true
     }
     static func getImage(filename:String)->UIImage?{//FileName不变
-        let url = document.appendingPathComponent(filename)
+        let fileNameWithOutUploads = String(filename[filename.index(filename.startIndex, offsetBy: 7)...])
+        let url = document.appendingPathComponent(fileNameWithOutUploads)
         let data = try? Data(contentsOf: url)
         if let actualData = data{
             let image = UIImage(data: actualData)
