@@ -288,11 +288,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VisitNoteCell" rowHeight="232" id="g3M-Fh-dDj" customClass="VisitNoteCell" customModule="igloo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="338" width="375" height="232"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VisitNoteCell" rowHeight="262" id="g3M-Fh-dDj" customClass="VisitNoteCell" customModule="igloo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="338" width="375" height="262"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g3M-Fh-dDj" id="tSW-RV-G4o">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="232"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="262"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aOvalForVisitNote" translatesAutoresizingMaskIntoConstraints="NO" id="sFd-Sh-Xhs">
@@ -302,7 +302,7 @@
                                                         <constraint firstAttribute="width" constant="10" id="F4i-si-eTV"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="VisitNote Word VisitNote " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OS1-XO-7uN">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="100" verticalCompressionResistancePriority="900" text="VisitNote Word VisitNote " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OS1-XO-7uN">
                                                     <rect key="frame" x="48" y="0.0" width="307" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -331,7 +331,7 @@
                                                 <constraint firstItem="sFd-Sh-Xhs" firstAttribute="leading" secondItem="tSW-RV-G4o" secondAttribute="leading" constant="20" symbolic="YES" id="Uew-xQ-EvL"/>
                                                 <constraint firstItem="qmb-Mw-Yv4" firstAttribute="top" secondItem="UB2-TR-AGQ" secondAttribute="bottom" constant="8" symbolic="YES" id="bLR-E9-pLX"/>
                                                 <constraint firstItem="qmb-Mw-Yv4" firstAttribute="leading" secondItem="UB2-TR-AGQ" secondAttribute="leading" id="daG-De-nH2"/>
-                                                <constraint firstAttribute="bottom" secondItem="qmb-Mw-Yv4" secondAttribute="bottom" constant="11" id="sf1-Zk-SF5"/>
+                                                <constraint firstAttribute="bottom" secondItem="qmb-Mw-Yv4" secondAttribute="bottom" constant="41" id="sf1-Zk-SF5"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qmb-Mw-Yv4" secondAttribute="trailing" constant="100" id="vJl-ZQ-hKz"/>
                                                 <constraint firstItem="OS1-XO-7uN" firstAttribute="leading" secondItem="sFd-Sh-Xhs" secondAttribute="trailing" constant="18" id="vXl-CZ-5Hc"/>
                                                 <constraint firstItem="sFd-Sh-Xhs" firstAttribute="bottom" secondItem="OS1-XO-7uN" secondAttribute="firstBaseline" id="zil-Qg-Isn"/>

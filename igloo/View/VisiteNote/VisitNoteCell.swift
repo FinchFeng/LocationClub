@@ -30,6 +30,7 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
         let dateCompont = Date.changeStringToDate(string: data.createdTime)
         dateLabel.text = "\(dateCompont.year!) \(dateCompont.month!).\(dateCompont.day!)"
         //重点图片的展现
+        print("data.imageURLArray.count ",data.imageURLArray.count)
         switch data.imageURLArray.count {
         case 0: //不展现图片
             imageContainerHeightConstraint.constant = 0
@@ -58,10 +59,12 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
             imageView.backgroundColor = UIColor.lightGray
             imageVIewContainer.addSubview(imageView)
+            //准备更新ImgeArray
+            self.imageArray = []
             //对image进行获取
-            Network.getImage(at: imageName) { (image) in//内存泄露？？
+            Network.getImage(at: imageName) {(image) in//内存泄露？？
                 imageView.image = image
-                //添加到ImageArray
+                //更新到ImageArray
                 self.imageArray.append(image)
                 //添加TapGesture
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapSingleImageView(sender:)))
@@ -73,25 +76,30 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
             //最多9张图片
             let gap:CGFloat = 6
             let size:CGFloat = UIScreen.main.bounds.width*0.22
-            let makeAFrame = {(index:Int)->CGRect in
+            
+            let makeAFrame = { (index:Int)->CGRect  in
                 let row = CGFloat((index) % 3)
                 let line = CGFloat((index) / 3)
                 let point = CGPoint(x: row*(size+gap), y: line*(size+gap))
-                return CGRect(origin: point, size: CGSize(width: size, height: size))
+                let newframe = CGRect(origin: point, size: CGSize(width: size, height: size))
+                return newframe
             }
             //cell进行构建
-            let height = (CGFloat(data.imageURLArray.count/3+1))*(size+gap)
-            imageContainerHeightConstraint.constant = height
+            var maxImageY:CGFloat = 0
+            //准备更新ImgeArray
+            self.imageArray = []
             //创建imageViews
             for (index,imageUrL) in data.imageURLArray.enumerated(){
                 let frame = makeAFrame(index)
+                //与最大的Y进行比较
+                maxImageY = frame.maxY > maxImageY ? frame.maxY : maxImageY
                 let imageView = MutipleImageView(frame:frame)
                 imageView.index = index //初始化index
                 imageView.backgroundColor = UIColor.lightGray
                 imageView.contentMode = .scaleAspectFill
                 imageView.clipsToBounds = true
                 imageVIewContainer.addSubview(imageView)
-                //对image进行获取
+                //对image进行获取 需要递归？⚠️
                 Network.getImage(at: imageUrL) { (image) in//内存泄露？？
                     imageView.image = image
                     //添加到ImageArray
@@ -102,6 +110,9 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
                     imageView.addGestureRecognizer(tapGesture)
                 }
             }
+            //设定Cell的高度
+            let height = maxImageY
+            imageContainerHeightConstraint.constant = height
             return //展现多个图片
         }
         
@@ -143,8 +154,6 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
         let heightString = string[secondIndex..<string.lastIndex(of: ".")!]
         let width = Int(widthString)!
         let height = Int(heightString)!
-        print(width)
-        print(height)
         return(CGFloat(width),CGFloat(height))
     }
     
