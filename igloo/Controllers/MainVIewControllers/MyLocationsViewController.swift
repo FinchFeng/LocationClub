@@ -143,7 +143,7 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
         
         //写入图片
         
-//        model.addNewVisitNoteTo(locationID: "4", visitNoteID: "2-1", data: VisitedNote(visitNoteWord:"nice noodle",imageURLArray:[],createdTime:Date.currentDateString()), imageArray: [ #imageLiteral(resourceName: "ali") ])//自动
+//        model.addNewVisitNoteTo(locationID: "4", visitNoteID: "2-1", data: VisitedNote(visitNoteWord:"nice noodle",imageURLArray:[],createdTime:Date.currentDateString()), imageArray: [ #imageLiteral(resourceName: "ali"), #imageLiteral(resourceName: "beatlesAndAli"),#imageLiteral(resourceName: "locationTestImage") ,#imageLiteral(resourceName: "defualtMapImage")])//自动
 //        model.deleteVisitNoteFrom(locationID: "4", visitNoteID: "2-1")
         
 //        LocalImagePool.set(image:  #imageLiteral(resourceName: "ali"), url: "uploads/2-1-0_389_400.jpg")

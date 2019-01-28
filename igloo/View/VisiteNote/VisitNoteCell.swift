@@ -56,12 +56,7 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
             imageContainerHeightConstraint.constant = height
             //构建ImageView
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
-           
             imageView.backgroundColor = UIColor.lightGray
-//            //添加TapGesture
-//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapSingleImageView(sender:)))
-//            imageView.addGestureRecognizer(tapGesture)
-            
             imageVIewContainer.addSubview(imageView)
             //对image进行获取
             Network.getImage(at: imageName) { (image) in//内存泄露？？
@@ -75,6 +70,38 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
             }
             return
         default:
+            //最多9张图片
+            let gap:CGFloat = 6
+            let size:CGFloat = UIScreen.main.bounds.width*0.22
+            let makeAFrame = {(index:Int)->CGRect in
+                let row = CGFloat((index) % 3)
+                let line = CGFloat((index) / 3)
+                let point = CGPoint(x: row*(size+gap), y: line*(size+gap))
+                return CGRect(origin: point, size: CGSize(width: size, height: size))
+            }
+            //cell进行构建
+            let height = (CGFloat(data.imageURLArray.count/3+1))*(size+gap)
+            imageContainerHeightConstraint.constant = height
+            //创建imageViews
+            for (index,imageUrL) in data.imageURLArray.enumerated(){
+                let frame = makeAFrame(index)
+                let imageView = MutipleImageView(frame:frame)
+                imageView.index = index //初始化index
+                imageView.backgroundColor = UIColor.lightGray
+                imageView.contentMode = .scaleAspectFill
+                imageView.clipsToBounds = true
+                imageVIewContainer.addSubview(imageView)
+                //对image进行获取
+                Network.getImage(at: imageUrL) { (image) in//内存泄露？？
+                    imageView.image = image
+                    //添加到ImageArray
+                    self.imageArray.append(image)
+                    //添加TapGesture
+                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapMutiplerImageView(sender:)))
+                    imageView.isUserInteractionEnabled = true
+                    imageView.addGestureRecognizer(tapGesture)
+                }
+            }
             return //展现多个图片
         }
         
@@ -89,7 +116,10 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
     }
     
     @objc func tapMutiplerImageView(sender:UITapGestureRecognizer) {
-        
+        let senderView = sender.view! as! MutipleImageView
+        let index = senderView.index
+        let gallery = createABigImageView(firstImageIndex: index)
+        viewController.present(gallery, animated: true, completion:  nil)
     }
     
     func createABigImageView(firstImageIndex:Int?=nil)->SwiftPhotoGallery {
