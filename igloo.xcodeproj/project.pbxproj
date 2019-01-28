@@ -34,6 +34,7 @@
 		1392833321FC53C7007CBA5F /* AddVisitNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1392833221FC53C7007CBA5F /* AddVisitNoteCell.swift */; };
 		1392833521FC5508007CBA5F /* VisitNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1392833421FC5508007CBA5F /* VisitNoteCell.swift */; };
 		1392833821FD7DAD007CBA5F /* BigMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1392833721FD7DAD007CBA5F /* BigMapViewController.swift */; };
+		1392833A21FE8F15007CBA5F /* MutipleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1392833921FE8F15007CBA5F /* MutipleImageView.swift */; };
 		13ADBD7921F00D0100D32138 /* ImagePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ADBD7821F00D0100D32138 /* ImagePool.swift */; };
 		13BA183E21FAD80B008B1FDA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA183D21FAD80B008B1FDA /* MapView.swift */; };
 		13BA184121FADCFF008B1FDA /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA184021FADCFF008B1FDA /* UI.swift */; };
@@ -86,6 +87,7 @@
 		1392833221FC53C7007CBA5F /* AddVisitNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVisitNoteCell.swift; sourceTree = "<group>"; };
 		1392833421FC5508007CBA5F /* VisitNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitNoteCell.swift; sourceTree = "<group>"; };
 		1392833721FD7DAD007CBA5F /* BigMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigMapViewController.swift; sourceTree = "<group>"; };
+		1392833921FE8F15007CBA5F /* MutipleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipleImageView.swift; sourceTree = "<group>"; };
 		13ADBD7821F00D0100D32138 /* ImagePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePool.swift; sourceTree = "<group>"; };
 		13BA183D21FAD80B008B1FDA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		13BA184021FADCFF008B1FDA /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				1392832E21FC5343007CBA5F /* VisitNoteTableView.swift */,
 				1392833221FC53C7007CBA5F /* AddVisitNoteCell.swift */,
 				1392833421FC5508007CBA5F /* VisitNoteCell.swift */,
+				1392833921FE8F15007CBA5F /* MutipleImageView.swift */,
 			);
 			path = VisiteNote;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftPhotoGallery/SwiftPhotoGallery.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -436,6 +440,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftPhotoGallery.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -522,6 +527,7 @@
 				138E842321CC785500DC2CB8 /* MyLocationsViewController.swift in Sources */,
 				13BA184321FADD1C008B1FDA /* Map.swift in Sources */,
 				1392833521FC5508007CBA5F /* VisitNoteCell.swift in Sources */,
+				1392833A21FE8F15007CBA5F /* MutipleImageView.swift in Sources */,
 				1392833321FC53C7007CBA5F /* AddVisitNoteCell.swift in Sources */,
 				13DBF1BD21C78961001A03BA /* TestViewController.swift in Sources */,
 				1392833821FD7DAD007CBA5F /* BigMapViewController.swift in Sources */,

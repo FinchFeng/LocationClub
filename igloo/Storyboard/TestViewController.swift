@@ -8,8 +8,10 @@
 
 import MapKit
 import UIKit
+import SwiftPhotoGallery
 
-class TestViewController: UIViewController {
+
+class TestViewController: UIViewController, SwiftPhotoGalleryDataSource, SwiftPhotoGalleryDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +107,7 @@ class TestViewController: UIViewController {
 //        }
         //更改LocationInfoImage
 //        Network.changeLocationInfoImage(locationID: "2", image: imageView.image!)
+        didPressShowMeButton()
     }
     
     
@@ -124,6 +127,46 @@ class TestViewController: UIViewController {
         return newImage
     }
     
+    let imageArray = [#imageLiteral(resourceName: "beatlesAndAli"),#imageLiteral(resourceName: "ali"),#imageLiteral(resourceName: "defualtMapImage")]
+    var index: Int = 1
+    
+    @IBAction func didPressShowMeButton() {
+        let gallery = SwiftPhotoGallery(delegate: self, dataSource: self)
+        
+        gallery.firstShowImageIndex = 2
+        gallery.backgroundColor = UIColor.black
+        gallery.pageIndicatorTintColor = UIColor.gray.withAlphaComponent(0.5)
+        gallery.currentPageIndicatorTintColor = UIColor.white
+        gallery.hidePageControl = false
+        
+        present(gallery, animated: true, completion:  { () -> Void in
+        })
+        
+       
+         /// Or load on a specific page like this:
+         
+//         present(gallery, animated: true, completion: { () -> Void in
+//         gallery.currentPage = self.index
+//         })
+ 
+        
+    }
+    
+    // MARK: SwiftPhotoGalleryDataSource Methods
+    
+    func numberOfImagesInGallery(gallery: SwiftPhotoGallery) -> Int {
+        return imageArray.count
+    }
+    
+    func imageInGallery(gallery: SwiftPhotoGallery, forIndex: Int) -> UIImage? {
+        return imageArray[forIndex]
+    }
+    
+    // MARK: SwiftPhotoGalleryDelegate Methods
+    
+    func galleryDidTapToClose(gallery: SwiftPhotoGallery) {
+        dismiss(animated: true, completion: nil)
+    }
     
     
 }

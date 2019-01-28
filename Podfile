@@ -8,6 +8,7 @@ target 'igloo' do
   # Pods for igloo
   pod 'GoogleSignIn'
   pod 'Alamofire', '~> 4.0'
+  pod 'SwiftPhotoGallery'
 
   target 'iglooTests' do
     inherit! :search_paths
