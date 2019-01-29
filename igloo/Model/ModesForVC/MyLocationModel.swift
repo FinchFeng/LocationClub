@@ -38,7 +38,7 @@ class MyLocationModel {
                 //非本地的下载到本地
                 Network.getLocationInfo(locationID: id, rank: 1) { (data) in
                     let data = data as! LocationInfoLocal
-                    //进行本地添加
+                    //进行本地添加 Cell图片？
                     self.locationDataArray.insert(data, at: 0)
                 }
             }
@@ -150,7 +150,7 @@ class MyLocationModel {
     //MARK: 添加删除某一个Location下的VisitNoted
     
     func addNewVisitNoteTo(locationID:String,visitNoteID:String,data:VisitedNote,imageArray:[UIImage]){
-        //添加URL到VisitedNote数据中
+        //添加ImageURL到VisitedNote数据中
         var finalData = data
         for (index,image) in imageArray.enumerated() {
             let radioString = String(Int(image.size.width))+"_"+String(Int(image.size.height))//比例大小字符串
@@ -177,8 +177,13 @@ class MyLocationModel {
                 //把这个更改的Location移到最前面
                 locationDataArray.remove(at: index)
                 locationDataArray.insert(locationData, at: 0)
-                return
+                break
             }
+        }
+        //添加Cell图片
+        //自动配上图片
+        if let image = imageArray.first{
+            setNewImageTo(locationID: locationID, image: image)
         }
     }
     
@@ -196,12 +201,54 @@ class MyLocationModel {
                         //删除两个记录
                         locationDataArray[index].noteIDs.remove(at: number)
                         locationDataArray[index].VisitedNoteID.remove(at: number)
+                        //检查删除的是不是首个VisitNote
+                        if number == 0 {
+                            //添加下一个VisitedNote为Cell图片
+                            if let nextImageUrl = locationDataArray[index].VisitedNoteID.first?.imageURLArray.first{
+                                let nextImage = LocalImagePool.getImage(url: nextImageUrl)!
+                                setNewImageTo(locationID: locationID, image:nextImage)
+                            }else{
+                                //没有VisiteNote或者没有图片
+                                setNewImageTo(locationID: locationID, image: nil)
+                            }
+                        }
                     }
                 }
                 
             }
         }
     }
+    
+    //MARK:更新imageInfoImage （显示在Cell上面的Image）
+    func setNewImageTo(locationID:String,image:UIImage?) {
+        //找到这个location
+        for (index,location) in locationDataArray.enumerated(){
+            if location.locationID == locationID{
+                if let image = image {//添加image
+                    //crop the image
+                    let radio = UIScreen.main.bounds.width/CGFloat(162)
+                    let croppedImage = ImageCropper.crop(image: image, radio: radio)
+                    //检查是否需要后端添加Image
+                    if location.isPublic && LoginModel.login{
+                        Network.changeLocationInfoImage(locationID: locationID, image: croppedImage)
+                    }
+                    //进行本地修改
+                    let url = Network.getLocationInfoImageUrl(locationID: locationID)
+                    LocalImagePool.set(image: croppedImage, url: url)//更新LocalImaagePool中的infoImage
+                    locationDataArray[index].locationInfoImageURL = url
+                }else{//删除Image
+                    //检查是否需要后端添加Nil
+                    if location.isPublic && LoginModel.login{
+                        Network.changeLocationData(key: Constants.locationInfoImageURL, data: "nil", locationID: locationID)
+                    }
+                    //进行本地修改Nil
+                    locationDataArray[index].locationInfoImageURL = "nil"
+                }
+                return
+            }
+        }
+    }
+    
     
 }
 
@@ -226,6 +273,22 @@ class CodableSaver {//使用Json转换为Data类型
         }else{
             return nil
         }
+    }
+}
+
+class ImageCropper {
+    static func crop(image:UIImage,radio:CGFloat) -> UIImage {
+        //确定新照片的rect
+        let oldHeight = CGFloat(image.cgImage!.height)
+        let width = CGFloat(image.cgImage!.width)
+        let centerY = oldHeight/2
+        let height = width/radio
+        let newImageRect = CGRect(x: 0, y: centerY-height/2, width: width, height: height)
+        //调用方法进行裁剪
+        let newCGImage = image.cgImage!.cropping(to: newImageRect)!
+        let newImage:UIImage = UIImage(cgImage: newCGImage,scale:image.scale,
+                                       orientation:image.imageOrientation)
+        return newImage
     }
 }
 

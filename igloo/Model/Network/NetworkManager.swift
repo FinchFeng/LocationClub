@@ -55,7 +55,7 @@ class Network {
 
     //MARK: 地点操作
     
-    //创建地点 登陆之后才能使用
+    //创建地点 登陆之后才能使用 🔧注意登陆之后上传Location的同时也要上传CellImage
     static func createNewLocationToServer(locaitonID:String,data:LocationInfoLocal,action:@escaping ([String:Any])->Void){
         //locationInfoLocal转化为parameters参数 VisitedNote需要等待这个方法返回之后进行添加🔧
         var parameters = Shower.changeLocationInfoToParameters(data: data)
@@ -301,9 +301,16 @@ class Network {
         
     }
     //使用这个方法更改代表Locationd的那个Image
-    static func changeLocationInfoImage(locationID:String,image:UIImage){
+    
+    static func getLocationInfoImageUrl(locationID:String)->String{
         let name = String(locationID)+"InfoImage"
         let url =  "uploads/" + name + ".jpg"
+        return url
+    }
+    
+    static func changeLocationInfoImage(locationID:String,image:UIImage) {
+        let name = String(locationID)+"InfoImage"
+        let url = getLocationInfoImageUrl(locationID: locationID)
         send(filename: name, image: image,locationID: locationID) { (result) in
             if result == true {
                 ImageChecker.set(image: image, url: url)

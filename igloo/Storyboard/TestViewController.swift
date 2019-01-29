@@ -117,7 +117,7 @@ class TestViewController: UIViewController, SwiftPhotoGalleryDataSource, SwiftPh
 //        map.setRegion(mapRegion, animated: false)
 //        map.addNewLocation(data: locationData.changeDataTo(rank: 3) as! LocationInfoRank3)
         
-        didPressShowMeButton()
+//        didPressShowMeButton()
     }
     
     

@@ -106,7 +106,7 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
         model.editLocationInfo(newData: newData, key: key, value: value)
         reloadTableViewData()
     }
-    
+    //MARK: VisitedNote
     func addVisiteNote(locationID: String, visitNoteID: String, data:VisitedNote, imageArray: [UIImage]) {
         model.addNewVisitNoteTo(locationID: locationID, visitNoteID: visitNoteID, data: data, imageArray: imageArray)//自动
         reloadTableViewData()
@@ -114,6 +114,8 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
     
     func deleteVisiteNote(locationID: String, visitNoteID: String) {
          model.deleteVisitNoteFrom(locationID: locationID, visitNoteID: visitNoteID)
+        reloadTableViewData()
+        //查看是否需要tableCell更新图片
     }
     
     //MARK:Segue
@@ -152,13 +154,12 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
         
         //写入图片
         //等等要封装一下
-        model.addNewVisitNoteTo(locationID: "4", visitNoteID: "2-100", data: VisitedNote(visitNoteWord:"循环强引88",imageURLArray:[],createdTime:Date.currentDateString()), imageArray: [#imageLiteral(resourceName: "locationTestImage")])//自动
-        reloadTableViewData()
+        addVisiteNote(locationID: "4", visitNoteID: "4-1", data: VisitedNote(visitNoteWord:"循引886",imageURLArray:[],createdTime:Date .currentDateString()), imageArray: [#imageLiteral(resourceName: "ali")])
+
         
-//        model.deleteVisitNoteFrom(locationID: "4", visitNoteID: "2-90")
-        
-//        LocalImagePool.set(image:  #imageLiteral(resourceName: "ali"), url: "uploads/2-1-0_389_400.jpg")
-//        print(ImageChecker.getImage(url: "uploads/2-1-0_389_400.jpg"))
+
+//        deleteVisiteNote(locationID: "5", visitNoteID: "5-3")
+
         print(LoginModel.login)
         print(LoginModel.owenLocationIDArray)
         print(model.locationDataArray)
