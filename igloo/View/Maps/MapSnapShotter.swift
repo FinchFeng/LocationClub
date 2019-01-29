@@ -20,7 +20,7 @@ class MapSnapShotter{
     //给Cell使用
     static func getMapImageForCell(latitude:Double,longitude:Double,completeAction:@escaping (UIImage)->Void){
         //检查池子里面有没有 Cell使用的Image
-        let locationString = changeToString(latitude: latitude, longitude: longitude) + "ForCell"
+        let locationString = changeToString(latitude: latitude, longitude: longitude) + "formapview"
         if let oldImage = LocalImagePool.getImage(url: locationString){
             completeAction(oldImage)
         }else{
@@ -38,7 +38,7 @@ class MapSnapShotter{
             options.mapType = .standard
             options.showsBuildings = true
             options.scale = UIScreen.main.scale
-            options.size = CGSize(width: 375, height: 162)//⚠️需要更改
+            options.size = Constants.mapSnapSize//⚠️size是固定的
             let mapSnapShot = MKMapSnapshotter(options:options)
             mapSnapShot.start{ (snapshot, error) in//分配到主队列
                 //保证正确

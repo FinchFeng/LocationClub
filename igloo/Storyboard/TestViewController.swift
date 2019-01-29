@@ -107,6 +107,16 @@ class TestViewController: UIViewController, SwiftPhotoGalleryDataSource, SwiftPh
 //        }
         //更改LocationInfoImage
 //        Network.changeLocationInfoImage(locationID: "2", image: imageView.image!)
+//        配置mapView
+//        let coordinates = CLLocationCoordinate2DMake(locationData.locationLatitudeKey, locationData.locationLongitudeKey)
+//        var mapRegion = MKCoordinateRegion()
+//        let mapRegionSpan = Constants.lengthOfGreatInfoMap
+//        mapRegion.center = coordinates
+//        mapRegion.span.latitudeDelta = mapRegionSpan
+//        mapRegion.span.longitudeDelta = mapRegionSpan
+//        map.setRegion(mapRegion, animated: false)
+//        map.addNewLocation(data: locationData.changeDataTo(rank: 3) as! LocationInfoRank3)
+        
         didPressShowMeButton()
     }
     

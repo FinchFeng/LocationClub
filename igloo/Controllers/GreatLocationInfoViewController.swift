@@ -10,8 +10,11 @@ import UIKit
 import MapKit
 
 class GreatLocationInfoViewController: UIViewController {
-
-    @IBOutlet weak var map: MapViewForGreatLocation!
+    
+    //Map
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var mapImage: UIImageView!
+    
     @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var locationDescrptionLabel: UILabel!
     @IBOutlet weak var LikeAmountLabel: UILabel!
@@ -24,14 +27,11 @@ class GreatLocationInfoViewController: UIViewController {
         super.viewDidLoad()
         //隐藏TopBar 返回的时候要再把它显示出来
         self.navigationController!.setNavigationBarHidden(true, animated: false)
-        let coordinates = CLLocationCoordinate2DMake(locationData.locationLatitudeKey, locationData.locationLongitudeKey)
-        var mapRegion = MKCoordinateRegion()
-        let mapRegionSpan = Constants.lengthOfGreatInfoMap
-        mapRegion.center = coordinates
-        mapRegion.span.latitudeDelta = mapRegionSpan
-        mapRegion.span.longitudeDelta = mapRegionSpan
-        map.setRegion(mapRegion, animated: false)
-        map.addNewLocation(data: locationData.changeDataTo(rank: 3) as! LocationInfoRank3)
+        //map截图
+        iconImageView.image = Constants.getIconStruct(name: locationData.iconKindString)!.highlightImage
+        MapSnapShotter.getMapImageForCell(latitude: locationData.locationLatitudeKey, longitude: locationData.locationLongitudeKey) { (image) in
+            self.mapImage.image = image
+        }
         //配置Label数据
         setAllLabel()
         //配置tableView
