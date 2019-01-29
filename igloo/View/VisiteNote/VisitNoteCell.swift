@@ -23,6 +23,7 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
     
     
     func setData(data:VisitedNote)  {
+       
         self.data = data
         //进行赋值
         visitNoteWordLabel.text = data.visitNoteWord
@@ -30,7 +31,10 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
         let dateCompont = Date.changeStringToDate(string: data.createdTime)
         dateLabel.text = "\(dateCompont.year!) \(dateCompont.month!).\(dateCompont.day!)"
         //重点图片的展现
-        print("data.imageURLArray.count ",data.imageURLArray.count)
+        //进行图片更新删除旧的图片
+        for views in imageVIewContainer.subviews {
+            views.removeFromSuperview()
+        }
         switch data.imageURLArray.count {
         case 0: //不展现图片
             imageContainerHeightConstraint.constant = 0

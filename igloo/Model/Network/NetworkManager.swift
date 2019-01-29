@@ -280,7 +280,7 @@ class Network {
     static func getImage(at url:String,landingAction:@escaping (UIImage)->Void){
         //检查缓存
         if let image = ImageChecker.getImage(url: url){
-            print("缓存中有此图片")
+//            print("缓存中有此图片")
             landingAction(image)
         }else{
             //获取图片

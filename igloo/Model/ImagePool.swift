@@ -46,11 +46,7 @@ class ImageChecker {//网络方法链接的Pool
 
 class LocalImagePool {//是ImageChecker的子集
     //加入local图片池的图片全部都保存在本机 注意父类的Pool
-    static var pool:[String:UIImage] = [:]{
-        didSet{
-            print(pool)
-        }
-    }
+    static var pool:[String:UIImage] = [:]
     class func set(image:UIImage,url:String){
         //进行图片储存
         ImageSaver.save(image: image,fileName:url)

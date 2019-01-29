@@ -68,9 +68,10 @@ class MyLocationModel {
         for data in datas{
             CodableSaver.save(rawData: data, fileName: data.locationID)
         }
+        
     }
     
-    //通过id数组获取locationInfoData数组q
+    //通过id数组获取locationInfoData数组
     func getLocationArrayFromFile(locationIDs:[String])->[LocationInfoLocal] {
         var resultArray:[LocationInfoLocal] = []
         for id in locationIDs{
@@ -190,11 +191,11 @@ class MyLocationModel {
                     Network.deleteVisitedNote(id: visitNoteID)
                 }
                 //删除本地visitNote
-                for (index,notes) in locationDataArray[index].noteIDs.enumerated(){
+                for (number,notes) in locationDataArray[index].noteIDs.enumerated(){
                     if notes == visitNoteID{
                         //删除两个记录
-                        locationDataArray[index].noteIDs.remove(at: index)
-                        locationDataArray[index].VisitedNoteID.remove(at: index)
+                        locationDataArray[index].noteIDs.remove(at: number)
+                        locationDataArray[index].VisitedNoteID.remove(at: number)
                     }
                 }
                 

@@ -133,18 +133,20 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
     //MARK:测试区
     
     @IBAction func buttonTaped() {
-//                let rank1 = LocationInfoRank1(locationName: "Beef Noodle" ,iconKindString: "Restaurant" ,locationDescription: "A lots of beef" ,locationLatitudeKey: 37.334922 ,locationLongitudeKey: -122.009033 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])//重复性在这里要注意⚠️
-//                let rank2Data = LocationInfoRank2(locationName: "Beef Noodle" ,locationInfoWord: "nearby my home" ,locationLikedAmount: 10 ,locationInfoImageURL: "nil" )
-//                let locationData = LocationInfoLocal(locationID: "4", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
+//                let rank1 = LocationInfoRank1(locationName: "鼓浪屿" ,iconKindString: "Views" ,locationDescription: "非常不错的地方" ,locationLatitudeKey: 24.4421488249 ,locationLongitudeKey: 118.069896698 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])//重复性在这里要注意⚠️
+//                let rank2Data = LocationInfoRank2(locationName: "鼓浪屿" ,locationInfoWord: "厦门 鼓浪屿" ,locationLikedAmount: 10 ,locationInfoImageURL: "nil" )
+//                let locationData = LocationInfoLocal(locationID: "5", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
 //                addLocation(data: locationData)
         
 //        deleteLocation(index: 0)
 //        changeLocationData(newData: locationData, key: Constants.locationName, value: "BNoodles")//两个都要更改
         
         //写入图片
+        //等等要封装一下
+        model.addNewVisitNoteTo(locationID: "4", visitNoteID: "2-91", data: VisitedNote(visitNoteWord:"循环强引88",imageURLArray:[],createdTime:Date.currentDateString()), imageArray: [#imageLiteral(resourceName: "locationTestImage")])//自动
+        reloadTableViewData()
         
-        model.addNewVisitNoteTo(locationID: "4", visitNoteID: "2-3", data: VisitedNote(visitNoteWord:"循环强引",imageURLArray:[],createdTime:Date.currentDateString()), imageArray: [#imageLiteral(resourceName: "beatlesAndAli")])//自动
-//        model.deleteVisitNoteFrom(locationID: "4", visitNoteID: "2-4")
+//        model.deleteVisitNoteFrom(locationID: "4", visitNoteID: "2-8")
         
 //        LocalImagePool.set(image:  #imageLiteral(resourceName: "ali"), url: "uploads/2-1-0_389_400.jpg")
 //        print(ImageChecker.getImage(url: "uploads/2-1-0_389_400.jpg"))

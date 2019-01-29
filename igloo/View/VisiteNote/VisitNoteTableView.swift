@@ -32,6 +32,7 @@ class VisitNoteTableView: UITableView,UITableViewDelegate,UITableViewDataSource 
             return staticCell
         }else{
             let visitNoteCell = tableView.dequeueReusableCell(withIdentifier: "VisitNoteCell") as! VisitNoteCell
+             print("正在生成第\(row-1)层的Cell")
             visitNoteCell.setData(data: visitNoteArray[row-1])
             return visitNoteCell
         }
