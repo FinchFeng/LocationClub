@@ -172,8 +172,8 @@ class MyLocationModel {
                 }
                 //本地添加这个visitedNote
                 var locationData = value
-                locationData.VisitedNoteID.append(finalData)//添加两个记录
-                locationData.noteIDs.append(visitNoteID)
+                locationData.VisitedNoteID.insert(finalData, at: 0)//添加两个记录到数组最前面
+                locationData.noteIDs.insert(visitNoteID, at: 0)
                 //把这个更改的Location移到最前面
                 locationDataArray.remove(at: index)
                 locationDataArray.insert(locationData, at: 0)

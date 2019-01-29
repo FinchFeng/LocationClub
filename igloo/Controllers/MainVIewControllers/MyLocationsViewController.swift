@@ -107,6 +107,15 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
         reloadTableViewData()
     }
     
+    func addVisiteNote(locationID: String, visitNoteID: String, data:VisitedNote, imageArray: [UIImage]) {
+        model.addNewVisitNoteTo(locationID: locationID, visitNoteID: visitNoteID, data: data, imageArray: imageArray)//自动
+        reloadTableViewData()
+    }
+    
+    func deleteVisiteNote(locationID: String, visitNoteID: String) {
+         model.deleteVisitNoteFrom(locationID: locationID, visitNoteID: visitNoteID)
+    }
+    
     //MARK:Segue
     
     var dataSendToGreatInfo:LocationInfoLocal?
@@ -143,10 +152,10 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
         
         //写入图片
         //等等要封装一下
-        model.addNewVisitNoteTo(locationID: "4", visitNoteID: "2-91", data: VisitedNote(visitNoteWord:"循环强引88",imageURLArray:[],createdTime:Date.currentDateString()), imageArray: [#imageLiteral(resourceName: "locationTestImage")])//自动
+        model.addNewVisitNoteTo(locationID: "4", visitNoteID: "2-100", data: VisitedNote(visitNoteWord:"循环强引88",imageURLArray:[],createdTime:Date.currentDateString()), imageArray: [#imageLiteral(resourceName: "locationTestImage")])//自动
         reloadTableViewData()
         
-//        model.deleteVisitNoteFrom(locationID: "4", visitNoteID: "2-8")
+//        model.deleteVisitNoteFrom(locationID: "4", visitNoteID: "2-90")
         
 //        LocalImagePool.set(image:  #imageLiteral(resourceName: "ali"), url: "uploads/2-1-0_389_400.jpg")
 //        print(ImageChecker.getImage(url: "uploads/2-1-0_389_400.jpg"))
