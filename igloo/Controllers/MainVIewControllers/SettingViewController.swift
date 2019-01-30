@@ -12,10 +12,16 @@ class SettingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController!.navigationItem.title = "设置"
+        self.tabBarController!.navigationItem.leftBarButtonItem = nil
+        self.tabBarController!.navigationItem.rightBarButtonItem = nil
+    }
 
 
 

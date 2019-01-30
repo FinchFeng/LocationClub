@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
+class MyLocationsViewController: UIViewController,MyLocationDelegate {
 
     //MARK:Model
     
@@ -34,14 +34,18 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
     }()
     
     lazy var rightBarItem:UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "new", style: UIBarButtonItem.Style.plain, target: self, action: #selector(newLocationData))
+        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "addButtonIcon"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(newLocationData))
         //设置颜色
         button.tintColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
         return button
     }()
     
     @objc func editTableView() {
-        print("开始更改tableView")
+        if locationTableView.isEditing {
+            locationTableView.setEditing(false, animated: true)
+        }else{
+            locationTableView.setEditing(true, animated: true)
+        }
     }
     
     @objc func newLocationData(){
@@ -65,16 +69,17 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
         super.viewDidLoad()
         //初始化TableVIew
         reloadTableViewData()
-        locationTableView.segueTpGreatInfoDelegate = self
+        locationTableView.viewControllerDelegate = self
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         //给tabBarController设置顶栏
         let tabBarVC = self.tabBarController!
         tabBarVC.title = "我的地点"
         tabBarVC.navigationItem.leftBarButtonItem = leftBarItem
         tabBarVC.navigationItem.rightBarButtonItem = rightBarItem
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         if needToReloadTableViewData {//检查是否需要重新填装tableView
             needToReloadTableViewData = false
             reloadTableViewData()
@@ -96,10 +101,13 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
         reloadTableViewData()
     }
     
-    func deleteLocation(index:Int)  {
+    func deleteLocation(index:Int,reload:Bool)  {
         let id = model.locationDataArray[index].locationID
         model.deleteLocaitonInfo(id: id)
-        reloadTableViewData()
+        if reload {
+            print("reload the data")
+            reloadTableViewData()
+        }
     }
     
     func changeLocationData(newData: LocationInfoLocal, key: String, value: String) {
@@ -144,17 +152,21 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
     //MARK:测试区
     
     @IBAction func buttonTaped() {
-//                let rank1 = LocationInfoRank1(locationName: "鼓浪屿" ,iconKindString: "Views" ,locationDescription: "非常不错的地方" ,locationLatitudeKey: 24.4421488249 ,locationLongitudeKey: 118.069896698 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])//重复性在这里要注意⚠️
-//                let rank2Data = LocationInfoRank2(locationName: "鼓浪屿" ,locationInfoWord: "厦门 鼓浪屿" ,locationLikedAmount: 10 ,locationInfoImageURL: "nil" )
-//                let locationData = LocationInfoLocal(locationID: "5", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
-//                addLocation(data: locationData)
+//                let rank1 = LocationInfoRank1(locationName: "Noodles" ,iconKindString: "Restaurant" ,locationDescription: "A lots of beef" ,locationLatitudeKey: 37.334922 ,locationLongitudeKey: -122.009033 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])
+//                let rank2Data = LocationInfoRank2(locationName: "Beef Noodle" ,locationInfoWord: "nearby my home" ,locationLikedAmount: 10 ,locationInfoImageURL: "nil" )
+//                let newData = LocationInfoLocal(locationID: "3", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
+        
+                let rank1 = LocationInfoRank1(locationName: "鼓浪屿" ,iconKindString: "Views" ,locationDescription: "非常不错的地方" ,locationLatitudeKey: 24.4421488249 ,locationLongitudeKey: 118.069896698 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])//重复性在这里要注意⚠️
+                let rank2Data = LocationInfoRank2(locationName: "鼓浪屿" ,locationInfoWord: "厦门 鼓浪屿" ,locationLikedAmount: 10 ,locationInfoImageURL: "nil" )
+                let locationData = LocationInfoLocal(locationID: "5", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
+                addLocation(data: locationData)
         
 //        deleteLocation(index: 0)
 //        changeLocationData(newData: locationData, key: Constants.locationName, value: "BNoodles")//两个都要更改
         
         //写入图片
         //等等要封装一下
-        addVisiteNote(locationID: "4", visitNoteID: "4-1", data: VisitedNote(visitNoteWord:"循引886",imageURLArray:[],createdTime:Date .currentDateString()), imageArray: [#imageLiteral(resourceName: "ali")])
+//        addVisiteNote(locationID: "4", visitNoteID: "4-1", data: VisitedNote(visitNoteWord:"循引886",imageURLArray:[],createdTime:Date .currentDateString()), imageArray: [#imageLiteral(resourceName: "ali")])
 
         
 
@@ -164,9 +176,13 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
         print(LoginModel.owenLocationIDArray)
         print(model.locationDataArray)
     }
-    
-    
-    
+}
+
+protocol MyLocationDelegate {
+    func didSelectCell(index:Int)
+    func deleteLocation(index:Int,reload:Bool)//用来删除数据
+}
+
     //location的更改
     
     
@@ -197,7 +213,7 @@ class MyLocationsViewController: UIViewController,SegueTpGreatInfoDelegate {
 //        super.viewWillDisappear(animated)
 //    }
 
-}
+
 //    let dataArray:[(LocationInfoRank2,LocationInfoRank3)] = []
 //    let data = (LocationInfoRank2(locationName:"环岛路栈桥",locationInfoWord:"厦门 亚洲海湾",
 //                                  locationLikedAmount:12,locationInfoImageURL:"imageTest"),

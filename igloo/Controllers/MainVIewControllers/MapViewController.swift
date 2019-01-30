@@ -28,6 +28,14 @@ class MapViewController: UIViewController {
             let rootVC  = self.tabBarController! as! MainTabBarController
             rootVC.login()
         }
+        //隐藏TopBar
+        self.navigationController!.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //显示tapBar
+        self.navigationController!.setNavigationBarHidden(false, animated: false)
     }
     
 

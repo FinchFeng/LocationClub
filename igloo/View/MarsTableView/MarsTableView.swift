@@ -10,7 +10,7 @@ import UIKit
 
 class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
     
-    var segueTpGreatInfoDelegate:SegueTpGreatInfoDelegate!
+    var viewControllerDelegate:MyLocationDelegate!
     
     //MARK:使用[(Rank2,Rank3)]作为数据源,进行init
     
@@ -62,10 +62,25 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         //Segue到下个VC
-        segueTpGreatInfoDelegate.didSelectCell(index: indexPath.row)
+        viewControllerDelegate.didSelectCell(index: indexPath.row)
     }
     
+   
     //MARK: DataSource
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {//于确认删除的方法
+        locationDataArray.remove(at: indexPath.row)//要先删除dataSource 更新前后的行数必须要相等
+        tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.left)
+        viewControllerDelegate.deleteLocation(index: indexPath.row, reload: false)
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if tableView.isEditing{//禁用左滑到底删除
+            return UITableViewCell.EditingStyle.delete
+        }else{
+            return UITableViewCell.EditingStyle.none
+        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell") as! LocationCell
@@ -73,13 +88,18 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
         //获取image
         var image:UIImage = #imageLiteral(resourceName: "defualtMapImage")//默认Image
         let imageURL = data.rank2.locationInfoImageURL
-        if imageURL == "nil"{
-            //获取地图截图
-            MapSnapShotter.getMapImageForCell(latitude: data.rank3.locationLatitudeKey,
-                                       longitude: data.rank3.locationLongitudeKey) { (mapImage) in
-                image = mapImage
-                //重新装入数据，刷新这个Cell
-                self.reloadRows(at: [indexPath], with: .automatic)
+        if imageURL == "nil"{//查看有没有旧的
+            if let oldImage = MapSnapShotter.getExistMapImage(latitude: data.rank3.locationLatitudeKey, longitude: data.rank3.locationLongitudeKey){
+                image = oldImage
+            }else{
+                //获取地图截图
+                MapSnapShotter.getMapImageForCell(latitude: data.rank3.locationLatitudeKey,
+                                                  longitude: data.rank3.locationLongitudeKey) { (mapImage) in
+                                                    image = mapImage
+                                                    //重新装入数据，刷新这个Cell
+                                                    print("reloadData")
+                                                    self.reloadRows(at: [indexPath], with: .automatic)
+                }
             }
         }else{
             //从本地获取
@@ -92,6 +112,4 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
     
 }
 
-protocol SegueTpGreatInfoDelegate {
-    func didSelectCell(index:Int)
-}
+
