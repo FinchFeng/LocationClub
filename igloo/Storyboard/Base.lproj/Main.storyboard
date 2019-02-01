@@ -595,12 +595,6 @@
                                 <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="地点名称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dpR-u0-sV5">
-                                <rect key="frame" x="72" y="85" width="69.5" height="20"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简介：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAl-tv-trF">
                                 <rect key="frame" x="28" y="124" width="40" height="16"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
@@ -611,7 +605,7 @@
                                 <rect key="frame" x="72" y="121" width="167.5" height="20"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="图标：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwH-3O-Lsp">
                                 <rect key="frame" x="28" y="160" width="40" height="16"/>
@@ -619,7 +613,7 @@
                                 <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ds7-6P-wkV">
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ds7-6P-wkV">
                                 <rect key="frame" x="72" y="157" width="9" height="20"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
@@ -631,7 +625,7 @@
                                 <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="无" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8pS-mf-mEs">
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="无" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8pS-mf-mEs">
                                 <rect key="frame" x="103" y="357" width="20.5" height="20"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
@@ -648,44 +642,34 @@
                                 <color key="onTintColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </switch>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="96M-hM-rPE">
-                                <rect key="frame" x="207" y="184" width="33.5" height="54"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="207" y="184" width="34" height="54"/>
                             </view>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="m7s-PR-sDY">
-                                <rect key="frame" x="59.5" y="184" width="34" height="54"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="59.5" y="184" width="33.5" height="54"/>
                             </view>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="PEy-Yy-7NG">
-                                <rect key="frame" x="134" y="184" width="33.5" height="54"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="133.5" y="184" width="34" height="54"/>
                             </view>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="24W-y9-xv3">
-                                <rect key="frame" x="281" y="292" width="34" height="54"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="281.5" y="292" width="33.5" height="54"/>
                             </view>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ytz-Iw-BNQ">
-                                <rect key="frame" x="208" y="292" width="33.5" height="54"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="208" y="292" width="34" height="54"/>
                             </view>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="KXw-Tt-Yd0">
-                                <rect key="frame" x="60" y="292" width="33.5" height="54"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="59.5" y="292" width="34" height="54"/>
                             </view>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Mga-oe-Ghe">
-                                <rect key="frame" x="134" y="292" width="33.5" height="54"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="133.5" y="292" width="34" height="54"/>
                             </view>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="q9q-H5-jjM">
                                 <rect key="frame" x="244.5" y="238" width="33.5" height="54"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="dSO-ZK-jKU">
                                 <rect key="frame" x="170.5" y="238" width="34" height="54"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="PsY-Yz-OZa">
                                 <rect key="frame" x="97" y="238" width="33.5" height="54"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BOT-QQ-LI4">
                                 <rect key="frame" x="67.5" y="382" width="240" height="128"/>
@@ -698,67 +682,131 @@
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfv-5a-tp5">
                                 <rect key="frame" x="168" y="184" width="39" height="54"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="cfv-5a-tp5" secondAttribute="height" multiplier="0.72" id="HlR-kd-3ip"/>
+                                    <constraint firstAttribute="width" secondItem="cfv-5a-tp5" secondAttribute="height" multiplier="0.723" id="HlR-kd-3ip"/>
                                     <constraint firstAttribute="height" constant="54" id="WLP-Qn-j7l"/>
                                 </constraints>
                                 <state key="normal" image="Cafe"/>
+                                <state key="selected" image="CafeHighlight"/>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="IpV-rP-CbJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZW-6L-aj4">
-                                <rect key="frame" x="241" y="184" width="39" height="54"/>
+                                <rect key="frame" x="241.5" y="184" width="39" height="54"/>
                                 <state key="normal" image="Bar"/>
+                                <state key="selected" image="BarHighlight-9"/>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="S37-gu-y0t"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gaa-lh-o5H">
-                                <rect key="frame" x="315.5" y="184" width="38.5" height="54"/>
+                                <rect key="frame" x="315.5" y="184" width="39" height="54"/>
                                 <state key="normal" image="Hotel"/>
+                                <state key="selected" image="HotelHighlight-10"/>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="iOH-KJ-W6H"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tF7-xp-z0u">
-                                <rect key="frame" x="20" y="184" width="38.5" height="54"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tF7-xp-z0u">
+                                <rect key="frame" x="19.5" y="184" width="39" height="54"/>
                                 <state key="normal" image="Default-1"/>
+                                <state key="selected" image="DefaultHighlight"/>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="EGj-hO-tdn"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gxa-jC-LQZ">
-                                <rect key="frame" x="94.5" y="184" width="39" height="54"/>
+                                <rect key="frame" x="94" y="184" width="39" height="54"/>
                                 <state key="normal" image="Views"/>
+                                <state key="selected" image="ViewsHighlight-1"/>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="MME-hP-DGv"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5N-6s-XjR">
                                 <rect key="frame" x="57" y="238" width="39" height="54"/>
+                                <color key="tintColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="Restaurant"/>
+                                <state key="selected" image="RestaurantHighlight-8">
+                                    <color key="titleColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="670-8A-8pH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOr-4e-Rb9">
                                 <rect key="frame" x="131" y="238" width="39" height="54"/>
                                 <state key="normal" image="Mall"/>
+                                <state key="selected" image="MallHighlight"/>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="xCn-lY-ot8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spw-ST-Hza">
                                 <rect key="frame" x="206" y="238" width="39" height="54"/>
                                 <state key="normal" image="LovePlace"/>
+                                <state key="selected" image="LovePlaceHighlight"/>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="kKD-wx-2ty"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3v-ee-STG">
                                 <rect key="frame" x="278" y="238" width="39" height="54"/>
                                 <state key="normal" image="Culture"/>
+                                <state key="selected" image="CultureHighlight-7"/>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="UvO-fA-Ui6"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYF-pi-jqq">
-                                <rect key="frame" x="20.5" y="292" width="39" height="54"/>
+                                <rect key="frame" x="20" y="292" width="39" height="54"/>
                                 <state key="normal" image="Alien"/>
+                                <state key="selected" image="AlienHighlight-2"/>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="23m-fb-Uo9"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nh0-Wv-xHg">
                                 <rect key="frame" x="92.5" y="292" width="39" height="54"/>
                                 <state key="normal" image="DeadFood"/>
+                                <state key="selected" image="DeadFoodHighlight-3"/>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="2SF-0c-BuH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKg-vh-j2K">
                                 <rect key="frame" x="168" y="292" width="39" height="54"/>
                                 <state key="normal" image="Sport"/>
+                                <state key="selected" image="SportHighlight-4"/>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="LLl-7X-EAq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stZ-q5-0Si">
-                                <rect key="frame" x="242" y="292" width="39" height="54"/>
+                                <rect key="frame" x="242.5" y="292" width="39" height="54"/>
                                 <state key="normal" image="Chatting"/>
+                                <state key="selected" image="ChattingHighlight-5"/>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="5Eu-Hh-NBI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIg-PV-PWS">
-                                <rect key="frame" x="315.5" y="292" width="38.5" height="54"/>
+                                <rect key="frame" x="315.5" y="292" width="39" height="54"/>
                                 <state key="normal" image="Smoking"/>
+                                <state key="selected" image="SmokingHighlight-6"/>
+                                <connections>
+                                    <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="aLP-0b-R1L"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="RwQ-nd-9ZT">
-                                <rect key="frame" x="280" y="184" width="34" height="54"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="280.5" y="184" width="33.5" height="54"/>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="地点名称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dpR-u0-sV5">
+                                <rect key="frame" x="72" y="85" width="69.5" height="20"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -888,6 +936,25 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K5y-tx-CIs"/>
                     </view>
+                    <connections>
+                        <outlet property="iconImageButton1" destination="tF7-xp-z0u" id="TAF-5E-Wgm"/>
+                        <outlet property="iconImageButton10" destination="yYF-pi-jqq" id="EdV-HR-iNX"/>
+                        <outlet property="iconImageButton11" destination="nh0-Wv-xHg" id="okA-GN-3yT"/>
+                        <outlet property="iconImageButton12" destination="uKg-vh-j2K" id="RAp-0S-J5U"/>
+                        <outlet property="iconImageButton13" destination="stZ-q5-0Si" id="TXS-vJ-zdt"/>
+                        <outlet property="iconImageButton14" destination="wIg-PV-PWS" id="lCj-8b-iVG"/>
+                        <outlet property="iconImageButton2" destination="Gxa-jC-LQZ" id="8IC-LZ-2Jf"/>
+                        <outlet property="iconImageButton3" destination="cfv-5a-tp5" id="pVq-HZ-SRJ"/>
+                        <outlet property="iconImageButton4" destination="gZW-6L-aj4" id="1cM-m9-L9h"/>
+                        <outlet property="iconImageButton5" destination="gaa-lh-o5H" id="ruD-07-xff"/>
+                        <outlet property="iconImageButton6" destination="J5N-6s-XjR" id="Kap-dD-MCG"/>
+                        <outlet property="iconImageButton7" destination="GOr-4e-Rb9" id="Xll-rG-GBh"/>
+                        <outlet property="iconImageButton8" destination="Spw-ST-Hza" id="oq4-Dp-KcL"/>
+                        <outlet property="iconImageButton9" destination="h3v-ee-STG" id="eGm-Nz-Gj7"/>
+                        <outlet property="iconKindStringTextField" destination="Ds7-6P-wkV" id="1Q1-u6-czj"/>
+                        <outlet property="locationDescribeTextFeild" destination="23A-wZ-hal" id="PWP-Ev-EbR"/>
+                        <outlet property="locationNameTextFeild" destination="dpR-u0-sV5" id="dFe-p1-uyX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5p-az-ahq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1496,25 +1563,38 @@
     <resources>
         <image name="Add Detail" width="110" height="110"/>
         <image name="Alien" width="80" height="108"/>
+        <image name="AlienHighlight-2" width="40" height="54"/>
         <image name="Bar" width="40" height="55"/>
         <image name="BarHighlight-9" width="40" height="55"/>
         <image name="Cafe" width="40" height="55"/>
+        <image name="CafeHighlight" width="40" height="54"/>
         <image name="Chatting" width="80" height="108"/>
+        <image name="ChattingHighlight-5" width="40" height="54"/>
         <image name="Culture" width="40" height="55"/>
+        <image name="CultureHighlight-7" width="40" height="55"/>
         <image name="DeadFood" width="80" height="108"/>
+        <image name="DeadFoodHighlight-3" width="40" height="54"/>
         <image name="Default-1" width="80" height="108"/>
+        <image name="DefaultHighlight" width="40" height="54"/>
         <image name="GoBackButtonImage" width="12" height="16"/>
         <image name="GoBackButtonImageWhite" width="12" height="16"/>
         <image name="Hotel" width="40" height="55"/>
+        <image name="HotelHighlight-10" width="40" height="55"/>
         <image name="LocationCellLikedIcon" width="180" height="180"/>
         <image name="LocationCellLocationIcon" width="180" height="210"/>
         <image name="LovePlace" width="40" height="55"/>
+        <image name="LovePlaceHighlight" width="40" height="55"/>
         <image name="Mall" width="40" height="55"/>
+        <image name="MallHighlight" width="40" height="55"/>
         <image name="Restaurant" width="40" height="55"/>
+        <image name="RestaurantHighlight-8" width="40" height="55"/>
         <image name="SettingTabImage" width="25" height="25"/>
         <image name="Smoking" width="80" height="108"/>
+        <image name="SmokingHighlight-6" width="40" height="54"/>
         <image name="Sport" width="80" height="108"/>
+        <image name="SportHighlight-4" width="40" height="54"/>
         <image name="Views" width="40" height="55"/>
+        <image name="ViewsHighlight-1" width="40" height="55"/>
         <image name="XIcon" width="90" height="90"/>
         <image name="aOvalForVisitNote" width="50" height="50"/>
         <image name="ali" width="778" height="800"/>

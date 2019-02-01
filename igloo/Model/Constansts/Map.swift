@@ -23,6 +23,14 @@ extension Constants{
         }
         return nil
     }
+    static func getIconStruct(image:UIImage)->Icon!{
+        for icon in Icon.iconsArray{
+            if icon.image == image || icon.highlightImage == image {
+                return icon
+            }
+        }
+        return nil
+    }
     static let mapSnapSize:CGSize = CGSize(width: UIScreen.main.bounds.width, height: 350)
 }
 
