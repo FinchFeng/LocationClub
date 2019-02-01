@@ -17,9 +17,13 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //隐藏TopBar
+        self.navigationController!.setNavigationBarHidden(true, animated: false)
         if let tabVC =  self.tabBarController as? MainTabBarController{
             if tabVC.justBackFromLoginInMenu == true{
                 tabVC.justBackFromLoginInMenu = false
+                //返回MyLocationVC
+                tabVC.selectedIndex = 0
                 return
             }
         }
@@ -28,8 +32,6 @@ class MapViewController: UIViewController {
             let rootVC  = self.tabBarController! as! MainTabBarController
             rootVC.login()
         }
-        //隐藏TopBar
-        self.navigationController!.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

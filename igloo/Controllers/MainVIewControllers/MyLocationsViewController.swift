@@ -27,7 +27,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     //MARK: NavigationBar
     
     lazy var leftBarItem:UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "编辑", style: UIBarButtonItem.Style.plain, target: self, action: #selector(editTableView))
+        let button = UIBarButtonItem(title: "编辑", style: UIBarButtonItem.Style.plain, target: self, action: #selector(startEditTableView))
         //设置颜色
         button.tintColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
         return button
@@ -40,16 +40,38 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
         return button
     }()
     
-    @objc func editTableView() {
-        if locationTableView.isEditing {
-            locationTableView.setEditing(false, animated: true)
-        }else{
-            locationTableView.setEditing(true, animated: true)
-        }
+    lazy var endEditingBarItem:UIBarButtonItem = {
+       let button = UIBarButtonItem(title: "完成", style: UIBarButtonItem.Style.plain, target: self, action: #selector(endEditTableView))
+        //设置颜色
+        button.tintColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
+       return button
+    }()
+    
+    @objc func startEditTableView() {
+        setEditingTableViewNavBarStart()
+        locationTableView.setEditing(true, animated: true)
+    }
+    
+    @objc func endEditTableView() {
+        setEditingTableViewNavBarEnd()
+        locationTableView.setEditing(false, animated: true)
     }
     
     @objc func newLocationData(){
         performSegue(withIdentifier: "segueToAddNewLocation", sender: nil)
+    }
+    
+    func setEditingTableViewNavBarEnd() {
+        let tabBarVC = self.tabBarController!
+        tabBarVC.title = "我的地点"
+        tabBarVC.navigationItem.leftBarButtonItem = leftBarItem
+        tabBarVC.navigationItem.rightBarButtonItem = rightBarItem
+    }
+    
+    func setEditingTableViewNavBarStart() {
+        let tabBarVC = self.tabBarController!
+        tabBarVC.navigationItem.leftBarButtonItem = endEditingBarItem
+        tabBarVC.navigationItem.rightBarButtonItem = nil
     }
     
     //MARK:Outlet
@@ -76,10 +98,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //给tabBarController设置顶栏
-        let tabBarVC = self.tabBarController!
-        tabBarVC.title = "我的地点"
-        tabBarVC.navigationItem.leftBarButtonItem = leftBarItem
-        tabBarVC.navigationItem.rightBarButtonItem = rightBarItem
+        setEditingTableViewNavBarEnd()
         if needToReloadTableViewData {//检查是否需要重新填装tableView
             needToReloadTableViewData = false
             reloadTableViewData()
