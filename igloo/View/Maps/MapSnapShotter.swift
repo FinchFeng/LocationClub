@@ -11,10 +11,18 @@ import MapKit
 
 class MapSnapShotter{
     
-    
-    
     static func changeToString(latitude:Double,longitude:Double)->String{
         return "(" + String(latitude) + "," + String(longitude) + ")"
+    }
+    
+    static func getExistMapImage(latitude:Double,longitude:Double)->UIImage?{//调用返回nil
+        //检查池子里面有没有 Cell使用的Image
+        let locationString = changeToString(latitude: latitude, longitude: longitude) + "formapview"
+        if let oldImage = LocalImagePool.getImage(url: locationString){
+            return oldImage
+        }else{
+            return nil
+        }
     }
     
     //给Cell使用
