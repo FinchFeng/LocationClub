@@ -44,6 +44,7 @@
 		13D2D9F32202989F007DBF30 /* AddNewVisitNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D2D9F22202989F007DBF30 /* AddNewVisitNoteViewController.swift */; };
 		13DBF1BD21C78961001A03BA /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DBF1BC21C78961001A03BA /* TestViewController.swift */; };
 		13E2F4B622051733000C0F35 /* choseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E2F4B522051733000C0F35 /* choseLocationViewController.swift */; };
+		13E2F4B822053C76000C0F35 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E2F4B722053C76000C0F35 /* LocationSearchTable.swift */; };
 		958BE839CA3C65F4E1A3736A /* Pods_iglooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 541BC0812C1BC65EF4B0322E /* Pods_iglooTests.framework */; };
 		9E6A1A33D0E7F10D99B1078D /* Pods_igloo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC1CC220E8C042057767982 /* Pods_igloo.framework */; };
 /* End PBXBuildFile section */
@@ -100,6 +101,7 @@
 		13D2D9F22202989F007DBF30 /* AddNewVisitNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewVisitNoteViewController.swift; sourceTree = "<group>"; };
 		13DBF1BC21C78961001A03BA /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		13E2F4B522051733000C0F35 /* choseLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = choseLocationViewController.swift; sourceTree = "<group>"; };
+		13E2F4B722053C76000C0F35 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		4FDD38D271674D90FAFE483E /* Pods-iglooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iglooTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iglooTests/Pods-iglooTests.release.xcconfig"; sourceTree = "<group>"; };
 		541BC0812C1BC65EF4B0322E /* Pods_iglooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iglooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E278768D7CC5304CA8D080 /* Pods-igloo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-igloo.release.xcconfig"; path = "Pods/Target Support Files/Pods-igloo/Pods-igloo.release.xcconfig"; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 		13D2D9F4220298AE007DBF30 /* AddNewStuffVC */ = {
 			isa = PBXGroup;
 			children = (
+				13E2F4B722053C76000C0F35 /* LocationSearchTable.swift */,
 				13D2D9F022029886007DBF30 /* AddNewLocationViewController.swift */,
 				13D2D9F22202989F007DBF30 /* AddNewVisitNoteViewController.swift */,
 				13E2F4B522051733000C0F35 /* choseLocationViewController.swift */,
@@ -576,6 +579,7 @@
 				13ADBD7921F00D0100D32138 /* ImagePool.swift in Sources */,
 				13500AC121F5AA4C00E4C8CF /* LocationCell.swift in Sources */,
 				13D2D9F32202989F007DBF30 /* AddNewVisitNoteViewController.swift in Sources */,
+				13E2F4B822053C76000C0F35 /* LocationSearchTable.swift in Sources */,
 				130DEBC621C252BE00B9ABC2 /* SignUpViewController.swift in Sources */,
 				130EA74321D46358009769ED /* Shower.swift in Sources */,
 			);

@@ -65,10 +65,12 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func segueToChoseLocationVC() {
+        performSegue(withIdentifier: "segueToChoseLocationImage", sender: nil)
     }
     
     @IBAction func unwind(segue:UIStoryboardSegue){
         //装入地理位置
+        
     }
     
     //完成之后生成一个LocationInfoLocal并且上传
