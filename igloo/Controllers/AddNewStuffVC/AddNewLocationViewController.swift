@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
 
@@ -50,6 +51,12 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
     //MARK: Properties
     
     var currentIconString:String = "Defualt"
+    var currenLocatinInfoString:String = "" {
+        didSet{
+            mapLocationImageLocationInfoStringLabel.text = currenLocatinInfoString
+        }
+    }
+    var currenLocation2D:CLLocationCoordinate2D?
     
     @IBAction func selectIcon(sender:UIButton){
         for button in iconImageButtonArray {
@@ -68,8 +75,14 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
         performSegue(withIdentifier: "segueToChoseLocationImage", sender: nil)
     }
     
-    @IBAction func unwind(segue:UIStoryboardSegue){
+    @IBAction func unwindFromLocationChosen(segue:UIStoryboardSegue){
         //装入地理位置
+        if let location = self.currenLocation2D{
+            MapSnapShotter.getMapImageForCell(latitude: location.latitude, longitude: location.longitude) { (image) in
+                self.mapLocationImageVIew.image = image
+                self.iconLocationImage.isHidden = false
+            }
+        }
         
     }
     

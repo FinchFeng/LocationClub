@@ -40,17 +40,46 @@ class ChoseLocationViewController: UIViewController {
         searchBar.setValue("取消", forKey:"_cancelButtonText")
         searchBar.tintColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
         searchBar.placeholder = "搜索位置"
+        searchBar.setImage(UIImage(), for: .clear, state: .normal)//隐藏删除buttun
         showDoneButton()
         navigationItem.titleView = resultSearchController?.searchBar
-        resultSearchController?.hidesNavigationBarDuringPresentation = false//??
+        resultSearchController?.hidesNavigationBarDuringPresentation = false//控制bar不隐藏
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
     }
     
     //MARK:DoneAction
     
+    var stringToUnwind:String  = ""
     @objc func doneAction(){
+        //获取字符串
+        let coordinate = mapView.centerCoordinate
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if error == nil {
+                if let firstLocation = placemarks?.first{
+                    self.stringToUnwind = firstLocation.changeToString()
+                    //unwind
+                    self.performSegue(withIdentifier: "unwind", sender: nil)
+                }
+            }
+        }
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let id = segue.identifier,id == "unwind" {
+            if let upVC = segue.destination as? AddNewLocationViewController{
+                upVC.currenLocatinInfoString = stringToUnwind
+                upVC.currenLocation2D = mapView.centerCoordinate
+            }
+        }
+    }
+    
+    @IBAction func deviceLocation(){
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
     }
     
     func showDoneButton() {
@@ -95,17 +124,8 @@ extension ChoseLocationViewController: HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark){//mapView移动到当前位置
         // cache the pin
         selectedPin = placemark
-        // clear existing pins
-//        mapView.removeAnnotations(mapView.annotations)
-//        let annotation = MKPointAnnotation()
-//        annotation.coordinate = placemark.coordinate
-//        annotation.title = placemark.name
-//        if let city = placemark.locality,
-//            let state = placemark.administrativeArea {
-//            annotation.subtitle = "\(city) \(state)"
-//        }
-
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let delta = Constants.lengthOfBigMap
+        let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
         let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
         mapView.setRegion(region, animated: true)
     }
@@ -119,3 +139,21 @@ extension LocationSearchTable {
     }
 }
 
+extension CLPlacemark{
+    func changeToString() -> String {
+        var result:String = ""
+        if let locality = self.locality {
+            result += locality + " "
+        }
+        if let subLocality = self.subLocality{
+            result += subLocality + " "
+        }
+        if let thoroughfare = self.thoroughfare{
+            result += thoroughfare + " "
+        }
+        if let subThoroughfare = self.subThoroughfare{
+            result += subThoroughfare
+        }
+        return result
+    }
+}
