@@ -15,10 +15,12 @@ class ChoseLocationViewController: UIViewController {
     let locationManager = CLLocationManager()
     var resultSearchController:UISearchController? = nil
     @IBOutlet weak var mapView: MKMapView!
+    var firstTimeUpdateUserLocation = true
     //MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("mapVC出现")
+        firstTimeUpdateUserLocation = true
     }
     
     override func viewDidLoad() {
@@ -112,32 +114,19 @@ protocol HandleMapSearch {
 }
 
 extension ChoseLocationViewController : MKMapViewDelegate {
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        if status == .authorizedWhenInUse {//权限被修改了之后重新获取
-//            locationManager.requestLocation()
-////            setMapViewToUserLocation()
-//        }
-//    }
-//
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-////        if let location = manager.location {//使用了requestLocation之后调用这个方法
-////            let delta = Constants.lengthOfBigMap
-////            let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
-////            let region = MKCoordinateRegion(center: location.coordinate, span: span)
-////            mapView.setRegion(region, animated: true)
-////        }
-//        setMapViewToUserLocation()
-//    }
-//
-//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        print("error:: \(error)")
-//    }
+
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {//mapView更新userLocation的时候
-        let location = userLocation.coordinate
-        let delta = Constants.lengthOfBigMap
-        let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
-        let region = MKCoordinateRegion(center: location, span: span)
-        mapView.setRegion(region, animated: true)
+        if firstTimeUpdateUserLocation {
+            firstTimeUpdateUserLocation = false
+            let location = userLocation.coordinate
+            let delta = Constants.lengthOfBigMap
+            let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
+            let region = MKCoordinateRegion(center: location, span: span)
+            mapView.setRegion(region, animated: true)
+        }else{
+            print("已经显示过位置")
+        }
+        
     }
 
 }
@@ -179,3 +168,23 @@ extension CLPlacemark{
         return result
     }
 }
+//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+//        if status == .authorizedWhenInUse {//权限被修改了之后重新获取
+//            locationManager.requestLocation()
+////            setMapViewToUserLocation()
+//        }
+//    }
+//
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+////        if let location = manager.location {//使用了requestLocation之后调用这个方法
+////            let delta = Constants.lengthOfBigMap
+////            let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
+////            let region = MKCoordinateRegion(center: location.coordinate, span: span)
+////            mapView.setRegion(region, animated: true)
+////        }
+//        setMapViewToUserLocation()
+//    }
+//
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+//        print("error:: \(error)")
+//    }

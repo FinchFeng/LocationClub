@@ -634,11 +634,14 @@
                                         <barButtonItem key="leftBarButtonItem" title="取消" id="uDX-hT-Ymc">
                                             <color key="tintColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
-                                                <segue destination="Wcr-R6-YAG" kind="unwind" identifier="unwin" unwindAction="unwindFromOther:" id="UjN-tu-7em"/>
+                                                <segue destination="Wcr-R6-YAG" kind="unwind" identifier="unwind" unwindAction="unwindFromOther:" id="UjN-tu-7em"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="完成" id="uWb-qW-gAh">
                                             <color key="tintColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="done" destination="EIb-8S-gam" id="pkm-uq-LSz"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -1645,7 +1648,7 @@
         <!--Location Search Table-->
         <scene sceneID="jgO-nt-S15">
             <objects>
-                <tableViewController storyboardIdentifier="LocationSearchTable" id="fP1-dg-z77" customClass="LocationSearchTable" customModule="MapKitTutorial" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LocationSearchTable" id="fP1-dg-z77" customClass="LocationSearchTable" customModule="igloo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="LocationSearchTable" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="f9g-08-RCR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -47,7 +47,16 @@ class MainTabBarController: UITabBarController {
         }
     }
     
+    var newLocationData:LocationInfoLocal?
     @IBAction func unwindFromOther(_ unwindSegue:UIStoryboardSegue){
+        //添加Location的处理
+        if unwindSegue.source is AddNewLocationViewController{
+            if let data = newLocationData {//有数据传回来
+                let myLocationVC = self.viewControllers![0] as! MyLocationsViewController
+                myLocationVC.addLocation(data: data)
+                self.newLocationData = nil//清除数据
+            }
+        }
     }
 
 }

@@ -78,6 +78,11 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
     @IBAction func unwindFromLocationChosen(segue:UIStoryboardSegue){
         //装入地理位置
         if let location = self.currenLocation2D{
+            //imageView装修一下
+            mapLocationImageVIew.layer.cornerRadius = 11
+            mapLocationImageVIew.layer.borderColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
+            mapLocationImageVIew.layer.borderWidth = 2
+            mapLocationImageVIew.layer.masksToBounds = true
             MapSnapShotter.getMapImageForCell(latitude: location.latitude, longitude: location.longitude) { (image) in
                 self.mapLocationImageVIew.image = image
                 self.iconLocationImage.isHidden = false
@@ -87,8 +92,39 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
     }
     
     //完成之后生成一个LocationInfoLocal并且上传
-    func done()  {
+    
+    var locationDataToAdd:LocationInfoLocal?
+    
+    @IBAction func done()  {
+        //生成新的locationData
+        if let name = locationNameTextFeild.text , let description = locationDescribeTextFeild.text ,
+            let location = self.currenLocation2D{
+            //创建新的locationInfoLocal
+            let locationID = String(location.latitude)+String(location.longitude)+Date.changeDateToString(date: Date())
+            let data = LocationInfoLocal(locationID: locationID, locationName: name, iconKindString: self.currentIconString, locationDescription: description, locationLatitudeKey: location.latitude, locationLongitudeKey: location.longitude, isPublic: isPublicSwitch.isOn, locationLikedAmount: 0, locationInfoWord: self.currenLocatinInfoString, locationInfoImageURL: "nil", VisitedNoteID: [], noteIDs: [])
+            //装入self
+            self.locationDataToAdd = data
+            performSegue(withIdentifier: "unwind", sender: nil)
+        }else{
+            showErrorSheet()
+        }
         
+    }
+    
+    func showErrorSheet() {
+        let alertVC = UIAlertController(title: "地点信息不完成", message: nil, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "好的", style: .default, handler: nil))
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //判断是否有locationData
+        if let locationData = self.locationDataToAdd{
+            if let upVC = segue.destination as? MainTabBarController{
+                //把数据传递给MainTabBarVC
+                upVC.newLocationData = locationData
+            }
+        }
     }
 
     //MARK: UITextFieldDelegate
