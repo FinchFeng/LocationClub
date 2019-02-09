@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class GreatLocationInfoViewController: UIViewController {
+class GreatLocationInfoViewController: UIViewController,GreatLocationInfoDelegate {
     
     //Map
     @IBOutlet weak var iconImageView: UIImageView!
@@ -53,10 +53,18 @@ class GreatLocationInfoViewController: UIViewController {
         performSegue(withIdentifier: "segueToBigMap", sender: nil)
     }
     
+    @IBAction func segueToAddVisitNote(){
+        performSegue(withIdentifier: "segueToAddVisiteNote", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let id = segue.identifier , id == "segueToBigMap"{
             if let nextVC = segue.destination as? BigMapViewController{
                 nextVC.setDataIn(data: self.locationData)
+            }
+        }else if let id = segue.identifier , id == "segueToAddVisiteNote" {
+            if let nextVC = segue.destination as? AddNewVisitNoteViewController {
+                nextVC.navigationTitle = locationNameLabel.text!//传递地点的名称
             }
         }
     }
@@ -86,4 +94,9 @@ class GreatLocationInfoViewController: UIViewController {
         
     }
     
+    
+}
+
+protocol GreatLocationInfoDelegate {
+    func segueToAddVisitNote()
 }

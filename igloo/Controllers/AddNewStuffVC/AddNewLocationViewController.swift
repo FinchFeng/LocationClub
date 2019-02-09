@@ -100,7 +100,7 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
         if let name = locationNameTextFeild.text , let description = locationDescribeTextFeild.text ,
             let location = self.currenLocation2D{
             //创建新的locationInfoLocal
-            let locationID = String(location.latitude)+String(location.longitude)+Date.changeDateToString(date: Date())
+            let locationID = String(location.latitude)+"_"+String(location.longitude)+"_"+Date.changeDateToString(date: Date())
             let data = LocationInfoLocal(locationID: locationID, locationName: name, iconKindString: self.currentIconString, locationDescription: description, locationLatitudeKey: location.latitude, locationLongitudeKey: location.longitude, isPublic: isPublicSwitch.isOn, locationLikedAmount: 0, locationInfoWord: self.currenLocatinInfoString, locationInfoImageURL: "nil", VisitedNoteID: [], noteIDs: [])
             //装入self
             self.locationDataToAdd = data
