@@ -71,7 +71,7 @@
 		133194F221BA675E00C25D8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		133194F421BA676000C25D8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		133194F721BA676000C25D8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		133194F921BA676000C25D8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../igloo/Info.plist; sourceTree = "<group>"; };
+		133194F921BA676000C25D8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		133194FE21BA676000C25D8F /* iglooTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iglooTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1331950221BA676000C25D8F /* iglooTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iglooTests.swift; sourceTree = "<group>"; };
 		1331950421BA676000C25D8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -220,6 +220,7 @@
 				130DEBBE21C251B900B9ABC2 /* View */,
 				130DEBBD21C251A400B9ABC2 /* Controllers */,
 				130DEBBC21C2518E00B9ABC2 /* SupportFiles */,
+				133194F921BA676000C25D8F /* Info.plist */,
 			);
 			path = igloo;
 			sourceTree = "<group>";
@@ -227,7 +228,6 @@
 		1331950121BA676000C25D8F /* iglooTests */ = {
 			isa = PBXGroup;
 			children = (
-				133194F921BA676000C25D8F /* Info.plist */,
 				1331950221BA676000C25D8F /* iglooTests.swift */,
 				1331950421BA676000C25D8F /* Info.plist */,
 			);

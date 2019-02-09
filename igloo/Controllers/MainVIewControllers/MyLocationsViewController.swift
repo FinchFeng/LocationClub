@@ -43,7 +43,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     lazy var endEditingBarItem:UIBarButtonItem = {
        let button = UIBarButtonItem(title: "完成", style: UIBarButtonItem.Style.plain, target: self, action: #selector(endEditTableView))
         //设置颜色
-        button.tintColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
+//        button.tintColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
        return button
     }()
     
@@ -70,8 +70,8 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     
     func setEditingTableViewNavBarStart() {
         let tabBarVC = self.tabBarController!
-        tabBarVC.navigationItem.leftBarButtonItem = endEditingBarItem
-        tabBarVC.navigationItem.rightBarButtonItem = nil
+        tabBarVC.navigationItem.rightBarButtonItem = endEditingBarItem
+        tabBarVC.navigationItem.leftBarButtonItem = nil
     }
     
     //MARK:Outlet

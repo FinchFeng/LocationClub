@@ -65,7 +65,7 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
         //选择这个sender
         sender.isSelected = true
         //更改与它关联的UI控件
-        let image = sender.currentImage!
+        let image = sender.image(for: .normal)!
         let iconData = Constants.getIconStruct(image:image)!
         currentIconString = iconData.kind
         iconKindStringTextField.text = iconData.kindInChinese
@@ -98,7 +98,7 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
     @IBAction func done()  {
         //生成新的locationData
         if let name = locationNameTextFeild.text , let description = locationDescribeTextFeild.text ,
-            let location = self.currenLocation2D{
+            let location = self.currenLocation2D,name != "",description != ""{
             //创建新的locationInfoLocal
             let locationID = String(location.latitude)+"_"+String(location.longitude)+"_"+Date.changeDateToString(date: Date())
             let data = LocationInfoLocal(locationID: locationID, locationName: name, iconKindString: self.currentIconString, locationDescription: description, locationLatitudeKey: location.latitude, locationLongitudeKey: location.longitude, isPublic: isPublicSwitch.isOn, locationLikedAmount: 0, locationInfoWord: self.currenLocatinInfoString, locationInfoImageURL: "nil", VisitedNoteID: [], noteIDs: [])
