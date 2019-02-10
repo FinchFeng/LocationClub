@@ -231,6 +231,17 @@
                                                 <constraint firstAttribute="width" secondItem="nUH-Fw-pCC" secondAttribute="height" multiplier="40:54" id="Ra4-em-Nz3"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="se3-yQ-4KA">
+                                            <rect key="frame" x="327" y="50" width="36" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="se3-yQ-4KA" secondAttribute="height" id="awo-HJ-vl0"/>
+                                                <constraint firstAttribute="width" constant="36" id="beO-ZE-lkq"/>
+                                            </constraints>
+                                            <state key="normal" image="moreActionButton"/>
+                                            <connections>
+                                                <action selector="moreAction" destination="PJO-Ff-0N9" eventType="touchUpInside" id="sO1-Lm-rXc"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -241,8 +252,10 @@
                                         <constraint firstItem="g3S-ZU-wT8" firstAttribute="trailing" secondItem="Rdj-NA-1aq" secondAttribute="trailing" id="75L-s0-z3w"/>
                                         <constraint firstItem="g3S-ZU-wT8" firstAttribute="top" secondItem="ojE-Of-aiQ" secondAttribute="bottom" constant="2" id="9zu-GA-Hda"/>
                                         <constraint firstItem="ob8-dM-FYL" firstAttribute="leading" secondItem="nMf-1D-lLG" secondAttribute="leading" id="B93-95-gOo"/>
+                                        <constraint firstItem="se3-yQ-4KA" firstAttribute="centerY" secondItem="jCe-pi-qKx" secondAttribute="centerY" id="Bfb-lz-WVy"/>
                                         <constraint firstItem="ojE-Of-aiQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nMf-1D-lLG" secondAttribute="leading" constant="20" symbolic="YES" id="EId-tK-uU4"/>
                                         <constraint firstItem="XIN-mf-J2Q" firstAttribute="trailing" secondItem="ob8-dM-FYL" secondAttribute="trailing" id="EbC-xz-EGx"/>
+                                        <constraint firstAttribute="trailing" secondItem="se3-yQ-4KA" secondAttribute="trailing" constant="12" id="Ggf-f5-pZO"/>
                                         <constraint firstItem="XIN-mf-J2Q" firstAttribute="bottom" secondItem="ob8-dM-FYL" secondAttribute="bottom" id="HbH-eR-QHz"/>
                                         <constraint firstItem="Rdj-NA-1aq" firstAttribute="bottom" secondItem="ob8-dM-FYL" secondAttribute="bottom" constant="-58" id="IX8-Hc-hRG"/>
                                         <constraint firstItem="ojE-Of-aiQ" firstAttribute="trailing" secondItem="g3S-ZU-wT8" secondAttribute="trailing" id="JRs-zG-ze6"/>
@@ -374,6 +387,7 @@
                         <outlet property="locationNameLabel" destination="ojE-Of-aiQ" id="ZkG-2q-Zeh"/>
                         <outlet property="mapImage" destination="ob8-dM-FYL" id="N6c-7i-OSI"/>
                         <outlet property="mapViewCell" destination="ppA-dC-TiV" id="Gf6-Xu-WXu"/>
+                        <outlet property="moreActionButton" destination="se3-yQ-4KA" id="vXp-GV-HkG"/>
                         <outlet property="visitNoteTableView" destination="UsO-DQ-vxs" id="T2t-qt-MKf"/>
                         <segue destination="HGH-uz-nHD" kind="presentation" identifier="segueToBigMap" modalTransitionStyle="crossDissolve" id="5Fz-wV-hfP"/>
                         <segue destination="Wcr-R6-YAG" kind="unwind" identifier="unwindFromOther" unwindAction="unwindFromOther:" id="ytg-YJ-rbf"/>
@@ -432,11 +446,23 @@
                                     <segue destination="Q2L-Yd-fBx" kind="unwind" unwindAction="unwind:" id="zWI-3b-QzF"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gE-WM-Q1A">
+                                <rect key="frame" x="335" y="27" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="26" id="HgT-VX-20k"/>
+                                    <constraint firstAttribute="width" secondItem="7gE-WM-Q1A" secondAttribute="height" multiplier="1:1" id="LEs-L7-PRX"/>
+                                </constraints>
+                                <state key="normal" image="openInAppleMap"/>
+                                <connections>
+                                    <action selector="openInAppleMapSheet:" destination="HGH-uz-nHD" eventType="touchUpInside" id="J4g-FG-N8i"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="RSv-8p-Txh" firstAttribute="trailing" secondItem="5ik-aN-uZm" secondAttribute="trailing" id="4XT-aG-nLQ"/>
                             <constraint firstItem="wpv-3E-IE6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RSv-8p-Txh" secondAttribute="leading" symbolic="YES" id="94w-PH-rJb"/>
+                            <constraint firstItem="7gE-WM-Q1A" firstAttribute="centerY" secondItem="VJq-Sc-ZJc" secondAttribute="centerY" id="9G9-eD-U4t"/>
                             <constraint firstItem="W7R-mI-4RK" firstAttribute="centerY" secondItem="AjX-uy-1gj" secondAttribute="centerY" id="DWY-sJ-EaW"/>
                             <constraint firstItem="VJq-Sc-ZJc" firstAttribute="top" secondItem="RSv-8p-Txh" secondAttribute="top" constant="8" id="GUO-4k-34V"/>
                             <constraint firstItem="8mm-wW-w1K" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RSv-8p-Txh" secondAttribute="leading" symbolic="YES" id="HNU-ZV-1vA"/>
@@ -446,6 +472,7 @@
                             <constraint firstItem="8mm-wW-w1K" firstAttribute="top" secondItem="wpv-3E-IE6" secondAttribute="bottom" constant="2" id="WfW-fC-dvs"/>
                             <constraint firstItem="5ik-aN-uZm" firstAttribute="leading" secondItem="RSv-8p-Txh" secondAttribute="leading" id="Ysq-ek-0Mg"/>
                             <constraint firstItem="AjX-uy-1gj" firstAttribute="leading" secondItem="W7R-mI-4RK" secondAttribute="trailing" constant="2" id="ZMB-Wb-IXV"/>
+                            <constraint firstItem="7gE-WM-Q1A" firstAttribute="trailing" secondItem="5ik-aN-uZm" secondAttribute="trailing" constant="-14" id="evh-Fp-9qM"/>
                             <constraint firstItem="AjX-uy-1gj" firstAttribute="bottom" secondItem="5ik-aN-uZm" secondAttribute="bottom" constant="-20" id="gsC-P5-Dl1"/>
                             <constraint firstAttribute="top" secondItem="5ik-aN-uZm" secondAttribute="top" id="haQ-4E-pWp"/>
                             <constraint firstItem="wpv-3E-IE6" firstAttribute="trailing" secondItem="8mm-wW-w1K" secondAttribute="trailing" id="oji-5I-bgb"/>
@@ -463,7 +490,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V1e-qv-joP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5649" y="-1693"/>
+            <point key="canvasLocation" x="5648.8000000000002" y="-1693.4032983508248"/>
         </scene>
         <!--Chose Location View Controller-->
         <scene sceneID="cpl-1H-LYi">
@@ -1744,7 +1771,9 @@
         <image name="exploreTabImage" width="21" height="28"/>
         <image name="iglooIcon" width="144" height="195"/>
         <image name="iglooIconWhite" width="144" height="195"/>
+        <image name="moreActionButton" width="69" height="14"/>
         <image name="mylocaitionImage" width="27" height="26"/>
+        <image name="openInAppleMap" width="54" height="54"/>
         <image name="showOffBar" width="852" height="123"/>
         <image name="success" width="174" height="174"/>
         <image name="userLocationIcon" width="164" height="164"/>

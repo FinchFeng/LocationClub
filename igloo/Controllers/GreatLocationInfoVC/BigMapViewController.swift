@@ -49,5 +49,21 @@ class BigMapViewController: UIViewController {
         LikeAmountLabel.text = String(locationData.locationLikedAmount)
     }
 
-
+    @IBAction func openInAppleMapSheet(_ sender: Any) {
+        //展示sheet
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "在Apple地图中查看", style: .default, handler: { (_) in
+            let options = [
+                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: self.map.region.center),
+                MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: self.map.region.span)
+            ]
+            let placemark = MKPlacemark(coordinate: self.map.annotations.first!.coordinate, addressDictionary: nil)
+            let mapItem = MKMapItem(placemark: placemark)
+            mapItem.name = self.locationData.locationName
+            mapItem.openInMaps(launchOptions: options)
+        }))
+        actionSheet.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
 }

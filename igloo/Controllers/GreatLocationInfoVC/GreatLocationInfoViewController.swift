@@ -15,6 +15,7 @@ class GreatLocationInfoViewController: UIViewController {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var mapImage: UIImageView!
     
+    @IBOutlet weak var moreActionButton: UIButton!
     @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var locationDescrptionLabel: UILabel!
     @IBOutlet weak var LikeAmountLabel: UILabel!
@@ -26,6 +27,7 @@ class GreatLocationInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        moreActionButton.imageView!.contentMode = .scaleAspectFit
         //隐藏TopBar 返回的时候要再把它显示出来
         self.navigationController!.setNavigationBarHidden(true, animated: false)
         showDataToView()
@@ -93,7 +95,34 @@ class GreatLocationInfoViewController: UIViewController {
     @IBAction func likeAction() {
         //进行点赞
     }
-   
+    
+    
+    @IBAction func moreAction() {
+        //展示sheet
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "在Apple地图中查看", style: .default, handler: { (_) in
+            let latitude = self.locationData.locationLatitudeKey
+            let longtitude = self.locationData.locationLongitudeKey
+            let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+            let options = [
+                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: coordinate),
+                MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: MKCoordinateSpan(latitudeDelta: Constants.lengthOfBigMap, longitudeDelta: Constants.lengthOfBigMap))
+            ]
+            let placemark = MKPlacemark(coordinate:coordinate, addressDictionary: nil)
+            let mapItem = MKMapItem(placemark: placemark)
+            mapItem.name = self.locationData.locationName
+            mapItem.openInMaps(launchOptions: options)
+        }))
+        actionSheet.addAction(UIAlertAction(title: "编辑地点信息", style: .default, handler: { (_) in
+            
+        }))
+        actionSheet.addAction(UIAlertAction(title: "删除此地点", style: .destructive, handler: { (_) in
+            
+        }))
+        actionSheet.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
     @IBAction func backToMyLocation() {
         performSegue(withIdentifier: "unwindFromOther", sender: nil)
         //显示TopBar
