@@ -33,10 +33,14 @@ class ImageChecker {//网络方法链接的Pool
         let size = data.getSizeWithMB()
         //进行压缩
         var resultData:Data!
-        if size > 5 {
-            resultData = image.jpegData(compressionQuality: 0.5)!
-        }else if size > 1{
-            resultData = image.jpegData(compressionQuality: 0.8)!
+        if size > 10 {
+            resultData = image.jpegData(compressionQuality: 0.1)!
+        }else if size > 7{
+            resultData = image.jpegData(compressionQuality: 0.2)!
+        }else if size > 5 {
+            resultData = image.jpegData(compressionQuality: 0.4)!
+        }else if size > 3{
+            resultData = image.jpegData(compressionQuality: 0.6)!
         }
         //返回UIImage
         return UIImage(data: resultData)!

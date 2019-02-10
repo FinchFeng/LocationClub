@@ -157,7 +157,12 @@ class AddNewVisitNoteViewController: UIViewController,UITextViewDelegate,Gallery
     //delegate
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
         //转换为UIImageArray
-        let array = images.map({ self.getImageFrom(asset: $0.asset)})
+        let array = images.map({ (data) -> UIImage in
+            let rawImage = self.getImageFrom(asset: data.asset)
+            //压缩image
+            return ImageChecker.review(image: rawImage)
+        })
+        
         //赋值
         self.imageArray = array
         controller.dismiss(animated: true, completion: nil)
