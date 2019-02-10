@@ -392,12 +392,13 @@
                         <segue destination="HGH-uz-nHD" kind="presentation" identifier="segueToBigMap" modalTransitionStyle="crossDissolve" id="5Fz-wV-hfP"/>
                         <segue destination="Wcr-R6-YAG" kind="unwind" identifier="unwindFromOther" unwindAction="unwindFromOther:" id="ytg-YJ-rbf"/>
                         <segue destination="vLS-bC-KcR" kind="presentation" identifier="segueToAddVisiteNote" id="SVF-aD-jbf"/>
+                        <segue destination="EIb-8S-gam" kind="presentation" identifier="segueToEditLocationData" id="ipi-Ha-xW0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mUa-8u-G9Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Q2L-Yd-fBx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4825" y="-1350"/>
+            <point key="canvasLocation" x="4959" y="-1402"/>
         </scene>
         <!--Big Map View Controller-->
         <scene sceneID="7o3-02-5Zf">
@@ -490,7 +491,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V1e-qv-joP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5648.8000000000002" y="-1693.4032983508248"/>
+            <point key="canvasLocation" x="5935" y="-1610"/>
         </scene>
         <!--Chose Location View Controller-->
         <scene sceneID="cpl-1H-LYi">
@@ -544,7 +545,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cgm-CB-dmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6540" y="-2473"/>
+            <point key="canvasLocation" x="7658" y="-2354"/>
         </scene>
         <!--LocationName-->
         <scene sceneID="7YZ-0C-Yo9">
@@ -638,7 +639,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5645.6000000000004" y="-998.05097451274366"/>
+            <point key="canvasLocation" x="5934" y="-902"/>
         </scene>
         <!--Add New Location View Controller-->
         <scene sceneID="Fi1-aP-mes">
@@ -1065,7 +1066,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5p-az-ahq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="acw-4F-gJh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4817" y="-2472"/>
+            <point key="canvasLocation" x="5935" y="-2354"/>
         </scene>
         <!--Login In Menu View Controller-->
         <scene sceneID="Hs4-Ua-DjP">
@@ -1708,7 +1709,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZ4-Dl-r7Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7377" y="-2473"/>
+            <point key="canvasLocation" x="8490" y="-2355"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="P8P-nb-x8G">
@@ -1726,7 +1727,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pC-Ai-K4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5641" y="-2473"/>
+            <point key="canvasLocation" x="6759" y="-2354"/>
         </scene>
     </scenes>
     <resources>
@@ -1778,4 +1779,7 @@
         <image name="success" width="174" height="174"/>
         <image name="userLocationIcon" width="164" height="164"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ipi-Ha-xW0"/>
+    </inferredMetricsTieBreakers>
 </document>

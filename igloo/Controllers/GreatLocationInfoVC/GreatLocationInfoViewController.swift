@@ -114,10 +114,11 @@ class GreatLocationInfoViewController: UIViewController {
             mapItem.openInMaps(launchOptions: options)
         }))
         actionSheet.addAction(UIAlertAction(title: "编辑地点信息", style: .default, handler: { (_) in
-            
+            //segueToEditLocationData
         }))
         actionSheet.addAction(UIAlertAction(title: "删除此地点", style: .destructive, handler: { (_) in
-            
+            self.delegate.deleteLocation(id:self.locationData.locationID)
+            self.backToMyLocation()//segue 回去
         }))
         actionSheet.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         present(actionSheet, animated: true, completion: nil)

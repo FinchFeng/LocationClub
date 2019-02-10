@@ -129,6 +129,15 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
         }
     }
     
+    func deleteLocation(id:String)  {
+        for (index,data) in model.locationDataArray.enumerated(){
+            if data.locationID == id {
+                deleteLocation(index: index, reload: true)
+                return
+            }
+        }
+    }
+    
     func changeLocationData(newData: LocationInfoLocal, key: String, value: String) {
         model.editLocationInfo(newData: newData, key: key, value: value)
         reloadTableViewData()
@@ -212,6 +221,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
 
 protocol MyLocationDelegate {
     func didSelectCell(index:Int)
+    func deleteLocation(id:String)
     func deleteLocation(index:Int,reload:Bool)//用来删除数据
     func addNewVisitNoteAndUpdateView(GreatVC:GreatLocationInfoViewController,locationID: String, visitNoteID: String, data:VisitedNote, imageArray: [UIImage])
 }
