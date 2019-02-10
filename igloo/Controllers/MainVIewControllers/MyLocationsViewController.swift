@@ -145,6 +145,18 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
         //查看是否需要tableCell更新图片
     }
     
+    func addNewVisitNoteAndUpdateView(GreatVC: GreatLocationInfoViewController, locationID: String, visitNoteID: String, data: VisitedNote, imageArray: [UIImage]) {
+        
+        addVisiteNote(locationID: locationID, visitNoteID: visitNoteID, data: data, imageArray: imageArray)
+        //寻找更新的data
+        for data in model.locationDataArray {
+            if data.locationID == GreatVC.locationData.locationID{
+                GreatVC.update(data:data)//更新
+                return
+            }
+        }
+    }
+    
     //MARK:Segue
     
     var dataSendToGreatInfo:LocationInfoLocal?
@@ -163,6 +175,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
                 if let nextVC = segue.destination as? GreatLocationInfoViewController{
                     //读入数据
                     nextVC.setDataIn(data: data)
+                    nextVC.delegate = self
                 }
             }
         }
@@ -200,6 +213,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
 protocol MyLocationDelegate {
     func didSelectCell(index:Int)
     func deleteLocation(index:Int,reload:Bool)//用来删除数据
+    func addNewVisitNoteAndUpdateView(GreatVC:GreatLocationInfoViewController,locationID: String, visitNoteID: String, data:VisitedNote, imageArray: [UIImage])
 }
 
     //location的更改

@@ -33,16 +33,47 @@ class AddNewVisitNoteViewController: UIViewController,UITextViewDelegate,Gallery
         storyTextView.delegate = self
         updateImageToViews()
         setUpGallery()
-        //把日期设置为今天
     }
     
-
-    @IBAction func changeDateAction() {
-        //调用选择器 默认今天
-    }
+//    var currentDateString:String = ""{
+//        didSet{
+//            let date = Date.changeStringToDate(string: currentDateString)
+//            dateButton.setTitle("\(date.year!) \(date.month!).\(date.day!)", for: .normal)
+//        }
+//    }
+//    @IBAction func changeDateAction() {
+//        //调用选择器 默认今天
+//        let dateChooserAlert = UIAlertController(title: "", message: nil, preferredStyle: .actionSheet)
+//        let datePicker = UIDatePicker()
+//        datePicker.datePickerMode = .date
+//        dateChooserAlert.view.addSubview(datePicker)
+//        dateChooserAlert.addAction(UIAlertAction(title: "完成", style: .cancel, handler: { action in
+//            self.currentDateString = Date.changeDateToString(date: datePicker.date)
+//        }))
+//        let height: NSLayoutConstraint = NSLayoutConstraint(item: dateChooserAlert.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.1, constant: 300)
+//        dateChooserAlert.view.addConstraint(height)
+//        self.present(dateChooserAlert, animated: true, completion: nil)
+//    }
     
+    var newVisitNoteData:(VisitedNote,[UIImage])? = nil
     @IBAction func doneAction(_ sender: UIBarButtonItem) {
         //字数检查
+        if storyTextView.text != ""{
+            //使用segue返回上一级添加VisitNote数据
+            let dateString = Date.changeDateToString(date: Date())
+            let visiteNoteData =  VisitedNote(visitNoteWord:storyTextView.text,imageURLArray:[],createdTime:dateString)
+            self.newVisitNoteData = (visiteNoteData,imageArray)
+            //segueBack
+            performSegue(withIdentifier: "unwindBackToGreatVC", sender: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let upVC = segue.destination as? GreatLocationInfoViewController{
+            if let data = newVisitNoteData {//返回segue
+                upVC.newVisitNoteData = data
+            }
+        }
     }
     
     
@@ -108,6 +139,7 @@ class AddNewVisitNoteViewController: UIViewController,UITextViewDelegate,Gallery
         if isPlaceHolder {
             isPlaceHolder = false
             textView.text = ""
+            textView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
         return true
     }
@@ -137,6 +169,7 @@ class AddNewVisitNoteViewController: UIViewController,UITextViewDelegate,Gallery
     }
     
     func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+        print(images)
         return
     }
     

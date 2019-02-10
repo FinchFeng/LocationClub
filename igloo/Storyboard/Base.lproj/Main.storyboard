@@ -534,7 +534,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="取消" id="t3L-8T-8BK">
                                             <color key="tintColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
-                                                <segue destination="Q2L-Yd-fBx" kind="unwind" unwindAction="unwind:" id="zjS-Ea-qS6"/>
+                                                <segue destination="Q2L-Yd-fBx" kind="unwind" identifier="unwindBackToGreatVC" unwindAction="unwind:" id="zjS-Ea-qS6"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="完成" id="j84-oY-hSt">
@@ -556,6 +556,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="在这个地点发生了什么？" translatesAutoresizingMaskIntoConstraints="NO" id="jxd-8v-Z0s">
                                 <rect key="frame" x="76" y="72" width="287" height="35.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -571,44 +572,23 @@
                                 <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u07-ME-t8g">
-                                <rect key="frame" x="24" y="341.5" width="40" height="16"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4U-le-qB6">
-                                <rect key="frame" x="78" y="333.5" width="64" height="32"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                <state key="normal" title="2019.8.1">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="changeDateAction" destination="vLS-bC-KcR" eventType="touchUpInside" id="7rc-bf-BL5"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="E7u-pW-vTI" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="X4U-le-qB6" secondAttribute="trailing" id="58D-c9-w19"/>
                             <constraint firstItem="7RD-uW-2Gp" firstAttribute="top" secondItem="QP1-K3-Hnv" secondAttribute="bottom" constant="18" id="5Ck-1g-VbK"/>
                             <constraint firstItem="53k-Yz-njV" firstAttribute="leading" secondItem="7RD-uW-2Gp" secondAttribute="leading" id="HEv-dN-WmZ"/>
                             <constraint firstItem="JDb-xn-1AW" firstAttribute="top" secondItem="53k-Yz-njV" secondAttribute="top" id="IQE-Tg-sk3"/>
                             <constraint firstItem="QP1-K3-Hnv" firstAttribute="top" secondItem="E7u-pW-vTI" secondAttribute="top" id="JCk-S0-jBc"/>
                             <constraint firstItem="E7u-pW-vTI" firstAttribute="trailing" secondItem="JDb-xn-1AW" secondAttribute="trailing" id="RAh-G5-csp"/>
                             <constraint firstItem="7RD-uW-2Gp" firstAttribute="leading" secondItem="E7u-pW-vTI" secondAttribute="leading" constant="24" id="Sbe-g2-IoI"/>
-                            <constraint firstItem="u07-ME-t8g" firstAttribute="top" secondItem="JDb-xn-1AW" secondAttribute="bottom" constant="20" id="Sdb-DL-Ate"/>
                             <constraint firstItem="jxd-8v-Z0s" firstAttribute="top" secondItem="7RD-uW-2Gp" secondAttribute="top" constant="-10" id="Sxb-9S-5yc"/>
                             <constraint firstItem="JDb-xn-1AW" firstAttribute="leading" secondItem="53k-Yz-njV" secondAttribute="trailing" constant="12" id="V7L-Qn-QGu"/>
                             <constraint firstItem="53k-Yz-njV" firstAttribute="top" secondItem="jxd-8v-Z0s" secondAttribute="bottom" constant="18" id="a00-Lp-HxO"/>
                             <constraint firstItem="E7u-pW-vTI" firstAttribute="trailing" secondItem="QP1-K3-Hnv" secondAttribute="trailing" id="cWv-bY-bji"/>
                             <constraint firstItem="QP1-K3-Hnv" firstAttribute="leading" secondItem="E7u-pW-vTI" secondAttribute="leading" id="eAm-8X-z7y"/>
                             <constraint firstItem="E7u-pW-vTI" firstAttribute="trailing" secondItem="jxd-8v-Z0s" secondAttribute="trailing" constant="12" id="gjX-6e-K7F"/>
-                            <constraint firstItem="u07-ME-t8g" firstAttribute="leading" secondItem="53k-Yz-njV" secondAttribute="leading" id="jjO-Cn-TAg"/>
                             <constraint firstItem="jxd-8v-Z0s" firstAttribute="leading" secondItem="7RD-uW-2Gp" secondAttribute="trailing" constant="12" id="lEE-P2-XpZ"/>
-                            <constraint firstItem="X4U-le-qB6" firstAttribute="centerY" secondItem="u07-ME-t8g" secondAttribute="centerY" id="umf-dl-DEz"/>
-                            <constraint firstItem="X4U-le-qB6" firstAttribute="leading" secondItem="u07-ME-t8g" secondAttribute="trailing" constant="14" id="wGr-GT-e4D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="E7u-pW-vTI"/>
                         <connections>

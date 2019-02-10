@@ -76,5 +76,6 @@ class Constants {
     
     //MARK:储存的keys
     static let isLogin = "isLogin"
+    static let imageNameIdentChar:Character = "X"
 }
 

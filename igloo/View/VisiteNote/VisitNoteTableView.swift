@@ -18,6 +18,7 @@ class VisitNoteTableView: UITableView,UITableViewDelegate,UITableViewDataSource 
         self.dataSource = self
         self.separatorColor = UIColor.white
         visitNoteArray = data
+        reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

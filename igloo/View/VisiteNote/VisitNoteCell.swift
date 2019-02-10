@@ -151,10 +151,10 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
     
     //辅助方法
     func getRadio(string:String) -> (CGFloat,CGFloat) {
-        let firstIndex = string.index(after:string.firstIndex(of: "_")!)
-        var secondIndex = string.lastIndex(of: "_")!
+        let firstIndex = string.index(after:string.firstIndex(of: Constants.imageNameIdentChar)!)
+        var secondIndex = string.lastIndex(of: Constants.imageNameIdentChar)!
         let widthString = string[firstIndex..<secondIndex]
-        secondIndex = string.index(after:string.lastIndex(of: "_")!)
+        secondIndex = string.index(after:string.lastIndex(of: Constants.imageNameIdentChar)!)
         let heightString = string[secondIndex..<string.lastIndex(of: ".")!]
         let width = Int(widthString)!
         let height = Int(heightString)!

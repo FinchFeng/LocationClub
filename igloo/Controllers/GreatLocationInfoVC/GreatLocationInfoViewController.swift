@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class GreatLocationInfoViewController: UIViewController,GreatLocationInfoDelegate {
+class GreatLocationInfoViewController: UIViewController {
     
     //Map
     @IBOutlet weak var iconImageView: UIImageView!
@@ -22,20 +22,13 @@ class GreatLocationInfoViewController: UIViewController,GreatLocationInfoDelegat
     @IBOutlet var mapViewCell: UIView!
     
     var locationData:LocationInfoLocal!
+    var delegate:MyLocationDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //隐藏TopBar 返回的时候要再把它显示出来
         self.navigationController!.setNavigationBarHidden(true, animated: false)
-        //map截图
-        iconImageView.image = Constants.getIconStruct(name: locationData.iconKindString)!.highlightImage
-        MapSnapShotter.getMapImageForCell(latitude: locationData.locationLatitudeKey, longitude: locationData.locationLongitudeKey) { (image) in
-            self.mapImage.image = image
-        }
-        //配置Label数据
-        setAllLabel()
-        //配置tableView
-        visitNoteTableView.setDataIn(data: locationData.VisitedNoteID)
+        showDataToView()
     }
     
 //    override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +39,23 @@ class GreatLocationInfoViewController: UIViewController,GreatLocationInfoDelegat
     //被Segue之前进行配置
     func setDataIn(data:LocationInfoLocal) {
         self.locationData = data
+    }
+    
+    func update(data:LocationInfoLocal){
+        setDataIn(data: data)
+        showDataToView()
+    }
+    
+    func showDataToView(){
+        //map截图
+        iconImageView.image = Constants.getIconStruct(name: locationData.iconKindString)!.highlightImage
+        MapSnapShotter.getMapImageForCell(latitude: locationData.locationLatitudeKey, longitude: locationData.locationLongitudeKey) { (image) in
+            self.mapImage.image = image
+        }
+        //配置Label数据
+        setAllLabel()
+        //配置tableView
+        visitNoteTableView.setDataIn(data: locationData.VisitedNoteID)
     }
     
     //Segue到下一个
@@ -90,13 +100,15 @@ class GreatLocationInfoViewController: UIViewController,GreatLocationInfoDelegat
         self.navigationController!.setNavigationBarHidden(false, animated: false)
     }
     
+    var newVisitNoteData:(VisitedNote,[UIImage])? = nil
     @IBAction func unwind(_ segue:UIStoryboardSegue){
-        
+        if let data = newVisitNoteData{//在这VC进行添加
+            let newVisitNoteID = locationData.locationID+Date.changeDateToString(date: Date())//生成新的visiteNoteID
+            delegate.addNewVisitNoteAndUpdateView(GreatVC: self, locationID: locationData.locationID, visitNoteID: newVisitNoteID, data: data.0, imageArray: data.1)
+            newVisitNoteData = nil//清除
+        }
     }
     
     
 }
 
-protocol GreatLocationInfoDelegate {
-    func segueToAddVisitNote()
-}
