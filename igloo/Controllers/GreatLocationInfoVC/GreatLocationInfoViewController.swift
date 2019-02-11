@@ -57,7 +57,8 @@ class GreatLocationInfoViewController: UIViewController {
         //配置Label数据
         setAllLabel()
         //配置tableView
-        visitNoteTableView.setDataIn(data: locationData.VisitedNoteID)
+        visitNoteTableView.setDataIn(data: locationData.VisitedNoteID, ids: locationData.noteIDs)
+        visitNoteTableView.deleteVisitNoteDelegate = self
     }
     
     //Segue到下一个
@@ -142,3 +143,12 @@ class GreatLocationInfoViewController: UIViewController {
     
 }
 
+extension GreatLocationInfoViewController :DeleteVisiteNoteDelegate{
+    func deleteVisiteNote(id: String) {
+        delegate.deleteVisiteNote(locationID: self.locationData.locationID, visitNoteID: id)
+    }
+}
+
+protocol DeleteVisiteNoteDelegate {
+    func deleteVisiteNote(id:String)
+}

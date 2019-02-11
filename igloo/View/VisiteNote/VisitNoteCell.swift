@@ -10,20 +10,20 @@ import UIKit
 import SwiftPhotoGallery
 
 class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGalleryDelegate {
-
+    
     var data:VisitedNote!
+    var id:String!
     lazy var viewController:UIViewController =  self.findViewController()!
     var imageArray:[UIImage] = []
     
     //MARK: IBOutlet
     @IBOutlet weak var visitNoteWordLabel: UILabel!
-    @IBOutlet weak var imageVIewContainer: UIView!
+    @IBOutlet weak var imageViewContainer: HitThoughView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var imageContainerHeightConstraint: NSLayoutConstraint!
     
-    
     func setData(data:VisitedNote)  {
-       
+//        imageVIewContainer.tou
         self.data = data
         //进行赋值
         visitNoteWordLabel.text = data.visitNoteWord
@@ -32,7 +32,7 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
         dateLabel.text = "\(dateCompont.year!) \(dateCompont.month!).\(dateCompont.day!)"
         //重点图片的展现
         //进行图片更新删除旧的图片
-        for views in imageVIewContainer.subviews {
+        for views in imageViewContainer.subviews {
             views.removeFromSuperview()
         }
         switch data.imageURLArray.count {
@@ -62,7 +62,7 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
             //构建ImageView
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
             imageView.backgroundColor = UIColor.lightGray
-            imageVIewContainer.addSubview(imageView)
+            imageViewContainer.addSubview(imageView)
             //准备更新ImgeArray
             self.imageArray = []
             //对image进行获取
@@ -102,7 +102,7 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
                 imageView.backgroundColor = UIColor.lightGray
                 imageView.contentMode = .scaleAspectFill
                 imageView.clipsToBounds = true
-                imageVIewContainer.addSubview(imageView)
+                imageViewContainer.addSubview(imageView)
                 //对image进行获取 需要递归？⚠️
                 Network.getImage(at: imageUrL) { (image) in//内存泄露？？
                     imageView.image = image
@@ -177,15 +177,19 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
         viewController.dismiss(animated: true, completion: nil)
     }
     
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        //长按删除
-//        // Configure the view for the selected state
-//    }
-
+    //    override func awakeFromNib() {
+    //        super.awakeFromNib()
+    //        // Initialization code
+    //    }
+    //
+    //    override func setSelected(_ selected: Bool, animated: Bool) {
+    //        super.setSelected(selected, animated: animated)
+    //        //长按删除
+    //        // Configure the view for the selected state
+    //    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
 }

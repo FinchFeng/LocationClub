@@ -223,6 +223,7 @@ protocol MyLocationDelegate {
     func didSelectCell(index:Int)
     func deleteLocation(id:String)
     func deleteLocation(index:Int,reload:Bool)//用来删除数据
+    func deleteVisiteNote(locationID: String, visitNoteID: String)
     func addNewVisitNoteAndUpdateView(GreatVC:GreatLocationInfoViewController,locationID: String, visitNoteID: String, data:VisitedNote, imageArray: [UIImage])
 }
 

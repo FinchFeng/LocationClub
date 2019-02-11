@@ -41,6 +41,8 @@ class ImageChecker {//网络方法链接的Pool
             resultData = image.jpegData(compressionQuality: 0.4)!
         }else if size > 3{
             resultData = image.jpegData(compressionQuality: 0.6)!
+        }else{
+            resultData = image.jpegData(compressionQuality: 1)!
         }
         //返回UIImage
         return UIImage(data: resultData)!

@@ -338,7 +338,7 @@
                                                     <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UB2-TR-AGQ">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UB2-TR-AGQ" customClass="HitThoughView" customModule="igloo" customModuleProvider="target">
                                                     <rect key="frame" x="48" y="28" width="327" height="168"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -364,7 +364,7 @@
                                         <connections>
                                             <outlet property="dateLabel" destination="qmb-Mw-Yv4" id="Q95-Hv-R9s"/>
                                             <outlet property="imageContainerHeightConstraint" destination="vQx-iS-Rj9" id="BQa-hV-No1"/>
-                                            <outlet property="imageVIewContainer" destination="UB2-TR-AGQ" id="WHa-KK-XPL"/>
+                                            <outlet property="imageViewContainer" destination="UB2-TR-AGQ" id="66X-Ks-1k7"/>
                                             <outlet property="visitNoteWordLabel" destination="OS1-XO-7uN" id="pHE-Cd-mTC"/>
                                         </connections>
                                     </tableViewCell>
