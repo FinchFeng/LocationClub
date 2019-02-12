@@ -79,6 +79,10 @@ class GreatLocationInfoViewController: UIViewController {
             if let nextVC = segue.destination as? AddNewVisitNoteViewController {
                 nextVC.navigationTitle = locationNameLabel.text!//传递地点的名称
             }
+        }else if let id = segue.identifier , id == "segueToEditLocationData"{
+            if let nextVC = segue.destination as? AddNewLocationViewController {
+                nextVC.setDataInForEdit(data: self.locationData) //传递地点的数据
+            }
         }
     }
     
@@ -116,6 +120,7 @@ class GreatLocationInfoViewController: UIViewController {
         }))
         actionSheet.addAction(UIAlertAction(title: "编辑地点信息", style: .default, handler: { (_) in
             //segueToEditLocationData
+            self.performSegue(withIdentifier: "segueToEditLocationData", sender: nil)
         }))
         actionSheet.addAction(UIAlertAction(title: "删除此地点", style: .destructive, handler: { (_) in
             self.delegate.deleteLocation(id:self.locationData.locationID)
@@ -138,6 +143,7 @@ class GreatLocationInfoViewController: UIViewController {
             delegate.addNewVisitNoteAndUpdateView(GreatVC: self, locationID: locationData.locationID, visitNoteID: newVisitNoteID, data: data.0, imageArray: data.1)
             newVisitNoteData = nil//清除
         }
+        //更改的数据
     }
     
     

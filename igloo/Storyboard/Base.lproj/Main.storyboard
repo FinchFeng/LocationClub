@@ -656,7 +656,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="取消" id="uDX-hT-Ymc">
                                             <color key="tintColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
-                                                <segue destination="Wcr-R6-YAG" kind="unwind" identifier="unwind" unwindAction="unwindFromOther:" id="UjN-tu-7em"/>
+                                                <action selector="cancelAction:" destination="EIb-8S-gam" id="arO-WR-pqV"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="完成" id="uWb-qW-gAh">
@@ -1061,6 +1061,8 @@
                         <outlet property="mapLocationImageLocationInfoStringLabel" destination="8pS-mf-mEs" id="Jp8-KM-eBg"/>
                         <outlet property="mapLocationImageVIew" destination="BOT-QQ-LI4" id="rsN-Ch-3P6"/>
                         <segue destination="1Dh-qB-GEm" kind="show" identifier="segueToChoseLocationImage" id="TDA-Qc-yma"/>
+                        <segue destination="Wcr-R6-YAG" kind="unwind" identifier="unwindToMyLocation" unwindAction="unwindFromOther:" id="joc-Gb-0z9"/>
+                        <segue destination="Q2L-Yd-fBx" kind="unwind" identifier="unwindToGreat" unwindAction="unwind:" id="34r-fv-28c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5p-az-ahq" userLabel="First Responder" sceneMemberID="firstResponder"/>

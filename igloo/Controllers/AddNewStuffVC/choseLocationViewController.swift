@@ -90,8 +90,6 @@ class ChoseLocationViewController: UIViewController {
     }
     
     @IBAction func deviceLocation(){
-//        locationManager.requestWhenInUseAuthorization()
-//        locationManager.requestLocation()
         setMapViewToUserLocation()
     }
     

@@ -45,7 +45,25 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         locationNameTextFeild.delegate = self
         locationDescribeTextFeild.delegate = self
-        // Do any additional setup after loading the view.
+        //判断是否需要加入旧数据
+        if let data = self.oldLocationData {
+            locationNameTextFeild.text = data.locationName
+            locationDescribeTextFeild.text = data.locationDescription
+            //设置Location图标
+            let kindImage = Constants.getIconStruct(name: data.iconKindString)!.image
+            for button in iconImageButtonArray{
+                if button.image(for: .normal) == kindImage {
+                    selectIcon(sender:button )
+                }
+            }
+            //设置地理位置
+            let coordinate = CLLocationCoordinate2D(latitude: data.locationLatitudeKey, longitude: data.locationLongitudeKey)
+            currenLocatinInfoString = data.locationInfoWord
+            currenLocation2D = coordinate
+            showing(location: coordinate)
+            //设置是否公开
+            isPublicSwitch.isOn = data.isPublic
+        }
     }
     
     //MARK: Properties
@@ -71,50 +89,46 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
         iconKindStringTextField.text = iconData.kindInChinese
     }
     
+    //MARK: Segue
+    
+    var oldLocationData:LocationInfoLocal?
+    func setDataInForEdit(data:LocationInfoLocal)  {
+        oldLocationData = data
+    }
+    
     @IBAction func segueToChoseLocationVC() {
         performSegue(withIdentifier: "segueToChoseLocationImage", sender: nil)
     }
     
+    @IBAction func cancelAction(_ sender: UIBarButtonItem) {
+        if let presentingVC = self.presentingViewController {
+            print(presentingVC)
+            if self.oldLocationData != nil {
+                performSegue(withIdentifier: "unwindToGreat", sender: nil)
+            }else{
+                performSegue(withIdentifier: "unwindToMyLocation", sender: nil)
+            }
+        }
+    }
+    
+    
     @IBAction func unwindFromLocationChosen(segue:UIStoryboardSegue){
         //装入地理位置
         if let location = self.currenLocation2D{
-            //imageView装修一下
-            mapLocationImageVIew.layer.cornerRadius = 11
-            mapLocationImageVIew.layer.borderColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
-            mapLocationImageVIew.layer.borderWidth = 2
-            mapLocationImageVIew.layer.masksToBounds = true
-            MapSnapShotter.getMapImageForCell(latitude: location.latitude, longitude: location.longitude) { (image) in
-                self.mapLocationImageVIew.image = image
-                self.iconLocationImage.isHidden = false
-            }
+            showing(location: location)
         }
-        
     }
     
-    //完成之后生成一个LocationInfoLocal并且上传
-    
-    var locationDataToAdd:LocationInfoLocal?
-    
-    @IBAction func done()  {
-        //生成新的locationData
-        if let name = locationNameTextFeild.text , let description = locationDescribeTextFeild.text ,
-            let location = self.currenLocation2D,name != "",description != ""{
-            //创建新的locationInfoLocal
-            let locationID = String(location.latitude)+"_"+String(location.longitude)+"_"+Date.changeDateToString(date: Date())
-            let data = LocationInfoLocal(locationID: locationID, locationName: name, iconKindString: self.currentIconString, locationDescription: description, locationLatitudeKey: location.latitude, locationLongitudeKey: location.longitude, isPublic: isPublicSwitch.isOn, locationLikedAmount: 0, locationInfoWord: self.currenLocatinInfoString, locationInfoImageURL: "nil", VisitedNoteID: [], noteIDs: [])
-            //装入self
-            self.locationDataToAdd = data
-            performSegue(withIdentifier: "unwind", sender: nil)
-        }else{
-            showErrorSheet()
+    func showing(location:CLLocationCoordinate2D) {
+        //imageView装修一下
+        mapLocationImageVIew.layer.cornerRadius = 11
+        mapLocationImageVIew.layer.borderColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
+        mapLocationImageVIew.layer.borderWidth = 2
+        mapLocationImageVIew.layer.masksToBounds = true
+        MapSnapShotter.getMapImageForCell(latitude: location.latitude, longitude: location.longitude) { (image) in
+            self.mapLocationImageVIew.image = image
+            self.iconLocationImage.isHidden = false
         }
-        
-    }
-    
-    func showErrorSheet() {
-        let alertVC = UIAlertController(title: "地点信息不完成", message: nil, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "好的", style: .default, handler: nil))
-        present(alertVC, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -126,6 +140,34 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
             }
         }
     }
+    
+    //MARK: func
+    //完成之后生成一个LocationInfoLocal并且上传
+    
+    var locationDataToAdd:LocationInfoLocal?
+    
+    @IBAction func done()  {//新的或者修改一个LocationData
+        //生成新的locationData
+        if let name = locationNameTextFeild.text , let description = locationDescribeTextFeild.text ,
+            let location = self.currenLocation2D,name != "",description != ""{
+            //创建新的locationInfoLocal
+            let locationID = String(location.latitude)+"_"+String(location.longitude)+"_"+Date.changeDateToString(date: Date())
+            let data = LocationInfoLocal(locationID: locationID, locationName: name, iconKindString: self.currentIconString, locationDescription: description, locationLatitudeKey: location.latitude, locationLongitudeKey: location.longitude, isPublic: isPublicSwitch.isOn, locationLikedAmount: 0, locationInfoWord: self.currenLocatinInfoString, locationInfoImageURL: "nil", VisitedNoteID: [], noteIDs: [])
+            //装入self
+            self.locationDataToAdd = data
+            performSegue(withIdentifier: "unwindToMyLocation", sender: nil)
+        }else{
+            showErrorSheet()
+        }
+        
+    }
+    
+    func showErrorSheet() {
+        let alertVC = UIAlertController(title: "地点信息不完成", message: nil, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "好的", style: .default, handler: nil))
+        present(alertVC, animated: true, completion: nil)
+    }
+
 
     //MARK: UITextFieldDelegate
     
