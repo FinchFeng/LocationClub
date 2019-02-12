@@ -652,7 +652,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sZA-97-5YW">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="地点添加" id="1Us-El-SEQ">
+                                    <navigationItem title="添加地点" id="1Us-El-SEQ">
                                         <barButtonItem key="leftBarButtonItem" title="取消" id="uDX-hT-Ymc">
                                             <color key="tintColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
@@ -1060,6 +1060,7 @@
                         <outlet property="mapLocationImageButton" destination="vmy-J7-2Kd" id="oJr-hw-oSP"/>
                         <outlet property="mapLocationImageLocationInfoStringLabel" destination="8pS-mf-mEs" id="Jp8-KM-eBg"/>
                         <outlet property="mapLocationImageVIew" destination="BOT-QQ-LI4" id="rsN-Ch-3P6"/>
+                        <outlet property="navigationBar" destination="sZA-97-5YW" id="9J0-QU-Adn"/>
                         <segue destination="1Dh-qB-GEm" kind="show" identifier="segueToChoseLocationImage" id="TDA-Qc-yma"/>
                         <segue destination="Wcr-R6-YAG" kind="unwind" identifier="unwindToMyLocation" unwindAction="unwindFromOther:" id="joc-Gb-0z9"/>
                         <segue destination="Q2L-Yd-fBx" kind="unwind" identifier="unwindToGreat" unwindAction="unwind:" id="34r-fv-28c"/>

@@ -144,7 +144,7 @@ class Network {
     }
     
     //更改Location信息 登陆之后才能使用⚠️
-    static func changeLocationData(key:String,data:String,locationID:String){
+    static func changeLocationData(key:String,data:String,locationID:String,landing: @escaping()->Void){
         //从UserDefault中获取iglooID
         let iglooID = LoginModel.iglooID
         //配置Url
@@ -158,6 +158,7 @@ class Network {
             }else{
                 //错误信息
             }
+            landing()
         }
     }
     

@@ -137,13 +137,33 @@ class GreatLocationInfoViewController: UIViewController {
     }
     
     var newVisitNoteData:(VisitedNote,[UIImage])? = nil
+    var editedLocationData:[(LocationInfoLocal,String,String)] = []
     @IBAction func unwind(_ segue:UIStoryboardSegue){
         if let data = newVisitNoteData{//在这VC进行添加
             let newVisitNoteID = locationData.locationID+Date.changeDateToString(date: Date())//生成新的visiteNoteID
             delegate.addNewVisitNoteAndUpdateView(GreatVC: self, locationID: locationData.locationID, visitNoteID: newVisitNoteID, data: data.0, imageArray: data.1)
             newVisitNoteData = nil//清除
         }
-        //更改的数据
+        //递归更改的Location数据
+        func editData(array:[(LocationInfoLocal,String,String)]){
+            if let data = array.first{
+                var newArray = array
+                newArray.remove(at: 0)
+                delegate.changeLocationData(newData: data.0, key: data.1, value: data.2) {
+                    editData(array: newArray)
+                }
+            }else{
+                return
+            }
+        }
+        editData(array: editedLocationData)
+        //更改View的数据展现
+        if let newData = editedLocationData.first?.0 {
+            update(data: newData)
+        }
+        editedLocationData = []
+        
+        
     }
     
     

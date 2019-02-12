@@ -99,7 +99,7 @@ class MyLocationModel {
         
     }
     
-    func editLocationInfo(newData:LocationInfoLocal,key:String,value:String) {//key data 用于更新后端 使用这两个参数更新后端
+    func editLocationInfo(newData:LocationInfoLocal,key:String,value:String,landing:@escaping () -> Void) {//key data 用于更新后端 使用这两个参数更新后端
         //查看是否公开
         if LoginModel.login && (newData.isPublic || (newData.isPublic == false && key == Constants.isPublic)){//对后端进行更改
             //查看是不是isPublic改变了
@@ -116,12 +116,14 @@ class MyLocationModel {
                 }
             }else{
                 //后端修改data
-                Network.changeLocationData(key: key, data: value, locationID: newData.locationID)
+                Network.changeLocationData(key: key, data: value, locationID: newData.locationID, landing: landing)
             }
         }
         //只进行本地修改
         for (index,data) in locationDataArray.enumerated(){
+             print("本地修改中 ", data.locationID , " " ,  newData.locationID)
             if data.locationID == newData.locationID{
+               
                 //进行更改
                 locationDataArray[index] = newData
                 break
@@ -239,7 +241,7 @@ class MyLocationModel {
                 }else{//删除Image
                     //检查是否需要后端添加Nil
                     if location.isPublic && LoginModel.login{
-                        Network.changeLocationData(key: Constants.locationInfoImageURL, data: "nil", locationID: locationID)
+                        Network.changeLocationData(key: Constants.locationInfoImageURL, data: "nil", locationID: locationID, landing: {})
                     }
                     //进行本地修改Nil
                     locationDataArray[index].locationInfoImageURL = "nil"

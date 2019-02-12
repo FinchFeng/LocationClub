@@ -15,6 +15,7 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var locationNameTextFeild: UITextField!
     @IBOutlet weak var locationDescribeTextFeild: UITextField!
     @IBOutlet weak var iconKindStringTextField: UITextField!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     //icons
     @IBOutlet weak var iconImageButton1:UIButton!
@@ -47,6 +48,7 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
         locationDescribeTextFeild.delegate = self
         //判断是否需要加入旧数据
         if let data = self.oldLocationData {
+            navigationBar.items?.first?.title = "修改地点"
             locationNameTextFeild.text = data.locationName
             locationDescribeTextFeild.text = data.locationDescription
             //设置Location图标
@@ -94,6 +96,7 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
     var oldLocationData:LocationInfoLocal?
     func setDataInForEdit(data:LocationInfoLocal)  {
         oldLocationData = data
+        
     }
     
     @IBAction func segueToChoseLocationVC() {
@@ -131,12 +134,24 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //判断是否有locationData
-        if let locationData = self.locationDataToAdd{
+        //判断是否有locationData返回给MyLocation
+        if let locationData = self.locationDataToAdd , segue.identifier! == "unwindToMyLocation"{
             if let upVC = segue.destination as? MainTabBarController{
+                print("把数据传递给MainTabBarVC")
                 //把数据传递给MainTabBarVC
                 upVC.newLocationData = locationData
+                self.locationDataToAdd = nil
+            }
+        }
+        //是否有更新的LocationData返回给Great
+        if segue.identifier! == "unwindToGreat"{
+            if let upVC = segue.destination as? GreatLocationInfoViewController{
+                //把修改过的LocationData传递回去
+                upVC.editedLocationData = self.editedLocationData
+                self.editedLocationData = []//清空
+                self.oldLocationData = nil
             }
         }
     }
@@ -145,21 +160,58 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
     //完成之后生成一个LocationInfoLocal并且上传
     
     var locationDataToAdd:LocationInfoLocal?
-    
+    var editedLocationData:[(LocationInfoLocal,String,String)] = []
     @IBAction func done()  {//新的或者修改一个LocationData
         //生成新的locationData
         if let name = locationNameTextFeild.text , let description = locationDescribeTextFeild.text ,
             let location = self.currenLocation2D,name != "",description != ""{
-            //创建新的locationInfoLocal
+            //LocationID在有旧Data的情况下会被覆盖
             let locationID = String(location.latitude)+"_"+String(location.longitude)+"_"+Date.changeDateToString(date: Date())
-            let data = LocationInfoLocal(locationID: locationID, locationName: name, iconKindString: self.currentIconString, locationDescription: description, locationLatitudeKey: location.latitude, locationLongitudeKey: location.longitude, isPublic: isPublicSwitch.isOn, locationLikedAmount: 0, locationInfoWord: self.currenLocatinInfoString, locationInfoImageURL: "nil", VisitedNoteID: [], noteIDs: [])
-            //装入self
-            self.locationDataToAdd = data
-            performSegue(withIdentifier: "unwindToMyLocation", sender: nil)
+            //创建新的locationInfoLocal
+            var data = LocationInfoLocal(locationID: locationID, locationName: name, iconKindString: self.currentIconString, locationDescription: description, locationLatitudeKey: location.latitude, locationLongitudeKey: location.longitude, isPublic: isPublicSwitch.isOn, locationLikedAmount: 0, locationInfoWord: self.currenLocatinInfoString, locationInfoImageURL: "nil", VisitedNoteID: [], noteIDs: [])
+            //⚠️进行判断是添加新的Location还是更新Location数据?
+            if let oldData = self.oldLocationData  {
+                //把旧的Data数据迁移到新Data上来
+                data.locationID = oldData.locationID
+                data.locationLikedAmount = oldData.locationLikedAmount
+                data.locationInfoImageURL = oldData.locationInfoImageURL
+                data.VisitedNoteID = oldData.VisitedNoteID
+                data.noteIDs = oldData.noteIDs
+                self.editedLocationData = findWhatHaveChanged(oldData: oldData, newData: data)
+                performSegue(withIdentifier: "unwindToGreat", sender: nil)
+            }else{
+                //装入self
+                self.locationDataToAdd = data
+                performSegue(withIdentifier: "unwindToMyLocation", sender: nil)
+            }
         }else{
             showErrorSheet()
         }
         
+    }
+    
+    func findWhatHaveChanged(oldData:LocationInfoLocal,newData:LocationInfoLocal) -> [(data:LocationInfoLocal,key:String,value:String)] {
+        var resultArray :[(data:LocationInfoLocal,key:String,value:String)] = []
+        //进行找不同
+        if oldData.locationName != newData.locationName {
+            resultArray.append((data: newData, key: Constants.locationName , value: newData.locationName))
+        }
+        if oldData.locationDescription != newData.locationDescription{
+            resultArray.append((data: newData, key: Constants.locationDescription , value: newData.locationDescription))
+        }
+        if oldData.iconKindString != newData.iconKindString{
+            resultArray.append((data: newData, key: Constants.iconKindString , value: newData.iconKindString))
+        }
+        if oldData.locationInfoWord != newData.locationInfoWord{
+            resultArray.append((data: newData, key: Constants.locationInfoWord , value: newData.locationInfoWord))
+        }
+        if oldData.locationLatitudeKey != newData.locationLatitudeKey{
+            resultArray.append((data: newData, key: Constants.locationLatitudeKey , value: String(newData.locationLatitudeKey)))
+        }
+        if oldData.locationLongitudeKey != newData.locationLongitudeKey{
+            resultArray.append((data: newData, key: Constants.locationLongitudeKey , value: String(newData.locationLongitudeKey)))
+        }
+        return resultArray
     }
     
     func showErrorSheet() {

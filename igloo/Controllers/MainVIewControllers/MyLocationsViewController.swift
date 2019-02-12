@@ -138,8 +138,10 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
         }
     }
     
-    func changeLocationData(newData: LocationInfoLocal, key: String, value: String) {
-        model.editLocationInfo(newData: newData, key: key, value: value)
+    func changeLocationData(newData: LocationInfoLocal, key: String, value: String ,landing:@escaping () -> Void) {
+        print("changeLocationData")
+        print(newData)
+        model.editLocationInfo(newData: newData, key: key, value: value, landing: landing)
         reloadTableViewData()
     }
     //MARK: VisitedNote
@@ -225,6 +227,7 @@ protocol MyLocationDelegate {
     func deleteLocation(index:Int,reload:Bool)//用来删除数据
     func deleteVisiteNote(locationID: String, visitNoteID: String)
     func addNewVisitNoteAndUpdateView(GreatVC:GreatLocationInfoViewController,locationID: String, visitNoteID: String, data:VisitedNote, imageArray: [UIImage])
+     func changeLocationData(newData: LocationInfoLocal, key: String, value: String ,landing:@escaping () -> Void)
 }
 
     //location的更改
