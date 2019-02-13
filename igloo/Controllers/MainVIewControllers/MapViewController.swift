@@ -10,9 +10,20 @@ import UIKit
 
 class MapViewController: UIViewController {
 
+    //MARK:IBOutlet
+    
+    @IBOutlet weak var map: MapViewForGreatLocation!
+    @IBOutlet weak var distanceMarsViewShowing: NSLayoutConstraint!
+    @IBOutlet weak var marsView: MarsTableViewForMap!
+    @IBOutlet weak var resetRegion: UIButton!
+    
+    //MARK:State
+    var isShowingMarsView:Bool = false
+    
+    //MARK:LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,15 +51,35 @@ class MapViewController: UIViewController {
         self.navigationController!.setNavigationBarHidden(false, animated: false)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK:Actions
+    
+    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            marsViewMove(up: !isShowingMarsView)
+            isShowingMarsView = !isShowingMarsView
+        }
     }
-    */
+    
+    @IBAction func resetRegionAction(_ sender: Any) {
+        print("research Region")
+    }
+    
+    //MARK: 动画效果
+    
+    func marsViewMove(up:Bool) {
+        UIView.animate(withDuration: 0.27, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
+            let heightOfMarsView = self.marsView.frame.height
+            let moveUpDistance = up ? -heightOfMarsView : 0
+            if up {
+                self.marsView.frame.origin.y -= heightOfMarsView
+                self.resetRegion.frame.origin.y -= heightOfMarsView
+            }else{
+                self.marsView.frame.origin.y += heightOfMarsView
+                self.resetRegion.frame.origin.y += heightOfMarsView
+            }
+            self.distanceMarsViewShowing.constant = moveUpDistance
+            
+        }, completion: nil)
+    }
 
 }

@@ -42,6 +42,7 @@
 		13C768E921F9BD7100472CC9 /* GreatLocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C768E821F9BD7100472CC9 /* GreatLocationInfoViewController.swift */; };
 		13D2D9F122029886007DBF30 /* AddNewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D2D9F022029886007DBF30 /* AddNewLocationViewController.swift */; };
 		13D2D9F32202989F007DBF30 /* AddNewVisitNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D2D9F22202989F007DBF30 /* AddNewVisitNoteViewController.swift */; };
+		13D5A2DD2213EA99002218E9 /* MarsViewForMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D5A2DC2213EA99002218E9 /* MarsViewForMap.swift */; };
 		13DBF1BD21C78961001A03BA /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DBF1BC21C78961001A03BA /* TestViewController.swift */; };
 		13E2F4B622051733000C0F35 /* choseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E2F4B522051733000C0F35 /* choseLocationViewController.swift */; };
 		13E2F4B822053C76000C0F35 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E2F4B722053C76000C0F35 /* LocationSearchTable.swift */; };
@@ -101,6 +102,7 @@
 		13C768E821F9BD7100472CC9 /* GreatLocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreatLocationInfoViewController.swift; sourceTree = "<group>"; };
 		13D2D9F022029886007DBF30 /* AddNewLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewLocationViewController.swift; sourceTree = "<group>"; };
 		13D2D9F22202989F007DBF30 /* AddNewVisitNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewVisitNoteViewController.swift; sourceTree = "<group>"; };
+		13D5A2DC2213EA99002218E9 /* MarsViewForMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsViewForMap.swift; sourceTree = "<group>"; };
 		13DBF1BC21C78961001A03BA /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		13E2F4B522051733000C0F35 /* choseLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = choseLocationViewController.swift; sourceTree = "<group>"; };
 		13E2F4B722053C76000C0F35 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				13BA184421FADDED008B1FDA /* Maps */,
 				1392833121FC53A0007CBA5F /* VisiteNote */,
 				13E5709022115BEE002A45E6 /* HitThoughView.swift */,
+				13D5A2DC2213EA99002218E9 /* MarsViewForMap.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				138E842921CC90B500DC2CB8 /* SettingViewController.swift in Sources */,
 				13C768E921F9BD7100472CC9 /* GreatLocationInfoViewController.swift in Sources */,
 				138E842521CC787100DC2CB8 /* MapViewController.swift in Sources */,
+				13D5A2DD2213EA99002218E9 /* MarsViewForMap.swift in Sources */,
 				1392832F21FC5343007CBA5F /* VisitNoteTableView.swift in Sources */,
 				1362C2BE21C8867F0088494A /* LoginModel.swift in Sources */,
 				130EA74721D70F7C009769ED /* Extension.swift in Sources */,
