@@ -22,7 +22,6 @@ class MapViewForGreatLocation: MKMapView,MKMapViewDelegate {
         delegate = self
     }
     
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         //对titile的分类创建AnnotionView 进行reuse的注册 ⚠️ 因为只展现一个所以不需要
         let data = annotation
@@ -32,11 +31,7 @@ class MapViewForGreatLocation: MKMapView,MKMapViewDelegate {
         return view
     }
     
-//    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        //MKAnotationView被选中了 🔧
-//    }
-    
-    func addNewLocation(data:LocationInfoRank3){
+    final func addNewLocation(data:LocationInfoRank3){
         //生成Data
         let locationData = AnnotionData(rank3Data: data)
         self.addAnnotation(locationData)
@@ -45,7 +40,6 @@ class MapViewForGreatLocation: MKMapView,MKMapViewDelegate {
 }
 
 class AnnotionData:NSObject,MKAnnotation{//地点数据
-    
     init(coordinate:CLLocationCoordinate2D,title:String) {
         self.coordinate = coordinate
         self.title = title
@@ -71,18 +65,5 @@ class StaticAnnotionView:MKAnnotationView{//不可选中
 }
 
 
-class AnnotionView:StaticAnnotionView{//可以选中
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        //更换Selected图片🔧
-        if selected {
-            //            self.image = annotionHighLightImage
-        }else{
-            //            self.image = annotionImage
-        }
-        print("Selected " + String(selected))
-    }
 
-    
-}
+

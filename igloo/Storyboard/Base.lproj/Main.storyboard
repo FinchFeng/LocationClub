@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PMe-13-G3b">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sqk-kQ-xwi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,21 +18,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="md7-dy-WBW" customClass="MapViewForGreatLocation" customModule="igloo" customModuleProvider="target">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="md7-dy-WBW" customClass="MapViewForExplore" customModule="igloo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="o7t-ue-sSt" appends="YES" id="Mgi-bk-lO7"/>
                                 </connections>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jnS-Nv-v7V" customClass="MarsTableViewForMap" customModule="igloo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="618" width="375" height="243.5"/>
+                                <rect key="frame" x="0.0" y="374.5" width="375" height="243.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jnS-Nv-v7V" secondAttribute="height" multiplier="1.54" id="zTx-Kc-aoW"/>
                                 </constraints>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkd-3m-9sI">
-                                <rect key="frame" x="133.5" y="580" width="108" height="30"/>
+                                <rect key="frame" x="133.5" y="336.5" width="108" height="30"/>
                                 <state key="normal" title="重新探索此区域"/>
                                 <connections>
                                     <action selector="resetRegionAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kmK-nL-kkE"/>
@@ -48,7 +48,7 @@
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="top" secondItem="qkd-3m-9sI" secondAttribute="bottom" constant="8" symbolic="YES" id="FIe-7q-V42"/>
                             <constraint firstItem="md7-dy-WBW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MsX-Py-Brd"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="trailing" secondItem="md7-dy-WBW" secondAttribute="trailing" id="dEI-LH-Hrz"/>
-                            <constraint firstItem="jnS-Nv-v7V" firstAttribute="top" secondItem="md7-dy-WBW" secondAttribute="bottom" id="ie8-hG-JSN"/>
+                            <constraint firstItem="jnS-Nv-v7V" firstAttribute="top" secondItem="md7-dy-WBW" secondAttribute="bottom" constant="-243.5" id="ie8-hG-JSN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="md7-dy-WBW" secondAttribute="trailing" id="zw3-Ja-l47"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -57,7 +57,7 @@
                     <navigationItem key="navigationItem" id="HdU-i1-bnc"/>
                     <connections>
                         <outlet property="distanceMarsViewShowing" destination="ie8-hG-JSN" id="wDV-il-17D"/>
-                        <outlet property="map" destination="md7-dy-WBW" id="JSc-bx-cW5"/>
+                        <outlet property="map" destination="md7-dy-WBW" id="R3D-c5-rOI"/>
                         <outlet property="marsView" destination="jnS-Nv-v7V" id="SfR-l6-glL"/>
                         <outlet property="resetRegion" destination="qkd-3m-9sI" id="W6z-Ok-Tdb"/>
                     </connections>
@@ -1243,29 +1243,39 @@
                                     <constraint firstAttribute="width" secondItem="rpH-cb-HEH" secondAttribute="height" multiplier="376:153" id="aYk-A8-vFH"/>
                                 </constraints>
                             </imageView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpN-SR-Ey2" customClass="MapViewForExplore" customModule="igloo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="485"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="485" id="ZH0-d8-CjL"/>
+                                </constraints>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="eXc-d7-xra" firstAttribute="centerX" secondItem="11h-dt-7Q1" secondAttribute="centerX" id="5Nv-xF-MAs"/>
+                            <constraint firstItem="ylU-hB-jqD" firstAttribute="trailing" secondItem="EpN-SR-Ey2" secondAttribute="trailing" id="5sn-fT-xmU"/>
                             <constraint firstItem="11h-dt-7Q1" firstAttribute="leading" secondItem="ylU-hB-jqD" secondAttribute="leading" constant="164" id="8Xf-qg-6cM"/>
                             <constraint firstItem="11h-dt-7Q1" firstAttribute="centerX" secondItem="kus-jR-0WW" secondAttribute="centerX" id="ZFs-iU-HeB"/>
                             <constraint firstItem="eXc-d7-xra" firstAttribute="leading" secondItem="kus-jR-0WW" secondAttribute="leadingMargin" id="a6Y-eP-K6g"/>
                             <constraint firstItem="rpH-cb-HEH" firstAttribute="centerX" secondItem="ylU-hB-jqD" secondAttribute="centerX" id="fjJ-QF-OrI"/>
+                            <constraint firstItem="ylU-hB-jqD" firstAttribute="top" secondItem="EpN-SR-Ey2" secondAttribute="top" id="lEJ-tO-T1E"/>
                             <constraint firstItem="rpH-cb-HEH" firstAttribute="width" secondItem="kus-jR-0WW" secondAttribute="width" id="mUE-W9-JaL"/>
                             <constraint firstItem="rpH-cb-HEH" firstAttribute="centerY" secondItem="ylU-hB-jqD" secondAttribute="centerY" id="mjj-bX-zf9"/>
                             <constraint firstItem="eXc-d7-xra" firstAttribute="top" secondItem="ylU-hB-jqD" secondAttribute="top" id="oWa-2N-EFv"/>
+                            <constraint firstItem="EpN-SR-Ey2" firstAttribute="leading" secondItem="ylU-hB-jqD" secondAttribute="leading" id="sHM-zt-1DN"/>
                             <constraint firstAttribute="bottom" secondItem="11h-dt-7Q1" secondAttribute="bottom" constant="20" symbolic="YES" id="vrT-do-zwg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ylU-hB-jqD"/>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="rpH-cb-HEH" id="i9x-Tg-yWJ"/>
+                        <outlet property="map" destination="EpN-SR-Ey2" id="P0L-zy-glL"/>
                         <outlet property="textView" destination="eXc-d7-xra" id="Rup-1C-xDE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AMn-8i-I0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2228" y="663"/>
+            <point key="canvasLocation" x="2228" y="662.51874062968523"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="0l7-UF-txi">

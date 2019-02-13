@@ -39,6 +39,7 @@
 		13BA183E21FAD80B008B1FDA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA183D21FAD80B008B1FDA /* MapView.swift */; };
 		13BA184121FADCFF008B1FDA /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA184021FADCFF008B1FDA /* UI.swift */; };
 		13BA184321FADD1C008B1FDA /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA184221FADD1C008B1FDA /* Map.swift */; };
+		13C2F5072213F00700604694 /* MapViewForExplore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C2F5062213F00700604694 /* MapViewForExplore.swift */; };
 		13C768E921F9BD7100472CC9 /* GreatLocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C768E821F9BD7100472CC9 /* GreatLocationInfoViewController.swift */; };
 		13D2D9F122029886007DBF30 /* AddNewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D2D9F022029886007DBF30 /* AddNewLocationViewController.swift */; };
 		13D2D9F32202989F007DBF30 /* AddNewVisitNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D2D9F22202989F007DBF30 /* AddNewVisitNoteViewController.swift */; };
@@ -99,6 +100,7 @@
 		13BA183D21FAD80B008B1FDA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		13BA184021FADCFF008B1FDA /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		13BA184221FADD1C008B1FDA /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		13C2F5062213F00700604694 /* MapViewForExplore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewForExplore.swift; sourceTree = "<group>"; };
 		13C768E821F9BD7100472CC9 /* GreatLocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreatLocationInfoViewController.swift; sourceTree = "<group>"; };
 		13D2D9F022029886007DBF30 /* AddNewLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewLocationViewController.swift; sourceTree = "<group>"; };
 		13D2D9F22202989F007DBF30 /* AddNewVisitNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewVisitNoteViewController.swift; sourceTree = "<group>"; };
@@ -163,8 +165,7 @@
 				1392833021FC5385007CBA5F /* MarsTableView */,
 				13BA184421FADDED008B1FDA /* Maps */,
 				1392833121FC53A0007CBA5F /* VisiteNote */,
-				13E5709022115BEE002A45E6 /* HitThoughView.swift */,
-				13D5A2DC2213EA99002218E9 /* MarsViewForMap.swift */,
+				13C2F5082213F08300604694 /* ExploreView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -267,6 +268,7 @@
 			children = (
 				1392832E21FC5343007CBA5F /* VisitNoteTableView.swift */,
 				1392833221FC53C7007CBA5F /* AddVisitNoteCell.swift */,
+				13E5709022115BEE002A45E6 /* HitThoughView.swift */,
 				1392833421FC5508007CBA5F /* VisitNoteCell.swift */,
 				1392833921FE8F15007CBA5F /* MutipleImageView.swift */,
 			);
@@ -311,6 +313,15 @@
 				13BA183D21FAD80B008B1FDA /* MapView.swift */,
 			);
 			path = Maps;
+			sourceTree = "<group>";
+		};
+		13C2F5082213F08300604694 /* ExploreView */ = {
+			isa = PBXGroup;
+			children = (
+				13D5A2DC2213EA99002218E9 /* MarsViewForMap.swift */,
+				13C2F5062213F00700604694 /* MapViewForExplore.swift */,
+			);
+			path = ExploreView;
 			sourceTree = "<group>";
 		};
 		13D2D9EF22029868007DBF30 /* GreatLocationInfoVC */ = {
@@ -562,6 +573,7 @@
 				13670BB221CA3FCA002AB6D9 /* SignUpSuccessViewController.swift in Sources */,
 				13BA183E21FAD80B008B1FDA /* MapView.swift in Sources */,
 				138F0A5521C3602400466873 /* NetworkManager.swift in Sources */,
+				13C2F5072213F00700604694 /* MapViewForExplore.swift in Sources */,
 				130DEBC421C252AA00B9ABC2 /* SignInViewController.swift in Sources */,
 				13D2D9F122029886007DBF30 /* AddNewLocationViewController.swift in Sources */,
 				138E842321CC785500DC2CB8 /* MyLocationsViewController.swift in Sources */,

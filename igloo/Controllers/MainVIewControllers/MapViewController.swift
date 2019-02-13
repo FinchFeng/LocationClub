@@ -11,8 +11,7 @@ import UIKit
 class MapViewController: UIViewController {
 
     //MARK:IBOutlet
-    
-    @IBOutlet weak var map: MapViewForGreatLocation!
+    @IBOutlet weak var map: MapViewForExplore!
     @IBOutlet weak var distanceMarsViewShowing: NSLayoutConstraint!
     @IBOutlet weak var marsView: MarsTableViewForMap!
     @IBOutlet weak var resetRegion: UIButton!
