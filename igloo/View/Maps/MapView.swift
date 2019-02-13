@@ -23,6 +23,9 @@ class MapViewForGreatLocation: MKMapView,MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else {
+            return nil
+        }
         //对titile的分类创建AnnotionView 进行reuse的注册 ⚠️ 因为只展现一个所以不需要
         let data = annotation
         let title = annotation.title!!//两次解包？
