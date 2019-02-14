@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController,MapViewDelegate {
 
     //MARK:IBOutlet
     @IBOutlet weak var map: MapViewForExplore!
@@ -16,7 +16,8 @@ class MapViewController: UIViewController {
     @IBOutlet weak var marsView: MarsTableViewForMap!
     @IBOutlet weak var resetRegion: UIButton!
     
-    //MARK:State
+    //MARK:State or properties
+    var model = AirModel()
     var isShowingMarsView:Bool = false
     
     //MARK:LifeCycle
@@ -61,6 +62,12 @@ class MapViewController: UIViewController {
     
     @IBAction func resetRegionAction(_ sender: Any) {
         print("research Region")
+        let dataArray:[(LocationInfoRank2,LocationInfoRank3)] =  [(LocationInfoRank2(locationName: "cocoCoffee" ,locationInfoWord: "nearby upc" ,locationLikedAmount: 0 ,locationInfoImageURL: "nil" ),LocationInfoRank3(locationLatitudeKey:3,locationLongitudeKey:6,iconKindString:"Cafe")),
+                       (LocationInfoRank2(locationName: "koiCoffee" ,locationInfoWord: "nearby upc" ,locationLikedAmount: 0 ,locationInfoImageURL: "nil" ),LocationInfoRank3(locationLatitudeKey:4,locationLongitudeKey:5,iconKindString:"Bar")),
+                       (LocationInfoRank2(locationName: "cocoCoffee" ,locationInfoWord: "nearby upc" ,locationLikedAmount: 0 ,locationInfoImageURL: "nil" ),LocationInfoRank3(locationLatitudeKey:6,locationLongitudeKey:6,iconKindString:"Cafe")),
+                       (LocationInfoRank2(locationName: "cocoCoffee" ,locationInfoWord: "nearby upc" ,locationLikedAmount: 0 ,locationInfoImageURL: "nil" ),LocationInfoRank3(locationLatitudeKey:7,locationLongitudeKey:6,iconKindString:"Cafe"))]
+        marsView.setDataIn(locationDataArray:dataArray)
+        
     }
     
     //MARK: 动画效果
@@ -80,5 +87,20 @@ class MapViewController: UIViewController {
             
         }, completion: nil)
     }
+    
+    //MARK: MapViewDelegate
+    
+    func selectAnnotion(id: String) {//展现MarsView
+        
+    }
+    
+    func getIdOf(index:Int)->String {
+        return model.currentAnnationLocationDataArray[index].id
+    }
+    
+}
 
+protocol MapViewDelegate {
+    func selectAnnotion(id:String)
+    func getIdOf(index:Int)->String
 }

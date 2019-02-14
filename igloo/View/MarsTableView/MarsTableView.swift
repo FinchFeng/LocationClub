@@ -107,8 +107,10 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
         }
         //loadtheData
         cell.set(data: data.rank2, image: image)
+        cell.index = indexPath.row
         return cell
     }
+    //test
     
 }
 

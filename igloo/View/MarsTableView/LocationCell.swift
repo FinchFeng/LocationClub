@@ -39,16 +39,20 @@ class LocationCell: UITableViewCell {
         label.layer.masksToBounds = false
     }
     
-    //暂时不需要
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    //添加指示条
+    
+    @IBOutlet weak var selectedIndecater: UIView!
+    var index:Int!
+    func showIndecater(){
+        selectedIndecater.isHidden = false
+        //使用Delegate方法
         
-        // Configure the view for the selected state
     }
-
+   
+    func hideIndecater(){
+        selectedIndecater.isHidden = true
+    }
 }
+
+
+

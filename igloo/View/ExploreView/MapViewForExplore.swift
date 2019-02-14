@@ -11,6 +11,8 @@ import MapKit
 
 class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
     
+    var selectedDelegate:MapViewDelegate!
+    
     func setAnnotion(array:[(String,LocationInfoRank3)]){
         //删除之前所有的Annotion 除了userLocation
         self.annotations.forEach { (data) in
@@ -51,6 +53,10 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
     func setLocationCenter(data:CLLocationCoordinate2D){
         self.setRegion(MKCoordinateRegion(center: data, span: self.region.span), animated: true)
     }
+    
+    func annotionBeingSelected(id: String) {
+        selectedDelegate.selectAnnotion(id:id)
+    }
 }
 
 class AnnotionView:StaticAnnotionView{//可以选中
@@ -67,7 +73,7 @@ class AnnotionView:StaticAnnotionView{//可以选中
             //执行delegate
             let locationID = annotion.subtitle!
             print(locationID)
-            
+            selectedDelegate.annotionBeingSelected(id: locationID)
             //delegate去移动MapView
             selectedDelegate.setLocationCenter(data: annotion.coordinate)
         }else{
@@ -82,4 +88,5 @@ class AnnotionView:StaticAnnotionView{//可以选中
 
 protocol SelectedAnnotionDelegate {
     func setLocationCenter(data:CLLocationCoordinate2D)
+    func annotionBeingSelected(id:String)
 }
