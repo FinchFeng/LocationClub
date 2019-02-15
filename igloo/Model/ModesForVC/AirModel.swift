@@ -15,7 +15,7 @@ class AirModel {
     //图标数据类型数据
     var currentAnnationLocationDataArray:[(id:String,data:LocationInfoRank3)] = []
     var currentShowingIndexMax = 0
-    
+    let groupAmount = 20
     //MARK:Functions
     
     //获取某个区域的数据并且展示第一Group的数据
@@ -28,12 +28,12 @@ class AirModel {
         }
     }
     
-    //使用这个方法来进行数据获取LocationRank3Data
+    //使用这个方法来进行数据获取LocationRank3Data 取到没有到时候就为空
     func showNextGroupOfLocationData(landingBlock:@escaping (([(id:String,data2:LocationInfoRank2,data3:LocationInfoRank3)]))->Void){
-        let groupAmount = 20
         //取出要获取的数据
-        let resultDataArray = currentAnnationLocationDataArray[currentShowingIndexMax..<currentShowingIndexMax+groupAmount]
-        currentShowingIndexMax += groupAmount
+        let lastIndex = currentShowingIndexMax+groupAmount > currentAnnationLocationDataArray.count ? currentAnnationLocationDataArray.count : currentShowingIndexMax+groupAmount//防止最后一Group不够20
+        let resultDataArray = currentAnnationLocationDataArray[currentShowingIndexMax..<lastIndex]
+        currentShowingIndexMax = lastIndex
         //递归获取这些数据
         func getData(resultArray:[(id:String,data2:LocationInfoRank2,data3:LocationInfoRank3)],inputArray:[(id:String,data:LocationInfoRank3)]){
             if let firstData = inputArray.first{

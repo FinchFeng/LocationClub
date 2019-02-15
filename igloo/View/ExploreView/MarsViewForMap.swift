@@ -20,9 +20,18 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
         decelerationRate = UIScrollView.DecelerationRate(rawValue: 0)
         //select第一个Cell
         if !locationDataArray.isEmpty {
-            let cell = cellForRow(at: IndexPath(row: 0, section: 0 )) as! LocationCell
-            cell.showIndecater()
+            scrollTo(index:0)
         }
+    }
+    
+    func addDataIn(locationDataArray: [(rank2: LocationInfoRank2, rank3: LocationInfoRank3)]) {
+        let currentIndex = self.locationDataArray.count
+        self.locationDataArray += locationDataArray
+        var indexArray:[IndexPath] = []
+        for (index,_) in locationDataArray.enumerated() {
+            indexArray.append(IndexPath(row: currentIndex+index, section: 0))
+        }
+        insertRows(at: indexArray, with: UITableView.RowAnimation.fade)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,8 +57,8 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     
     //MARK:滑动控制
     
-    //惯性停止
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    //惯性开始
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         self.stoppedScrolling()
     }
     //停止动作
@@ -64,6 +73,7 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
         let offset = self.contentOffset.y
         let cell = getCellFrom(offset: offset)!
         scrollTo(cell: cell)
+       
     }
     
     //移动到某一Cell上
@@ -87,12 +97,15 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     
     //找到这个Offset属于哪个Cell
     func getCellFrom(offset:CGFloat)->LocationCell?  {
-//        let lastIndex = self.locationDataArray.count-1
+         print(offset)
         for index in 0..<self.locationDataArray.count {
             if let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) {
+                print(index)
                 //判断是否在这个区域内
                 let midY = cell.frame.minY
                 let cellHeight = Constants.locationCellSize.height
+                print("region")
+                print(midY-cellHeight/2, "  ",midY+cellHeight/2)
                 if midY-cellHeight/2 < offset && offset <= midY+cellHeight/2 {
                     return cell as? LocationCell
                 }
