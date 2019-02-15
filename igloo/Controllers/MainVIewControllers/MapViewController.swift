@@ -26,24 +26,10 @@ class MapViewController: UIViewController,MapViewDelegate {
     var isShowingMarsView:Bool = true
     
     //MARK:LifeCycle
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         map.mapviewDelegate = self
         marsView.mapViewDelegate = self
-        let dataArray:[(LocationInfoRank2,LocationInfoRank3)] =  [(LocationInfoRank2(locationName: "cocoCoffee" ,locationInfoWord: "nearby upc" ,locationLikedAmount: 0 ,locationInfoImageURL: "nil" ),LocationInfoRank3(locationLatitudeKey:3,locationLongitudeKey:6,iconKindString:"Cafe")),
-                                                                  (LocationInfoRank2(locationName: "koiCoffee" ,locationInfoWord: "nearby upc" ,locationLikedAmount: 0 ,locationInfoImageURL: "nil" ),LocationInfoRank3(locationLatitudeKey:4,locationLongitudeKey:5,iconKindString:"Bar")),
-                                                                  (LocationInfoRank2(locationName: "cocoCoffee" ,locationInfoWord: "nearby upc" ,locationLikedAmount: 0 ,locationInfoImageURL: "nil" ),LocationInfoRank3(locationLatitudeKey:6,locationLongitudeKey:6,iconKindString:"Cafe")),
-                                                                  (LocationInfoRank2(locationName: "cocoCoffee" ,locationInfoWord: "nearby upc" ,locationLikedAmount: 0 ,locationInfoImageURL: "nil" ),LocationInfoRank3(locationLatitudeKey:7,locationLongitudeKey:6,iconKindString:"Cafe"))]
-        
-        marsView.setDataIn(locationDataArray:dataArray)
-        map.setAnnotion(array: [
-            ("1",LocationInfoRank3(locationLatitudeKey: 22.294681,locationLongitudeKey:114.168177,iconKindString:"Cafe"))
-            ,("1",LocationInfoRank3(locationLatitudeKey: 22.384681,locationLongitudeKey:114.158177,iconKindString:"Bar"))
-            ,("1",LocationInfoRank3(locationLatitudeKey: 22.244681,locationLongitudeKey:114.148177,iconKindString:"Alien"))
-            ,("1",LocationInfoRank3(locationLatitudeKey: 22.254681,locationLongitudeKey:114.168177,iconKindString:"Hotel"))])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,18 +58,31 @@ class MapViewController: UIViewController,MapViewDelegate {
     }
     
     //MARK:Actions
-    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
-        if sender.state == .ended {
-            if map.selectedAnnotations.count == 0 {
-                marsViewMove(up: true)//要是没有选中就自动选择第一个
-            }else{
-                
-            }
-        }
+    @IBAction func tapView(_ sender: UITapGestureRecognizer) {//暂时不需要使用
+//        if sender.state == .ended {
+//            marsViewMove(up: true)//要是没有选中就自动选择第一个
+//        }
     }
     
-    @IBAction func resetRegionAction(_ sender: Any) {
+    @IBAction func resetRegionAction() {
        print("research Region")
+        //展现全新的LocationData 自动选择第一个cell
+        let currentRegion = map.region
+        model.getAnnotionsAndShow(span: currentRegion) { (dataArray) in
+            let dataArrayForMap = dataArray.map({ (data) -> (String,LocationInfoRank3) in
+                return (data.id,data.data3)
+            })
+            self.map.setAnnotion(array: dataArrayForMap)
+            let dataArrayForMarsView = dataArray.map({ (data) -> (LocationInfoRank2,LocationInfoRank3) in
+                return (data.data2,data.data3)
+            })
+            self.marsView.setDataIn(locationDataArray: dataArrayForMarsView)
+            //展现第一个Cell如果有数据的话
+            self.marsViewMove(up: true)
+            if !dataArray.isEmpty {
+                self.marsView.scrollTo(index: 0)
+            }
+        }
     }
     
     //MARK: 动画效果
@@ -110,7 +109,13 @@ class MapViewController: UIViewController,MapViewDelegate {
     //MARK: MapViewDelegate
     
     func selectAnnotion(id: String) {//展现MarsView
-        
+        marsViewMove(up: true)
+        for (index,data) in model.currentAnnationLocationDataArray.enumerated() {
+            if data.id == id {//滑动到这个Cell
+                marsView.scrollTo(index:index)
+                return
+            }
+        }
     }
     
     func getIdOf(index:Int)->String {
@@ -133,6 +138,10 @@ class MapViewController: UIViewController,MapViewDelegate {
     func getHalfMapView()->UIView{
         return halfMapView
     }
+    
+    func selectAnnotionFromCell(id:String)  {
+        map.selectLocation(id: id)
+    }
 }
 
 protocol MapViewDelegate {
@@ -140,4 +149,7 @@ protocol MapViewDelegate {
     func getIdOf(index:Int)->String
     func showNextGroupLocation()
     func getHalfMapView()->UIView
+    func marsViewMove(up:Bool)
+    func resetRegionAction()
+    func selectAnnotionFromCell(id:String)
 }

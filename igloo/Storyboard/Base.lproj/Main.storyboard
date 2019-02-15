@@ -154,7 +154,7 @@
                                 <rect key="frame" x="133.5" y="336.5" width="108" height="30"/>
                                 <state key="normal" title="重新探索此区域"/>
                                 <connections>
-                                    <action selector="resetRegionAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kmK-nL-kkE"/>
+                                    <action selector="resetRegionAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dr4-Bm-Rwe"/>
                                 </connections>
                             </button>
                         </subviews>

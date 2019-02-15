@@ -102,8 +102,11 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
                 }
             }
         }else{
-            //从本地获取
-            image = ImageChecker.getImage(url:imageURL)!
+            //从Network获取
+            print(imageURL,"  imageURL")
+            Network.getImage(at: imageURL, landingAction: { (newImage) in
+                image = newImage
+            })
         }
         //loadtheData
         cell.set(data: data.rank2, image: image)

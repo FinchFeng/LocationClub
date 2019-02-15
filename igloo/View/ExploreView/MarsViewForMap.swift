@@ -73,7 +73,6 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
         let offset = self.contentOffset.y
         let cell = getCellFrom(offset: offset)!
         scrollTo(cell: cell)
-       
     }
     
     //移动到某一Cell上
@@ -87,9 +86,15 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
             }
         }
         cell.showIndecater()
+        //展现对应的Annotion
+        let id = mapViewDelegate.getIdOf(index: cell.index)
+        mapViewDelegate.selectAnnotionFromCell(id: id)
     }
     
     func scrollTo(index:Int) {
+        //使用ScrollView来Scroll
+        let cellMinY = Constants.locationCellSize.height * CGFloat(index)
+        setContentOffset(CGPoint(x: 0, y: cellMinY), animated: false)
         let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) as! LocationCell
         scrollTo(cell: cell)
     }

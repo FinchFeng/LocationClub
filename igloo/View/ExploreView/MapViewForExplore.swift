@@ -12,7 +12,8 @@ import MapKit
 class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
     
     var mapviewDelegate:MapViewDelegate!
-    
+    //State 有选中的annotion
+    var haveChosenAnnotion:Bool = false
     func setAnnotion(array:[(String,LocationInfoRank3)]){
         //删除之前所有的Annotion 除了userLocation
         self.annotations.forEach { (data) in
@@ -54,6 +55,8 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
             mapView.setRegion(region, animated: false)
             //移动地图到真正的中点
             setUserLocationInHalfView(animated: false)
+            //搜索locationData
+            mapviewDelegate.resetRegionAction()
         }
     }
     
@@ -78,6 +81,11 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
     func selectLocation(id:String)  {//代码选择location
         for data in self.annotations{
             if data.subtitle! == id {
+                //查看是否已经被选择
+                if let annotion = self.selectedAnnotations.first, annotion.subtitle! == id {
+                    //已经被选择不需要再进行操作
+                    return
+                }
                 self.selectAnnotation(data, animated: true)
                 break
             }
@@ -106,7 +114,6 @@ class AnnotionView:StaticAnnotionView{//可以选中
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
         let annotion = self.annotation! as! AnnotionData
         //更换Selected图片
         if selected {
@@ -118,13 +125,15 @@ class AnnotionView:StaticAnnotionView{//可以选中
             selectedDelegate.annotionBeingSelected(id: locationID)
             //delegate去移动MapView
             selectedDelegate.setLocationCenter(data: annotion.coordinate)
+            //delegate执行
+            selectedDelegate.getCurrentMapView().mapviewDelegate.selectAnnotion(id: locationID)
         }else{
             let annotionImage = Constants.getIconStruct(name: self.annotation!.title!!)!.image
             self.image = annotionImage
-            
+            //hide marsView
+             selectedDelegate.getCurrentMapView().mapviewDelegate.marsViewMove(up: false)
         }
-        print(selected)
-        print(selectedDelegate.getCurrentMapView().selectedAnnotations.count)
+        
     }
     
     
