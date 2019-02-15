@@ -18,10 +18,6 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
         super.setDataIn(locationDataArray: locationDataArray)
         //配置decelerate的速度
         decelerationRate = UIScrollView.DecelerationRate(rawValue: 0)
-        //select第一个Cell
-        if !locationDataArray.isEmpty {
-            scrollTo(index:0)
-        }
     }
     
     func addDataIn(locationDataArray: [(rank2: LocationInfoRank2, rank3: LocationInfoRank3)]) {
