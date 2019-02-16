@@ -16,7 +16,7 @@ class MapViewController: UIViewController,MapViewDelegate {
     @IBOutlet weak var resetRegion: UIButton!
     @IBOutlet weak var indecator: UIActivityIndicatorView!
     
-    lazy var halfMapView: UIView = {
+    lazy var halfMapView: UIView = {//使用这个View来进行map移动到准确位置
         let view = UIView(frame: CGRect(x: 0, y:marsView.frame.height/2, width: self.view.frame.width, height:  self.map.frame.height-marsView.frame.height))
         view.isUserInteractionEnabled = false
         self.view.addSubview(view)
@@ -70,10 +70,11 @@ class MapViewController: UIViewController,MapViewDelegate {
     
     @IBAction func resetRegionAction() {
        print("research Region")
-       
         //展现全新的LocationData 自动选择第一个cell
         let currentRegion = map.region
+        //调用Model进行数据获取
         model.getAnnotionsAndShow(span: currentRegion) { (dataArray) in
+            //把数据填入marsView和mapview
             let dataArrayForMap = dataArray.map({ (data) -> (String,LocationInfoRank3) in
                 return (data.id,data.data3)
             })
@@ -84,10 +85,8 @@ class MapViewController: UIViewController,MapViewDelegate {
             self.marsView.setDataIn(locationDataArray: dataArrayForMarsView)
             //展现第一个Cell如果有数据的话
             self.marsViewMove(up: true)
-            if !dataArray.isEmpty {
-                self.marsView.scrollTo(index: 0)
-            }else{
-                //滑动到提醒的地方
+            if dataArray.isEmpty {
+                //该区域没有数据，滑动到提示的地方
                 self.marsView.scrollToRow(at: IndexPath(item: 0, section: 0), at: UITableView.ScrollPosition.top, animated: false)
             }
         }
@@ -99,6 +98,7 @@ class MapViewController: UIViewController,MapViewDelegate {
         //先更改状态
         if isShowingMarsView == up {return}
         isShowingMarsView = !isShowingMarsView
+        //动画效果
         UIView.animate(withDuration: 0.27, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
             let heightOfMarsView = self.marsView.frame.height
             let moveUpDistance = up ? -heightOfMarsView : 0
@@ -122,10 +122,14 @@ class MapViewController: UIViewController,MapViewDelegate {
         if show == false {return}
         for (index,data) in model.currentAnnationLocationDataArray.enumerated() {
             if data.id == id {//滑动到这个Cell
-                marsView.scrollTo(index:index)
+                marsView.scrollTo(index:index,selectAnnotion:false)
                 return
             }
         }
+    }
+    func selectAnnotionFromCell(id:String)  {
+        //返回的时候不进行展现
+        map.selectLocation(id: id)
     }
     
     func getIdOf(index:Int)->String {
@@ -139,35 +143,37 @@ class MapViewController: UIViewController,MapViewDelegate {
         marsView.isGettingData = true
         indecator.startAnimating()
         indecator.isHidden = false
+        let lastCurrentShowingIndexMax = model.currentShowingIndexMax
         model.showNextGroupOfLocationData { (newDatas) in
+            //如果没有返回数据
+            if newDatas.isEmpty {
+                //关闭loading
+                self.indecator.stopAnimating()
+                self.marsView.isGettingData = false
+                self.marsViewMove(up: true)
+                return
+            }
             let lastCellIndex = self.marsView.locationDataArray.count-1
             let dataArray = newDatas.map({ (data) -> (LocationInfoRank2,LocationInfoRank3) in
                 return (data.data2,data.data3)
             })
             self.marsView.addDataIn(locationDataArray: dataArray)
+            //select到上次最后一个Cell
+            self.marsView.scrollTo(index: lastCellIndex,selectAnnotion:true)
             //关闭loading
             self.indecator.stopAnimating()
             self.marsView.isGettingData = false
-            //select到上次最后一个Cell
-//            self.marsView.scrollTo(index: lastCellIndex)
-            print("lastCellIndex")
-            print(lastCellIndex)
-            print(self.marsView.locationDataArray.count-1)
         }
         //展现更多的Annotions
-        let newAnnotionArray = Array(model.currentAnnationLocationDataArray[0..<model.currentShowingIndexMax])
-        map.setAnnotion(array: newAnnotionArray)
+        let newAnnotionArray = Array(model.currentAnnationLocationDataArray[lastCurrentShowingIndexMax..<model.currentShowingIndexMax])
+        map.addData(array: newAnnotionArray)
     }
     
     func getHalfMapView()->UIView{
         return halfMapView
     }
     
-    func selectAnnotionFromCell(id:String)  {
-        //不进行展现
-        map.dontNeedToShowMarsView = true
-        map.selectLocation(id: id)
-    }
+    
 }
 
 protocol MapViewDelegate {

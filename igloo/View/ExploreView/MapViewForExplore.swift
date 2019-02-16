@@ -11,10 +11,13 @@ import MapKit
 
 class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
     
+    //MARK: Datas
     var mapviewDelegate:MapViewDelegate!
     //State 有选中的annotion
     var haveChosenAnnotion:Bool = false
+    
     func setAnnotion(array:[(String,LocationInfoRank3)]){
+        haveChosenAnnotion = false
         //删除之前所有的Annotion 除了userLocation
         self.removeAnnotations(self.annotations)
         array.forEach { (data) in
@@ -25,8 +28,16 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
         }
     }
     
-    //MARK: MKMapViewDelegate
+    func addData(array:[(String,LocationInfoRank3)]){
+        array.forEach { (data) in
+            //添加Annotion
+            let locationData = AnnotionData(rank3Data: data.1)
+            locationData.subtitle = data.0
+            self.addAnnotation(locationData)
+        }
+    }
     
+    //MARK: MKMapViewDelegate
     override func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !(annotation is MKUserLocation) else {
             return nil
@@ -39,7 +50,7 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
         view.image = Constants.getIconStruct(name: title)!.image
         return view
     }
-    //自动定位
+    //MARK:自动定位userLocation
     var firstTimeUpdateUserLocation = true
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {//mapView更新userLocation的时候
         if firstTimeUpdateUserLocation {
@@ -63,19 +74,19 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
         self.setCenter(realCenter, animated: animated)
     }
     
+    //移动到在正确的位置
     func setCenterInHalfView(center:CLLocationCoordinate2D){
         let halfMapView = mapviewDelegate.getHalfMapView()
         let realCenter = convert(halfMapView.center, toCoordinateFrom: halfMapView)
         let latitudeDistance:CLLocationDegrees =  realCenter.latitude - self.centerCoordinate.latitude //国内为正⚠️
-//        print(realCenter)
-//        print(self.centerCoordinate)
-//        print(latitudeDistance)
         let newCenter = CLLocationCoordinate2D(latitude: center.latitude+latitudeDistance, longitude: center.longitude)
         self.setCenter(newCenter, animated: true)
     }
     
     
-    func selectLocation(id:String)  {//代码选择location
+    func selectLocation(id:String)  {//cell选择location
+        print("cell选择location")
+        dontNeedToShowMarsView = true
         for data in self.annotations{
             if data.subtitle! == id {
                 //查看是否已经被选择
@@ -92,8 +103,6 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
     //MARK: SelectedAnnotionDelegate
     func setLocationCenter(data:CLLocationCoordinate2D){
         setCenterInHalfView(center: data)
-//        self.setRegion(MKCoordinateRegion(center: data, span: self.region.span), animated: false)
-//        setUserLocationInHalfView(animated: false)
     }
     
     func annotionBeingSelected(id: String) {
@@ -103,7 +112,6 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
         }else{
             mapviewDelegate.selectAnnotionInCell(id:id,show:true)
         }
-        
     }
     
     func getCurrentMapView()->MapViewForExplore{
@@ -130,8 +138,7 @@ class AnnotionView:StaticAnnotionView{//可以选中
             self.image = annotionHighLightImage
             //执行delegate
             let locationID = annotion.subtitle!
-//            print(locationID)
-            selectedDelegate.annotionBeingSelected(id: locationID)
+            print(annotion.title!," 被选中了")
             //delegate去移动MapView
             selectedDelegate.setLocationCenter(data: annotion.coordinate)
             //delegate执行

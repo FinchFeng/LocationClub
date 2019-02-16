@@ -81,8 +81,8 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
                                                   longitude: data.rank3.locationLongitudeKey) { (mapImage) in
                                                     image = mapImage
                                                     //重新装入数据，刷新这个Cell
-//                                                    print("reloadData")
                                                     self.reloadRows(at: [indexPath], with: .automatic)
+
                 }
             }
         }else{
@@ -90,6 +90,8 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
 //            print(imageURL,"  imageURL")
             Network.getImage(at: imageURL, landingAction: { (newImage) in
                 image = newImage
+                //重新装入数据，刷新这个Cell
+                self.reloadRows(at: [indexPath], with: .automatic)
             })
         }
         //loadtheData

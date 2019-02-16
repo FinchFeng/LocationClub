@@ -15,8 +15,10 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     var mapViewDelegate:MapViewDelegate!
     var isGettingData:Bool = false
     
+    //MARK:加入数据
     override func setDataIn(locationDataArray: [(rank2: LocationInfoRank2, rank3: LocationInfoRank3)]) {
         super.setDataIn(locationDataArray: locationDataArray)
+        self.scrollTo(index: 0,selectAnnotion:true)
         //配置decelerate的速度
         decelerationRate = UIScrollView.DecelerationRate(rawValue: 0)
     }
@@ -31,6 +33,7 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
         insertRows(at: indexArray, with: UITableView.RowAnimation.fade)
     }
     
+    //MARK : Override tableViewDelegate
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if locationDataArray.isEmpty {
             return 1
@@ -73,11 +76,11 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
         }//没有Cell的话不用处理
         let offset = self.contentOffset.y
         let cell = getCellFrom(offset: offset)!
-        scrollTo(cell: cell)
+        scrollTo(cell: cell,selectAnnotion:true)
     }
     
     //移动到某一Cell上
-    func scrollTo(cell:LocationCell) {
+    func scrollTo(cell:LocationCell,selectAnnotion:Bool) {
         if isGettingData {return}
         let minY = cell.frame.minY
         self.setContentOffset(CGPoint(x: 0, y: minY), animated: true)
@@ -88,31 +91,29 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
             }
         }
         cell.showIndecater()
-        //展现对应的Annotion
-        let id = mapViewDelegate.getIdOf(index: cell.index)
-        mapViewDelegate.selectAnnotionFromCell(id: id)
-        print(cell.index," Cell 被选中")
+        print(cell.index!," Cell 被选中")
         //要是是最后一个地点数据，进行新一轮的数据获取
         if cell.index == self.locationDataArray.count-1 {
             mapViewDelegate.showNextGroupLocation()
+            return
+        }
+        //展现对应的Annotion
+        if selectAnnotion {
+            let id = mapViewDelegate.getIdOf(index: cell.index)
+            mapViewDelegate.selectAnnotionFromCell(id: id)
         }
     }
-    var currentSelectedCellIndex = -1
-    func scrollTo(index:Int) {
-        if index == currentSelectedCellIndex {
-            return
-        }else{
-            currentSelectedCellIndex = index
-        }
+    func scrollTo(index:Int,selectAnnotion:Bool) {
         //使用ScrollView来Scroll
         let cellMinY = Constants.locationCellSize.height * CGFloat(index)
         setContentOffset(CGPoint(x: 0, y: cellMinY), animated: false)
         if let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) as? LocationCell {
             print("scrollTo(index:\(index) ")
-            scrollTo(cell: cell)
+            scrollTo(cell: cell,selectAnnotion:selectAnnotion)
         }else{
-            //Cell还未生成
+            //Cell还未生成直接滑动到顶部
             print("第\(index)个 Cell还未生成")
+            self.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         }
     }
     
