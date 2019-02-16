@@ -157,12 +157,13 @@ class MapViewController: UIViewController,MapViewDelegate {
             let dataArray = newDatas.map({ (data) -> (LocationInfoRank2,LocationInfoRank3) in
                 return (data.data2,data.data3)
             })
-            self.marsView.addDataIn(locationDataArray: dataArray)
-            //select到上次最后一个Cell
-            self.marsView.scrollTo(index: lastCellIndex,selectAnnotion:true)
             //关闭loading
             self.indecator.stopAnimating()
             self.marsView.isGettingData = false
+            //select到上次最后一个Cell
+            self.marsView.scrollTo(index: lastCellIndex,selectAnnotion:true)
+            self.marsView.addDataIn(locationDataArray: dataArray)
+            
         }
         //展现更多的Annotions
         let newAnnotionArray = Array(model.currentAnnationLocationDataArray[lastCurrentShowingIndexMax..<model.currentShowingIndexMax])
