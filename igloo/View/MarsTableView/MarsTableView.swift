@@ -11,11 +11,9 @@ import UIKit
 class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
     
     var viewControllerDelegate:MyLocationDelegate!
-    
     //MARK:使用[(Rank2,Rank3)]作为数据源,进行init
     
     var locationDataArray:[(rank2:LocationInfoRank2,rank3:LocationInfoRank3)]!
-    
     func setDataIn(locationDataArray:[(rank2:LocationInfoRank2,rank3:LocationInfoRank3)]){
         //进行数据的装入
         self.locationDataArray = locationDataArray

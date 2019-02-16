@@ -30,6 +30,8 @@ class MapViewController: UIViewController,MapViewDelegate {
         super.viewDidLoad()
         map.mapviewDelegate = self
         marsView.mapViewDelegate = self
+        resetRegion.layer.cornerRadius = 6
+        resetRegion.layer.masksToBounds = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +68,7 @@ class MapViewController: UIViewController,MapViewDelegate {
     
     @IBAction func resetRegionAction() {
        print("research Region")
+       
         //展现全新的LocationData 自动选择第一个cell
         let currentRegion = map.region
         model.getAnnotionsAndShow(span: currentRegion) { (dataArray) in
@@ -76,11 +79,16 @@ class MapViewController: UIViewController,MapViewDelegate {
             let dataArrayForMarsView = dataArray.map({ (data) -> (LocationInfoRank2,LocationInfoRank3) in
                 return (data.data2,data.data3)
             })
+            print("dataArrayForMarsView 返回的数组")
+            print(dataArrayForMarsView)
             self.marsView.setDataIn(locationDataArray: dataArrayForMarsView)
             //展现第一个Cell如果有数据的话
             self.marsViewMove(up: true)
             if !dataArray.isEmpty {
                 self.marsView.scrollTo(index: 0)
+            }else{
+                //滑动到提醒的地方
+                self.marsView.scrollToRow(at: IndexPath(item: 0, section: 0), at: UITableView.ScrollPosition.top, animated: false)
             }
         }
     }

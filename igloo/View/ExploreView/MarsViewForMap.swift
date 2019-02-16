@@ -39,7 +39,7 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if locationDataArray.isEmpty{
+        if locationDataArray.isEmpty {
             let cell = dequeueReusableCell(withIdentifier: "noResultCell")!
             return cell
         }else{
@@ -65,7 +65,10 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     }
     //停止的处理方法
     func stoppedScrolling() {
-        if locationDataArray.isEmpty { return }//没有Cell的话不用处理
+        if locationDataArray.isEmpty {
+            print("locationDataArray.isEmpty")
+            return
+        }//没有Cell的话不用处理
         let offset = self.contentOffset.y
         let cell = getCellFrom(offset: offset)!
         scrollTo(cell: cell)
@@ -88,25 +91,30 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     }
     
     func scrollTo(index:Int) {
+        print("scrollTo(index:Int)")
         //使用ScrollView来Scroll
         let cellMinY = Constants.locationCellSize.height * CGFloat(index)
         setContentOffset(CGPoint(x: 0, y: cellMinY), animated: false)
-        let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) as! LocationCell
-        scrollTo(cell: cell)
+        if let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) as? LocationCell {
+            scrollTo(cell: cell)
+        }else{
+            //Cell还未生成
+            print("Cell还未生成")
+        }
     }
     
     
     //找到这个Offset属于哪个Cell
     func getCellFrom(offset:CGFloat)->LocationCell?  {
-         print(offset)
+//         print(offset)
         for index in 0..<self.locationDataArray.count {
             if let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) {
-                print(index)
+//                print(index)
                 //判断是否在这个区域内
                 let midY = cell.frame.minY
                 let cellHeight = Constants.locationCellSize.height
-                print("region")
-                print(midY-cellHeight/2, "  ",midY+cellHeight/2)
+//                print("region")
+//                print(midY-cellHeight/2, "  ",midY+cellHeight/2)
                 if midY-cellHeight/2 < offset && offset <= midY+cellHeight/2 {
                     return cell as? LocationCell
                 }

@@ -20,6 +20,7 @@ class AirModel {
     
     //获取某个区域的数据并且展示第一Group的数据
     func getAnnotionsAndShow(span:MKCoordinateRegion,landingBlock:@escaping (([(id:String,data2:LocationInfoRank2,data3:LocationInfoRank3)]))->Void) {
+        currentAnnationLocationDataArray = [] //清空数据
         currentShowingIndexMax = 0
         Network.getLocationsIn(span: span) { (data) in
             //获取array
@@ -28,7 +29,7 @@ class AirModel {
         }
     }
     
-    //使用这个方法来进行数据获取LocationRank3Data 取到没有到时候就为空
+    //使用这个方法来进行数据获取LocationRank2Data 取到没有的时候就为空
     func showNextGroupOfLocationData(landingBlock:@escaping (([(id:String,data2:LocationInfoRank2,data3:LocationInfoRank3)]))->Void){
         //取出要获取的数据
         let lastIndex = currentShowingIndexMax+groupAmount > currentAnnationLocationDataArray.count ? currentAnnationLocationDataArray.count : currentShowingIndexMax+groupAmount//防止最后一Group不够20
