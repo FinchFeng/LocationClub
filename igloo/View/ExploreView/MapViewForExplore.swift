@@ -45,7 +45,7 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
         if firstTimeUpdateUserLocation {
             firstTimeUpdateUserLocation = false
             let location = userLocation.coordinate
-            print(location)
+//            print(location)
             let delta = Constants.lengthOfBigMap
             let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
             let region = MKCoordinateRegion(center: location, span: span)
@@ -97,11 +97,23 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
     }
     
     func annotionBeingSelected(id: String) {
-        mapviewDelegate.selectAnnotion(id:id)
+        if dontNeedToShowMarsView {
+            mapviewDelegate.selectAnnotionInCell(id:id,show:false)
+            dontNeedToShowMarsView = false
+        }else{
+            mapviewDelegate.selectAnnotionInCell(id:id,show:true)
+        }
+        
     }
     
     func getCurrentMapView()->MapViewForExplore{
         return self
+    }
+    
+    var dontNeedToShowMarsView:Bool = false
+    
+    func needToShowMarsView() -> Bool {
+        return self.dontNeedToShowMarsView
     }
 }
 
@@ -123,7 +135,7 @@ class AnnotionView:StaticAnnotionView{//可以选中
             //delegate去移动MapView
             selectedDelegate.setLocationCenter(data: annotion.coordinate)
             //delegate执行
-            selectedDelegate.getCurrentMapView().mapviewDelegate.selectAnnotion(id: locationID)
+            selectedDelegate.annotionBeingSelected(id: locationID)
         }else{
             let annotionImage = Constants.getIconStruct(name: self.annotation!.title!!)!.image
             self.image = annotionImage
@@ -140,4 +152,5 @@ protocol SelectedAnnotionDelegate {
     func setLocationCenter(data:CLLocationCoordinate2D)
     func annotionBeingSelected(id:String)
     func getCurrentMapView()->MapViewForExplore
+    func needToShowMarsView() -> Bool
 }

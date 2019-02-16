@@ -13,6 +13,7 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     
     //记得赋值
     var mapViewDelegate:MapViewDelegate!
+    var isGettingData:Bool = false
     
     override func setDataIn(locationDataArray: [(rank2: LocationInfoRank2, rank3: LocationInfoRank3)]) {
         super.setDataIn(locationDataArray: locationDataArray)
@@ -65,8 +66,9 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     }
     //停止的处理方法
     func stoppedScrolling() {
+        print("stoppedScrolling")
         if locationDataArray.isEmpty {
-            print("locationDataArray.isEmpty")
+//            print("locationDataArray.isEmpty")
             return
         }//没有Cell的话不用处理
         let offset = self.contentOffset.y
@@ -76,6 +78,7 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     
     //移动到某一Cell上
     func scrollTo(cell:LocationCell) {
+        if isGettingData {return}
         let minY = cell.frame.minY
         self.setContentOffset(CGPoint(x: 0, y: minY), animated: true)
         //显示指示条
@@ -88,33 +91,39 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
         //展现对应的Annotion
         let id = mapViewDelegate.getIdOf(index: cell.index)
         mapViewDelegate.selectAnnotionFromCell(id: id)
+        print(cell.index," Cell 被选中")
+        //要是是最后一个地点数据，进行新一轮的数据获取
+        if cell.index == self.locationDataArray.count-1 {
+            mapViewDelegate.showNextGroupLocation()
+        }
     }
-    
+    var currentSelectedCellIndex = -1
     func scrollTo(index:Int) {
-        print("scrollTo(index:Int)")
+        if index == currentSelectedCellIndex {
+            return
+        }else{
+            currentSelectedCellIndex = index
+        }
         //使用ScrollView来Scroll
         let cellMinY = Constants.locationCellSize.height * CGFloat(index)
         setContentOffset(CGPoint(x: 0, y: cellMinY), animated: false)
         if let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) as? LocationCell {
+            print("scrollTo(index:\(index) ")
             scrollTo(cell: cell)
         }else{
             //Cell还未生成
-            print("Cell还未生成")
+            print("第\(index)个 Cell还未生成")
         }
     }
     
     
     //找到这个Offset属于哪个Cell
     func getCellFrom(offset:CGFloat)->LocationCell?  {
-//         print(offset)
         for index in 0..<self.locationDataArray.count {
             if let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) {
-//                print(index)
                 //判断是否在这个区域内
                 let midY = cell.frame.minY
                 let cellHeight = Constants.locationCellSize.height
-//                print("region")
-//                print(midY-cellHeight/2, "  ",midY+cellHeight/2)
                 if midY-cellHeight/2 < offset && offset <= midY+cellHeight/2 {
                     return cell as? LocationCell
                 }

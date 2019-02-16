@@ -15,7 +15,7 @@ class AirModel {
     //图标数据类型数据
     var currentAnnationLocationDataArray:[(id:String,data:LocationInfoRank3)] = []
     var currentShowingIndexMax = 0
-    let groupAmount = 20
+    let groupAmount = 3
     //MARK:Functions
     
     //获取某个区域的数据并且展示第一Group的数据
@@ -50,10 +50,13 @@ class AirModel {
                     getData(resultArray: newResultArray, inputArray: newInputArray)
                 }
             }else{
+                print("执行landingAction")
                 //执行landingAction
                 landingBlock(resultArray)
+                return
             }
         }
+        
         getData(resultArray: [], inputArray:Array(resultDataArray))
     }
     

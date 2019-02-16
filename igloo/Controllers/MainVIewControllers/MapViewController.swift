@@ -14,6 +14,8 @@ class MapViewController: UIViewController,MapViewDelegate {
     @IBOutlet weak var distanceMarsViewShowing: NSLayoutConstraint!
     @IBOutlet weak var marsView: MarsTableViewForMap!
     @IBOutlet weak var resetRegion: UIButton!
+    @IBOutlet weak var indecator: UIActivityIndicatorView!
+    
     lazy var halfMapView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y:marsView.frame.height/2, width: self.view.frame.width, height:  self.map.frame.height-marsView.frame.height))
         view.isUserInteractionEnabled = false
@@ -79,8 +81,6 @@ class MapViewController: UIViewController,MapViewDelegate {
             let dataArrayForMarsView = dataArray.map({ (data) -> (LocationInfoRank2,LocationInfoRank3) in
                 return (data.data2,data.data3)
             })
-            print("dataArrayForMarsView 返回的数组")
-            print(dataArrayForMarsView)
             self.marsView.setDataIn(locationDataArray: dataArrayForMarsView)
             //展现第一个Cell如果有数据的话
             self.marsViewMove(up: true)
@@ -116,8 +116,10 @@ class MapViewController: UIViewController,MapViewDelegate {
     
     //MARK: MapViewDelegate
     
-    func selectAnnotion(id: String) {//展现MarsView
+    func selectAnnotionInCell(id: String,show:Bool) {//展现MarsView
         marsViewMove(up: true)
+        print("selectAnnotionInCell(id: String,show:\(show)")
+        if show == false {return}
         for (index,data) in model.currentAnnationLocationDataArray.enumerated() {
             if data.id == id {//滑动到这个Cell
                 marsView.scrollTo(index:index)
@@ -131,15 +133,29 @@ class MapViewController: UIViewController,MapViewDelegate {
     }
     
     func showNextGroupLocation(){
+        print("showNextGroupLocation")
         //展现MarsView 获取新数据
+        //进行loading显示
+        marsView.isGettingData = true
+        indecator.startAnimating()
+        indecator.isHidden = false
         model.showNextGroupOfLocationData { (newDatas) in
+            let lastCellIndex = self.marsView.locationDataArray.count-1
             let dataArray = newDatas.map({ (data) -> (LocationInfoRank2,LocationInfoRank3) in
                 return (data.data2,data.data3)
             })
             self.marsView.addDataIn(locationDataArray: dataArray)
+            //关闭loading
+            self.indecator.stopAnimating()
+            self.marsView.isGettingData = false
+            //select到上次最后一个Cell
+//            self.marsView.scrollTo(index: lastCellIndex)
+            print("lastCellIndex")
+            print(lastCellIndex)
+            print(self.marsView.locationDataArray.count-1)
         }
-        //展现Annotions
-        let newAnnotionArray = Array(model.currentAnnationLocationDataArray[model.currentShowingIndexMax..<model.currentShowingIndexMax+model.groupAmount])
+        //展现更多的Annotions
+        let newAnnotionArray = Array(model.currentAnnationLocationDataArray[0..<model.currentShowingIndexMax])
         map.setAnnotion(array: newAnnotionArray)
     }
     
@@ -148,12 +164,14 @@ class MapViewController: UIViewController,MapViewDelegate {
     }
     
     func selectAnnotionFromCell(id:String)  {
+        //不进行展现
+        map.dontNeedToShowMarsView = true
         map.selectLocation(id: id)
     }
 }
 
 protocol MapViewDelegate {
-    func selectAnnotion(id:String)
+    func selectAnnotionInCell(id: String,show:Bool)
     func getIdOf(index:Int)->String
     func showNextGroupLocation()
     func getHalfMapView()->UIView

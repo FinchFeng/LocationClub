@@ -163,6 +163,9 @@
                                     <action selector="resetRegionAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dr4-Bm-Rwe"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="r6V-mQ-dG4">
+                                <rect key="frame" x="169" y="573" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -171,7 +174,9 @@
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="leading" secondItem="md7-dy-WBW" secondAttribute="leading" id="Ay8-rt-Vlt"/>
                             <constraint firstItem="qkd-3m-9sI" firstAttribute="centerX" secondItem="jnS-Nv-v7V" secondAttribute="centerX" id="Cx8-iv-7Wl"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="top" secondItem="qkd-3m-9sI" secondAttribute="bottom" constant="8" symbolic="YES" id="FIe-7q-V42"/>
+                            <constraint firstItem="r6V-mQ-dG4" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ID1-Sa-fUS"/>
                             <constraint firstItem="md7-dy-WBW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MsX-Py-Brd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r6V-mQ-dG4" secondAttribute="bottom" constant="8" id="UwR-x4-Sx3"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="trailing" secondItem="md7-dy-WBW" secondAttribute="trailing" id="dEI-LH-Hrz"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="top" secondItem="md7-dy-WBW" secondAttribute="bottom" constant="-243.5" id="ie8-hG-JSN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="md7-dy-WBW" secondAttribute="trailing" id="zw3-Ja-l47"/>
@@ -182,6 +187,7 @@
                     <navigationItem key="navigationItem" id="HdU-i1-bnc"/>
                     <connections>
                         <outlet property="distanceMarsViewShowing" destination="ie8-hG-JSN" id="wDV-il-17D"/>
+                        <outlet property="indecator" destination="r6V-mQ-dG4" id="Ko0-xQ-UNU"/>
                         <outlet property="map" destination="md7-dy-WBW" id="R3D-c5-rOI"/>
                         <outlet property="marsView" destination="jnS-Nv-v7V" id="SfR-l6-glL"/>
                         <outlet property="resetRegion" destination="qkd-3m-9sI" id="W6z-Ok-Tdb"/>
