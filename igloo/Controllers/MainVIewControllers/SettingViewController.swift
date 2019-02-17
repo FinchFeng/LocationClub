@@ -18,6 +18,7 @@ class SettingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController!.navigationItem.titleView = nil
         self.tabBarController!.navigationItem.title = "设置"
         self.tabBarController!.navigationItem.leftBarButtonItem = nil
         self.tabBarController!.navigationItem.rightBarButtonItem = nil

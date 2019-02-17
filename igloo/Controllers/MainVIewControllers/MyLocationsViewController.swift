@@ -63,9 +63,10 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     
     func setEditingTableViewNavBarEnd() {
         let tabBarVC = self.tabBarController!
-        tabBarVC.title = "我的地点"
+        tabBarVC.navigationItem.titleView = nil
         tabBarVC.navigationItem.leftBarButtonItem = leftBarItem
         tabBarVC.navigationItem.rightBarButtonItem = rightBarItem
+        tabBarVC.title = "我的地点"
     }
     
     func setEditingTableViewNavBarStart() {
