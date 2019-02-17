@@ -47,8 +47,6 @@ class ChoseLocationViewController: UIViewController {
         resultSearchController?.hidesNavigationBarDuringPresentation = false//控制bar不隐藏
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
-        
-        
     }
     
     
@@ -117,7 +115,7 @@ extension ChoseLocationViewController : MKMapViewDelegate {
         if firstTimeUpdateUserLocation {
             firstTimeUpdateUserLocation = false
             let location = userLocation.coordinate
-            let delta = Constants.lengthOfBigMap
+            let delta = Constants.lengthOfBigMap/2
             let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
             let region = MKCoordinateRegion(center: location, span: span)
             mapView.setRegion(region, animated: true)
@@ -133,9 +131,9 @@ extension ChoseLocationViewController: HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark){//mapView移动到当前位置
         // cache the pin
         selectedPin = placemark
-//        let delta = Constants.lengthOfBigMap
-//        let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
-        let region = MKCoordinateRegion(center: placemark.coordinate, span: mapView.region.span)
+        let delta = Constants.lengthOfBigMap/2
+        let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
+        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
         mapView.setRegion(region, animated: true)
     }
 }
@@ -154,9 +152,6 @@ extension CLPlacemark{
         if let locality = self.locality {
             result += locality + " "
         }
-//        if let subLocality = self.subLocality{
-//            result += subLocality + " "
-//        }
         if let thoroughfare = self.thoroughfare{
             result += thoroughfare + " "
         }

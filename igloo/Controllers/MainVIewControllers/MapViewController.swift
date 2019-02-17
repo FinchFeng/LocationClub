@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class MapViewController: UIViewController,MapViewDelegate {
     //MARK:IBOutlet
@@ -15,6 +16,11 @@ class MapViewController: UIViewController,MapViewDelegate {
     @IBOutlet weak var marsView: MarsTableViewForMap!
     @IBOutlet weak var resetRegion: UIButton!
     @IBOutlet weak var indecator: UIActivityIndicatorView!
+    @IBOutlet weak var searchLocationButton: UIButton!
+    @IBOutlet weak var addNewLocationButton: UIButton!
+    
+    var selectedPin:MKPlacemark? = nil
+    var resultSearchController:UISearchController? = nil
     
     lazy var halfMapView: UIView = {//使用这个View来进行map移动到准确位置
         let view = UIView(frame: CGRect(x: 0, y:marsView.frame.height/2, width: self.view.frame.width, height:  self.map.frame.height-marsView.frame.height))
@@ -34,6 +40,12 @@ class MapViewController: UIViewController,MapViewDelegate {
         marsView.mapViewDelegate = self
         resetRegion.layer.cornerRadius = 6
         resetRegion.layer.masksToBounds = true
+        //进行handleMapVC的配置
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        locationSearchTable.handleMapSearchDelegate = self
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        locationSearchTable.mapView = map
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,9 +75,12 @@ class MapViewController: UIViewController,MapViewDelegate {
     
     //MARK:Actions
     @IBAction func tapView(_ sender: UITapGestureRecognizer) {//暂时不需要使用
-//        if sender.state == .ended {
-//            marsViewMove(up: true)//要是没有选中就自动选择第一个
-//        }
+    }
+    
+    @objc func doneAction(){
+        searchLocationButton.isHidden = false
+        addNewLocationButton.isHidden = false
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     @IBAction func resetRegionAction() {
@@ -91,6 +106,29 @@ class MapViewController: UIViewController,MapViewDelegate {
             }
         }
     }
+    
+    @IBAction func searchLocationAction() {
+        let navigationItem = tabBarController!.navigationItem
+        //配置navigationBar
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.setValue("取消", forKey:"_cancelButtonText")
+        searchBar.tintColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
+        searchBar.placeholder = "搜索位置"
+        searchBar.setImage(UIImage(), for: .clear, state: .normal)//隐藏删除buttun
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.titleView = resultSearchController?.searchBar
+        navigationItem.leftBarButtonItem = nil
+        showDoneButton()
+        resultSearchController?.hidesNavigationBarDuringPresentation = false//控制bar不隐藏
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        //隐藏两个Button展现NavigationBar
+        searchLocationButton.isHidden = true
+        addNewLocationButton.isHidden = true
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     
     //MARK: 动画效果
     
@@ -163,7 +201,6 @@ class MapViewController: UIViewController,MapViewDelegate {
             //select到上次最后一个Cell
             self.marsView.scrollTo(index: lastCellIndex,selectAnnotion:true)
             self.marsView.addDataIn(locationDataArray: dataArray)
-            
         }
         //展现更多的Annotions
         let newAnnotionArray = Array(model.currentAnnationLocationDataArray[lastCurrentShowingIndexMax..<model.currentShowingIndexMax])
@@ -173,6 +210,7 @@ class MapViewController: UIViewController,MapViewDelegate {
     func getHalfMapView()->UIView{
         return halfMapView
     }
+    
     
     
 }
@@ -185,4 +223,25 @@ protocol MapViewDelegate {
     func marsViewMove(up:Bool)
     func resetRegionAction()
     func selectAnnotionFromCell(id:String)
+}
+
+extension MapViewController: HandleMapSearch {
+    func showDoneButton() {
+        let navigationItem = tabBarController!.navigationItem
+        let barButton = UIBarButtonItem(title: "完成", style: UIBarButtonItem.Style.plain, target: self, action: #selector(doneAction))
+        barButton.tintColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
+        navigationItem.rightBarButtonItem = barButton
+    }
+    
+    func hideDoneButton() {
+        let navigationItem = tabBarController!.navigationItem
+        navigationItem.rightBarButtonItem = nil
+    }
+    
+    func dropPinZoomIn(placemark:MKPlacemark){//mapView移动到当前位置
+        // cache the pin
+        selectedPin = placemark
+        let region = MKCoordinateRegion(center: placemark.coordinate, span: map.region.span)
+        map.setRegion(region, animated: true)
+    }
 }

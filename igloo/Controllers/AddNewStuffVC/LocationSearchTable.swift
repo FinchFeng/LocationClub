@@ -22,7 +22,6 @@ class LocationSearchTable : UITableViewController {
 }
 
 extension LocationSearchTable : UISearchResultsUpdating {
-//    func updateSearchResultsForSearchController(searchController: UISearchController) {
     public func updateSearchResults(for searchController: UISearchController){//输入框输入之后的响应方法
         guard let mapView = mapView,
             let searchBarText = searchController.searchBar.text else { return }
@@ -46,9 +45,6 @@ extension LocationSearchTable {
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return matchingItems.count
     }
-    
-//override     public func tableView(_ tableView: UITableView,cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-//func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     override
     public  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
 

@@ -166,6 +166,28 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="r6V-mQ-dG4">
                                 <rect key="frame" x="169" y="573" width="37" height="37"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqf-UX-oLD">
+                                <rect key="frame" x="12" y="76" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="1mX-0v-MfN"/>
+                                    <constraint firstAttribute="width" secondItem="lqf-UX-oLD" secondAttribute="height" multiplier="1:1" id="bof-nJ-5G8"/>
+                                </constraints>
+                                <state key="normal" image="searchButton"/>
+                                <connections>
+                                    <action selector="searchLocationAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="bqR-QR-aGW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tce-h6-0ZV">
+                                <rect key="frame" x="339" y="76" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Tce-h6-0ZV" secondAttribute="height" multiplier="1:1" id="SiS-Nc-VLW"/>
+                                    <constraint firstAttribute="height" constant="26" id="kmJ-2M-ebl"/>
+                                </constraints>
+                                <state key="normal" image="addButtonIcon"/>
+                                <connections>
+                                    <segue destination="EIb-8S-gam" kind="presentation" id="jfx-FN-ffj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -176,9 +198,13 @@
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="top" secondItem="qkd-3m-9sI" secondAttribute="bottom" constant="8" symbolic="YES" id="FIe-7q-V42"/>
                             <constraint firstItem="r6V-mQ-dG4" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ID1-Sa-fUS"/>
                             <constraint firstItem="md7-dy-WBW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MsX-Py-Brd"/>
+                            <constraint firstItem="lqf-UX-oLD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="P9s-Nk-uls"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r6V-mQ-dG4" secondAttribute="bottom" constant="8" id="UwR-x4-Sx3"/>
+                            <constraint firstItem="lqf-UX-oLD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="aCr-AU-GJQ"/>
+                            <constraint firstItem="Tce-h6-0ZV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="bW3-CB-MIe"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="trailing" secondItem="md7-dy-WBW" secondAttribute="trailing" id="dEI-LH-Hrz"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="top" secondItem="md7-dy-WBW" secondAttribute="bottom" constant="-243.5" id="ie8-hG-JSN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Tce-h6-0ZV" secondAttribute="trailing" constant="10" id="uHz-Et-XQP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="md7-dy-WBW" secondAttribute="trailing" id="zw3-Ja-l47"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -186,11 +212,13 @@
                     <tabBarItem key="tabBarItem" title="探索" image="exploreTabImage" id="UMd-eG-Emd" userLabel="探索"/>
                     <navigationItem key="navigationItem" id="HdU-i1-bnc"/>
                     <connections>
+                        <outlet property="addNewLocationButton" destination="Tce-h6-0ZV" id="DRI-KP-zXL"/>
                         <outlet property="distanceMarsViewShowing" destination="ie8-hG-JSN" id="wDV-il-17D"/>
                         <outlet property="indecator" destination="r6V-mQ-dG4" id="Ko0-xQ-UNU"/>
                         <outlet property="map" destination="md7-dy-WBW" id="R3D-c5-rOI"/>
                         <outlet property="marsView" destination="jnS-Nv-v7V" id="SfR-l6-glL"/>
                         <outlet property="resetRegion" destination="qkd-3m-9sI" id="W6z-Ok-Tdb"/>
+                        <outlet property="searchLocationButton" destination="lqf-UX-oLD" id="umZ-be-Xv5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -573,7 +601,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mUa-8u-G9Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Q2L-Yd-fBx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4959" y="-1402"/>
+            <point key="canvasLocation" x="5278" y="-1479"/>
         </scene>
         <!--Big Map View Controller-->
         <scene sceneID="7o3-02-5Zf">
@@ -666,7 +694,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V1e-qv-joP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5935" y="-1610"/>
+            <point key="canvasLocation" x="6102" y="-1938"/>
         </scene>
         <!--Chose Location View Controller-->
         <scene sceneID="cpl-1H-LYi">
@@ -720,7 +748,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cgm-CB-dmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7658" y="-2354"/>
+            <point key="canvasLocation" x="7001" y="-464"/>
         </scene>
         <!--LocationName-->
         <scene sceneID="7YZ-0C-Yo9">
@@ -814,7 +842,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5934" y="-902"/>
+            <point key="canvasLocation" x="6102" y="-1236"/>
         </scene>
         <!--Add New Location View Controller-->
         <scene sceneID="Fi1-aP-mes">
@@ -1244,7 +1272,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5p-az-ahq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="acw-4F-gJh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5935" y="-2354"/>
+            <point key="canvasLocation" x="5278" y="-464"/>
         </scene>
         <!--Login In Menu View Controller-->
         <scene sceneID="Hs4-Ua-DjP">
@@ -1341,7 +1369,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVM-Ah-hZR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="0fW-MO-ryq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4769" y="-3519"/>
+            <point key="canvasLocation" x="4769" y="-2699"/>
         </scene>
         <!--Test View Controller-->
         <scene sceneID="idH-Er-LWf">
@@ -1536,7 +1564,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ey-iN-Pv9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="g60-Ge-nQL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5649" y="-3519"/>
+            <point key="canvasLocation" x="5649" y="-2699"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="9hg-eV-UJ1">
@@ -1713,7 +1741,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQ4-xp-qgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6502" y="-3519"/>
+            <point key="canvasLocation" x="6502" y="-2699"/>
         </scene>
         <!--Sign Up Success View Controller-->
         <scene sceneID="yvF-f1-Ws3">
@@ -1773,7 +1801,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOc-Ea-26U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7377" y="-3519"/>
+            <point key="canvasLocation" x="7377" y="-2699"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jfg-Eg-oRk">
@@ -1790,7 +1818,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E45-oU-hQG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3913" y="-3519"/>
+            <point key="canvasLocation" x="3913" y="-2699"/>
         </scene>
         <!--Item-->
         <scene sceneID="7PI-9m-7gw">
@@ -1846,14 +1874,26 @@
                     <view key="view" contentMode="scaleToFill" id="pIY-0w-pdY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rn8-Ua-0aF">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iN8-h8-yEd" firstAttribute="trailing" secondItem="rn8-Ua-0aF" secondAttribute="trailing" id="B58-BQ-V6c"/>
+                            <constraint firstItem="rn8-Ua-0aF" firstAttribute="top" secondItem="iN8-h8-yEd" secondAttribute="top" id="Tvv-Kj-dvM"/>
+                            <constraint firstItem="iN8-h8-yEd" firstAttribute="bottom" secondItem="rn8-Ua-0aF" secondAttribute="bottom" id="fWt-5y-IZz"/>
+                            <constraint firstItem="rn8-Ua-0aF" firstAttribute="leading" secondItem="iN8-h8-yEd" secondAttribute="leading" id="h0h-f6-Iyd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="iN8-h8-yEd"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="设置" image="SettingTabImage" id="zPk-Wj-mFv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZQ1-RN-E33" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3913" y="680"/>
+            <point key="canvasLocation" x="3912.8000000000002" y="679.61019490254876"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="jgO-nt-S15">
@@ -1897,7 +1937,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZ4-Dl-r7Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8490" y="-2355"/>
+            <point key="canvasLocation" x="7833" y="-466"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="P8P-nb-x8G">
@@ -1915,7 +1955,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pC-Ai-K4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6759" y="-2354"/>
+            <point key="canvasLocation" x="6102" y="-464"/>
         </scene>
     </scenes>
     <resources>
@@ -1955,6 +1995,7 @@
         <image name="ViewsHighlight-1" width="40" height="55"/>
         <image name="XIcon" width="90" height="90"/>
         <image name="aOvalForVisitNote" width="50" height="50"/>
+        <image name="addButtonIcon" width="26" height="26"/>
         <image name="ali" width="778" height="800"/>
         <image name="defualtMapImageChosen" width="324" height="200"/>
         <image name="exploreTabImage" width="21" height="28"/>
@@ -1963,11 +2004,12 @@
         <image name="moreActionButton" width="69" height="14"/>
         <image name="mylocaitionImage" width="27" height="26"/>
         <image name="openInAppleMap" width="54" height="54"/>
+        <image name="searchButton" width="96" height="96"/>
         <image name="showOffBar" width="852" height="123"/>
         <image name="success" width="174" height="174"/>
         <image name="userLocationIcon" width="164" height="164"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ipi-Ha-xW0"/>
+        <segue reference="jfx-FN-ffj"/>
     </inferredMetricsTieBreakers>
 </document>

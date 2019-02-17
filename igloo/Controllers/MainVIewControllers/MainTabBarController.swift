@@ -55,6 +55,8 @@ class MainTabBarController: UITabBarController {
                 let myLocationVC = self.viewControllers![0] as! MyLocationsViewController
                 myLocationVC.addLocation(data: data)
                 self.newLocationData = nil//清除数据
+                //选择第一个VC
+                self.selectedIndex = 0
             }
         }
     }
