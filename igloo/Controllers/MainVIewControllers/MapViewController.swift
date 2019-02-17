@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController,MapViewDelegate {
+class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
     //MARK:IBOutlet
     @IBOutlet weak var map: MapViewForExplore!
     @IBOutlet weak var distanceMarsViewShowing: NSLayoutConstraint!
@@ -18,7 +18,6 @@ class MapViewController: UIViewController,MapViewDelegate {
     @IBOutlet weak var indecator: UIActivityIndicatorView!
     @IBOutlet weak var searchLocationButton: UIButton!
     @IBOutlet weak var addNewLocationButton: UIButton!
-    
     var selectedPin:MKPlacemark? = nil
     var resultSearchController:UISearchController? = nil
     
@@ -152,6 +151,40 @@ class MapViewController: UIViewController,MapViewDelegate {
         }, completion: nil)
     }
     
+    //MARK:Segue
+    
+    var dataSendToGreatInfo:LocationInfoLocal?
+    var dataToSendIndex:Int!{
+        for (index,data) in model.currentAnnationLocationDataArray.enumerated() {
+            if data.id == dataToSendLocationID!{
+                return index
+            }
+        }
+        return nil
+    }
+    var dataToSendLocationID:String?
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //判断segue
+        if let id = segue.identifier,id == "showGreatInfo"{//显示GreatInfo
+            if let data = self.dataSendToGreatInfo{
+                if let nextVC = segue.destination as? GreatLocationInfoViewController{
+                    //读入数据
+                    nextVC.setDataIn(data: data, isMyOwnData: false)
+                    nextVC.index = dataToSendIndex
+                    nextVC.locationID = dataToSendLocationID!
+                    nextVC.likeDelegate = self
+                    for likeId in LoginModel.owenLikedLocationIDArray{
+                        if likeId == dataToSendLocationID!{
+                            nextVC.haveLike = true
+                            break
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     //MARK: MapViewDelegate
     
     func selectAnnotionInCell(id: String,show:Bool) {//展现MarsView
@@ -211,7 +244,34 @@ class MapViewController: UIViewController,MapViewDelegate {
         return halfMapView
     }
     
+    func showAFullLocationData(id:String) {
+        model.getFullData(id: id) { (data) in
+            self.dataSendToGreatInfo = data
+            self.dataToSendLocationID = id
+            self.performSegue(withIdentifier: "showGreatInfo", sender: nil)
+        }
+    }
     
+    func clickCellLike(index:Int,cancel:Bool){
+        
+        //更改Cell
+        let cell = marsView.cellForRow(at: IndexPath(row: index, section: 0)) as! LocationCell
+        let oldAmount = Int(cell.likeAmount.text!)!
+        let newAmount = cancel ? String(oldAmount-1) : String(oldAmount+1)
+        cell.likeAmount.text =  newAmount
+        //发送后端
+        let locationID = self.dataToSendLocationID!
+        Network.liked(cancel: cancel, location: locationID) { (result) in
+            print(result)
+        }
+        //添加或者删除likedLocation
+        if cancel {
+            let index = LoginModel.owenLikedLocationIDArray.index(of:locationID)!
+            LoginModel.owenLikedLocationIDArray.remove(at: index)
+        }else{
+            LoginModel.owenLikedLocationIDArray.append(locationID)
+        }
+    }
     
 }
 
@@ -223,9 +283,11 @@ protocol MapViewDelegate {
     func marsViewMove(up:Bool)
     func resetRegionAction()
     func selectAnnotionFromCell(id:String)
+    func showAFullLocationData(id:String)
 }
 
 extension MapViewController: HandleMapSearch {
+    
     func showDoneButton() {
         let navigationItem = tabBarController!.navigationItem
         let barButton = UIBarButtonItem(title: "完成", style: UIBarButtonItem.Style.plain, target: self, action: #selector(doneAction))
@@ -239,9 +301,12 @@ extension MapViewController: HandleMapSearch {
     }
     
     func dropPinZoomIn(placemark:MKPlacemark){//mapView移动到当前位置
-        // cache the pin
         selectedPin = placemark
         let region = MKCoordinateRegion(center: placemark.coordinate, span: map.region.span)
         map.setRegion(region, animated: true)
     }
+}
+
+protocol LikeDelegate {
+    func clickCellLike(index:Int,cancel:Bool)
 }

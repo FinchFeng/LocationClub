@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class GreatLocationInfoViewController: UIViewController {
-    
+    var isMyOwnData:Bool!
     //Map
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var mapImage: UIImageView!
@@ -21,30 +21,42 @@ class GreatLocationInfoViewController: UIViewController {
     @IBOutlet weak var LikeAmountLabel: UILabel!
     @IBOutlet weak var visitNoteTableView: VisitNoteTableView!
     @IBOutlet var mapViewCell: UIView!
+    @IBOutlet weak var likeImage: UIImageView!
     
     var locationData:LocationInfoLocal!
     var delegate:MyLocationDelegate!
     
+    //点赞有关的东西
+    var index:Int!
+    var locationID:String!
+    var haveLike:Bool = false
+    var likeDelegate:LikeDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         moreActionButton.imageView!.contentMode = .scaleAspectFit
-        //隐藏TopBar 返回的时候要再把它显示出来
-        self.navigationController!.setNavigationBarHidden(true, animated: false)
         showDataToView()
+        if haveLike {
+            likeImage.image = #imageLiteral(resourceName: "LikedButton")
+        }else{
+            likeImage.image = #imageLiteral(resourceName: "LocationCellLikedIcon")
+        }
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        visitNoteTableView.sendSubviewToBack(mapViewCell)
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //隐藏TopBar 返回的时候要再把它显示出来
+        self.navigationController!.setNavigationBarHidden(true, animated: false)
+    }
     
     //被Segue之前进行配置
-    func setDataIn(data:LocationInfoLocal) {
+    func setDataIn(data:LocationInfoLocal,isMyOwnData:Bool) {
         self.locationData = data
+        self.isMyOwnData = isMyOwnData
     }
     
     func update(data:LocationInfoLocal){
-        setDataIn(data: data)
+        setDataIn(data: data,isMyOwnData: isMyOwnData)
         showDataToView()
     }
     
@@ -57,6 +69,7 @@ class GreatLocationInfoViewController: UIViewController {
         //配置Label数据
         setAllLabel()
         //配置tableView
+        visitNoteTableView.showAddNewNoteCell = isMyOwnData
         visitNoteTableView.setDataIn(data: locationData.VisitedNoteID, ids: locationData.noteIDs)
         visitNoteTableView.deleteVisitNoteDelegate = self
     }
@@ -83,7 +96,18 @@ class GreatLocationInfoViewController: UIViewController {
             if let nextVC = segue.destination as? AddNewLocationViewController {
                 nextVC.setDataInForEdit(data: self.locationData) //传递地点的数据
             }
+        }else if let id = segue.identifier , id == "unwindFromOther"{
+            //判断是否需要展现navigationBar
+            if let upVC = segue.destination as? MainTabBarController {
+                if let currentVC = upVC.selectedViewController {
+                    if currentVC is MyLocationsViewController{
+                        //如果是Mylocation就展现navigationBar
+                        self.navigationController!.setNavigationBarHidden(false, animated: false)
+                    }
+                }
+            }
         }
+        
     }
     
     func setAllLabel() {
@@ -99,6 +123,22 @@ class GreatLocationInfoViewController: UIViewController {
 
     @IBAction func likeAction() {
         //进行点赞
+        if isMyOwnData {
+            return
+        }else{
+            let likeAmount = Int(LikeAmountLabel.text!)!
+            if haveLike {
+                likeDelegate.clickCellLike(index: index, cancel: true)
+                haveLike = false
+                likeImage.image = #imageLiteral(resourceName: "LocationCellLikedIcon")
+                LikeAmountLabel.text = String(likeAmount-1)
+            }else{
+                likeDelegate.clickCellLike(index: index, cancel: false)
+                haveLike = true
+                likeImage.image = #imageLiteral(resourceName: "LikedButton")
+                LikeAmountLabel.text = String(likeAmount+1)
+            }
+        }
     }
     
     
@@ -118,22 +158,23 @@ class GreatLocationInfoViewController: UIViewController {
             mapItem.name = self.locationData.locationName
             mapItem.openInMaps(launchOptions: options)
         }))
-        actionSheet.addAction(UIAlertAction(title: "编辑地点信息", style: .default, handler: { (_) in
-            //segueToEditLocationData
-            self.performSegue(withIdentifier: "segueToEditLocationData", sender: nil)
-        }))
-        actionSheet.addAction(UIAlertAction(title: "删除此地点", style: .destructive, handler: { (_) in
-            self.delegate.deleteLocation(id:self.locationData.locationID)
-            self.backToMyLocation()//segue 回去
-        }))
+        if isMyOwnData {
+            actionSheet.addAction(UIAlertAction(title: "编辑地点信息", style: .default, handler: { (_) in
+                //segueToEditLocationData
+                self.performSegue(withIdentifier: "segueToEditLocationData", sender: nil)
+            }))
+            actionSheet.addAction(UIAlertAction(title: "删除此地点", style: .destructive, handler: { (_) in
+                self.delegate.deleteLocation(id:self.locationData.locationID)
+                self.backToMyLocation()//segue 回去
+            }))
+        }
         actionSheet.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         present(actionSheet, animated: true, completion: nil)
     }
     
     @IBAction func backToMyLocation() {
         performSegue(withIdentifier: "unwindFromOther", sender: nil)
-        //显示TopBar
-        self.navigationController!.setNavigationBarHidden(false, animated: false)
+        
     }
     
     var newVisitNoteData:(VisitedNote,[UIImage])? = nil
@@ -162,8 +203,6 @@ class GreatLocationInfoViewController: UIViewController {
             update(data: newData)
         }
         editedLocationData = []
-        
-        
     }
     
     

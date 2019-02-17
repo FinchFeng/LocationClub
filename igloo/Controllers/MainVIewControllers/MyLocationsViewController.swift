@@ -42,8 +42,6 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     
     lazy var endEditingBarItem:UIBarButtonItem = {
        let button = UIBarButtonItem(title: "完成", style: UIBarButtonItem.Style.plain, target: self, action: #selector(endEditTableView))
-        //设置颜色
-//        button.tintColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
        return button
     }()
     
@@ -186,7 +184,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
             if let data = self.dataSendToGreatInfo{
                 if let nextVC = segue.destination as? GreatLocationInfoViewController{
                     //读入数据
-                    nextVC.setDataIn(data: data)
+                    nextVC.setDataIn(data: data, isMyOwnData: true)
                     nextVC.delegate = self
                 }
             }

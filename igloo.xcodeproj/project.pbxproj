@@ -31,7 +31,6 @@
 		138F0A5521C3602400466873 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0A5421C3602400466873 /* NetworkManager.swift */; };
 		138F0A5721C3604000466873 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0A5621C3604000466873 /* Constants.swift */; };
 		1392832F21FC5343007CBA5F /* VisitNoteTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1392832E21FC5343007CBA5F /* VisitNoteTableView.swift */; };
-		1392833321FC53C7007CBA5F /* AddVisitNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1392833221FC53C7007CBA5F /* AddVisitNoteCell.swift */; };
 		1392833521FC5508007CBA5F /* VisitNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1392833421FC5508007CBA5F /* VisitNoteCell.swift */; };
 		1392833821FD7DAD007CBA5F /* BigMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1392833721FD7DAD007CBA5F /* BigMapViewController.swift */; };
 		1392833A21FE8F15007CBA5F /* MutipleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1392833921FE8F15007CBA5F /* MutipleImageView.swift */; };
@@ -92,7 +91,6 @@
 		138F0A5421C3602400466873 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		138F0A5621C3604000466873 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1392832E21FC5343007CBA5F /* VisitNoteTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitNoteTableView.swift; sourceTree = "<group>"; };
-		1392833221FC53C7007CBA5F /* AddVisitNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVisitNoteCell.swift; sourceTree = "<group>"; };
 		1392833421FC5508007CBA5F /* VisitNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitNoteCell.swift; sourceTree = "<group>"; };
 		1392833721FD7DAD007CBA5F /* BigMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigMapViewController.swift; sourceTree = "<group>"; };
 		1392833921FE8F15007CBA5F /* MutipleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipleImageView.swift; sourceTree = "<group>"; };
@@ -267,7 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				1392832E21FC5343007CBA5F /* VisitNoteTableView.swift */,
-				1392833221FC53C7007CBA5F /* AddVisitNoteCell.swift */,
 				13E5709022115BEE002A45E6 /* HitThoughView.swift */,
 				1392833421FC5508007CBA5F /* VisitNoteCell.swift */,
 				1392833921FE8F15007CBA5F /* MutipleImageView.swift */,
@@ -581,7 +578,6 @@
 				1392833521FC5508007CBA5F /* VisitNoteCell.swift in Sources */,
 				1392833A21FE8F15007CBA5F /* MutipleImageView.swift in Sources */,
 				13E5709122115BEE002A45E6 /* HitThoughView.swift in Sources */,
-				1392833321FC53C7007CBA5F /* AddVisitNoteCell.swift in Sources */,
 				13DBF1BD21C78961001A03BA /* TestViewController.swift in Sources */,
 				1392833821FD7DAD007CBA5F /* BigMapViewController.swift in Sources */,
 				138E842921CC90B500DC2CB8 /* SettingViewController.swift in Sources */,

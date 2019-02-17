@@ -53,6 +53,8 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //进行全部信息的获取
+        let locationID = mapViewDelegate.getIdOf(index: indexPath.row)
+        mapViewDelegate.showAFullLocationData(id: locationID)
     }
     
     //MARK:滑动控制

@@ -10,6 +10,7 @@ import UIKit
 
 class VisitNoteTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
     
+    var showAddNewNoteCell:Bool!
     var visitNoteArray:[VisitedNote]!
     var visitNoteIDArray:[String]!
     var deleteVisitNoteDelegate:DeleteVisiteNoteDelegate!
@@ -21,22 +22,25 @@ class VisitNoteTableView: UITableView,UITableViewDelegate,UITableViewDataSource 
         visitNoteArray = data
         visitNoteIDArray = ids
         reloadData()
-        //配置长摁获取器
-        self.longPressRecoginzer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(sender:)))
-        self.longPressRecoginzer.minimumPressDuration = 0.25
-        self.addGestureRecognizer(longPressRecoginzer)
+        if showAddNewNoteCell {
+            //配置长摁获取器
+            self.longPressRecoginzer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(sender:)))
+            self.longPressRecoginzer.minimumPressDuration = 0.25
+            self.addGestureRecognizer(longPressRecoginzer)
+        }
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return visitNoteArray.count + 1
+            return visitNoteArray.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         if row == 0 {
-            let staticCell = tableView.dequeueReusableCell(withIdentifier: "addVisitNoteCell") as! AddVisitNoteCell
-            //配置点击添加记录的delegate
+            //配置第一行的Cell
+            let cellId = showAddNewNoteCell ? "addVisitNoteCell" : "gapCell"
+            let staticCell = tableView.dequeueReusableCell(withIdentifier: cellId)!
             return staticCell
         }else{
             let visitNoteCell = tableView.dequeueReusableCell(withIdentifier: "VisitNoteCell") as! VisitNoteCell

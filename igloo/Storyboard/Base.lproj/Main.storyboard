@@ -219,6 +219,7 @@
                         <outlet property="marsView" destination="jnS-Nv-v7V" id="SfR-l6-glL"/>
                         <outlet property="resetRegion" destination="qkd-3m-9sI" id="W6z-Ok-Tdb"/>
                         <outlet property="searchLocationButton" destination="lqf-UX-oLD" id="umZ-be-Xv5"/>
+                        <segue destination="PJO-Ff-0N9" kind="show" identifier="showGreatInfo" id="gps-1g-viN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -478,7 +479,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addVisitNoteCell" rowHeight="60" id="Mnq-0E-Hz9" customClass="AddVisitNoteCell" customModule="igloo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addVisitNoteCell" rowHeight="60" id="Mnq-0E-Hz9">
                                         <rect key="frame" x="0.0" y="278" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mnq-0E-Hz9" id="ZZU-vE-ua9">
@@ -499,7 +500,6 @@
                                                     </constraints>
                                                     <state key="normal" image="Add Detail"/>
                                                     <connections>
-                                                        <action selector="addNewVisitNote" destination="Mnq-0E-Hz9" eventType="touchUpInside" id="FXl-xo-Hjh"/>
                                                         <action selector="segueToAddVisitNote" destination="PJO-Ff-0N9" eventType="touchUpInside" id="L8u-0h-FNP"/>
                                                     </connections>
                                                 </button>
@@ -571,6 +571,14 @@
                                             <outlet property="visitNoteWordLabel" destination="OS1-XO-7uN" id="pHE-Cd-mTC"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="gapCell" rowHeight="18" id="lon-aU-NGC">
+                                        <rect key="frame" x="0.0" y="600" width="375" height="18"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lon-aU-NGC" id="IeW-d4-eqa">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -586,6 +594,7 @@
                     <connections>
                         <outlet property="LikeAmountLabel" destination="Rdj-NA-1aq" id="GEs-Tx-vlJ"/>
                         <outlet property="iconImageView" destination="nUH-Fw-pCC" id="nTh-LE-GQc"/>
+                        <outlet property="likeImage" destination="vUk-QO-10A" id="KPg-De-CaA"/>
                         <outlet property="locationDescrptionLabel" destination="g3S-ZU-wT8" id="1tv-Ih-koe"/>
                         <outlet property="locationNameLabel" destination="ojE-Of-aiQ" id="ZkG-2q-Zeh"/>
                         <outlet property="mapImage" destination="ob8-dM-FYL" id="N6c-7i-OSI"/>
@@ -2011,5 +2020,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jfx-FN-ffj"/>
+        <segue reference="gps-1g-viN"/>
     </inferredMetricsTieBreakers>
 </document>
