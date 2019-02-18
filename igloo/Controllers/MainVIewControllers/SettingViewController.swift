@@ -29,6 +29,17 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.tabBarController!.navigationItem.leftBarButtonItem = nil
         self.tabBarController!.navigationItem.rightBarButtonItem = nil
     }
+    //MARK: For segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let id = segue.identifier ,id == "segueToLikedLocation"{
+            if let data = self.dataArrayToPass{
+                if let nextVC = segue.destination as? LikedLocationViewController {
+                    nextVC.setDataIn(data: data)
+                }
+            }
+        }
+    }
     
     func getDatasForMarsView(landingBlock:@escaping ([(id:String,rank2:LocationInfoRank2,rank3:LocationInfoRank3)])->Void) {
         //递归获取这些数据
@@ -72,7 +83,6 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         case 0:
             cell.textLabel?.textColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
             //设置获取了多少赞
-//            let totalLikeAmount =
             cell.textLabel?.text = "我收到的赞 " + String(LoginModel.totalLikeAmout)
         case 1:
             cell.textLabel?.text = "我赞过的地点"
@@ -85,14 +95,14 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return cell
     }
     
-    
+    var dataArrayToPass:[(id:String,rank2:LocationInfoRank2,rank3:LocationInfoRank3)]?
     var alert:UIAlertController?
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 1:
             getDatasForMarsView { (dataArray) in
                 //获取数据并且传递给下一个展现ViewController
-                print(dataArray)
+                self.dataArrayToPass = dataArray
                 self.performSegue(withIdentifier: "segueToLikedLocation", sender: nil)
             }
         case 2:

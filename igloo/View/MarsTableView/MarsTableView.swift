@@ -72,6 +72,8 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
         //获取image
         var image:UIImage = #imageLiteral(resourceName: "defualtMapImage")//默认Image
         let imageURL = data.rank2.locationInfoImageURL
+        print("ImageURL")
+        print(imageURL)
         if imageURL == "nil"{//查看有没有旧的
             if let oldImage = MapSnapShotter.getExistMapImage(latitude: data.rank3.locationLatitudeKey, longitude: data.rank3.locationLongitudeKey){
                 image = oldImage

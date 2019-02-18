@@ -172,9 +172,15 @@ class GreatLocationInfoViewController: UIViewController {
         present(actionSheet, animated: true, completion: nil)
     }
     
+    var thisIsALikedLocation:Bool = false
     @IBAction func backToMyLocation() {
-        performSegue(withIdentifier: "unwindFromOther", sender: nil)
-        
+        //判断要返回哪个VC
+        if thisIsALikedLocation {
+            performSegue(withIdentifier: "unwindToLikeLocationWithSender", sender: nil)
+            thisIsALikedLocation = false
+        }else{
+            performSegue(withIdentifier: "unwindFromOther", sender: nil)
+        }
     }
     
     var newVisitNoteData:(VisitedNote,[UIImage])? = nil

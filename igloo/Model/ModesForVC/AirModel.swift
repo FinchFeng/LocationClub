@@ -46,6 +46,7 @@ class AirModel {
                 Network.getLocationInfo(locationID: firstData.id, rank: 2) { (rank2Data) in
                     let data = rank2Data as! LocationInfoRank2
                     //更新新的LocationData
+                    print("获取的Data",(id:firstData.id , data2: data, data3: firstData.data))
                     newResultArray.append((id:firstData.id , data2: data, data3: firstData.data))
                     getData(resultArray: newResultArray, inputArray: newInputArray)
                 }
@@ -68,9 +69,5 @@ class AirModel {
         }
     }
     
-    
-}
-
-class dataPool{//
     
 }

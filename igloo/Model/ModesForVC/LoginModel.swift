@@ -93,7 +93,7 @@ class LoginModel {
                 }
                 LoginModel.owenLocationIDArray = resultArray
                 //获取喜欢的地点IDS
-                LoginModel.owenLikedLocationIDArray = JSON[Constants.usersOwenPlacesDefaultJsonKey] as! [String]
+                LoginModel.owenLikedLocationIDArray = JSON[Constants.usersLikePlacesDefaultJsonKey] as! [String]
             }
             action(result)//界面操作block
         }
@@ -123,7 +123,7 @@ class LoginModel {
                 }
                 LoginModel.owenLocationIDArray = resultArray
                 //获取喜欢的地点IDS
-                LoginModel.owenLikedLocationIDArray = JSON[Constants.usersOwenPlacesDefaultJsonKey] as! [String]
+                LoginModel.owenLikedLocationIDArray = JSON[Constants.usersLikePlacesDefaultJsonKey] as! [String]
             }
             action(result)//界面操作block
         }
