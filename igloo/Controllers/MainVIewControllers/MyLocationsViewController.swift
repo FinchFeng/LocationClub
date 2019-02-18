@@ -156,7 +156,6 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     }
     
     func addNewVisitNoteAndUpdateView(GreatVC: GreatLocationInfoViewController, locationID: String, visitNoteID: String, data: VisitedNote, imageArray: [UIImage]) {
-        
         addVisiteNote(locationID: locationID, visitNoteID: visitNoteID, data: data, imageArray: imageArray)
         //寻找更新的data
         for data in model.locationDataArray {

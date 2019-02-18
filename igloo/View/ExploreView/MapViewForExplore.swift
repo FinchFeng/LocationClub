@@ -62,7 +62,7 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
             let region = MKCoordinateRegion(center: location, span: span)
             mapView.setRegion(region, animated: false)
             //移动地图到真正的中点
-            setUserLocationInHalfView(animated: false)
+//            setUserLocationInHalfView(animated: false)
             //搜索locationData
             mapviewDelegate.resetRegionAction()
         }

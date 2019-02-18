@@ -97,7 +97,6 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
                 return (data.data2,data.data3)
             })
             self.marsView.setDataIn(locationDataArray: dataArrayForMarsView)
-            //展现第一个Cell如果有数据的话
             self.marsViewMove(up: true)
             if dataArray.isEmpty {
                 //该区域没有数据，滑动到提示的地方
@@ -218,10 +217,12 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
         model.showNextGroupOfLocationData { (newDatas) in
             //如果没有返回数据
             if newDatas.isEmpty {
+                print("没有返回数据")
                 //关闭loading
                 self.indecator.stopAnimating()
                 self.marsView.isGettingData = false
                 self.marsViewMove(up: true)
+                self.marsView.isEndOfTableView = true
                 return
             }
             let lastCellIndex = self.marsView.locationDataArray.count-1
@@ -232,8 +233,8 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
             self.indecator.stopAnimating()
             self.marsView.isGettingData = false
             //select到上次最后一个Cell
-            self.marsView.scrollTo(index: lastCellIndex,selectAnnotion:true)
             self.marsView.addDataIn(locationDataArray: dataArray)
+            self.marsView.shouldScrollTo = lastCellIndex
         }
         //展现更多的Annotions
         let newAnnotionArray = Array(model.currentAnnationLocationDataArray[lastCurrentShowingIndexMax..<model.currentShowingIndexMax])
@@ -271,7 +272,7 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
         }else{
             LoginModel.owenLikedLocationIDArray.append(locationID)
         }
-    }
+    } 
     
 }
 

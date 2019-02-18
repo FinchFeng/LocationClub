@@ -18,9 +18,35 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     //MARK:加入数据
     override func setDataIn(locationDataArray: [(rank2: LocationInfoRank2, rank3: LocationInfoRank3)]) {
         super.setDataIn(locationDataArray: locationDataArray)
-        self.scrollTo(index: 0,selectAnnotion:true)
+        DispatchQueue.main.async {
+            self.scrollTo(index: 0,selectAnnotion:true)
+        }
+        isEndOfTableView = false
         //配置decelerate的速度
         decelerationRate = UIScrollView.DecelerationRate(rawValue: 0)
+    }
+    //endline label
+    var shouldScrollTo:Int?
+    var endLineLabel:UILabel?
+    var isEndOfTableView:Bool = false {
+        didSet{
+            if oldValue == false , isEndOfTableView == true{
+                //添加“到底了”标签
+                let newLabel = UILabel(frame: CGRect(x: 0, y: contentSize.height, width: UIScreen.main.bounds.width, height: Constants.locationCellSize.height*0.6))
+                newLabel.text = "————— 底线 —————"
+                newLabel.textAlignment = .center
+                newLabel.textColor = UIColor.white
+                newLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.semibold)
+                addSubview(newLabel)
+                endLineLabel = newLabel
+            }else if isEndOfTableView == false{
+                //删除此标签
+                if let label = endLineLabel{
+                    label.removeFromSuperview()
+                }
+            }
+            
+        }
     }
     
     func addDataIn(locationDataArray: [(rank2: LocationInfoRank2, rank3: LocationInfoRank3)]) {
@@ -31,6 +57,13 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
             indexArray.append(IndexPath(row: currentIndex+index, section: 0))
         }
         insertRows(at: indexArray, with: UITableView.RowAnimation.fade)
+        //insert结束之后得到通知
+        DispatchQueue.main.async {
+            if let index = self.shouldScrollTo {
+                self.scrollTo(index: index, selectAnnotion: true)
+                self.shouldScrollTo = nil
+            }
+        }
     }
     
     //MARK : Override tableViewDelegate
