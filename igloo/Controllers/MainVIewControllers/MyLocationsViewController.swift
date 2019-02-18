@@ -88,9 +88,17 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //初始化TableVIew
-        reloadTableViewData()
         locationTableView.viewControllerDelegate = self
+        //初始化TableVIew
+        if LoginModel.login{
+            model.updateAllLocationInfoLikeAmount { (dataArray) in
+                //更新LikeAmount
+                self.reloadTableViewData()
+            }
+        }else{
+            reloadTableViewData()
+        }
+        
         
     }
     
@@ -105,7 +113,6 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     }
     
     //MARK:Functions
-    
     
     func hadLogin()  {
         model.loginHander()
@@ -193,29 +200,12 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     //MARK:测试区
     
     @IBAction func buttonTaped() {
-//                let rank1 = LocationInfoRank1(locationName: "Noodles" ,iconKindString: "Restaurant" ,locationDescription: "A lots of beef" ,locationLatitudeKey: 37.334922 ,locationLongitudeKey: -122.009033 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])
-//                let rank2Data = LocationInfoRank2(locationName: "Beef Noodle" ,locationInfoWord: "nearby my home" ,locationLikedAmount: 10 ,locationInfoImageURL: "nil" )
-//                let newData = LocationInfoLocal(locationID: "3", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
-        
-//                let rank1 = LocationInfoRank1(locationName: "鼓浪屿" ,iconKindString: "Views" ,locationDescription: "非常不错的地方" ,locationLatitudeKey: 24.4421488249 ,locationLongitudeKey: 118.069896698 ,isPublic: true ,locationLikedAmount: 10 ,VisitedNoteID: [])//重复性在这里要注意⚠️
-//                let rank2Data = LocationInfoRank2(locationName: "鼓浪屿" ,locationInfoWord: "厦门 鼓浪屿" ,locationLikedAmount: 10 ,locationInfoImageURL: "nil" )
-//                let locationData = LocationInfoLocal(locationID: "5", rank1Data: rank1, rank2Data: rank2Data, visitedNoteArray: [])
-//                addLocation(data: locationData)
-        
-//        deleteLocation(index: 0)
-//        changeLocationData(newData: locationData, key: Constants.locationName, value: "BNoodles")//两个都要更改
-        
-        //写入图片
-        //等等要封装一下
-//        addVisiteNote(locationID: "5", visitNoteID: "5-1", data: VisitedNote(visitNoteWord:"循引886",imageURLArray:[],createdTime:Date .currentDateString()), imageArray: [#imageLiteral(resourceName: "ali")])
-
-        
-
-//        deleteVisiteNote(locationID: "5", visitNoteID: "5-3")
-
-        print(LoginModel.login)
-        print(LoginModel.owenLocationIDArray)
-        print(model.locationDataArray)
+//        print(LoginModel.login)
+//        print(LoginModel.owenLocationIDArray)
+//        print(model.locationDataArray)
+//        model.updateAllLocationInfoLikeAmount { (dataArray) in
+//            print(dataArray)
+//        }
     }
 }
 

@@ -23,6 +23,14 @@ class LoginModel {
                 return false
             }
         }
+        set{
+            //退出登陆
+            if newValue == false {
+                UserDefaults.standard.set(false, forKey: Constants.isLogin)
+                //禁用喜欢的功能
+                LoginModel.owenLikedLocationIDArray = []
+            }
+        }
     }
     //公开 iglooID 用户喜欢或者拥有地点
     static var iglooID:String{
@@ -49,6 +57,7 @@ class LoginModel {
             UserDefaults.standard.set(newValue, forKey: Constants.usersLikePlacesDefaultJsonKey)
         }
     }
+    static var totalLikeAmout:Int = 0 
     
     //内部可改变的状态
     var isLogin:Bool{
@@ -120,12 +129,11 @@ class LoginModel {
         }
     }
     
-    //退出登陆
-    func logout()  {
-        isLogin = false
-        //禁用喜欢的功能
-        LoginModel.owenLikedLocationIDArray = []
-    }
+//    //退出登陆
+//    func logout()  {
+//        isLogin = false
+//        
+//    }
     
     
     

@@ -82,6 +82,32 @@ class MyLocationModel {
         return resultArray
     }
     
+    func updateAllLocationInfoLikeAmount(landingAction:@escaping([LocationInfoLocal])->Void){
+        let oldDataArray = self.locationDataArray!
+        //递归更新
+        func updateLikeAmount(oldArray:[LocationInfoLocal],newArray:[LocationInfoLocal]){
+            if let data = oldArray.first {
+                var removedOldArray = oldArray
+                removedOldArray.remove(at: 0)
+                Network.getLocationInfo(locationID: data.locationID, rank: 4) { (likeAmoutData) in
+                    let newLikeAmout = (likeAmoutData as! LocationInfoRank4).locationLikedAmount
+                    //添加到总Like中去
+                    LoginModel.totalLikeAmout += newLikeAmout
+                    var newData = data
+                    newData.locationLikedAmount = newLikeAmout
+                    var addedNewArray = newArray
+                    addedNewArray.append(newData)
+                    updateLikeAmount(oldArray: removedOldArray, newArray: addedNewArray)
+                }
+            }else{
+                self.locationDataArray = newArray
+                landingAction(newArray)
+                return
+            }
+        }
+        updateLikeAmount(oldArray: oldDataArray, newArray: [])
+    }
+    
     
     //MARK: 增加 保存 更改 删除LocationInfo
     
