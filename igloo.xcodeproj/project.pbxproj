@@ -153,8 +153,8 @@
 		130DEBBD21C251A400B9ABC2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				138E842121CC781200DC2CB8 /* LoginControllers */,
 				1392833621FD7D6A007CBA5F /* MainVIewControllers */,
+				138E842121CC781200DC2CB8 /* LoginControllers */,
 				13D2D9EF22029868007DBF30 /* GreatLocationInfoVC */,
 				13D2D9F4220298AE007DBF30 /* AddNewStuffVC */,
 			);
@@ -178,9 +178,9 @@
 			children = (
 				13ADBD7721F00CB900D32138 /* ModesForVC */,
 				130EA74121D46343009769ED /* Network */,
-				130EA74621D70F7C009769ED /* Extension.swift */,
 				13BA183F21FADCD6008B1FDA /* Constansts */,
 				13ADBD7821F00D0100D32138 /* ImagePool.swift */,
+				130EA74621D70F7C009769ED /* Extension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

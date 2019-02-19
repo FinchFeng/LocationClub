@@ -45,6 +45,13 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController?.searchResultsUpdater = locationSearchTable
         locationSearchTable.mapView = map
+        //进行地点权限申请
+        if LoginModel.login {
+            let locationManager = CLLocationManager()
+            //请求地点代理 申请权限
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

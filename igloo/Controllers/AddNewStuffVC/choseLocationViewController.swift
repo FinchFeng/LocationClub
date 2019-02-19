@@ -26,7 +26,7 @@ class ChoseLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //请求地点代理 申请权限
-        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         mapView.delegate = self
         //进行handleMapVC的配置

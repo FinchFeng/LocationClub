@@ -28,21 +28,18 @@ class Network {
         let url = Constants.backendURL + "iglooLogin/"
         //发送方法
         sendRuquest(url: url, method: .post, parameters: parameters, action: action)
-        
     }
     
     
     
     //获取验证码
     static func gettingCode(phoneNumber:String,action: @escaping ([String:Any])->Void){//调用前检查手机号格式
-        
         //配置参数
         let parameters = [Constants.phoneNumber:phoneNumber]
         //配置Url
         let url = Constants.backendURL + "gettingCode/"
         //发送方法
         sendRuquest(url: url, method: .post, parameters: parameters, action: action)
-        
     }
     
     //注册
@@ -73,7 +70,6 @@ class Network {
     static func getLocationInfo(locationID:String,rank:Int,landingAction: @escaping (Any)->Void){//
         
         let locationUrl = Constants.backendURL + "getLocation/"
-        
         //内部方法—————使用这个方法来获取2到4rank的数据
         func getRankData(_ rank:Int){
             let paramenters = [Constants.locationID:locationID,Constants.rankOfLocationInfo:String(rank)]
@@ -179,7 +175,7 @@ class Network {
     }
     //MARK: 访问记录创建与删除
     //data(visitNote)中的imageArray一定要为空，直接在后面传入 [UIImage]
-    static func createVisitedNote(locationID:String,visitNoteID:String,data:VisitedNote,imageArray:[UIImage]){
+    static func createVisitedNote(locationID:String,visitNoteID:String,data:VisitedNote,imageArray:[UIImage],landingAction:(()->Void)? = nil){
         //使用递归一次性发送多张图片
         let count = imageArray.count
         func sendImageArray(imageArray:[UIImage]){
@@ -213,6 +209,9 @@ class Network {
                 //发送图片
                 //递归获取避免回调地狱
                 sendImageArray(imageArray: imageArray)
+                if let action = landingAction {
+                    action()
+                }
             }
         }
         

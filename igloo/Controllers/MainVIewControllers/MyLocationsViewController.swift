@@ -5,7 +5,6 @@
 //  Created by 冯奕琦 on 2018/12/21.
 //  Copyright © 2018 冯奕琦. All rights reserved.
 //
-
 import UIKit
 
 class MyLocationsViewController: UIViewController,MyLocationDelegate {
@@ -130,7 +129,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
         let id = model.locationDataArray[index].locationID
         model.deleteLocaitonInfo(id: id)
         if reload {
-            print("reload the data")
+            print("After delete reload the data")
             reloadTableViewData()
         }
     }

@@ -22,21 +22,44 @@ class MyLocationModel {
     
     //情况处理
     func loginHander() {
+        //递归创建visit note
+        func createSomeVisitNote(dataArray:[VisitedNote],id:[String],locationID:String){
+            if let data = dataArray.first {
+                var newID = id;newID.remove(at: 0)
+                var newDataArray = dataArray;newDataArray.remove(at: 0)
+                var imageArray:[UIImage] = []
+                for imageURL in data.imageURLArray{
+                    imageArray.append(ImageSaver.getImage(filename: imageURL)!)
+                }
+                Network.createVisitedNote(locationID:locationID,visitNoteID:id.first!, data: data, imageArray: imageArray){
+                    createSomeVisitNote(dataArray: newDataArray, id: newID, locationID: locationID)
+                }
+            }else{
+                print("全部创建完成")
+                return
+            }
+        }
         //对id进行处理 本地的检查是否isPublic是的话上传 云端的检查进行下载
         print("loginHander  ",LoginModel.owenLocationIDArray)
-        for id in LoginModel.owenLocationIDArray {
-            //检查这个id是不是本地的
-            if let locationData = CodableSaver.getData(fileName: id){
+        for locationId in LoginModel.owenLocationIDArray {
+            //检查这个id是不是本地的 和云端是否有重复
+            if let locationData = CodableSaver.getData(fileName: locationId){
                 //本地的检查是否public
                 if locationData.isPublic {
-                    //上传云端
-                    Network.createNewLocationToServer(locaitonID: id, data: locationData) { (JSON) in
-                        print("本地location数据id为" + id + "上传成功")
+                    //上传云端 包括照片
+                    Network.createNewLocationToServer(locaitonID: locationId, data: locationData) { (JSON) in
+                        print("本地location数据id为" + locationId + "上传成功")//
+                        //上传封面照片如果有的话
+                        if locationData.locationInfoImageURL != "nil"{
+                            let image = ImageSaver.getImage(filename: locationData.locationInfoImageURL)!
+                            Network.changeLocationInfoImage(locationID: locationId, image: image)
+                        }
+                       createSomeVisitNote(dataArray: locationData.VisitedNoteID, id: locationData.noteIDs, locationID: locationId)
                     }
                 }
             }else{
-                //非本地的下载到本地
-                Network.getLocationInfo(locationID: id, rank: 1) { (data) in
+                //非本地的下载到本地 图片也有
+                Network.getLocationInfo(locationID: locationId, rank: 1) { (data) in
                     let data = data as! LocationInfoLocal
                     //进行本地添加 Cell图片？
                     self.locationDataArray.insert(data, at: 0)
