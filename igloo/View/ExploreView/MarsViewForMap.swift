@@ -39,6 +39,9 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
                 newLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.semibold)
                 addSubview(newLabel)
                 endLineLabel = newLabel
+                //更改ScrollView的大小
+                let newContentY = newLabel.frame.maxY
+                self.contentSize = CGSize(width: contentSize.width, height: newContentY)
             }else if isEndOfTableView == false{
                 //删除此标签
                 if let label = endLineLabel{
@@ -85,8 +88,11 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //取消选中
+        tableView.deselectRow(at: indexPath, animated: false)
         //进行全部信息的获取
         let locationID = mapViewDelegate.getIdOf(index: indexPath.row)
+         print("点击了\(indexPath.row)cell locationID \(locationID)")
         mapViewDelegate.showAFullLocationData(id: locationID)
     }
     
@@ -116,7 +122,7 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     
     //移动到某一Cell上
     func scrollTo(cell:LocationCell,selectAnnotion:Bool) {
-//        if isGettingData {return}
+        if isGettingData {return}
         let minY = cell.frame.minY
         self.setContentOffset(CGPoint(x: 0, y: minY), animated: true)
         //显示指示条
@@ -127,24 +133,20 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
         }
         cell.showIndecater()
         print(cell.index!," Cell 被选中")
+        //要是是最后一个地点数据，进行新一轮的数据获取
+        if cell.index == self.locationDataArray.count-1 , isEndOfTableView == false{
+            mapViewDelegate.showNextGroupLocation()
+        }
         //展现对应的Annotion
         if selectAnnotion {
             let id = mapViewDelegate.getIdOf(index: cell.index)
             mapViewDelegate.selectAnnotionFromCell(id: id)
         }
-        //要是是最后一个地点数据，进行新一轮的数据获取
-        if cell.index == self.locationDataArray.count-1 {
-            mapViewDelegate.showNextGroupLocation()
-            return
-        }
         
     }
-    func scrollTo(index:Int,selectAnnotion:Bool) {
-        //使用ScrollView来Scroll
-//        let cellMinY = Constants.locationCellSize.height * CGFloat(index)
-//        setContentOffset(CGPoint(x: 0, y: cellMinY), animated: false)
+    func scrollTo(index:Int,selectAnnotion:Bool) {//只有选择Map之后才会调用这个方法
         if let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) as? LocationCell {
-            print("scrollTo(index:\(index) ")
+            print("scrollTo(index:\(index) selectAnnotion \(selectAnnotion)")
             scrollTo(cell: cell,selectAnnotion:selectAnnotion)
         }else{
             //Cell还未生成直接滑动到顶部

@@ -21,8 +21,8 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
     var selectedPin:MKPlacemark? = nil
     var resultSearchController:UISearchController? = nil
     
-    lazy var halfMapView: UIView = {//使用这个View来进行map移动到准确位置
-        let view = UIView(frame: CGRect(x: 0, y:marsView.frame.height/2, width: self.view.frame.width, height:  self.map.frame.height-marsView.frame.height))
+    lazy var halfMapView: HitThoughView = {//使用这个View来进行map移动到准确位置
+        let view = HitThoughView(frame: CGRect(x: 0, y:marsView.frame.height/2, width: self.view.frame.width, height:  self.map.frame.height-marsView.frame.height))
         view.isUserInteractionEnabled = false
         self.view.addSubview(view)
         return view
@@ -101,7 +101,7 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
     }
     
     @IBAction func resetRegionAction() {
-       print("research Region")
+//       print("research Region")
         //展现全新的LocationData 自动选择第一个cell
         let currentRegion = map.region
         //调用Model进行数据获取
@@ -206,11 +206,11 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
     
     func selectAnnotionInCell(id: String,show:Bool) {//展现MarsView
         marsViewMove(up: true)
-        print("selectAnnotionInCell(id: String,show:\(show)")
-        if show == false {return}
+//        print("selectAnnotionInCell(id: String,show:\(show)")
+        if show == false {return}//阻止Annotion再次选择Cell
         for (index,data) in model.currentAnnationLocationDataArray.enumerated() {
             if data.id == id {//滑动到这个Cell
-                marsView.scrollTo(index:index,selectAnnotion:false)
+                marsView.scrollTo(index:index,selectAnnotion:false)//阻止Cell再次选择Annotion
                 return
             }
         }
@@ -225,7 +225,7 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
     }
     
     func showNextGroupLocation(){
-        print("showNextGroupLocation")
+//        print("showNextGroupLocation")
         //展现MarsView 获取新数据
         //进行loading显示
         marsView.isGettingData = true
@@ -235,14 +235,17 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
         model.showNextGroupOfLocationData { (newDatas) in
             //如果没有返回数据
             if newDatas.isEmpty {
-                print("没有返回数据")
-                //关闭loading
+//                print("没有返回数据")
+                //关闭loading 
                 self.indecator.stopAnimating()
                 self.marsView.isGettingData = false
                 self.marsViewMove(up: true)
                 self.marsView.isEndOfTableView = true
+                print("selectAnnotion之后")
+                print(self.marsView.contentOffset)
                 return
             }
+            //有返回数据
             let lastCellIndex = self.marsView.locationDataArray.count-1
             let dataArray = newDatas.map({ (data) -> (LocationInfoRank2,LocationInfoRank3) in
                 return (data.data2,data.data3)

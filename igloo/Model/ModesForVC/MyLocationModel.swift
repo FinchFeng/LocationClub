@@ -35,12 +35,12 @@ class MyLocationModel {
                     createSomeVisitNote(dataArray: newDataArray, id: newID, locationID: locationID)
                 }
             }else{
-                print("全部创建完成")
+//                print("全部创建完成")
                 return
             }
         }
         //对id进行处理 本地的检查是否isPublic是的话上传 云端的检查进行下载
-        print("loginHander  ",LoginModel.owenLocationIDArray)
+//        print("loginHander  ",LoginModel.owenLocationIDArray)
         for locationId in LoginModel.owenLocationIDArray {
             //检查这个id是不是本地的 和云端是否有重复
             if let locationData = CodableSaver.getData(fileName: locationId){
@@ -48,7 +48,7 @@ class MyLocationModel {
                 if locationData.isPublic {
                     //上传云端 包括照片
                     Network.createNewLocationToServer(locaitonID: locationId, data: locationData) { (JSON) in
-                        print("本地location数据id为" + locationId + "上传成功")//
+//                        print("本地location数据id为" + locationId + "上传成功")//
                         //上传封面照片如果有的话
                         if locationData.locationInfoImageURL != "nil"{
                             let image = ImageSaver.getImage(filename: locationData.locationInfoImageURL)!
@@ -73,7 +73,7 @@ class MyLocationModel {
     
     var locationDataArray:[LocationInfoLocal]!{
         didSet{
-            print("localLocationDataArray我被写入了")
+//            print("localLocationDataArray我被写入了")
             //restore all data
             storeAll(datas: locationDataArray)
             print(locationDataArray)
