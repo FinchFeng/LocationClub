@@ -59,12 +59,19 @@ class AddNewVisitNoteViewController: UIViewController,UITextViewDelegate,Gallery
     @IBAction func doneAction(_ sender: UIBarButtonItem) {
         //字数检查
         if storyTextView.text != ""{
-            //使用segue返回上一级添加VisitNote数据
-            let dateString = Date.changeDateToString(date: Date())
-            let visiteNoteData =  VisitedNote(visitNoteWord:storyTextView.text,imageURLArray:[],createdTime:dateString)
-            self.newVisitNoteData = (visiteNoteData,imageArray)
-            //segueBack
-            performSegue(withIdentifier: "unwindBackToGreatVC", sender: nil)
+            if storyTextView.text.count <= 200{
+                //使用segue返回上一级添加VisitNote数据
+                let dateString = Date.changeDateToString(date: Date())
+                let visiteNoteData =  VisitedNote(visitNoteWord:storyTextView.text,imageURLArray:[],createdTime:dateString)
+                self.newVisitNoteData = (visiteNoteData,imageArray)
+                //segueBack
+                performSegue(withIdentifier: "unwindBackToGreatVC", sender: nil)
+            }else{
+                //字数不能大于200警告
+                let alertController = UIAlertController(title: "字数不能大于200", message: nil, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "好的", style: .default, handler: nil))
+                present(alertController, animated: true, completion: nil)
+            }
         }
     }
     
@@ -97,11 +104,15 @@ class AddNewVisitNoteViewController: UIViewController,UITextViewDelegate,Gallery
         //没有image的话
         if imageArray.isEmpty {
             //创建button
-            let button = UIButton(frame: makeAFrame(0))
-            button.setImage(#imageLiteral(resourceName: "visitNoteAddImages"), for: .normal)
+            let frame = makeAFrame(0)
+            let button = UIButton(frame: frame)
+            let imageView = UIImageView(frame: frame)
+            imageView.image = #imageLiteral(resourceName: "visitNoteAddImages")
+//            button.setImage(#imageLiteral(resourceName: "visitNoteAddImages"), for: .normal)
             button.addTarget(self, action: #selector(showGallery), for: .touchUpInside)
             containerHeight.constant = size + gap*2
             //展示button
+            imageContainerView.addSubview(imageView)
             imageContainerView.addSubview(button)
             return
         }
