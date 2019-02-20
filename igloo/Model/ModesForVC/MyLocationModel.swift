@@ -203,9 +203,9 @@ class MyLocationModel {
     func addNewVisitNoteTo(locationID:String,visitNoteID:String,data:VisitedNote,imageArray:[UIImage]){
         //添加ImageURL到VisitedNote数据中
         var finalData = data
-        for (_,image) in imageArray.enumerated() {
+        for (index,image) in imageArray.enumerated() {
             let radioString = String(Int(image.size.width))+"\(Constants.imageNameIdentChar)"+String(Int(image.size.height))//比例大小字符串
-            let name = visitNoteID + "\(Constants.imageNameIdentChar)" + radioString
+            let name = visitNoteID + "O\(index)" + "\(Constants.imageNameIdentChar)" + radioString
             //缓存到本地
             let url = "uploads/" + name + ".jpg"
             print(url)

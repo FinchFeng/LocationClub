@@ -282,8 +282,8 @@
 			children = (
 				138E842221CC785500DC2CB8 /* MyLocationsViewController.swift */,
 				138E842421CC787100DC2CB8 /* MapViewController.swift */,
-				138E842621CC8BBB00DC2CB8 /* MainTabBarController.swift */,
 				138E842821CC90B500DC2CB8 /* SettingViewController.swift */,
+				138E842621CC8BBB00DC2CB8 /* MainTabBarController.swift */,
 			);
 			path = MainVIewControllers;
 			sourceTree = "<group>";

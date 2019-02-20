@@ -9,7 +9,6 @@
 import UIKit
 
 class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-   
     
     //MARK:IBOutlet
     @IBOutlet weak var tableView: UITableView!

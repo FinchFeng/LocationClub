@@ -16,7 +16,7 @@ class Constants {
     static let loginButtonString = "手机号登陆"
     
     //MARK: 后端的Keys
-    static let backendURL =  "http://127.0.0.1:8000/location/"
+    static let backendURL =  "http://192.168.1.100:8000/location/"
     
     //JsonKeys
     static let locationLongitudeKey = "locationLongitudeKey"

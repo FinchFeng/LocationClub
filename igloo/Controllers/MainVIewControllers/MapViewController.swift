@@ -81,6 +81,10 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
     
     //MARK:Actions
     @IBAction func tapView(_ sender: UITapGestureRecognizer) {//暂时不需要使用
+//        print(map.annotations.count)
+        if map.annotations.count == 1 {
+            marsViewMove(up: !isShowingMarsView)
+        }
     }
     
     @objc func doneAction(){

@@ -165,7 +165,11 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
                 }
             }
         }
-        return nil
+        if offset < 0 {
+            return cellForRow(at: IndexPath(row: 0, section: 0)) as? LocationCell
+        }else{
+            return cellForRow(at: IndexPath(row: self.locationDataArray.count-1, section: 0)) as? LocationCell
+        }
     }
     
 }
