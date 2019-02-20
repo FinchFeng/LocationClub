@@ -35,6 +35,13 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
     //MARK:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        //进行地点权限申请
+        if LoginModel.login {
+            let locationManager = CLLocationManager()
+            //请求地点代理 申请权限
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+        }
         map.mapviewDelegate = self
         marsView.mapViewDelegate = self
         resetRegion.layer.cornerRadius = 6
@@ -45,17 +52,11 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController?.searchResultsUpdater = locationSearchTable
         locationSearchTable.mapView = map
-        //进行地点权限申请
-        if LoginModel.login {
-            let locationManager = CLLocationManager()
-            //请求地点代理 申请权限
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         //隐藏TopBar
         self.navigationController!.setNavigationBarHidden(true, animated: false)
         if let tabVC =  self.tabBarController as? MainTabBarController{
@@ -71,6 +72,7 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
             let rootVC  = self.tabBarController! as! MainTabBarController
             rootVC.login()
         }
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,7 +85,12 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
     @IBAction func tapView(_ sender: UITapGestureRecognizer) {//暂时不需要使用
 //        print(map.annotations.count)
         if map.annotations.count == 1 {
-            marsViewMove(up: !isShowingMarsView)
+            if map.userLocation.location != nil {
+                marsViewMove(up: !isShowingMarsView)
+            }else{
+                
+            }
+            
         }
     }
     

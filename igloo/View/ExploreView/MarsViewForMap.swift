@@ -116,7 +116,7 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     
     //移动到某一Cell上
     func scrollTo(cell:LocationCell,selectAnnotion:Bool) {
-        if isGettingData {return}
+//        if isGettingData {return}
         let minY = cell.frame.minY
         self.setContentOffset(CGPoint(x: 0, y: minY), animated: true)
         //显示指示条
@@ -127,21 +127,22 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
         }
         cell.showIndecater()
         print(cell.index!," Cell 被选中")
-        //要是是最后一个地点数据，进行新一轮的数据获取
-        if cell.index == self.locationDataArray.count-1 {
-            mapViewDelegate.showNextGroupLocation()
-            return
-        }
         //展现对应的Annotion
         if selectAnnotion {
             let id = mapViewDelegate.getIdOf(index: cell.index)
             mapViewDelegate.selectAnnotionFromCell(id: id)
         }
+        //要是是最后一个地点数据，进行新一轮的数据获取
+        if cell.index == self.locationDataArray.count-1 {
+            mapViewDelegate.showNextGroupLocation()
+            return
+        }
+        
     }
     func scrollTo(index:Int,selectAnnotion:Bool) {
         //使用ScrollView来Scroll
-        let cellMinY = Constants.locationCellSize.height * CGFloat(index)
-        setContentOffset(CGPoint(x: 0, y: cellMinY), animated: false)
+//        let cellMinY = Constants.locationCellSize.height * CGFloat(index)
+//        setContentOffset(CGPoint(x: 0, y: cellMinY), animated: false)
         if let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) as? LocationCell {
             print("scrollTo(index:\(index) ")
             scrollTo(cell: cell,selectAnnotion:selectAnnotion)
