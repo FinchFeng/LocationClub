@@ -126,6 +126,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     }
     
     func deleteLocation(index:Int,reload:Bool)  {
+        print("确认删除的方法3")
         let id = model.locationDataArray[index].locationID
         model.deleteLocaitonInfo(id: id)
         if reload {
@@ -200,9 +201,6 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     
     @IBAction func buttonTaped() {
 //        Network.changeOwenLike(array: ["123"], userID: "706485148")
-        Network.checkIsLocation(iglooID: LoginModel.iglooID, id: "123") { (result) in
-            print(result)
-        }
 //        print(LoginModel.login)
 //        print(LoginModel.owenLocationIDArray)
 //        print(model.locationDataArray)

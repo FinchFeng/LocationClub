@@ -69,6 +69,12 @@ class LoginModel {
         }
     }
     
+    static func logout(){
+        login = false
+        owenLocationIDArray = []
+        owenLikedLocationIDArray = []
+    }
+    
     //Google登陆方法
     
     func loginWithGoogle(googleID:String,GoogleName:String,action:@escaping (Bool)->Void){

@@ -40,7 +40,11 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
     }
     
+   
+    
     func getDatasForMarsView(landingBlock:@escaping ([(id:String,rank2:LocationInfoRank2,rank3:LocationInfoRank3)])->Void) {
+        
+    
         //递归获取这些数据
         func getData(resultArray:[(id:String,rank2:LocationInfoRank2,rank3:LocationInfoRank3)],inputArray:[String]){
             if let firstData = inputArray.first{
@@ -65,10 +69,28 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 return
             }
         }
-        print("LoginModel.owenLikedLocationIDArray")
-        print(LoginModel.owenLikedLocationIDArray)
-        getData(resultArray: [], inputArray: LoginModel.owenLikedLocationIDArray)
+        //递归检查这些数据
+        func checkDataArray(arrayNeedToBeCheck:[String],arrayIDHaveChecked:[String]){
+            if let id = arrayNeedToBeCheck.first{
+                Network.checkIsLocation(iglooID: LoginModel.iglooID, id: id) { (haveThisData) in
+                    var newArrayNeedToBeCheck = arrayNeedToBeCheck
+                    var newArrayIDHaveChecked = arrayIDHaveChecked
+                    newArrayNeedToBeCheck.remove(at: 0)//更新数组参数
+                    if haveThisData {
+                        newArrayIDHaveChecked.append(id)
+                    }
+                    checkDataArray(arrayNeedToBeCheck: newArrayNeedToBeCheck, arrayIDHaveChecked: newArrayIDHaveChecked)
+                }
+            }else{
+                //完成了
+                getData(resultArray: [], inputArray: arrayIDHaveChecked)
+                return
+            }
+        }
+        checkDataArray(arrayNeedToBeCheck: LoginModel.owenLikedLocationIDArray, arrayIDHaveChecked: [])
     }
+    
+    
     
     //MARK: TableView Delegate
     
@@ -99,6 +121,8 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 1:
+            //进行likeLocation检查
+            
             getDatasForMarsView { (dataArray) in
                 //获取数据并且传递给下一个展现ViewController
                 self.dataArrayToPass = dataArray
@@ -109,7 +133,8 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
             alertController.addAction(UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil))
             alertController.addAction(UIAlertAction(title: "退出", style: UIAlertAction.Style.default, handler: { (_) in
                 //选择了退出登陆
-                LoginModel.login = false
+                Network.logOut(iglooID: LoginModel.iglooID)
+                LoginModel.logout()
             }))
             present(alertController, animated: true, completion: nil)
         case 3:
