@@ -30,7 +30,16 @@ class Network {
         sendRuquest(url: url, method: .post, parameters: parameters, action: action)
     }
     
-    
+    //登出
+    static func logOut(iglooID:String){
+        //发送登出方法
+        //配置参数
+        let parameters = [Constants.iglooID:iglooID]
+        //配置Url
+        let url = Constants.backendURL + "logout/"
+        //发送它
+        sendRuquest(url: url, method: .get, parameters: parameters, action: {(data) in })
+    }
     
     //获取验证码
     static func gettingCode(phoneNumber:String,action: @escaping ([String:Any])->Void){//调用前检查手机号格式
@@ -48,9 +57,21 @@ class Network {
         let url = Constants.backendURL + "signIn/"
         sendRuquest(url: url, method: .post, parameters: parameters, action: action)
     }
-    
 
     //MARK: 地点操作
+    
+    static func checkIsLocation(iglooID:String,id:String,landingBlock:@escaping (Bool)->Void){
+        //配置参数
+        let parameters = [Constants.iglooID:iglooID,Constants.locationID:id]
+        //配置Url
+        let url = Constants.backendURL + "checkLocation/"
+        //发送它
+        sendRuquest(url: url, method: .get, parameters: parameters, action: {(data) in
+            if let result = data["success"] as? Bool {
+                landingBlock(result)
+            }
+        })
+    }
     
     //创建地点 登陆之后才能使用 🔧注意登陆之后上传Location的同时也要上传CellImage
     static func createNewLocationToServer(locaitonID:String,data:LocationInfoLocal,action:@escaping ([String:Any])->Void){

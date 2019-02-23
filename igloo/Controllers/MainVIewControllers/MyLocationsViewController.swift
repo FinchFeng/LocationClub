@@ -199,6 +199,10 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     //MARK:测试区
     
     @IBAction func buttonTaped() {
+//        Network.changeOwenLike(array: ["123"], userID: "706485148")
+        Network.checkIsLocation(iglooID: LoginModel.iglooID, id: "123") { (result) in
+            print(result)
+        }
 //        print(LoginModel.login)
 //        print(LoginModel.owenLocationIDArray)
 //        print(model.locationDataArray)
