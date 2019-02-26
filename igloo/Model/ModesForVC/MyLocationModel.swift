@@ -48,7 +48,6 @@ class MyLocationModel {
                 if locationData.isPublic {
                     //上传云端 包括照片
                     Network.createNewLocationToServer(locaitonID: locationId, data: locationData) { (JSON) in
-//                        print("本地location数据id为" + locationId + "上传成功")//
                         //上传封面照片如果有的话
                         if locationData.locationInfoImageURL != "nil"{
                             let image = ImageSaver.getImage(filename: locationData.locationInfoImageURL)!

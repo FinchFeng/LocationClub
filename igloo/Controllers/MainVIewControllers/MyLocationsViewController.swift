@@ -126,7 +126,6 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     }
     
     func deleteLocation(index:Int,reload:Bool)  {
-        print("确认删除的方法3")
         let id = model.locationDataArray[index].locationID
         model.deleteLocaitonInfo(id: id)
         if reload {

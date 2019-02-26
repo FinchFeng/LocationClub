@@ -18,6 +18,7 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
     
     func setAnnotion(array:[(String,LocationInfoRank3)]){
         haveChosenAnnotion = false
+        firstTimeUpdateUserLocation = true
         //删除之前所有的Annotion 除了userLocation
         self.removeAnnotations(self.annotations)
         array.forEach { (data) in

@@ -35,13 +35,6 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
     //MARK:LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        //进行地点权限申请
-        if LoginModel.login {
-            let locationManager = CLLocationManager()
-            //请求地点代理 申请权限
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-        }
         map.mapviewDelegate = self
         marsView.mapViewDelegate = self
         resetRegion.layer.cornerRadius = 6
@@ -72,7 +65,16 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
             let rootVC  = self.tabBarController! as! MainTabBarController
             rootVC.login()
         }
-       
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //进行地点权限申请
+        if LoginModel.login {
+            let locationManager = CLLocationManager()
+            //请求地点代理 申请权限
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
