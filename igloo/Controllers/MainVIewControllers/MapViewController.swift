@@ -67,10 +67,11 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
         }
     }
     
+    //这个Manager需要持久化才可以进行界面请求
+    var locationManager = CLLocationManager()
     override func viewDidAppear(_ animated: Bool) {
         //进行地点权限申请
         if LoginModel.login {
-            let locationManager = CLLocationManager()
             //请求地点代理 申请权限
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization()

@@ -206,6 +206,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
 //        model.updateAllLocationInfoLikeAmount { (dataArray) in
 //            print(dataArray)
 //        }
+        
     }
 }
 
