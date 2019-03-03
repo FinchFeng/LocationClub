@@ -231,6 +231,7 @@ class MyLocationModel {
         for (index,value) in locationDataArray.enumerated(){
             if value.locationID == locationID {
                 let localAddIt = {
+                    print("执行异步闭包————————————————————————")
                     //添加Cell图片
                     //自动配上图片
                     if let image = imageArray.first{
@@ -241,7 +242,7 @@ class MyLocationModel {
                     print("MyLocationModel")
                     print("本地添加这个visitedNote")
                     //本地添加这个visitedNote
-                    var locationData = value //这个value为添加之前的数据
+                    var locationData = self.locationDataArray[index] //这个value为添加之前的数据
                     locationData.VisitedNoteID.insert(finalData, at: 0)//添加两个记录到数组最前面
                     locationData.noteIDs.insert(visitNoteID, at: 0)
                     //把这个更改的Location移到最前面
@@ -250,8 +251,9 @@ class MyLocationModel {
                     if let action = landingAction{
                         action()
                     }
+                    print("执行异步闭包————————————————————————End")
                 }
-                //查看是否需要后端创建
+                 //查看是否需要后端创建
                 if value.isPublic && LoginModel.login{
                     Network.createVisitedNote(locationID: locationID, visitNoteID: visitNoteID, data: finalData, imageArray: imageArray ,landingAction: {
                         //本地添加

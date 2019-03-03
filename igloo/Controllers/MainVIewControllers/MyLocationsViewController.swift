@@ -156,8 +156,9 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     func addVisiteNote(locationID: String, visitNoteID: String, data:VisitedNote, imageArray: [UIImage],landingAction:@escaping()->Void) {
         model.addNewVisitNoteTo(locationID: locationID, visitNoteID: visitNoteID, data: data, imageArray: imageArray,landingAction: {
             landingAction()
-        })//自动
-        self.reloadTableViewData()
+            self.reloadTableViewData()
+        })
+        
     }
     
     func deleteVisiteNote(locationID: String, visitNoteID: String) {
