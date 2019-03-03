@@ -15,25 +15,19 @@ class TestViewController: UIViewController, SwiftPhotoGalleryDataSource, SwiftPh
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let rank3Array = [("212",LocationInfoRank3(locationLatitudeKey:22.284681,locationLongitudeKey:114.158177,iconKindString:"Cafe")),("214",LocationInfoRank3(locationLatitudeKey:22.286000,locationLongitudeKey:114.158177,iconKindString:"Bar"))]
-        map.setAnnotion(array: rank3Array)
-//        let image = #imageLiteral(resourceName: "beatlesAndAli")
-//        //crop it !
-//        let radio:CGFloat = 376/153
-//        let newImage = crop(image: image, radio: radio)
-//        print(newImage.size)
-//
-//        imageView.image = newImage
-//        print(self.view.frame.size)
+//        let rank3Array = [("212",LocationInfoRank3(locationLatitudeKey:22.284681,locationLongitudeKey:114.158177,iconKindString:"Cafe")),("214",LocationInfoRank3(locationLatitudeKey:22.286000,locationLongitudeKey:114.158177,iconKindString:"Bar"))]
+//        map.setAnnotion(array: rank3Array)
     }
-    @IBOutlet weak var map: MapViewForExplore!
+//    @IBOutlet weak var map: MapViewForExplore!
     
     @IBOutlet weak var textView: UITextView!
     
     @IBOutlet weak var imageView: UIImageView!
     
     @IBAction func hitButton() {
-        map.selectLocation(id:"212")
+        Network.getImage(at: "0.jpg") { (image) in
+            self.imageView.image = image
+        }
 //        Network.login(withGoogle:false,number: "17864266604", password: "12345") { JSON in
 //            print(JSON)
 //        }

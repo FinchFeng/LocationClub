@@ -10,6 +10,7 @@ target 'igloo' do
   pod 'Alamofire', '~> 4.0'
   pod 'SwiftPhotoGallery'
   pod 'Gallery'
+  pod "Qiniu", "~> 7.1"
 
   target 'iglooTests' do
     inherit! :search_paths

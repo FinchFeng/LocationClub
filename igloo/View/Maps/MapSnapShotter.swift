@@ -51,6 +51,7 @@ class MapSnapShotter{
             mapSnapShot.start{ (snapshot, error) in//分配到主队列
                 //保证正确
                 guard let snapshot = snapshot, error == nil else {
+                    print("MapSnapShotter")
                     print(error!)
                     return
                 }

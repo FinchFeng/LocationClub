@@ -72,11 +72,12 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
         //获取image
         var image:UIImage = #imageLiteral(resourceName: "defualtMapImage")//默认Image
         let imageURL = data.rank2.locationInfoImageURL
+        print("MarsTableView")
         print("ImageURL")
         print(imageURL)
         if imageURL == "nil"{//查看有没有旧的
             if let oldImage = MapSnapShotter.getExistMapImage(latitude: data.rank3.locationLatitudeKey, longitude: data.rank3.locationLongitudeKey){
-                image = oldImage
+                image = oldImage   
             }else{
                 //获取地图截图
                 MapSnapShotter.getMapImageForCell(latitude: data.rank3.locationLatitudeKey,
@@ -84,7 +85,7 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
                                                     image = mapImage
                                                     //重新装入数据，刷新这个Cell
                                                     self.reloadRows(at: [indexPath], with: .automatic)
-
+      
                 }
             }
         }else{

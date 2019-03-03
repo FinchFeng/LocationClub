@@ -28,9 +28,11 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
         //给后台发送登陆请求
         loginBlock(number,password,{(result) in
             if result == true{
+                print("SignInViewController")
                 print("登陆成功")
                 self.performSegue(withIdentifier: "unwindToMain", sender: nil)
             }else{
+                print("SignInViewController")
                 print("登陆失败")
                 //展示这个信息
                 let alert = UIAlertController(title: "用户名或者密码输入错误，或者多台设备进行登陆", message: "", preferredStyle: .alert)

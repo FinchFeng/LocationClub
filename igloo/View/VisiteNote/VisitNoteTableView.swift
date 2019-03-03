@@ -63,6 +63,7 @@ class VisitNoteTableView: UITableView,UITableViewDelegate,UITableViewDataSource 
             firstTimeChange = false
             //找到这个点
             let point = sender.location(in: self)
+            print("VisitNoteTableView")
             print(point)
             //找到这个点对应的Cell
             if let cell = findVisitNoteCell(location: point){

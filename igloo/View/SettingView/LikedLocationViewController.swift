@@ -89,6 +89,7 @@ extension LikedLocationViewController:LikeDelegate {
         //发送后端
         let locationID = self.dataToSendLocationID!
         Network.liked(cancel: cancel, location: locationID) { (result) in
+            print("LikedLocationViewController")
             print(result)
         }
         //添加或者删除likedLocation

@@ -27,11 +27,13 @@ class MainTabBarController: UITabBarController {
         if let mylocationVC = self.viewControllers![0] as? MyLocationsViewController{
             mylocationVC.hadLogin()
         }else{
+            print("MainTabBarController")
             print("tabbarController出现错误")
         }
     }
     
     @IBAction func unwind(_ unwindSegue: UIStoryboardSegue) {//fromLoginMe
+        print("MainTabBarController")
         print("segueFromLogin")
         justBackFromLoginInMenu = true
         //登陆后的信息处理

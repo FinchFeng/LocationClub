@@ -9,12 +9,14 @@ class LocationSearchTable : UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("LocationSearchTable")
         print("搜索VC出现")
         handleMapSearchDelegate?.hideDoneButton()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        print("LocationSearchTable")
          print("搜索VC消失")
         handleMapSearchDelegate?.showDoneButton()
     }

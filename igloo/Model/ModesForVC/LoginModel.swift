@@ -71,8 +71,8 @@ class LoginModel {
     
     static func logout(){
         login = false
-        owenLocationIDArray = []
-        owenLikedLocationIDArray = []
+//        owenLocationIDArray = []
+        owenLikedLocationIDArray = []//清除喜欢的
     }
     
     //Google登陆方法

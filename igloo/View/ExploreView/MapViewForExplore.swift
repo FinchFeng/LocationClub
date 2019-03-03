@@ -86,6 +86,7 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
     
     
     func selectLocation(id:String)  {//cell选择location
+        print("MapViewForExplore")
         print("cell选择location")
         dontNeedToShowMarsView = true
         for data in self.annotations{
@@ -139,6 +140,7 @@ class AnnotionView:StaticAnnotionView{//可以选中
             self.image = annotionHighLightImage
             //执行delegate
             let locationID = annotion.subtitle!
+            print("MapViewForExplore")
             print(annotion.title!," 被选中了")
             //delegate去移动MapView
             selectedDelegate.setLocationCenter(data: annotion.coordinate)

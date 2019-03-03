@@ -13,11 +13,13 @@
 		130EA74321D46358009769ED /* Shower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130EA74221D46358009769ED /* Shower.swift */; };
 		130EA74521D4762F009769ED /* MyLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130EA74421D4762F009769ED /* MyLocationModel.swift */; };
 		130EA74721D70F7C009769ED /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130EA74621D70F7C009769ED /* Extension.swift */; };
+		132036A9222AB51E006163DB /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132036A8222AB51E006163DB /* ImageManager.swift */; };
 		133194EE21BA675E00C25D8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133194ED21BA675E00C25D8F /* AppDelegate.swift */; };
 		133194F321BA675E00C25D8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 133194F121BA675E00C25D8F /* Main.storyboard */; };
 		133194F521BA676000C25D8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 133194F421BA676000C25D8F /* Assets.xcassets */; };
 		133194F821BA676000C25D8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 133194F621BA676000C25D8F /* LaunchScreen.storyboard */; };
 		1331950321BA676000C25D8F /* iglooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1331950221BA676000C25D8F /* iglooTests.swift */; };
+		134C7B24222AB36E0037C829 /* QiniuCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 134C7B23222AB36E0037C829 /* QiniuCloud.m */; };
 		13500ABF21F58B6F00E4C8CF /* MarsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13500ABE21F58B6F00E4C8CF /* MarsTableView.swift */; };
 		13500AC121F5AA4C00E4C8CF /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13500AC021F5AA4C00E4C8CF /* LocationCell.swift */; };
 		1362C2BE21C8867F0088494A /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1362C2BD21C8867F0088494A /* LoginModel.swift */; };
@@ -71,6 +73,7 @@
 		130EA74221D46358009769ED /* Shower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shower.swift; sourceTree = "<group>"; };
 		130EA74421D4762F009769ED /* MyLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationModel.swift; sourceTree = "<group>"; };
 		130EA74621D70F7C009769ED /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		132036A8222AB51E006163DB /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		133194EA21BA675E00C25D8F /* igloo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = igloo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		133194ED21BA675E00C25D8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		133194F221BA675E00C25D8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,6 +83,9 @@
 		133194FE21BA676000C25D8F /* iglooTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iglooTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1331950221BA676000C25D8F /* iglooTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iglooTests.swift; sourceTree = "<group>"; };
 		1331950421BA676000C25D8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		134C7B21222AB36D0037C829 /* igloo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "igloo-Bridging-Header.h"; sourceTree = "<group>"; };
+		134C7B22222AB36E0037C829 /* QiniuCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiniuCloud.h; sourceTree = "<group>"; };
+		134C7B23222AB36E0037C829 /* QiniuCloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiniuCloud.m; sourceTree = "<group>"; };
 		13500ABE21F58B6F00E4C8CF /* MarsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsTableView.swift; sourceTree = "<group>"; };
 		13500AC021F5AA4C00E4C8CF /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		1362C2BD21C8867F0088494A /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -176,11 +182,13 @@
 		130DEBBF21C251BE00B9ABC2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				134C7B25222AB3780037C829 /* ImagebedCode */,
 				13ADBD7721F00CB900D32138 /* ModesForVC */,
 				130EA74121D46343009769ED /* Network */,
 				13BA183F21FADCD6008B1FDA /* Constansts */,
 				13ADBD7821F00D0100D32138 /* ImagePool.swift */,
 				130EA74621D70F7C009769ED /* Extension.swift */,
+				134C7B21222AB36D0037C829 /* igloo-Bridging-Header.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -244,6 +252,16 @@
 				1331950421BA676000C25D8F /* Info.plist */,
 			);
 			path = iglooTests;
+			sourceTree = "<group>";
+		};
+		134C7B25222AB3780037C829 /* ImagebedCode */ = {
+			isa = PBXGroup;
+			children = (
+				134C7B22222AB36E0037C829 /* QiniuCloud.h */,
+				134C7B23222AB36E0037C829 /* QiniuCloud.m */,
+				132036A8222AB51E006163DB /* ImageManager.swift */,
+			);
+			path = ImagebedCode;
 			sourceTree = "<group>";
 		};
 		138E842121CC781200DC2CB8 /* LoginControllers */ = {
@@ -429,6 +447,7 @@
 				TargetAttributes = {
 					133194E921BA675E00C25D8F = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1010;
 					};
 					133194FD21BA676000C25D8F = {
 						CreatedOnToolsVersion = 10.0;
@@ -490,6 +509,8 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/Gallery/Gallery.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/HappyDNS/HappyDNS.framework",
+				"${BUILT_PRODUCTS_DIR}/Qiniu/Qiniu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftPhotoGallery/SwiftPhotoGallery.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -501,6 +522,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gallery.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HappyDNS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Qiniu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftPhotoGallery.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,6 +606,7 @@
 			files = (
 				13670BB221CA3FCA002AB6D9 /* SignUpSuccessViewController.swift in Sources */,
 				13BA183E21FAD80B008B1FDA /* MapView.swift in Sources */,
+				132036A9222AB51E006163DB /* ImageManager.swift in Sources */,
 				138F0A5521C3602400466873 /* NetworkManager.swift in Sources */,
 				13C2F5072213F00700604694 /* MapViewForExplore.swift in Sources */,
 				130DEBC421C252AA00B9ABC2 /* SignInViewController.swift in Sources */,
@@ -609,6 +633,7 @@
 				13E2F4B622051733000C0F35 /* choseLocationViewController.swift in Sources */,
 				138F0A5721C3604000466873 /* Constants.swift in Sources */,
 				13500ABF21F58B6F00E4C8CF /* MarsTableView.swift in Sources */,
+				134C7B24222AB36E0037C829 /* QiniuCloud.m in Sources */,
 				138E842721CC8BBB00DC2CB8 /* MainTabBarController.swift in Sources */,
 				1362C2C021C9EAEF0088494A /* DataClass.swift in Sources */,
 				130EA74521D4762F009769ED /* MyLocationModel.swift in Sources */,
@@ -782,6 +807,7 @@
 			baseConfigurationReference = C2801E97E383206C937835C2 /* Pods-igloo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JXZHF939CJ;
 				INFOPLIST_FILE = igloo/Info.plist;
@@ -792,6 +818,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fengyiqi.igloo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "igloo/Model/igloo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -802,6 +830,7 @@
 			baseConfigurationReference = 63E278768D7CC5304CA8D080 /* Pods-igloo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JXZHF939CJ;
 				INFOPLIST_FILE = igloo/Info.plist;
@@ -812,6 +841,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fengyiqi.igloo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "igloo/Model/igloo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

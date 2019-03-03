@@ -244,6 +244,7 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
                 self.marsView.isGettingData = false
                 self.marsViewMove(up: true)
                 self.marsView.isEndOfTableView = true
+                print("MapViewController")
                 print("selectAnnotion之后")
                 print(self.marsView.contentOffset)
                 return
@@ -287,6 +288,7 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
         //发送后端
         let locationID = self.dataToSendLocationID!
         Network.liked(cancel: cancel, location: locationID) { (result) in
+            print("MapViewController")
             print(result)
         }
         //添加或者删除likedLocation

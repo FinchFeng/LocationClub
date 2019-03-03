@@ -1412,33 +1412,23 @@
                                     <constraint firstAttribute="width" secondItem="rpH-cb-HEH" secondAttribute="height" multiplier="376:153" id="aYk-A8-vFH"/>
                                 </constraints>
                             </imageView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpN-SR-Ey2" customClass="MapViewForExplore" customModule="igloo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="485"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="485" id="ZH0-d8-CjL"/>
-                                </constraints>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="eXc-d7-xra" firstAttribute="centerX" secondItem="11h-dt-7Q1" secondAttribute="centerX" id="5Nv-xF-MAs"/>
-                            <constraint firstItem="ylU-hB-jqD" firstAttribute="trailing" secondItem="EpN-SR-Ey2" secondAttribute="trailing" id="5sn-fT-xmU"/>
                             <constraint firstItem="11h-dt-7Q1" firstAttribute="leading" secondItem="ylU-hB-jqD" secondAttribute="leading" constant="164" id="8Xf-qg-6cM"/>
                             <constraint firstItem="11h-dt-7Q1" firstAttribute="centerX" secondItem="kus-jR-0WW" secondAttribute="centerX" id="ZFs-iU-HeB"/>
                             <constraint firstItem="eXc-d7-xra" firstAttribute="leading" secondItem="kus-jR-0WW" secondAttribute="leadingMargin" id="a6Y-eP-K6g"/>
                             <constraint firstItem="rpH-cb-HEH" firstAttribute="centerX" secondItem="ylU-hB-jqD" secondAttribute="centerX" id="fjJ-QF-OrI"/>
-                            <constraint firstItem="ylU-hB-jqD" firstAttribute="top" secondItem="EpN-SR-Ey2" secondAttribute="top" id="lEJ-tO-T1E"/>
                             <constraint firstItem="rpH-cb-HEH" firstAttribute="width" secondItem="kus-jR-0WW" secondAttribute="width" id="mUE-W9-JaL"/>
                             <constraint firstItem="rpH-cb-HEH" firstAttribute="centerY" secondItem="ylU-hB-jqD" secondAttribute="centerY" id="mjj-bX-zf9"/>
                             <constraint firstItem="eXc-d7-xra" firstAttribute="top" secondItem="ylU-hB-jqD" secondAttribute="top" id="oWa-2N-EFv"/>
-                            <constraint firstItem="EpN-SR-Ey2" firstAttribute="leading" secondItem="ylU-hB-jqD" secondAttribute="leading" id="sHM-zt-1DN"/>
                             <constraint firstAttribute="bottom" secondItem="11h-dt-7Q1" secondAttribute="bottom" constant="20" symbolic="YES" id="vrT-do-zwg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ylU-hB-jqD"/>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="rpH-cb-HEH" id="i9x-Tg-yWJ"/>
-                        <outlet property="map" destination="EpN-SR-Ey2" id="P0L-zy-glL"/>
                         <outlet property="textView" destination="eXc-d7-xra" id="Rup-1C-xDE"/>
                     </connections>
                 </viewController>

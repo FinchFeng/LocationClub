@@ -92,6 +92,7 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
         tableView.deselectRow(at: indexPath, animated: false)
         //进行全部信息的获取
         let locationID = mapViewDelegate.getIdOf(index: indexPath.row)
+        print("MarsViewForMap")
          print("点击了\(indexPath.row)cell locationID \(locationID)")
         mapViewDelegate.showAFullLocationData(id: locationID)
     }
@@ -110,6 +111,7 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     }
     //停止的处理方法
     func stoppedScrolling() {
+        print("MarsViewForMap")
         print("stoppedScrolling")
         if locationDataArray.isEmpty {
 //            print("locationDataArray.isEmpty")
@@ -132,6 +134,7 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
             }
         }
         cell.showIndecater()
+        print("MarsViewForMap")
         print(cell.index!," Cell 被选中")
         //要是是最后一个地点数据，进行新一轮的数据获取
         if cell.index == self.locationDataArray.count-1 , isEndOfTableView == false{
@@ -146,10 +149,12 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
     }
     func scrollTo(index:Int,selectAnnotion:Bool) {//只有选择Map之后才会调用这个方法
         if let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) as? LocationCell {
+            print("MarsViewForMap")
             print("scrollTo(index:\(index) selectAnnotion \(selectAnnotion)")
             scrollTo(cell: cell,selectAnnotion:selectAnnotion)
         }else{
             //Cell还未生成直接滑动到顶部
+            print("MarsViewForMap")
             print("第\(index)个 Cell还未生成")
             self.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         }

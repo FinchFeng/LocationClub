@@ -72,11 +72,12 @@ class MyLocationModel {
     
     var locationDataArray:[LocationInfoLocal]!{
         didSet{
-//            print("localLocationDataArray我被写入了")
+            print("MyLocationModel")
+            print("localLocationDataArray我被写入了")
             //restore all data
             storeAll(datas: locationDataArray)
-            print(locationDataArray)
             print(LoginModel.owenLocationIDArray)
+            print(locationDataArray)
         }
     }
     
@@ -114,6 +115,8 @@ class MyLocationModel {
                 Network.getLocationInfo(locationID: data.locationID, rank: 4) { (likeAmoutData) in
                     let newLikeAmout = (likeAmoutData as! LocationInfoRank4).locationLikedAmount
                     //添加到总Like中去
+                    print("MylocationModel")
+                    print("递归更新Like情况")
                     LoginModel.totalLikeAmout += newLikeAmout
                     var newData = data
                     newData.locationLikedAmount = newLikeAmout
@@ -139,7 +142,8 @@ class MyLocationModel {
         if data.isPublic && LoginModel.login{
             //登陆之后->后端添加
             Network.createNewLocationToServer(locaitonID: data.locationID, data: data) { (JSON) in
-                print("成功添加")
+                print("MyLocationModel")
+                print("成功添加LocationInfo")
             }
         }
         //未登陆只进行本地添加
@@ -156,7 +160,8 @@ class MyLocationModel {
                 if newData.isPublic && LoginModel.login{
                     //后端添加这个newData
                     Network.createNewLocationToServer(locaitonID: newData.locationID, data: newData) { (JSON) in
-                        print("成功添加")
+                        print("MyLocationModel")
+                        print("后端成功添加")
                     }
                 }else{
                     //后端删除这个location
@@ -169,6 +174,7 @@ class MyLocationModel {
         }
         //只进行本地修改
         for (index,data) in locationDataArray.enumerated(){
+             print("MyLocationModel")
              print("本地修改中 ", data.locationID , " " ,  newData.locationID)
             if data.locationID == newData.locationID{
                
@@ -190,6 +196,13 @@ class MyLocationModel {
                     //后端删除
                     Network.deleteLocation(locationID: id)
                 }
+                //删除缓存的图片
+                let locationsData = locationDataArray[index]
+                for visitNote in locationsData.VisitedNoteID {
+                    for imageUrl in visitNote.imageURLArray{
+                        ImageSaver.deleteImage(fileName: imageUrl)
+                    }
+                }
                 //本地删除
                 locationDataArray.remove(at: index)
                 break
@@ -199,7 +212,9 @@ class MyLocationModel {
     
     //MARK: 添加删除某一个Location下的VisitNoted
     
-    func addNewVisitNoteTo(locationID:String,visitNoteID:String,data:VisitedNote,imageArray:[UIImage]){
+    func addNewVisitNoteTo(locationID:String,visitNoteID:String,data:VisitedNote,imageArray:[UIImage],landingAction:(()->Void)?){
+        print("MylocationModel")
+        print("addNewVisitNoteTo")
         //添加ImageURL到VisitedNote数据中
         var finalData = data
         for (index,image) in imageArray.enumerated() {
@@ -207,7 +222,6 @@ class MyLocationModel {
             let name = visitNoteID + "O\(index)" + "\(Constants.imageNameIdentChar)" + radioString
             //缓存到本地
             let url = "uploads/" + name + ".jpg"
-            print(url)
             LocalImagePool.set(image: image, url: url)
             //添加到data里
             finalData.imageURLArray.append(url)
@@ -216,25 +230,40 @@ class MyLocationModel {
         //找到这个location
         for (index,value) in locationDataArray.enumerated(){
             if value.locationID == locationID {
+                let localAddIt = {
+                    //添加Cell图片
+                    //自动配上图片
+                    if let image = imageArray.first{
+                        print("MylocationModel")
+                        print("添加新的visitedNote")
+                        self.setNewImageTo(locationID: locationID, image: image)
+                    }
+                    print("MyLocationModel")
+                    print("本地添加这个visitedNote")
+                    //本地添加这个visitedNote
+                    var locationData = value //这个value为添加之前的数据
+                    locationData.VisitedNoteID.insert(finalData, at: 0)//添加两个记录到数组最前面
+                    locationData.noteIDs.insert(visitNoteID, at: 0)
+                    //把这个更改的Location移到最前面
+                    self.locationDataArray.remove(at: index)
+                    self.locationDataArray.insert(locationData, at: 0)
+                    if let action = landingAction{
+                        action()
+                    }
+                }
                 //查看是否需要后端创建
                 if value.isPublic && LoginModel.login{
-                    Network.createVisitedNote(locationID: locationID, visitNoteID: visitNoteID, data: finalData, imageArray: imageArray)
+                    Network.createVisitedNote(locationID: locationID, visitNoteID: visitNoteID, data: finalData, imageArray: imageArray ,landingAction: {
+                        //本地添加
+                        localAddIt()
+                    })
+                }else{
+                    localAddIt()
                 }
-                //本地添加这个visitedNote
-                var locationData = value
-                locationData.VisitedNoteID.insert(finalData, at: 0)//添加两个记录到数组最前面
-                locationData.noteIDs.insert(visitNoteID, at: 0)
-                //把这个更改的Location移到最前面
-                locationDataArray.remove(at: index)
-                locationDataArray.insert(locationData, at: 0)
                 break
             }
         }
-        //添加Cell图片
-        //自动配上图片
-        if let image = imageArray.first{
-            setNewImageTo(locationID: locationID, image: image)
-        }
+        
     }
     
     func deleteVisitNoteFrom(locationID:String,visitNoteID:String){
@@ -248,11 +277,17 @@ class MyLocationModel {
                 //删除本地visitNote
                 for (number,notes) in locationDataArray[index].noteIDs.enumerated(){
                     if notes == visitNoteID{
+                        //删除本地图片
+                        for imageURl in locationDataArray[index].VisitedNoteID[number].imageURLArray{
+                            ImageSaver.deleteImage(fileName: imageURl)
+                        }
                         //删除两个记录
                         locationDataArray[index].noteIDs.remove(at: number)
                         locationDataArray[index].VisitedNoteID.remove(at: number)
                         //检查删除的是不是首个VisitNote
                         if number == 0 {
+                            print("MyLocationModel")
+                            print("deleteVisitNoteFrom -> setNewImageTo")
                             //添加下一个VisitedNote为Cell图片
                             if let nextImageUrl = locationDataArray[index].VisitedNoteID.first?.imageURLArray.first{
                                 let nextImage = LocalImagePool.getImage(url: nextImageUrl)!
@@ -271,6 +306,8 @@ class MyLocationModel {
     
     //MARK:更新imageInfoImage （显示在Cell上面的Image）
     func setNewImageTo(locationID:String,image:UIImage?) {
+        print("MylocationModel")
+        print("setNewImageTo被调用了")
         //找到这个location
         for (index,location) in locationDataArray.enumerated(){
             if location.locationID == locationID{
@@ -286,6 +323,8 @@ class MyLocationModel {
                     let url = Network.getLocationInfoImageUrl(locationID: locationID)
                     LocalImagePool.set(image: croppedImage, url: url)//更新LocalImaagePool中的infoImage
                     locationDataArray[index].locationInfoImageURL = url
+                    print("MyLocationModel")
+                    print("更新LocalImaagePool中的infoImage")
                 }else{//删除Image
                     //检查是否需要后端添加Nil
                     if location.isPublic && LoginModel.login{

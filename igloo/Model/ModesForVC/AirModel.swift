@@ -15,7 +15,7 @@ class AirModel {
     //图标数据类型数据
     var currentAnnationLocationDataArray:[(id:String,data:LocationInfoRank3)] = []
     var currentShowingIndexMax = 0
-    let groupAmount = 3
+    let groupAmount = 10
     //MARK:Functions
     
     //获取某个区域的数据并且展示第一Group的数据
@@ -46,12 +46,14 @@ class AirModel {
                 Network.getLocationInfo(locationID: firstData.id, rank: 2) { (rank2Data) in
                     let data = rank2Data as! LocationInfoRank2
                     //更新新的LocationData
+                    print("AirModel")
                     print("获取的Data",(id:firstData.id , data2: data, data3: firstData.data))
                     newResultArray.append((id:firstData.id , data2: data, data3: firstData.data))
                     getData(resultArray: newResultArray, inputArray: newInputArray)
                 }
             }else{
-                print("执行landingAction")
+                print("AirModel")
+                print("getData 执行landingAction")
                 //执行landingAction
                 landingBlock(resultArray)
                 return

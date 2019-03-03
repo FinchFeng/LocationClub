@@ -42,6 +42,7 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
             let imageName = data.imageURLArray.first!
             //获取分辨率
             let result = getRadio(string: imageName)
+            print("VisitNoteCell")
             print(Constants.displayScale)
             var width = result.0 
             var height = result.1

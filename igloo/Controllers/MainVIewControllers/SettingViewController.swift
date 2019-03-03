@@ -63,6 +63,7 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     })
                 }
             }else{
+                print("SettingViewController")
                 print("执行landingAction")
                 //执行landingAction
                 landingBlock(resultArray)
@@ -122,7 +123,6 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         switch indexPath.row {
         case 1:
             //进行likeLocation检查
-            
             getDatasForMarsView { (dataArray) in
                 //获取数据并且传递给下一个展现ViewController
                 self.dataArrayToPass = dataArray

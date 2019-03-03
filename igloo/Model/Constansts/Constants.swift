@@ -17,7 +17,7 @@ class Constants {
     
     //MARK: 后端的Keys
     static let backendURL =  "http://127.0.0.1:8000/location/"
-    
+    static let imagebedURL = "http://pnpxq4cyt.bkt.clouddn.com/"
     //JsonKeys
     static let locationLongitudeKey = "locationLongitudeKey"
     static let locationLatitudeKey = "locationLatitudeKey"

@@ -67,6 +67,7 @@ class LoginInMenuViewController: UIViewController,GIDSignInUIDelegate{
     //GoogleSDK Method
     
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error?) {
+        print("LoginInMenuViewController")
         print("结束SignIn")
     }
     

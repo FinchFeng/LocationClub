@@ -105,7 +105,7 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
         if let presentingVC = self.presentingViewController {
-            print(presentingVC)
+//            print(presentingVC)
             if self.oldLocationData != nil {
                 performSegue(withIdentifier: "unwindToGreat", sender: nil)
             }else{

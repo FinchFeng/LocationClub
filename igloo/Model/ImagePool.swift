@@ -85,11 +85,25 @@ class ImageSaver {//储存的时候删除 "uploads/"
             }
             try data.write(to: document.appendingPathComponent(fileNameWithOutUploads))
         }catch{
+             print("ImagePool")
             print(error)
             return false
         }
         return true
     }
+    
+    //删除image
+    static func deleteImage(fileName:String){
+         let fileNameWithOutUploads = String(fileName[fileName.index(fileName.startIndex, offsetBy: 7)...])
+        do {
+            let emptyData = NSData()
+            try emptyData.write(to: document.appendingPathComponent(fileNameWithOutUploads))
+        }catch{
+            print("ImagePool")
+            print(error)
+        }
+    }
+    
     static func getImage(filename:String)->UIImage?{//FileName不变
         let fileNameWithOutUploads = String(filename[filename.index(filename.startIndex, offsetBy: 7)...])
         let url = document.appendingPathComponent(fileNameWithOutUploads)

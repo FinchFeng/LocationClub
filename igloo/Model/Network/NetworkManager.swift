@@ -73,9 +73,9 @@ class Network {
         })
     }
     
-    //创建地点 登陆之后才能使用 🔧注意登陆之后上传Location的同时也要上传CellImage
+    //创建地点 登陆之后才能使用 注意登陆之后上传Location的同时也要上传CellImage
     static func createNewLocationToServer(locaitonID:String,data:LocationInfoLocal,action:@escaping ([String:Any])->Void){
-        //locationInfoLocal转化为parameters参数 VisitedNote需要等待这个方法返回之后进行添加🔧
+        //locationInfoLocal转化为parameters参数 VisitedNote需要等待这个方法返回之后进行添加
         var parameters = Shower.changeLocationInfoToParameters(data: data)
         //获取LocaitonID iglooID ⚠️测试的时候使用静态iglooID
         parameters[Constants.iglooID] = LoginModel.iglooID
@@ -98,7 +98,6 @@ class Network {
                 if let data = response.data {
                     //直接Decode Json
                     var dataForUse:Codable?
-                    print(rank)
                     switch rank{
                     case 2: dataForUse = Shower.decoderJson(jsonData: data, type: LocationInfoRank2.self)
                     case 3: dataForUse = Shower.decoderJson(jsonData: data, type: LocationInfoRank3.self)
@@ -109,7 +108,7 @@ class Network {
                     if let data = dataForUse{
                         landingAction(data)
                     }else{
-                        print("无数据")
+//                        print("无数据")
                     }
                 }
             })
@@ -134,7 +133,8 @@ class Network {
                             visitedNoteIDArray = rank1class.VisitedNoteID
 //                            print(visitedNoteIDArray)
                         }else{
-                            print("出错鸟")
+                            print("NetworkManager")
+                            print("getLocationInfo出错鸟")
                             return
                         }
                     }
@@ -153,7 +153,8 @@ class Network {
             if 2 <= rank , rank <= 4{
                 getRankData(rank)//其他级别使用这个方法
             }else{
-                print("超出范围")
+                print("NetworkManager")
+                print("getLocationInfo超出范围")
             }
         }
         
@@ -171,6 +172,7 @@ class Network {
         //发送参数
         sendRuquest(url: url, method: .get, parameters: parameters) { (JSON) in
             if let result = JSON["success"] as? Bool{
+                print("NetworkManager")
                 print("更改Location信息 " + String(result))
             }else{
                 //错误信息
@@ -190,6 +192,7 @@ class Network {
         //发送参数
         sendRuquest(url: url, method: .get, parameters: parameters) { (JSON) in
             if let result = JSON["success"] as? String{
+                print("NetworkManager")
                 print("删除Location信息 " + result)
             }
         }
@@ -197,42 +200,43 @@ class Network {
     //MARK: 访问记录创建与删除
     //data(visitNote)中的imageArray一定要为空，直接在后面传入 [UIImage]
     static func createVisitedNote(locationID:String,visitNoteID:String,data:VisitedNote,imageArray:[UIImage],landingAction:(()->Void)? = nil){
-        //使用递归一次性发送多张图片
-        let count = imageArray.count
-        func sendImageArray(imageArray:[UIImage]){
-            if let firstImage = imageArray.first {
-                let index = count-imageArray.count
-                //从data中获取name
-                let url = data.imageURLArray[index]
-                let name = String(url[url.index(url.startIndex, offsetBy: 7)...url.index(url.endIndex,offsetBy:-5)])
-//                print("}}}}}}}}}}}}}")
-//                print(name)
-                send(filename: name, image: firstImage, visitNoteID:visitNoteID) { (result) in
-                    if result == true {
-                        var newImageArray = imageArray
-                        newImageArray.remove(at: 0)
-                        //删除第一个image 递归余下的image
-                        sendImageArray(imageArray: newImageArray)
-                    }
-                }
+        //直接创建新的JsonString
+        var JsonString = "{\"imageURL\":["
+        if data.imageURLArray.isEmpty {
+            JsonString += "]}"
+        }
+        for (index,imageURL) in data.imageURLArray.enumerated() {
+            JsonString += "\"" + imageURL + "\""
+            if index == data.imageURLArray.endIndex-1{
+                JsonString += "]}"
             }else{
-                return
+                JsonString += ","
             }
         }
-        
         //参数配置
-        let parameters = [Constants.VisitedNoteID:visitNoteID,Constants.visitNoteWord:data.visitNoteWord,
-                          Constants.locationID:locationID,Constants.createdTime:data.createdTime]
+        let parameters : [String : Any] = [Constants.VisitedNoteID:visitNoteID,Constants.visitNoteWord:data.visitNoteWord,
+                          Constants.locationID:locationID,Constants.createdTime:data.createdTime,
+                          Constants.imageURLArray:JsonString]
         //Send it!
         sendRuquest(url: Constants.backendURL+"newVisitNote/", method: .get, parameters: parameters) { (JSON) in
             if JSON["success"] as! Bool == true {
+                print("NetworkManager")
                 print("创建VisitedNoted成功")
                 //发送图片
-                //递归获取避免回调地狱
-                sendImageArray(imageArray: imageArray)
+                let imageURlArray = data.imageURLArray
+                var imageAndUrlArray:[(String,UIImage)] = []
+                for (index,image) in imageArray.enumerated(){
+                    imageAndUrlArray.append((imageURlArray[index],image))
+                }
+                ImageManager.send(dataArray: imageAndUrlArray)
+                //执行闭包
                 if let action = landingAction {
                     action()
                 }
+            }else{
+                 print("NetworkManager")
+                print("创建VisitedNoted不成功")
+                //不在本地进行添加
             }
         }
         
@@ -245,6 +249,7 @@ class Network {
         //Send it!
         sendRuquest(url: Constants.backendURL+"deleteVisitedNote/", method: .get, parameters: parameters) { (JSON) in
             if JSON["success"] as! Bool == true {
+                 print("NetworkManager")
                 print("删除VisitedNoted成功")
             }
         }
@@ -304,10 +309,9 @@ class Network {
 //            print("缓存中有此图片")
             landingAction(image)
         }else{
-            //获取图片
-            let parameters:Parameters = [Constants.imageURL:url]
-            Alamofire.request(Constants.backendURL+"getImage/",method: .get,
-                              parameters: parameters,encoding: URLEncoding(destination: .methodDependent))
+            //进行后端图片的获取  图床的ImageURl
+            Alamofire.request(Constants.imagebedURL+url,method: .get,
+                              parameters: [:],encoding: URLEncoding(destination: .methodDependent))
                 .responseData { (response) in
                     let data = response.result.value!
                     //转换成为UIImage
@@ -317,7 +321,6 @@ class Network {
                     //执行Action
                     landingAction(image)
             }
-            
         }
         
     }
@@ -329,15 +332,17 @@ class Network {
         return url
     }
     
-    static func changeLocationInfoImage(locationID:String,image:UIImage) {
-        let name = String(locationID)+"InfoImage"
+    static func changeLocationInfoImage(locationID:String,image:UIImage) {//
         let url = getLocationInfoImageUrl(locationID: locationID)
-        send(filename: name, image: image,locationID: locationID) { (result) in
-            if result == true {
-                ImageChecker.set(image: image, url: url)
-                print("更改成功")
-            }
+        //更改后台url
+        let backendURL = Constants.backendURL + "changeLocationInfoImageURL/"
+        let paramters = [Constants.locationID:locationID,Constants.locationInfoImageURL:url]
+        sendRuquest(url: backendURL, method: .get, parameters: paramters) { (data) in
+             print("NetworkManager")
+            print("changeLocationInfoImage完成")
         }
+        //发送图片
+        ImageManager.send(dataArray: [(url,image)])
     }
 //    (不能直接调用!)
      static func send(filename:String,image: UIImage,
@@ -404,6 +409,7 @@ class Network {
                         action(JSONDict)
                     }
                 }else{
+                     print("NetworkManager")
                     print("错误")
                 }
         }

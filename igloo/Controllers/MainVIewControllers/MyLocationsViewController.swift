@@ -77,6 +77,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     
     func reloadTableViewData() {
         //配置tableView M->C->V
+        
         locationTableView.setDataIn(locationDataArray:dataArrayForTableView)
     }
     
@@ -129,6 +130,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
         let id = model.locationDataArray[index].locationID
         model.deleteLocaitonInfo(id: id)
         if reload {
+            print("MyLocationsViewController")
             print("After delete reload the data")
             reloadTableViewData()
         }
@@ -144,15 +146,18 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     }
     
     func changeLocationData(newData: LocationInfoLocal, key: String, value: String ,landing:@escaping () -> Void) {
+        print("MyLocationsViewController")
         print("changeLocationData")
         print(newData)
         model.editLocationInfo(newData: newData, key: key, value: value, landing: landing)
         reloadTableViewData()
     }
     //MARK: VisitedNote
-    func addVisiteNote(locationID: String, visitNoteID: String, data:VisitedNote, imageArray: [UIImage]) {
-        model.addNewVisitNoteTo(locationID: locationID, visitNoteID: visitNoteID, data: data, imageArray: imageArray)//自动
-        reloadTableViewData()
+    func addVisiteNote(locationID: String, visitNoteID: String, data:VisitedNote, imageArray: [UIImage],landingAction:@escaping()->Void) {
+        model.addNewVisitNoteTo(locationID: locationID, visitNoteID: visitNoteID, data: data, imageArray: imageArray,landingAction: {
+            landingAction()
+        })//自动
+        self.reloadTableViewData()
     }
     
     func deleteVisiteNote(locationID: String, visitNoteID: String) {
@@ -162,14 +167,16 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     }
     
     func addNewVisitNoteAndUpdateView(GreatVC: GreatLocationInfoViewController, locationID: String, visitNoteID: String, data: VisitedNote, imageArray: [UIImage]) {
-        addVisiteNote(locationID: locationID, visitNoteID: visitNoteID, data: data, imageArray: imageArray)
-        //寻找更新的data
-        for data in model.locationDataArray {
-            if data.locationID == GreatVC.locationData.locationID{
-                GreatVC.update(data:data)//更新
-                return
+        addVisiteNote(locationID: locationID, visitNoteID: visitNoteID, data: data, imageArray: imageArray, landingAction: {
+            //寻找更新的data进行更新
+            for data in self.model.locationDataArray {
+                if data.locationID == GreatVC.locationData.locationID{
+                    GreatVC.update(data:data)//更新
+                    return
+                }
             }
-        }
+        })
+       
     }
     
     //MARK:Segue
@@ -200,9 +207,10 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     
     @IBAction func buttonTaped() {
 //        Network.changeOwenLike(array: ["123"], userID: "706485148")
-//        print(LoginModel.login)
-//        print(LoginModel.owenLocationIDArray)
-//        print(model.locationDataArray)
+        print("MyLocationsViewController")
+        print(LoginModel.login)
+        print(LoginModel.owenLocationIDArray)
+        print(model.locationDataArray)
 //        model.updateAllLocationInfoLikeAmount { (dataArray) in
 //            print(dataArray)
 //        }
