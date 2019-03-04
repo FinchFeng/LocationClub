@@ -306,20 +306,27 @@ class Network {
     static func getImage(at url:String,landingAction:@escaping (UIImage)->Void){
         //检查缓存
         if let image = ImageChecker.getImage(url: url){
-//            print("缓存中有此图片")
+            print("NetworkManager")
+            print("缓存中有此图片")
             landingAction(image)
         }else{
             //进行后端图片的获取  图床的ImageURl
+            print("NetworkManager获取以下地址的图片")
+            print(Constants.imagebedURL+url)
             Alamofire.request(Constants.imagebedURL+url,method: .get,
                               parameters: [:],encoding: URLEncoding(destination: .methodDependent))
                 .responseData { (response) in
                     let data = response.result.value!
                     //转换成为UIImage
-                    let image = UIImage(data: data )!
-                    //加入缓存
-                    ImageChecker.set(image: image, url: url)
-                    //执行Action
-                    landingAction(image)
+                    if let image = UIImage(data: data) {
+                        //加入缓存
+                        ImageChecker.set(image: image, url: url)
+                        //执行Action
+                        landingAction(image)
+                    }else{
+                        print("NetworkManager")
+                        print("图片Data不存在")
+                    }
             }
         }
         

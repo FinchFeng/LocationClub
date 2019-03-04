@@ -15,9 +15,11 @@ class Constants {
     static let welcomeLoginString = "登陆后使用地点俱乐部探索整个世界"
     static let loginButtonString = "手机号登陆"
     
-    //MARK: 后端的Keys
-    static let backendURL =  "http://127.0.0.1:8000/location/"
-    static let imagebedURL = "http://pnpxq4cyt.bkt.clouddn.com/"
+    //MARK: 后端的Keys localBackendUrl
+    static let remoteBackendUrl = "http://118.25.71.200/location/"
+    static let localBackendUrl = "http://127.0.0.1:8000/location/"
+    static let backendURL = remoteBackendUrl
+    static let imagebedURL = "http://sythew.cn/"
     //JsonKeys
     static let locationLongitudeKey = "locationLongitudeKey"
     static let locationLatitudeKey = "locationLatitudeKey"

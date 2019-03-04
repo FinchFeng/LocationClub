@@ -46,7 +46,7 @@ struct Icon {
                                     Icon(kind: "Chatting", kindInChinese: "闲聊地", image: #imageLiteral(resourceName: "Chatting"), highlightImage: #imageLiteral(resourceName: "ChattingHighlight-5")),
                                     Icon(kind: "Culture", kindInChinese: "人文景观", image: #imageLiteral(resourceName: "Culture"), highlightImage: #imageLiteral(resourceName: "CultureHighlight-7")),
                                     Icon(kind: "DeadFood", kindInChinese: "难吃到死", image: #imageLiteral(resourceName: "DeadFood"), highlightImage: #imageLiteral(resourceName: "DeadFoodHighlight-3")),
-                                    Icon(kind: "Default", kindInChinese: "默认", image: #imageLiteral(resourceName: "Default-1"), highlightImage: #imageLiteral(resourceName: "iglooIcon")),
+                                    Icon(kind: "Defualt", kindInChinese: "默认", image: #imageLiteral(resourceName: "Default-1"), highlightImage: #imageLiteral(resourceName: "DefaultHighlight")),
                                     Icon(kind: "Hotel", kindInChinese: "酒店", image: #imageLiteral(resourceName: "Hotel"), highlightImage: #imageLiteral(resourceName: "HotelHighlight-10")),
                                     Icon(kind: "LovePlace", kindInChinese: "约会圣地", image: #imageLiteral(resourceName: "LovePlace"), highlightImage: #imageLiteral(resourceName: "LovePlaceHighlight")),
                                     Icon(kind: "Restaurant", kindInChinese: "餐厅", image: #imageLiteral(resourceName: "Restaurant"), highlightImage: #imageLiteral(resourceName: "RestaurantHighlight-8")),

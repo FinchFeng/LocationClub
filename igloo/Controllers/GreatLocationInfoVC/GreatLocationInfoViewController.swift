@@ -62,6 +62,9 @@ class GreatLocationInfoViewController: UIViewController {
     
     func showDataToView(){
         //map截图
+        print("GreatLocationInfoViewC")
+        print("lcoationData的iconKindString值")
+        print(locationData.iconKindString)
         iconImageView.image = Constants.getIconStruct(name: locationData.iconKindString)!.highlightImage
         MapSnapShotter.getMapImageForCell(latitude: locationData.locationLatitudeKey, longitude: locationData.locationLongitudeKey) { (image) in
             self.mapImage.image = image
