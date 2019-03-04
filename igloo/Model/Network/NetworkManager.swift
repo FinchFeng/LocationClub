@@ -338,11 +338,12 @@ class Network {
         let backendURL = Constants.backendURL + "changeLocationInfoImageURL/"
         let paramters = [Constants.locationID:locationID,Constants.locationInfoImageURL:url]
         sendRuquest(url: backendURL, method: .get, parameters: paramters) { (data) in
-             print("NetworkManager")
+            print("NetworkManager")
             print("changeLocationInfoImage完成")
+            //发送图片
+            ImageManager.send(dataArray: [(url,image)])
         }
-        //发送图片
-        ImageManager.send(dataArray: [(url,image)])
+        
     }
 //    (不能直接调用!)
      static func send(filename:String,image: UIImage,

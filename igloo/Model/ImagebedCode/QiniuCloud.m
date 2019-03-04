@@ -18,7 +18,7 @@
         builder.zone = [QNFixedZone zone0];
     }];
     //重用uploadManager。一般地，只需要创建一个uploadManager对象
-    NSString * token = @"4-Kmov0TxBv9WZP2zNiujmvmXGPUiuIow0sSQ4Jp:1ItODb8fcXSoD8Y8Qq_MPQxp7vc=:eyJzY29wZSI6ImltYWdlYmVkIiwiZGVhZGxpbmUiOjE1NTE2MjA4NTZ9";
+    NSString * token = @"4-Kmov0TxBv9WZP2zNiujmvmXGPUiuIow0sSQ4Jp:6kmW56uPGpZBDg1PzQMlypKiBlA=:eyJzY29wZSI6ImltYWdlYmVkIiwiZGVhZGxpbmUiOjcwNzA0NjY2MzF9";
     NSString * key = filename;
     QNUploadManager *upManager = [[QNUploadManager alloc] initWithConfiguration:config];
     [upManager putData:data

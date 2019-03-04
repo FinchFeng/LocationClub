@@ -31,13 +31,16 @@ class ImageManager {
                 //更改为Data
                 let data = changeUIImageToData(image: firstImage.1)
                 SendDataToImageBed.send(data, filename: firstImage.0 ){
-//                    print(index)
+                    print("ImageManager")
+                    print("文件名称")
+                    print(firstImage.0)
+                    print(index)
                     index += 1
-//                    print("发送成功")
+                    print("发送成功")
                     sendImage(noYetSend: newImageArray)
                 }
             }else{
-//                print("结束")
+                print("结束")
                 return
             }
         }
