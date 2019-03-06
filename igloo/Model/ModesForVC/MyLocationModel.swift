@@ -144,10 +144,13 @@ class MyLocationModel {
             Network.createNewLocationToServer(locaitonID: data.locationID, data: data) { (JSON) in
                 print("MyLocationModel")
                 print("成功添加LocationInfo")
+                //本地添加
+                self.locationDataArray.insert(data, at: 0)
             }
-        }
+        }else{
         //未登陆只进行本地添加
         locationDataArray.insert(data, at: 0)
+        }
         
     }
     
@@ -165,7 +168,7 @@ class MyLocationModel {
                     }
                 }else{
                     //后端删除这个location
-                    Network.deleteLocation(locationID: newData.locationID)
+                    Network.deleteLocation(locationID: newData.locationID, landingAction: {})
                 }
             }else{
                 //后端修改data
@@ -187,14 +190,22 @@ class MyLocationModel {
         
     }
     
-    func deleteLocaitonInfo(id:String)  {
+    func deleteLocaitonInfo(id:String,UIActionBlock:@escaping ()->Void)  {
         //本地删除 后端删除
         for (index,data) in locationDataArray.enumerated(){
             if data.locationID == id {
                 //对data进行操作
                 if data.isPublic && LoginModel.login {
                     //后端删除
-                    Network.deleteLocation(locationID: id)
+                    Network.deleteLocation(locationID: id, landingAction: {
+                        //本地删除
+                        self.locationDataArray.remove(at: index)
+                        UIActionBlock()
+                    })
+                }else{
+                    //本地删除
+                    locationDataArray.remove(at: index)
+                    UIActionBlock()
                 }
                 //删除缓存的图片
                 let locationsData = locationDataArray[index]
@@ -203,8 +214,7 @@ class MyLocationModel {
                         ImageSaver.deleteImage(fileName: imageUrl)
                     }
                 }
-                //本地删除
-                locationDataArray.remove(at: index)
+                
                 break
             }
         }
@@ -268,39 +278,49 @@ class MyLocationModel {
         
     }
     
-    func deleteVisitNoteFrom(locationID:String,visitNoteID:String){
+    func deleteVisitNoteFrom(locationID:String,visitNoteID:String,UIActionBlock:@escaping ()->Void){
         //找到这个location
         for (index,value) in locationDataArray.enumerated(){
             if value.locationID == locationID {
-                //查看后端是否需要删除
-                if value.isPublic && LoginModel.login{
-                    Network.deleteVisitedNote(id: visitNoteID)
-                }
-                //删除本地visitNote
-                for (number,notes) in locationDataArray[index].noteIDs.enumerated(){
-                    if notes == visitNoteID{
-                        //删除本地图片
-                        for imageURl in locationDataArray[index].VisitedNoteID[number].imageURLArray{
-                            ImageSaver.deleteImage(fileName: imageURl)
-                        }
-                        //删除两个记录
-                        locationDataArray[index].noteIDs.remove(at: number)
-                        locationDataArray[index].VisitedNoteID.remove(at: number)
-                        //检查删除的是不是首个VisitNote
-                        if number == 0 {
-                            print("MyLocationModel")
-                            print("deleteVisitNoteFrom -> setNewImageTo")
-                            //添加下一个VisitedNote为Cell图片
-                            if let nextImageUrl = locationDataArray[index].VisitedNoteID.first?.imageURLArray.first{
-                                let nextImage = LocalImagePool.getImage(url: nextImageUrl)!
-                                setNewImageTo(locationID: locationID, image:nextImage)
-                            }else{
-                                //没有VisiteNote或者没有图片
-                                setNewImageTo(locationID: locationID, image: nil)
+                let deleteLocalVisitNote = {
+                    //删除本地visitNote
+                    for (number,notes) in self.locationDataArray[index].noteIDs.enumerated(){
+                        if notes == visitNoteID{
+                            //删除本地图片
+                            for imageURl in self.locationDataArray[index].VisitedNoteID[number].imageURLArray{
+                                ImageSaver.deleteImage(fileName: imageURl)
+                            }
+                            //删除两个记录
+                            self.locationDataArray[index].noteIDs.remove(at: number)
+                            self.locationDataArray[index].VisitedNoteID.remove(at: number)
+                            //检查删除的是不是首个VisitNote
+                            if number == 0 {
+                                print("MyLocationModel")
+                                print("deleteVisitNoteFrom -> setNewImageTo")
+                                //添加下一个VisitedNote为Cell图片
+                                if let nextImageUrl = self.locationDataArray[index].VisitedNoteID.first?.imageURLArray.first{
+                                    let nextImage = LocalImagePool.getImage(url: nextImageUrl)!
+                                    self.setNewImageTo(locationID: locationID, image:nextImage)
+                                }else{
+                                    //没有VisiteNote或者没有图片
+                                    self.setNewImageTo(locationID: locationID, image: nil)
+                                }
                             }
                         }
                     }
                 }
+                //查看后端是否需要删除
+                if value.isPublic && LoginModel.login{
+                    Network.deleteVisitedNote(id: visitNoteID, landingAction: {
+                        deleteLocalVisitNote()
+                        UIActionBlock()
+                    })
+                    
+                }else{
+                    deleteLocalVisitNote()
+                    UIActionBlock()
+                }
+                
                 
             }
         }

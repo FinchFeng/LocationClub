@@ -218,11 +218,11 @@ class GreatLocationInfoViewController: UIViewController {
 }
 
 extension GreatLocationInfoViewController :DeleteVisiteNoteDelegate{
-    func deleteVisiteNote(id: String) {
-        delegate.deleteVisiteNote(locationID: self.locationData.locationID, visitNoteID: id)
+    func deleteVisiteNote(id: String,UIActionBlock:@escaping () -> Void) {
+        delegate.deleteVisiteNote(locationID: self.locationData.locationID, visitNoteID: id, UIActionBlock: UIActionBlock)
     }
 }
 
 protocol DeleteVisiteNoteDelegate {
-    func deleteVisiteNote(id:String)
+    func deleteVisiteNote(id:String,UIActionBlock:@escaping () -> Void)
 }

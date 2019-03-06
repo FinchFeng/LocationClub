@@ -92,14 +92,15 @@ class VisitNoteTableView: UITableView,UITableViewDelegate,UITableViewDataSource 
     var cellShouldDelete:VisitNoteCell?
     @objc func deleteCell() {
         if let cell = cellShouldDelete {
-            //删除data
-            let index = indexPath(for: cell)!.row-1
-            visitNoteArray.remove(at: index)
-            visitNoteIDArray.remove(at: index)
-            //View删除
-            deleteRows(at: [self.indexPath(for: cell)!], with: UITableView.RowAnimation.left)
             //Model删除
-            deleteVisitNoteDelegate.deleteVisiteNote(id:cell.id)
+            deleteVisitNoteDelegate.deleteVisiteNote(id:cell.id, UIActionBlock: {
+                //删除data
+                let index = self.indexPath(for: cell)!.row-1
+                self.visitNoteArray.remove(at: index)
+                self.visitNoteIDArray.remove(at: index)
+                //View删除
+                self.deleteRows(at: [self.indexPath(for: cell)!], with: UITableView.RowAnimation.left)
+            })
         }
         cellShouldDelete = nil
     }

@@ -10,8 +10,26 @@ import Foundation
 import Alamofire
 import WebKit
 import MapKit
+import UIKit
 
 class Network {
+    
+    static var shouldConneted:Bool = true
+    
+    //MARK:检测是否有网络有关方法
+    
+    static func showAlertNetworkDied(){
+        let alertController = UIAlertController(title: "无网络连接,请检查是否连接网络", message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+        //获取最上面的VC
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            //展示它
+            topController.present(alertController, animated: true, completion: nil)
+        }
+    }
     
     //MARK:登陆接口
     
@@ -28,17 +46,20 @@ class Network {
         let url = Constants.backendURL + "iglooLogin/"
         //发送方法
         sendRuquest(url: url, method: .post, parameters: parameters, action: action)
+        
     }
     
     //登出
-    static func logOut(iglooID:String){
+    static func logOut(iglooID:String,landingAction:@escaping ()->Void){
         //发送登出方法
         //配置参数
         let parameters = [Constants.iglooID:iglooID]
         //配置Url
         let url = Constants.backendURL + "logout/"
         //发送它
-        sendRuquest(url: url, method: .get, parameters: parameters, action: {(data) in })
+        sendRuquest(url: url, method: .get, parameters: parameters, action: {(data) in
+            landingAction()
+        })
     }
     
     //获取验证码
@@ -89,7 +110,7 @@ class Network {
     
     //获取地点信息 注意顶级信息在这里代表全部信息
     static func getLocationInfo(locationID:String,rank:Int,landingAction: @escaping (Any)->Void){//
-        
+        if checkNetworkConnection() == false {return}//检查是否有网络连接
         let locationUrl = Constants.backendURL + "getLocation/"
         //内部方法—————使用这个方法来获取2到4rank的数据
         func getRankData(_ rank:Int){
@@ -181,8 +202,8 @@ class Network {
         }
     }
     
-    //删除Locaition
-    static func deleteLocation(locationID:String){
+    //删除Locaition 要拥有闭包
+    static func deleteLocation(locationID:String,landingAction:@escaping ()->Void){
         //从UserDefault中获取iglooID
         let iglooID = LoginModel.iglooID
         //配置Url
@@ -194,6 +215,7 @@ class Network {
             if let result = JSON["success"] as? String{
                 print("NetworkManager")
                 print("删除Location信息 " + result)
+                landingAction()
             }
         }
     }
@@ -243,7 +265,7 @@ class Network {
         
     }
     
-    static func deleteVisitedNote(id:String){
+    static func deleteVisitedNote(id:String,landingAction:@escaping ()->Void){
         //配置参数
         let parameters = [Constants.iglooID:LoginModel.iglooID,Constants.VisitedNoteID:id]
         //Send it!
@@ -251,6 +273,7 @@ class Network {
             if JSON["success"] as! Bool == true {
                  print("NetworkManager")
                 print("删除VisitedNoted成功")
+                landingAction()
             }
         }
     }
@@ -304,6 +327,7 @@ class Network {
     //MARK: 图片上传下载
     //对于外部来说直接传入URL就可以获取图片
     static func getImage(at url:String,landingAction:@escaping (UIImage)->Void){
+        if checkNetworkConnection() == false {return}//检查是否有网络连接
         //检查缓存
         if let image = ImageChecker.getImage(url: url){
             print("NetworkManager")
@@ -405,8 +429,18 @@ class Network {
     
     //MARK: 辅助方法
     
+    static func checkNetworkConnection()->Bool{
+        if Network.shouldConneted == false {
+            Network.showAlertNetworkDied()
+            return false
+        }else{
+            return true
+        }
+    }
+    
     //使用这个方法运行没有Codable类的功能
     static func sendRuquest(url:String,method:HTTPMethod,parameters:Parameters,action: @escaping ([String:Any])->Void){
+        if checkNetworkConnection() == false {return}//检查是否有网络连接
         //发送方法
         Alamofire.request(url, method: method, parameters: parameters ,encoding: URLEncoding(destination: .methodDependent))
             .responseJSON{ response in

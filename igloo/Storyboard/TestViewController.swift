@@ -25,9 +25,10 @@ class TestViewController: UIViewController, SwiftPhotoGalleryDataSource, SwiftPh
     @IBOutlet weak var imageView: UIImageView!
     
     @IBAction func hitButton() {
-        Network.getImage(at: "0.jpg") { (image) in
-            self.imageView.image = image
-        }
+        Network.showAlertNetworkDied()
+//        Network.getImage(at: "0.jpg") { (image) in
+//            self.imageView.image = image
+//        }
 //        Network.login(withGoogle:false,number: "17864266604", password: "12345") { JSON in
 //            print(JSON)
 //        }

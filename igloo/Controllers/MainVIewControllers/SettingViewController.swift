@@ -133,8 +133,11 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
             alertController.addAction(UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil))
             alertController.addAction(UIAlertAction(title: "退出", style: UIAlertAction.Style.default, handler: { (_) in
                 //选择了退出登陆
-                Network.logOut(iglooID: LoginModel.iglooID)
-                LoginModel.logout()
+                Network.logOut(iglooID: LoginModel.iglooID,landingAction: {
+                    //返回的时候进行更改
+                    LoginModel.logout()
+                })
+                
             }))
             present(alertController, animated: true, completion: nil)
         case 3:

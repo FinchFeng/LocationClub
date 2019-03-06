@@ -128,12 +128,13 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     
     func deleteLocation(index:Int,reload:Bool)  {
         let id = model.locationDataArray[index].locationID
-        model.deleteLocaitonInfo(id: id)
-        if reload {
-            print("MyLocationsViewController")
-            print("After delete reload the data")
-            reloadTableViewData()
-        }
+        model.deleteLocaitonInfo(id: id, UIActionBlock: {
+            if reload {
+                print("MyLocationsViewController")
+                print("After delete reload the data")
+                self.reloadTableViewData()
+            }
+        })
     }
     
     func deleteLocation(id:String)  {
@@ -161,10 +162,10 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
         
     }
     
-    func deleteVisiteNote(locationID: String, visitNoteID: String) {
-         model.deleteVisitNoteFrom(locationID: locationID, visitNoteID: visitNoteID)
-        reloadTableViewData()
-        //查看是否需要tableCell更新图片
+    func deleteVisiteNote(locationID: String, visitNoteID: String,UIActionBlock:@escaping ()->Void) {
+        model.deleteVisitNoteFrom(locationID: locationID, visitNoteID: visitNoteID, UIActionBlock: {
+            self.reloadTableViewData()
+        })
     }
     
     func addNewVisitNoteAndUpdateView(GreatVC: GreatLocationInfoViewController, locationID: String, visitNoteID: String, data: VisitedNote, imageArray: [UIImage]) {
@@ -223,7 +224,7 @@ protocol MyLocationDelegate {
     func didSelectCell(index:Int)
     func deleteLocation(id:String)
     func deleteLocation(index:Int,reload:Bool)//用来删除数据
-    func deleteVisiteNote(locationID: String, visitNoteID: String)
+    func deleteVisiteNote(locationID: String, visitNoteID: String,UIActionBlock:@escaping ()->Void)
     func addNewVisitNoteAndUpdateView(GreatVC:GreatLocationInfoViewController,locationID: String, visitNoteID: String, data:VisitedNote, imageArray: [UIImage])
      func changeLocationData(newData: LocationInfoLocal, key: String, value: String ,landing:@escaping () -> Void)
 }

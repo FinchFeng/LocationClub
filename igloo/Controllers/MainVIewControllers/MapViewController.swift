@@ -279,24 +279,24 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
     }
     
     func clickCellLike(index:Int,cancel:Bool){
-        
-        //更改Cell
-        let cell = marsView.cellForRow(at: IndexPath(row: index, section: 0)) as! LocationCell
-        let oldAmount = Int(cell.likeAmount.text!)!
-        let newAmount = cancel ? String(oldAmount-1) : String(oldAmount+1)
-        cell.likeAmount.text =  newAmount
         //发送后端
         let locationID = self.dataToSendLocationID!
         Network.liked(cancel: cancel, location: locationID) { (result) in
             print("MapViewController")
+            print("LikedResult")
             print(result)
-        }
-        //添加或者删除likedLocation
-        if cancel {
-            let index = LoginModel.owenLikedLocationIDArray.index(of:locationID)!
-            LoginModel.owenLikedLocationIDArray.remove(at: index)
-        }else{
-            LoginModel.owenLikedLocationIDArray.append(locationID)
+            //更改Cell
+            let cell = self.marsView.cellForRow(at: IndexPath(row: index, section: 0)) as! LocationCell
+            let oldAmount = Int(cell.likeAmount.text!)!
+            let newAmount = cancel ? String(oldAmount-1) : String(oldAmount+1)
+            cell.likeAmount.text =  newAmount
+            //添加或者删除likedLocation
+            if cancel {
+                let index = LoginModel.owenLikedLocationIDArray.index(of:locationID)!
+                LoginModel.owenLikedLocationIDArray.remove(at: index)
+            }else{
+                LoginModel.owenLikedLocationIDArray.append(locationID)
+            }
         }
     } 
     

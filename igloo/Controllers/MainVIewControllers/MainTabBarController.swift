@@ -12,6 +12,32 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default
+            .addObserver(self,
+                         selector: #selector(statusManager),
+                         name: .flagsChanged,
+                         object: nil)
+        updateUserInterface()
+    }
+    
+    func updateUserInterface() {
+        //如果已经登陆
+        if LoginModel.login {
+            switch NetworkForCheck.reachability.status {
+            case .unreachable:
+                Network.shouldConneted = false
+            case .wwan,.wifi:
+                Network.shouldConneted = true
+            }
+            print("Reachability Summary")
+            print("Status:", NetworkForCheck.reachability.status)
+            print("HostName:", NetworkForCheck.reachability.hostname ?? "nil")
+            print("Reachable:", NetworkForCheck.reachability.isReachable)
+            print("Wifi:", NetworkForCheck.reachability.isReachableViaWiFi)
+        }
+    }
+    @objc func statusManager(_ notification: Notification) {
+        updateUserInterface()
     }
     
     var justBackFromLoginInMenu:Bool = false

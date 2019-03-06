@@ -81,24 +81,26 @@ class LikedLocationViewController: UIViewController,SettingDelegate {
 
 extension LikedLocationViewController:LikeDelegate {
     func clickCellLike(index:Int,cancel:Bool){
-        //删除Cell
-        if cancel {
-            locationData.remove(at: index)
-            marsView.setDataIn(locationDataArray: dataForMarsview)
-        }
+        
         //发送后端
         let locationID = self.dataToSendLocationID!
         Network.liked(cancel: cancel, location: locationID) { (result) in
             print("LikedLocationViewController")
             print(result)
+            //删除Cell
+            if cancel {
+                self.locationData.remove(at: index)
+                self.marsView.setDataIn(locationDataArray: self.dataForMarsview)
+            }
+            //添加或者删除likedLocation
+            if cancel {
+                let index = LoginModel.owenLikedLocationIDArray.index(of:locationID)!
+                LoginModel.owenLikedLocationIDArray.remove(at: index)
+            }else{
+                LoginModel.owenLikedLocationIDArray.append(locationID)
+            }
         }
-        //添加或者删除likedLocation
-        if cancel {
-            let index = LoginModel.owenLikedLocationIDArray.index(of:locationID)!
-            LoginModel.owenLikedLocationIDArray.remove(at: index)
-        }else{
-            LoginModel.owenLikedLocationIDArray.append(locationID)
-        }
+        
     }
 }
 

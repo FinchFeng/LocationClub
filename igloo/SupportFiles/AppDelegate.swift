@@ -52,6 +52,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        //测试网络连接
+        do {
+            try NetworkForCheck.reachability = Reachability(hostname: "www.baidu.com")
+        }
+        catch {
+            switch error as? NetworkForCheck.Error {
+            case let .failedToCreateWith(hostname)?:
+                print("Network error:\nFailed to create reachability object With host named:", hostname)
+            case let .failedToInitializeWith(address)?:
+                print("Network error:\nFailed to initialize reachability object With address:", address)
+            case .failedToSetCallout?:
+                print("Network error:\nFailed to set callout")
+            case .failedToSetDispatchQueue?:
+                print("Network error:\nFailed to set DispatchQueue")
+            case .none:
+                print(error)
+            }
+        }
         // Override point for customization after application launch.
         GIDSignIn.sharedInstance().clientID = "232382198501-nafiobk6uljjss59goa2bm9greh744eq.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
@@ -99,3 +117,4 @@ extension UIApplication {//递归找到最前面的VC
         return controller
     }
 }
+
