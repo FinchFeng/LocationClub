@@ -60,6 +60,8 @@ class GreatLocationInfoViewController: UIViewController {
         showDataToView()
     }
     
+    //是否需要保存图片
+    var saveImages:Bool?
     func showDataToView(){
         //map截图
         print("GreatLocationInfoViewC")
@@ -75,6 +77,8 @@ class GreatLocationInfoViewController: UIViewController {
         visitNoteTableView.showAddNewNoteCell = isMyOwnData
         visitNoteTableView.setDataIn(data: locationData.VisitedNoteID, ids: locationData.noteIDs)
         visitNoteTableView.deleteVisitNoteDelegate = self
+        visitNoteTableView.saveImages = self.saveImages
+        self.saveImages = nil
     }
     
     //Segue到下一个

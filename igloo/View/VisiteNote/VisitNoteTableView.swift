@@ -10,6 +10,7 @@ import UIKit
 
 class VisitNoteTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
     
+    var saveImages:Bool?
     var showAddNewNoteCell:Bool!
     var visitNoteArray:[VisitedNote]!
     var visitNoteIDArray:[String]!
@@ -46,7 +47,11 @@ class VisitNoteTableView: UITableView,UITableViewDelegate,UITableViewDataSource 
             let visitNoteCell = tableView.dequeueReusableCell(withIdentifier: "VisitNoteCell") as! VisitNoteCell
             //正在生成Cell
             let order = row-1
+            visitNoteCell.saveImages = self.saveImages
             visitNoteCell.setData(data: visitNoteArray[order])
+//            print("VisitNoteTableView")
+//            print("SaveImages")
+//            print(self.saveImages)
             visitNoteCell.id = visitNoteIDArray[order]
             return visitNoteCell
         }

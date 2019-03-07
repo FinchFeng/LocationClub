@@ -66,13 +66,14 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
         }
     }
     
+    var savePhotos:Bool?
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell") as! LocationCell
         let data = locationDataArray[indexPath.row]
         //获取image
         var image:UIImage = #imageLiteral(resourceName: "defualtMapImage")//默认Image
         let imageURL = data.rank2.locationInfoImageURL
-        print("MarsTableView")
+        print("MarsTableView NewLocationCell")
         print("ImageURL")
         print(imageURL)
         if imageURL == "nil"{//查看有没有旧的
@@ -82,19 +83,18 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
                 //获取地图截图
                 MapSnapShotter.getMapImageForCell(latitude: data.rank3.locationLatitudeKey,
                                                   longitude: data.rank3.locationLongitudeKey) { (mapImage) in
+                                                    
                                                     image = mapImage
-                                                    //重新装入数据，刷新这个Cell
-                                                    self.reloadRows(at: [indexPath], with: .automatic)
-      
+                                                    //重新装入数据
+                                                    cell.locationInfoImage.image = mapImage
                 }
             }
         }else{
             //从Network获取
-//            print(imageURL,"  imageURL")
-            Network.getImage(at: imageURL, landingAction: { (newImage) in
+            Network.getImage(at: imageURL,savePhotos: savePhotos, landingAction: { (newImage) in
                 image = newImage
-                //重新装入数据，刷新这个Cell
-                self.reloadRows(at: [indexPath], with: .automatic)
+                //重新装入数据
+                cell.locationInfoImage.image = newImage
             })
         }
         //loadtheData

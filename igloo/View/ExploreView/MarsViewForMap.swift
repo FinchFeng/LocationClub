@@ -127,7 +127,7 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
         if isGettingData {return}
         let minY = cell.frame.minY
         self.setContentOffset(CGPoint(x: 0, y: minY), animated: true)
-        //显示指示条
+        //显示指示条 这个cell有可能不存在
         for index in 0..<self.locationDataArray.count {
             if let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) as? LocationCell{
                 cell.hideIndecater()
@@ -145,18 +145,31 @@ class MarsTableViewForMap: MarsTableView {//不保存ID 使用delegate回去请�
             let id = mapViewDelegate.getIdOf(index: cell.index)
             mapViewDelegate.selectAnnotionFromCell(id: id)
         }
-        
     }
+    
+    var cellIndexNeedToSelect:Int?//当点击的cell还没生成时使用这个变量
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        print("MarsViewForMap")
+        print("滑动动画结束")
+//        print(cellIndexNeedToSelect)
+        if let index = cellIndexNeedToSelect {
+            scrollTo(index: index, selectAnnotion: false)
+            cellIndexNeedToSelect = nil
+        }
+    }
+    
     func scrollTo(index:Int,selectAnnotion:Bool) {//只有选择Map之后才会调用这个方法
         if let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) as? LocationCell {
             print("MarsViewForMap")
             print("scrollTo(index:\(index) selectAnnotion \(selectAnnotion)")
             scrollTo(cell: cell,selectAnnotion:selectAnnotion)
         }else{
-            //Cell还未生成直接滑动到顶部
+            //Cell还未生成直接滑动到这个cell的位置并且选择它
             print("MarsViewForMap")
             print("第\(index)个 Cell还未生成")
-            self.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+            self.scrollToRow(at: IndexPath(row: index, section: 0), at: .top, animated: true)
+            //Scroll结束之后再调用一次自身方法
+            self.cellIndexNeedToSelect = index
         }
     }
     

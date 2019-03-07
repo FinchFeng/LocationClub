@@ -77,7 +77,9 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     
     func reloadTableViewData() {
         //配置tableView M->C->V
-        
+        print("MylocationVC")
+        print("reloadTableViewData")
+        locationTableView.savePhotos = true
         locationTableView.setDataIn(locationDataArray:dataArrayForTableView)
     }
     
@@ -122,8 +124,9 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     
     func addLocation(data:LocationInfoLocal) {
         //更改Model
-        model.addLocationInfo(data: data)
-        reloadTableViewData()
+        model.addLocationInfo(data: data, UIActionBlock: {
+            self.reloadTableViewData()
+        })
     }
     
     func deleteLocation(index:Int,reload:Bool)  {
@@ -200,6 +203,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
                     //读入数据
                     nextVC.setDataIn(data: data, isMyOwnData: true)
                     nextVC.delegate = self
+                    nextVC.saveImages = true
                 }
             }
         }

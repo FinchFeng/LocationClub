@@ -9,7 +9,7 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-
+    //测试是否连接网络
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default
@@ -25,7 +25,7 @@ class MainTabBarController: UITabBarController {
         if LoginModel.login {
             switch NetworkForCheck.reachability.status {
             case .unreachable:
-                Network.shouldConneted = false
+                Network.shouldConneted = true
             case .wwan,.wifi:
                 Network.shouldConneted = true
             }

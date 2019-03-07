@@ -57,7 +57,7 @@ class MyLocationModel {
                     }
                 }
             }else{
-                //非本地的下载到本地 图片也有
+                //非本地的下载到本地 图片本地化🔧
                 Network.getLocationInfo(locationID: locationId, rank: 1) { (data) in
                     let data = data as! LocationInfoLocal
                     //进行本地添加 Cell图片？
@@ -136,7 +136,7 @@ class MyLocationModel {
     
     //MARK: 增加 保存 更改 删除LocationInfo
     
-    func addLocationInfo(data:LocationInfoLocal){
+    func addLocationInfo(data:LocationInfoLocal,UIActionBlock:@escaping ()->Void){
         //本地添加
         //查看是否公开
         if data.isPublic && LoginModel.login{
@@ -146,10 +146,12 @@ class MyLocationModel {
                 print("成功添加LocationInfo")
                 //本地添加
                 self.locationDataArray.insert(data, at: 0)
+                UIActionBlock()
             }
         }else{
         //未登陆只进行本地添加
         locationDataArray.insert(data, at: 0)
+        UIActionBlock()
         }
         
     }

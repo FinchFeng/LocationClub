@@ -15,7 +15,8 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
     var id:String!
     lazy var viewController:UIViewController =  self.findViewController()!
     var imageArray:[UIImage] = []
-    
+    //是否需要获取Data
+    var saveImages:Bool?
     //MARK: IBOutlet
     @IBOutlet weak var visitNoteWordLabel: UILabel!
     @IBOutlet weak var imageViewContainer: HitThoughView!
@@ -67,7 +68,10 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
             //准备更新ImgeArray
             self.imageArray = []
             //对image进行获取
-            Network.getImage(at: imageName) {(image) in//内存泄露？？
+//            print("VisitNoteCell")
+//            print("SaveImages")
+//            print(saveImages)
+            Network.getImage(at: imageName,savePhotos: self.saveImages) {(image) in//内存泄露？？
                 imageView.image = image
                 //更新到ImageArray
                 self.imageArray.append(image)
@@ -105,7 +109,7 @@ class VisitNoteCell: UITableViewCell, SwiftPhotoGalleryDataSource, SwiftPhotoGal
                 imageView.clipsToBounds = true
                 imageViewContainer.addSubview(imageView)
                 //对image进行获取 需要递归？⚠️
-                Network.getImage(at: imageUrL) { (image) in//内存泄露？？
+                Network.getImage(at: imageUrL,savePhotos: self.saveImages) { (image) in//内存泄露？？
                     imageView.image = image
                     //添加到ImageArray
                     self.imageArray.append(image)

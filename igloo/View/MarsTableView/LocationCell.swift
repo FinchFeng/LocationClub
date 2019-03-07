@@ -44,9 +44,10 @@ class LocationCell: UITableViewCell {
     @IBOutlet weak var selectedIndecater: UIView!
     var index:Int!
     func showIndecater(){
+        print("LocatinoCell")
+        print("展示Indecater  第" + String(index) + "个Cell")
         selectedIndecater.isHidden = false
         //使用Delegate方法
-        
     }
    
     func hideIndecater(){

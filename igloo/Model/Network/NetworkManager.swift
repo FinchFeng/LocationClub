@@ -326,7 +326,7 @@ class Network {
     
     //MARK: 图片上传下载
     //对于外部来说直接传入URL就可以获取图片
-    static func getImage(at url:String,landingAction:@escaping (UIImage)->Void){
+    static func getImage(at url:String,savePhotos:Bool?,landingAction:@escaping (UIImage)->Void){
         if checkNetworkConnection() == false {return}//检查是否有网络连接
         //检查缓存
         if let image = ImageChecker.getImage(url: url){
@@ -343,8 +343,15 @@ class Network {
                     let data = response.result.value!
                     //转换成为UIImage
                     if let image = UIImage(data: data) {
-                        //加入缓存
-                        ImageChecker.set(image: image, url: url)
+                        //查看是否需要储存到本机
+                        if let needSavePhoto = savePhotos,needSavePhoto == true{
+                            LocalImagePool.set(image: image, url: url)
+                            print("NetworkManager")
+                            print("保存到本地")
+                        }else{
+                            //加入缓存
+                            ImageChecker.set(image: image, url: url)
+                        }
                         //执行Action
                         landingAction(image)
                     }else{
