@@ -168,6 +168,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
     func deleteVisiteNote(locationID: String, visitNoteID: String,UIActionBlock:@escaping ()->Void) {
         model.deleteVisitNoteFrom(locationID: locationID, visitNoteID: visitNoteID, UIActionBlock: {
             self.reloadTableViewData()
+            UIActionBlock()
         })
     }
     

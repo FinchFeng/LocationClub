@@ -29,11 +29,11 @@ class ImageChecker {//网络方法链接的Pool
     //进行图片大小格式检查
     static func review(image:UIImage)->UIImage{
         //转换为Data检查大小
-        let data = image.jpegData(compressionQuality: 1)!
+        let data = image.jpegData(compressionQuality: 1) ?? image.pngData()!
         let rawSize = data.getSizeWithMB()
         //进行压缩 往死里压缩
         var resultData:Data!
-        resultData = image.jpegData(compressionQuality: 0.0)!
+        resultData = image.jpegData(compressionQuality: 0.0) ?? image.pngData()!
         let newSize = resultData.getSizeWithMB()
         print("ImgagePool")
         print("原来的Size ",rawSize)

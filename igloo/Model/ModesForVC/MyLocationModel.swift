@@ -196,27 +196,31 @@ class MyLocationModel {
         //本地删除 后端删除
         for (index,data) in locationDataArray.enumerated(){
             if data.locationID == id {
+                let localDeleteBlock = {
+                    //删除缓存的图片
+                    let locationsData = self.locationDataArray[index]
+                    for visitNote in locationsData.VisitedNoteID {
+                        for imageUrl in visitNote.imageURLArray{
+                            ImageSaver.deleteImage(fileName: imageUrl)
+                        }
+                    }
+                    //本地删除
+                    self.locationDataArray.remove(at: index)
+                    print("MyLocationModel")
+                    print("删除location")
+                    print(index)
+                    print(self.locationDataArray)
+                    UIActionBlock()
+                }
                 //对data进行操作
                 if data.isPublic && LoginModel.login {
                     //后端删除
                     Network.deleteLocation(locationID: id, landingAction: {
-                        //本地删除
-                        self.locationDataArray.remove(at: index)
-                        UIActionBlock()
+                        localDeleteBlock()
                     })
                 }else{
-                    //本地删除
-                    locationDataArray.remove(at: index)
-                    UIActionBlock()
+                    localDeleteBlock()
                 }
-                //删除缓存的图片
-                let locationsData = locationDataArray[index]
-                for visitNote in locationsData.VisitedNoteID {
-                    for imageUrl in visitNote.imageURLArray{
-                        ImageSaver.deleteImage(fileName: imageUrl)
-                    }
-                }
-                
                 break
             }
         }
@@ -317,7 +321,6 @@ class MyLocationModel {
                         deleteLocalVisitNote()
                         UIActionBlock()
                     })
-                    
                 }else{
                     deleteLocalVisitNote()
                     UIActionBlock()

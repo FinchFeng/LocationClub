@@ -25,7 +25,7 @@ class MainTabBarController: UITabBarController {
         if LoginModel.login {
             switch NetworkForCheck.reachability.status {
             case .unreachable:
-                Network.shouldConneted = true
+                Network.shouldConneted = true//是否开启网络检测🛰️
             case .wwan,.wifi:
                 Network.shouldConneted = true
             }

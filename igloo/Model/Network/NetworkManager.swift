@@ -197,6 +197,8 @@ class Network {
                 print("更改Location信息 " + String(result))
             }else{
                 //错误信息
+                print("NetworkManager")
+                print("更改Location信息 错误")
             }
             landing()
         }
@@ -212,11 +214,9 @@ class Network {
         let parameters = ["key":"delete",Constants.iglooID:iglooID,Constants.locationID:locationID]
         //发送参数
         sendRuquest(url: url, method: .get, parameters: parameters) { (JSON) in
-            if let result = JSON["success"] as? String{
                 print("NetworkManager")
-                print("删除Location信息 " + result)
+                print("删除Location信息")
                 landingAction()
-            }
         }
     }
     //MARK: 访问记录创建与删除
@@ -270,11 +270,9 @@ class Network {
         let parameters = [Constants.iglooID:LoginModel.iglooID,Constants.VisitedNoteID:id]
         //Send it!
         sendRuquest(url: Constants.backendURL+"deleteVisitedNote/", method: .get, parameters: parameters) { (JSON) in
-            if JSON["success"] as! Bool == true {
-                 print("NetworkManager")
-                print("删除VisitedNoted成功")
-                landingAction()
-            }
+            print("NetworkManager")
+            print("删除VisitedNoted成功")
+            landingAction()
         }
     }
     

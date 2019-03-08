@@ -54,8 +54,8 @@ class MarsTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {//于确认删除的方法
         locationDataArray.remove(at: indexPath.row)//要先删除dataSource 更新前后的行数必须要相等
-        tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.left)
         viewControllerDelegate.deleteLocation(index: indexPath.row, reload: false)
+        tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.left)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
