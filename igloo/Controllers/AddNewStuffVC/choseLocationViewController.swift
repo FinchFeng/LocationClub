@@ -49,6 +49,10 @@ class ChoseLocationViewController: UIViewController {
         definesPresentationContext = true
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     
     func setMapViewToUserLocation() {
         let location = mapView.userLocation.coordinate
@@ -112,14 +116,17 @@ protocol HandleMapSearch {
 extension ChoseLocationViewController : MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {//mapView更新userLocation的时候
+        print("chosenLocationViewController")
+        print("是否有自动定位过  "+String(firstTimeUpdateUserLocation))
         if firstTimeUpdateUserLocation {
-            firstTimeUpdateUserLocation = false
+            self.firstTimeUpdateUserLocation = false
             let location = userLocation.coordinate
             let delta = Constants.lengthOfBigMap/2
             let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
             let region = MKCoordinateRegion(center: location, span: span)
             mapView.setRegion(region, animated: true)
         }else{
+            print("chosenLocationViewController")
             print("已经显示过位置")
         }
         

@@ -18,7 +18,7 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
     
     func setAnnotion(array:[(String,LocationInfoRank3)]){
         haveChosenAnnotion = false
-        firstTimeUpdateUserLocation = true
+//        firstTimeUpdateUserLocation = true
         //删除之前所有的Annotion 除了userLocation
         self.removeAnnotations(self.annotations)
         array.forEach { (data) in
@@ -54,10 +54,13 @@ class MapViewForExplore: MapViewForGreatLocation,SelectedAnnotionDelegate{
     //MARK:自动定位userLocation
     var firstTimeUpdateUserLocation = true
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {//mapView更新userLocation的时候
+        print("MapViewForExplore")
+        print("firstTimeUpdateUserLocation  "+String(firstTimeUpdateUserLocation))
         if firstTimeUpdateUserLocation {
             firstTimeUpdateUserLocation = false
             let location = userLocation.coordinate
-//            print(location)
+            print("MapViewForExplore")
+            print("自动定位userLocation")
             let delta = Constants.lengthOfBigMap
             let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
             let region = MKCoordinateRegion(center: location, span: span)

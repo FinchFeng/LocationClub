@@ -329,19 +329,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohb-s1-uze">
-                                <rect key="frame" x="164" y="318" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="buttonTaped" destination="85c-2a-R3I" eventType="touchUpInside" id="XIp-Hg-izN"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="q1I-d6-6vQ" firstAttribute="leading" secondItem="ohb-s1-uze" secondAttribute="trailing" constant="-210" id="CjB-89-G9P"/>
                             <constraint firstItem="6tC-lE-bUK" firstAttribute="leading" secondItem="q1I-d6-6vQ" secondAttribute="leading" id="Vc6-af-tNJ"/>
-                            <constraint firstItem="q1I-d6-6vQ" firstAttribute="top" secondItem="ohb-s1-uze" secondAttribute="bottom" constant="-284" id="cHD-Je-Lln"/>
                             <constraint firstItem="q1I-d6-6vQ" firstAttribute="trailing" secondItem="6tC-lE-bUK" secondAttribute="trailing" id="hAu-IX-V2s"/>
                             <constraint firstItem="q1I-d6-6vQ" firstAttribute="bottom" secondItem="6tC-lE-bUK" secondAttribute="bottom" id="lo7-9q-0wF"/>
                             <constraint firstItem="6tC-lE-bUK" firstAttribute="top" secondItem="q1I-d6-6vQ" secondAttribute="top" id="nlq-Ky-2yO"/>
@@ -2152,7 +2143,7 @@
         <image name="userLocationIcon" width="164" height="164"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ipi-Ha-xW0"/>
-        <segue reference="gps-1g-viN"/>
+        <segue reference="XoO-yI-eI9"/>
+        <segue reference="VRt-x1-aWf"/>
     </inferredMetricsTieBreakers>
 </document>
