@@ -13,7 +13,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var phoneNumber: UITextField!
     @IBOutlet weak var password: UITextField!
     //上一个VC传递来的Block
-    var loginBlock:((String,String, @escaping (Bool)->Void)->Void)!
+    var loginBlock:((String,String, @escaping (Bool,String)->Void)->Void)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
         let number = phoneNumber.text!
         let password = self.password.text!
         //给后台发送登陆请求
-        loginBlock(number,password,{(result) in
+        loginBlock(number,password,{(result,message) in
             if result == true{
                 print("SignInViewController")
                 print("登陆成功")
@@ -35,7 +35,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
                 print("SignInViewController")
                 print("登陆失败")
                 //展示这个信息
-                let alert = UIAlertController(title: "用户名或者密码输入错误，或者多台设备进行登陆", message: "", preferredStyle: .alert)
+                let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "好的", style: .destructive, handler: nil))
                 //清空密码
                 self.present(alert, animated: true, completion: { () in

@@ -7,20 +7,20 @@
 //
 
 import UIKit
-import GoogleSignIn
+//import GoogleSignIn
 
-class LoginInMenuViewController: UIViewController,GIDSignInUIDelegate{
+class LoginInMenuViewController: UIViewController{
 
     //MARK:Properties
     
-    @IBOutlet weak var signInButton: GIDSignInButton!
+//    @IBOutlet weak var signInButton: GIDSignInButton!
     @IBOutlet weak var iglooSignIn: UIButton!
     @IBOutlet weak var welcomeLoginLabel: UILabel!
     
     var model = LoginModel()
     //model登陆方法
     lazy var loginBlock = {
-        [weak self] (number:String,password:String,action: @escaping (Bool)->Void) in
+        [weak self] (number:String,password:String,action: @escaping (Bool,String)->Void) in
         //解包确认这个VC是否存在
         self!.model.loginWithIgloo(phoneNumber: number, password: password, action: action)
     }
@@ -28,7 +28,7 @@ class LoginInMenuViewController: UIViewController,GIDSignInUIDelegate{
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        GIDSignIn.sharedInstance().uiDelegate = self
+//        GIDSignIn.sharedInstance().uiDelegate = self
         //填写文字
         welcomeLoginLabel.text = Constants.welcomeLoginString
         iglooSignIn.setTitle(Constants.loginButtonString, for: .normal)
@@ -66,31 +66,31 @@ class LoginInMenuViewController: UIViewController,GIDSignInUIDelegate{
     
     //GoogleSDK Method
     
-    func sign(inWillDispatch signIn: GIDSignIn!, error: Error?) {
-        print("LoginInMenuViewController")
-        print("结束SignIn")
-    }
-    
-    // Present a view that prompts the user to sign in with Google
-    func sign(_ signIn: GIDSignIn!,present viewController: UIViewController!) {
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    // Dismiss the "Sign in with Google" view
-    func sign(_ signIn: GIDSignIn!,dismiss viewController: UIViewController!) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    //GoogleSignOut
-    
-    @IBAction func signOut(sender:UIButton){
-        GIDSignIn.sharedInstance()?.signOut()
-    }
-    
-    //UnWind
-    @IBAction func unwind(_ unwindSegue: UIStoryboardSegue) {
-        //do nothing...
-    }
+//    func sign(inWillDispatch signIn: GIDSignIn!, error: Error?) {
+//        print("LoginInMenuViewController")
+//        print("结束SignIn")
+//    }
+//    
+//    // Present a view that prompts the user to sign in with Google
+//    func sign(_ signIn: GIDSignIn!,present viewController: UIViewController!) {
+//        self.present(viewController, animated: true, completion: nil)
+//    }
+//    
+//    // Dismiss the "Sign in with Google" view
+//    func sign(_ signIn: GIDSignIn!,dismiss viewController: UIViewController!) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
+//    
+//    //GoogleSignOut
+//    
+//    @IBAction func signOut(sender:UIButton){
+//        GIDSignIn.sharedInstance()?.signOut()
+//    }
+//    
+//    //UnWind
+//    @IBAction func unwind(_ unwindSegue: UIStoryboardSegue) {
+//        //do nothing...
+//    }
     
     //Test
     

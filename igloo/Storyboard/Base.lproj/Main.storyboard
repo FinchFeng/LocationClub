@@ -1283,17 +1283,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XoH-IL-JvG" customClass="GIDSignInButton">
-                                <rect key="frame" x="117.5" y="549" width="140" height="36"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="3UK-Xn-nvV"/>
-                                    <constraint firstAttribute="height" constant="36" id="v9O-gw-RR7"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEn-wV-jGZ">
-                                <rect key="frame" x="117.5" y="493" width="140" height="36"/>
+                                <rect key="frame" x="122" y="513" width="131" height="34"/>
                                 <color key="backgroundColor" red="0.027450980392156862" green="0.46274509803921571" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UEn-wV-jGZ" secondAttribute="height" multiplier="35:9" id="c10-eY-TAG"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <state key="normal" title="????">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1341,28 +1336,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="XoH-IL-JvG" firstAttribute="top" secondItem="UEn-wV-jGZ" secondAttribute="bottom" constant="20" id="0Yx-Nc-F8R"/>
+                            <constraint firstItem="UEn-wV-jGZ" firstAttribute="centerX" secondItem="Z3J-my-glK" secondAttribute="centerX" id="B6U-fS-DHm"/>
                             <constraint firstItem="j5C-Qn-sfN" firstAttribute="top" secondItem="9v1-t4-roB" secondAttribute="bottom" constant="14" id="G7N-GW-xDP"/>
-                            <constraint firstItem="UEn-wV-jGZ" firstAttribute="height" secondItem="XoH-IL-JvG" secondAttribute="height" id="Ph3-k0-QAQ"/>
-                            <constraint firstItem="UEn-wV-jGZ" firstAttribute="trailing" secondItem="XoH-IL-JvG" secondAttribute="trailing" id="RZn-jj-y5b"/>
                             <constraint firstItem="9v1-t4-roB" firstAttribute="centerX" secondItem="Z3J-my-glK" secondAttribute="centerX" id="TXA-Th-30D"/>
                             <constraint firstItem="j5C-Qn-sfN" firstAttribute="centerX" secondItem="Z3J-my-glK" secondAttribute="centerX" id="Tdq-n8-bSW"/>
+                            <constraint firstItem="UEn-wV-jGZ" firstAttribute="bottom" secondItem="Z3J-my-glK" secondAttribute="bottom" multiplier="0.82" id="Xfh-C3-NSK"/>
                             <constraint firstItem="5Ix-CB-EqB" firstAttribute="centerX" secondItem="Z3J-my-glK" secondAttribute="centerX" id="aLW-IW-1vM"/>
                             <constraint firstItem="TjJ-4c-KrY" firstAttribute="leading" secondItem="Rrw-hW-Syw" secondAttribute="leadingMargin" constant="-9" id="bq7-k1-5hG"/>
                             <constraint firstItem="Z3J-my-glK" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="TjJ-4c-KrY" secondAttribute="trailing" constant="325" id="cXt-l7-fPa"/>
-                            <constraint firstItem="UEn-wV-jGZ" firstAttribute="leading" secondItem="XoH-IL-JvG" secondAttribute="leading" id="j4e-5F-I0v"/>
-                            <constraint firstItem="XoH-IL-JvG" firstAttribute="centerX" secondItem="Z3J-my-glK" secondAttribute="centerX" id="unN-5c-bLt"/>
+                            <constraint firstItem="UEn-wV-jGZ" firstAttribute="width" secondItem="Rrw-hW-Syw" secondAttribute="width" multiplier="0.35" id="i9j-5U-FxU"/>
                             <constraint firstItem="TjJ-4c-KrY" firstAttribute="top" secondItem="Z3J-my-glK" secondAttribute="top" constant="8" id="uxA-pP-fqv"/>
                             <constraint firstItem="9v1-t4-roB" firstAttribute="top" secondItem="5Ix-CB-EqB" secondAttribute="bottom" constant="60" id="xOs-mT-lyG"/>
                             <constraint firstItem="5Ix-CB-EqB" firstAttribute="top" secondItem="Z3J-my-glK" secondAttribute="top" multiplier="4.2" id="yXV-ly-hvn"/>
-                            <constraint firstItem="Z3J-my-glK" firstAttribute="bottom" secondItem="XoH-IL-JvG" secondAttribute="bottom" multiplier="1.14" id="zVS-hI-5kC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Z3J-my-glK"/>
                     </view>
                     <navigationItem key="navigationItem" id="L0s-BQ-Xcx"/>
                     <connections>
                         <outlet property="iglooSignIn" destination="UEn-wV-jGZ" id="ATQ-3V-okL"/>
-                        <outlet property="signInButton" destination="XoH-IL-JvG" id="4gr-15-6GY"/>
                         <outlet property="welcomeLoginLabel" destination="j5C-Qn-sfN" id="RFK-m3-wl8"/>
                         <segue destination="t5d-tx-BIS" kind="show" identifier="segueToSignIn" id="oPX-Ig-eZt"/>
                     </connections>
