@@ -9,6 +9,25 @@ import UIKit
 
 class MyLocationsViewController: UIViewController,MyLocationDelegate {
 
+    //MARK:没有地点的提醒
+    @IBOutlet weak var doNotHaveLocationImage: UIImageView!
+    @IBOutlet weak var doNotHaveLocationLabel: UILabel!
+    @IBOutlet weak var doNotHaveLocationLabel2: UILabel!
+    
+    var dontHaveLocation:Bool = true{
+        didSet{
+            if dontHaveLocation {
+                doNotHaveLocationImage.isHidden = false
+                doNotHaveLocationLabel.isHidden = false
+                doNotHaveLocationLabel2.isHidden = false
+            }else{
+                doNotHaveLocationImage.isHidden = true
+                doNotHaveLocationLabel.isHidden = true
+                doNotHaveLocationLabel2.isHidden = true
+            }
+        }
+    }
+    
     //MARK:Model
     
     let model:MyLocationModel = MyLocationModel()
@@ -79,6 +98,7 @@ class MyLocationsViewController: UIViewController,MyLocationDelegate {
         //配置tableView M->C->V
         print("MylocationVC")
         print("reloadTableViewData")
+        dontHaveLocation = model.locationDataArray.isEmpty
         locationTableView.savePhotos = true
         locationTableView.setDataIn(locationDataArray:dataArrayForTableView)
     }

@@ -110,7 +110,7 @@ class LoginModel {
         Network.login(withGoogle: false,number:phoneNumber,password:password){ (JSON) in
             //JSON对象返回
             let result = JSON[Constants.success] as! Bool
-            let message = JSON["error"] as! String
+            let message = JSON["error"] as? String
             if result == true {
                 //确认登陆
                 self.isLogin = true
@@ -132,7 +132,7 @@ class LoginModel {
                 //获取喜欢的地点IDS
                 LoginModel.owenLikedLocationIDArray = JSON[Constants.usersLikePlacesDefaultJsonKey] as! [String]
             }
-            action(result,message)//界面操作block
+            action(result,message ?? "nil")//界面操作block
         }
     }
     

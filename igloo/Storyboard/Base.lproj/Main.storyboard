@@ -188,13 +188,19 @@
                                     <segue destination="EIb-8S-gam" kind="presentation" id="jfx-FN-ffj"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNQ-or-Bd4">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="uNQ-or-Bd4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1CJ-Md-GTl"/>
                             <constraint firstAttribute="top" secondItem="md7-dy-WBW" secondAttribute="top" id="4WD-Hl-rIS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="md7-dy-WBW" secondAttribute="bottom" id="AUw-LN-sFG"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="leading" secondItem="md7-dy-WBW" secondAttribute="leading" id="Ay8-rt-Vlt"/>
                             <constraint firstItem="qkd-3m-9sI" firstAttribute="centerX" secondItem="jnS-Nv-v7V" secondAttribute="centerX" id="Cx8-iv-7Wl"/>
+                            <constraint firstItem="uNQ-or-Bd4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ES7-mO-tVO"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="top" secondItem="qkd-3m-9sI" secondAttribute="bottom" constant="8" symbolic="YES" id="FIe-7q-V42"/>
                             <constraint firstItem="r6V-mQ-dG4" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ID1-Sa-fUS"/>
                             <constraint firstItem="md7-dy-WBW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MsX-Py-Brd"/>
@@ -204,7 +210,9 @@
                             <constraint firstItem="Tce-h6-0ZV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="bW3-CB-MIe"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="trailing" secondItem="md7-dy-WBW" secondAttribute="trailing" id="dEI-LH-Hrz"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="top" secondItem="md7-dy-WBW" secondAttribute="bottom" constant="-243.5" id="ie8-hG-JSN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uNQ-or-Bd4" secondAttribute="trailing" id="oIm-Xd-WM4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Tce-h6-0ZV" secondAttribute="trailing" constant="10" id="uHz-Et-XQP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uNQ-or-Bd4" secondAttribute="bottom" id="xLH-El-VCc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="md7-dy-WBW" secondAttribute="trailing" id="zw3-Ja-l47"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -213,6 +221,7 @@
                     <navigationItem key="navigationItem" id="HdU-i1-bnc"/>
                     <connections>
                         <outlet property="addNewLocationButton" destination="Tce-h6-0ZV" id="DRI-KP-zXL"/>
+                        <outlet property="coverView" destination="uNQ-or-Bd4" id="CRl-Jo-N15"/>
                         <outlet property="distanceMarsViewShowing" destination="ie8-hG-JSN" id="wDV-il-17D"/>
                         <outlet property="indecator" destination="r6V-mQ-dG4" id="Ko0-xQ-UNU"/>
                         <outlet property="map" destination="md7-dy-WBW" id="R3D-c5-rOI"/>
@@ -329,18 +338,46 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="HLk-eC-zT2">
+                                <rect key="frame" x="174" y="272" width="27" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="27" id="Gac-Zz-MKT"/>
+                                    <constraint firstAttribute="width" secondItem="HLk-eC-zT2" secondAttribute="height" multiplier="5:7" id="Ui1-ut-9XG"/>
+                                </constraints>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击右上角" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYA-yc-gVz">
+                                <rect key="frame" x="141.5" y="320" width="92" height="22"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <color key="textColor" red="0.85490196078431369" green="0.85490196078431369" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开始记录第一个地点" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKJ-Hu-UtF">
+                                <rect key="frame" x="104.5" y="344" width="166" height="22"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <color key="textColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="HLk-eC-zT2" firstAttribute="centerX" secondItem="q1I-d6-6vQ" secondAttribute="centerX" id="DJB-aE-bgH"/>
+                            <constraint firstItem="zKJ-Hu-UtF" firstAttribute="top" secondItem="BYA-yc-gVz" secondAttribute="bottom" constant="2" id="Kfo-yb-8mJ"/>
                             <constraint firstItem="6tC-lE-bUK" firstAttribute="leading" secondItem="q1I-d6-6vQ" secondAttribute="leading" id="Vc6-af-tNJ"/>
+                            <constraint firstItem="zKJ-Hu-UtF" firstAttribute="centerX" secondItem="BYA-yc-gVz" secondAttribute="centerX" id="dKY-Pu-wVc"/>
                             <constraint firstItem="q1I-d6-6vQ" firstAttribute="trailing" secondItem="6tC-lE-bUK" secondAttribute="trailing" id="hAu-IX-V2s"/>
+                            <constraint firstItem="BYA-yc-gVz" firstAttribute="top" secondItem="HLk-eC-zT2" secondAttribute="bottom" constant="10" id="jp2-KN-aXh"/>
                             <constraint firstItem="q1I-d6-6vQ" firstAttribute="bottom" secondItem="6tC-lE-bUK" secondAttribute="bottom" id="lo7-9q-0wF"/>
                             <constraint firstItem="6tC-lE-bUK" firstAttribute="top" secondItem="q1I-d6-6vQ" secondAttribute="top" id="nlq-Ky-2yO"/>
+                            <constraint firstItem="BYA-yc-gVz" firstAttribute="centerX" secondItem="HLk-eC-zT2" secondAttribute="centerX" id="wgw-zs-GYl"/>
+                            <constraint firstItem="HLk-eC-zT2" firstAttribute="centerY" secondItem="q1I-d6-6vQ" secondAttribute="centerY" constant="-50" id="zLu-YY-7bp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="q1I-d6-6vQ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="我的地点" image="mylocaitionImage" id="kgN-dx-Pwo" userLabel="我的地点"/>
                     <connections>
+                        <outlet property="doNotHaveLocationImage" destination="HLk-eC-zT2" id="1Vg-FH-iWQ"/>
+                        <outlet property="doNotHaveLocationLabel" destination="BYA-yc-gVz" id="6cy-Jj-u2X"/>
+                        <outlet property="doNotHaveLocationLabel2" destination="zKJ-Hu-UtF" id="l3r-ZJ-8jj"/>
                         <outlet property="locationTableView" destination="6tC-lE-bUK" id="heB-M6-WmG"/>
                         <segue destination="PJO-Ff-0N9" kind="show" identifier="SegueToGreatLocationInfo" id="VRt-x1-aWf"/>
                         <segue destination="EIb-8S-gam" kind="presentation" identifier="segueToAddNewLocation" id="XoO-yI-eI9"/>
@@ -2100,6 +2137,7 @@
         <image name="DefaultHighlight" width="40" height="54"/>
         <image name="GoBackButtonImage" width="12" height="16"/>
         <image name="GoBackButtonImageWhite" width="12" height="16"/>
+        <image name="GrayLocationIcon" width="60" height="84"/>
         <image name="Hotel" width="40" height="55"/>
         <image name="HotelHighlight-10" width="40" height="55"/>
         <image name="LocationCellLikedIcon" width="180" height="180"/>
