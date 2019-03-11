@@ -514,7 +514,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="到访记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74E-HD-g7v">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地点回忆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74E-HD-g7v">
                                                     <rect key="frame" x="20" y="21.5" width="58" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
                                                     <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -822,7 +822,7 @@
                                     <constraint firstAttribute="height" constant="196" id="Dks-1q-Dxe"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="在这个地点发生了什么？" translatesAutoresizingMaskIntoConstraints="NO" id="jxd-8v-Z0s">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="发生了什么值得回忆的事？" translatesAutoresizingMaskIntoConstraints="NO" id="jxd-8v-Z0s">
                                 <rect key="frame" x="76" y="72" width="287" height="35.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -915,8 +915,8 @@
                                 <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="地点名称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dpR-u0-sV5">
-                                <rect key="frame" x="72" y="81" width="69.5" height="20"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="地点叫什么" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dpR-u0-sV5">
+                                <rect key="frame" x="72" y="81" width="86" height="20"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -927,8 +927,8 @@
                                 <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="简洁介绍一下这个地点" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="23A-wZ-hal">
-                                <rect key="frame" x="72" y="117" width="167.5" height="20"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="为什么喜欢这个地方" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="23A-wZ-hal">
+                                <rect key="frame" x="72" y="117" width="151" height="20"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2172,7 +2172,7 @@
         <image name="userLocationIcon" width="164" height="164"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XoO-yI-eI9"/>
+        <segue reference="ipi-Ha-xW0"/>
         <segue reference="VRt-x1-aWf"/>
     </inferredMetricsTieBreakers>
 </document>
