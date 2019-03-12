@@ -1412,7 +1412,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="307" id="0th-zu-ULV"/>
                                 </constraints>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1702,6 +1702,29 @@
                                     <action selector="signUp" destination="f1E-yV-9gJ" eventType="touchUpInside" id="b3g-UL-aRV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixi-VU-Qb2">
+                                <rect key="frame" x="69.5" y="340" width="236" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                <state key="normal" title="点击左侧图标同意用户隐私政策，点击此处查看详情">
+                                    <color key="titleColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="showLowPaper:" destination="f1E-yV-9gJ" eventType="touchUpInside" id="qdp-Ne-0IA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qo6-Hx-vU9">
+                                <rect key="frame" x="45" y="344" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="AL3-m8-zaI"/>
+                                    <constraint firstAttribute="width" secondItem="qo6-Hx-vU9" secondAttribute="height" multiplier="1:1" id="eCd-Zd-Eyx"/>
+                                </constraints>
+                                <state key="normal" image="CheckCircleEmpty"/>
+                                <state key="selected" image="CheckCircleNoEmpty"/>
+                                <state key="highlighted" image="CheckCircleEmpty"/>
+                                <connections>
+                                    <action selector="CheckBoxAction:" destination="f1E-yV-9gJ" eventType="touchUpInside" id="DRs-zS-GMO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1713,6 +1736,7 @@
                             <constraint firstItem="TMf-YL-F8y" firstAttribute="width" secondItem="8dc-G2-ME8" secondAttribute="width" multiplier="1/2" id="91d-Ke-Zv8"/>
                             <constraint firstItem="xtS-d9-v05" firstAttribute="trailing" secondItem="8dc-G2-ME8" secondAttribute="trailing" id="AfD-IA-waM"/>
                             <constraint firstItem="xtS-d9-v05" firstAttribute="leading" secondItem="TMf-YL-F8y" secondAttribute="trailing" constant="12.5" id="CSH-Dm-GmK"/>
+                            <constraint firstItem="Ixi-VU-Qb2" firstAttribute="centerX" secondItem="SDT-yl-8FG" secondAttribute="centerX" id="Cfg-Ih-vbX"/>
                             <constraint firstItem="9Ol-Wu-7X0" firstAttribute="top" secondItem="SDT-yl-8FG" secondAttribute="top" constant="8" id="DOz-Iz-kbs"/>
                             <constraint firstItem="TMf-YL-F8y" firstAttribute="leading" secondItem="q1c-DT-rpC" secondAttribute="trailing" id="F6Q-ln-nLQ"/>
                             <constraint firstItem="vTH-Oc-mGQ" firstAttribute="leading" relation="lessThanOrEqual" secondItem="SDT-yl-8FG" secondAttribute="leading" constant="66" id="FPD-Pp-KNZ"/>
@@ -1735,6 +1759,8 @@
                             <constraint firstItem="q1c-DT-rpC" firstAttribute="leading" relation="lessThanOrEqual" secondItem="SDT-yl-8FG" secondAttribute="leading" constant="66" id="aBs-EJ-yvr"/>
                             <constraint firstItem="8EI-OU-vxE" firstAttribute="leading" relation="lessThanOrEqual" secondItem="SDT-yl-8FG" secondAttribute="leading" constant="50" id="bVU-uR-ffi"/>
                             <constraint firstItem="SDT-yl-8FG" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qdz-T6-Tsb" secondAttribute="trailing" constant="50" id="e3z-Mq-O6N"/>
+                            <constraint firstItem="qo6-Hx-vU9" firstAttribute="centerY" secondItem="Ixi-VU-Qb2" secondAttribute="centerY" id="ioI-Ae-f1X"/>
+                            <constraint firstItem="Ixi-VU-Qb2" firstAttribute="leading" secondItem="qo6-Hx-vU9" secondAttribute="trailing" constant="8.5" id="keW-qn-YAE"/>
                             <constraint firstItem="SDT-yl-8FG" firstAttribute="bottom" secondItem="72O-C7-mOG" secondAttribute="bottom" multiplier="1.17" id="lBv-TK-xhX"/>
                             <constraint firstItem="xtS-d9-v05" firstAttribute="top" secondItem="TMf-YL-F8y" secondAttribute="top" id="mkQ-fh-A81"/>
                             <constraint firstItem="q1c-DT-rpC" firstAttribute="firstBaseline" secondItem="TMf-YL-F8y" secondAttribute="firstBaseline" id="oHP-3d-d4p"/>
@@ -1743,10 +1769,12 @@
                             <constraint firstItem="bsq-UW-AEf" firstAttribute="leading" secondItem="nMU-nH-nzN" secondAttribute="leading" id="tKH-d4-LK2"/>
                             <constraint firstItem="nMU-nH-nzN" firstAttribute="top" secondItem="TMf-YL-F8y" secondAttribute="bottom" constant="8" id="tO0-7w-1uM"/>
                             <constraint firstItem="bsq-UW-AEf" firstAttribute="leading" secondItem="8EI-OU-vxE" secondAttribute="trailing" id="vTU-6r-Blp"/>
+                            <constraint firstItem="Ixi-VU-Qb2" firstAttribute="top" secondItem="bsq-UW-AEf" secondAttribute="bottom" constant="14" id="zen-vs-JSc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SDT-yl-8FG"/>
                     </view>
                     <connections>
+                        <outlet property="checkBoxForLawPaper" destination="qo6-Hx-vU9" id="fGb-9f-gCE"/>
                         <outlet property="getCodeButton" destination="xtS-d9-v05" id="ndF-l6-0vT"/>
                         <outlet property="password" destination="nMU-nH-nzN" id="cGt-2Y-NjI"/>
                         <outlet property="passwordForVerify" destination="bsq-UW-AEf" id="uWV-ns-yom"/>
@@ -1758,7 +1786,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQ4-xp-qgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6502" y="-2699"/>
+            <point key="canvasLocation" x="6501.6000000000004" y="-2699.1004497751128"/>
         </scene>
         <!--Sign Up Success View Controller-->
         <scene sceneID="yvF-f1-Ws3">
@@ -2127,6 +2155,8 @@
         <image name="CafeHighlight" width="40" height="54"/>
         <image name="Chatting" width="80" height="108"/>
         <image name="ChattingHighlight-5" width="40" height="54"/>
+        <image name="CheckCircleEmpty" width="80" height="80"/>
+        <image name="CheckCircleNoEmpty" width="80" height="80"/>
         <image name="Culture" width="40" height="55"/>
         <image name="CultureHighlight-7" width="40" height="55"/>
         <image name="DeadFood" width="80" height="108"/>

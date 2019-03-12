@@ -16,6 +16,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var passwordForVerify: UITextField!
     @IBOutlet weak var getCodeButton: UIButton!
     
+    
     let defaultColor = #colorLiteral(red: 0.02745098039, green: 0.462745098, blue: 0.4705882353, alpha: 1)
     
     override func viewDidLoad() {
@@ -32,6 +33,29 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
         textField.layer.cornerRadius = 3
         textField.layer.masksToBounds = true
         textField.delegate = self//代理配置
+    }
+    
+    //MARK:隐私策略有关
+    @IBOutlet weak var checkBoxForLawPaper: UIButton!
+    
+    var okWithLawPaper:Bool = false {
+        didSet{
+            if okWithLawPaper {
+                checkBoxForLawPaper.isSelected = true
+            }else{
+                checkBoxForLawPaper.isSelected = false
+            }
+        }
+    }
+    
+    @IBAction func CheckBoxAction(_ sender: Any) {
+        okWithLawPaper = !okWithLawPaper
+    }
+    
+    @IBAction func showLowPaper(_ sender: Any) {
+        //在safari中打开
+        let url = URL(string: "http://blog.sina.com.cn/s/blog_93c698270102ygdf.html")!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     //MARK:自动计数按钮
@@ -97,6 +121,14 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     
     
     @IBAction func signUp() {
+        //检查是否同意隐私策略
+        if !okWithLawPaper {
+            //展示提醒
+            let alert = UIAlertController(title: "请同意隐私策略", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "好的", style: .destructive, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         //检查密码框中的文字是否符合规范
         if phoneNumber.text != nil , let text = password.text,let textForVertify = password.text,text == textForVertify,text.count>6{
             //向后台验证密码
