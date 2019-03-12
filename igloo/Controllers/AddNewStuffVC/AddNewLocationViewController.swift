@@ -12,8 +12,8 @@ import MapKit
 class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
 
     //MARK:IBOutlet
-    @IBOutlet weak var locationNameTextFeild: UITextField!
-    @IBOutlet weak var locationDescribeTextFeild: UITextField!
+    @IBOutlet weak var locationNameTextFeild: TextFieldWithoutEmoji!
+    @IBOutlet weak var locationDescribeTextFeild: TextFieldWithoutEmoji!
     @IBOutlet weak var iconKindStringTextField: UITextField!
     @IBOutlet weak var navigationBar: UINavigationBar!
     
@@ -104,7 +104,7 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
-        if let presentingVC = self.presentingViewController {
+        if self.presentingViewController != nil {
 //            print(presentingVC)
             if self.oldLocationData != nil {
                 performSegue(withIdentifier: "unwindToGreat", sender: nil)
@@ -226,6 +226,17 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let hasEmoji = string.containsEmoji()
+        if hasEmoji {
+            //提醒用户
+            Network.showCanInputEmoji()
+            return false
+        }else{
+            return true
+        }
     }
 
 }

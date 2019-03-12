@@ -16,7 +16,7 @@ class AddNewVisitNoteViewController: UIViewController,UITextViewDelegate,Gallery
     //MARK: IBOutlet
     var navigationTitle:String!//segue到这VC的时候进行设置
     @IBOutlet weak var navigationBar: UINavigationBar!
-    @IBOutlet weak var storyTextView: UITextView!
+    @IBOutlet weak var storyTextView: TextViewWithoutEmoji!
     @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var containerHeight: NSLayoutConstraint!
     //图片从系统中获取🔧
@@ -153,6 +153,17 @@ class AddNewVisitNoteViewController: UIViewController,UITextViewDelegate,Gallery
             textView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
         return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let hasEmoji = text.containsEmoji()
+        if hasEmoji {
+            //提醒用户
+            Network.showCanInputEmoji()
+            return false
+        }else{
+            return true
+        }
     }
     
     //MARK:Gallery

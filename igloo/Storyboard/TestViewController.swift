@@ -20,12 +20,14 @@ class TestViewController: UIViewController, SwiftPhotoGalleryDataSource, SwiftPh
     }
 //    @IBOutlet weak var map: MapViewForExplore!
     
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView: TextViewWithoutEmoji!
     
     @IBOutlet weak var imageView: UIImageView!
     
     @IBAction func hitButton() {
-        Network.showAlertNetworkDied()
+        print("TestView")
+        print("Have Emoji "+String(textView.text.containsEmoji()))
+//        Network.showAlertNetworkDied()
 //        Network.getImage(at: "0.jpg") { (image) in
 //            self.imageView.image = image
 //        }

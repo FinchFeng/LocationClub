@@ -16,10 +16,18 @@ class Network {
     
     static var shouldConneted:Bool = true
     
-    //MARK:检测是否有网络有关方法
+    //MARK:通知有关方法
     
     static func showAlertNetworkDied(){
-        let alertController = UIAlertController(title: "无网络连接,请检查是否连接网络", message: nil, preferredStyle: .alert)
+        showAlert(message: "无网络连接,请检查是否连接网络")
+    }
+    
+    static func showCanInputEmoji(){
+        showAlert(message: "暂时不支持使用Emoji")
+    }
+    
+    static func showAlert(message:String){
+        let alertController = UIAlertController(title: message, message: nil, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
         //获取最上面的VC
         if var topController = UIApplication.shared.keyWindow?.rootViewController {

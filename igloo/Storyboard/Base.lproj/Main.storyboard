@@ -822,7 +822,7 @@
                                     <constraint firstAttribute="height" constant="196" id="Dks-1q-Dxe"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="发生了什么值得回忆的事？" translatesAutoresizingMaskIntoConstraints="NO" id="jxd-8v-Z0s">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="发生了什么值得回忆的事？" translatesAutoresizingMaskIntoConstraints="NO" id="jxd-8v-Z0s" customClass="TextViewWithoutEmoji" customModule="igloo" customModuleProvider="target">
                                 <rect key="frame" x="76" y="72" width="287" height="35.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -869,7 +869,7 @@
                         <outlet property="containerHeight" destination="Dks-1q-Dxe" id="RQs-sF-2Nb"/>
                         <outlet property="imageContainerView" destination="JDb-xn-1AW" id="IFi-ay-vhT"/>
                         <outlet property="navigationBar" destination="QP1-K3-Hnv" id="MIN-Qs-HvL"/>
-                        <outlet property="storyTextView" destination="jxd-8v-Z0s" id="qlw-Bv-Uza"/>
+                        <outlet property="storyTextView" destination="jxd-8v-Z0s" id="UVZ-F6-KHZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZo-h5-T6z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -915,7 +915,7 @@
                                 <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="地点叫什么" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dpR-u0-sV5">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="地点叫什么" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dpR-u0-sV5" customClass="TextFieldWithoutEmoji" customModule="igloo" customModuleProvider="target">
                                 <rect key="frame" x="72" y="81" width="86" height="20"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
@@ -927,7 +927,7 @@
                                 <color key="textColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="为什么喜欢这个地方" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="23A-wZ-hal">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="为什么喜欢这个地方" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="23A-wZ-hal" customClass="TextFieldWithoutEmoji" customModule="igloo" customModuleProvider="target">
                                 <rect key="frame" x="72" y="117" width="151" height="20"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
@@ -1180,7 +1180,6 @@
                             <constraint firstItem="nh0-Wv-xHg" firstAttribute="top" secondItem="uKg-vh-j2K" secondAttribute="top" id="Gc7-FU-V1k"/>
                             <constraint firstItem="96M-hM-rPE" firstAttribute="leading" secondItem="cfv-5a-tp5" secondAttribute="trailing" id="HJZ-hc-1Ag"/>
                             <constraint firstItem="yYF-pi-jqq" firstAttribute="bottom" secondItem="KXw-Tt-Yd0" secondAttribute="bottom" id="Hou-yu-BnD"/>
-                            <constraint firstItem="K5y-tx-CIs" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="23A-wZ-hal" secondAttribute="trailing" symbolic="YES" id="IwU-XS-85I"/>
                             <constraint firstItem="J5N-6s-XjR" firstAttribute="width" secondItem="GOr-4e-Rb9" secondAttribute="width" id="Jix-1K-krP"/>
                             <constraint firstItem="PsY-Yz-OZa" firstAttribute="leading" secondItem="J5N-6s-XjR" secondAttribute="trailing" constant="1" id="Jok-yA-OOX"/>
                             <constraint firstItem="96M-hM-rPE" firstAttribute="top" secondItem="cfv-5a-tp5" secondAttribute="top" id="LJI-3L-A7D"/>
@@ -1212,7 +1211,6 @@
                             <constraint firstItem="RwQ-nd-9ZT" firstAttribute="width" secondItem="96M-hM-rPE" secondAttribute="width" id="X5l-uL-cdj"/>
                             <constraint firstItem="vmy-J7-2Kd" firstAttribute="trailing" secondItem="BOT-QQ-LI4" secondAttribute="trailing" id="XDc-8H-JII"/>
                             <constraint firstItem="KXw-Tt-Yd0" firstAttribute="bottom" secondItem="nh0-Wv-xHg" secondAttribute="bottom" id="XJV-0U-K0W"/>
-                            <constraint firstItem="K5y-tx-CIs" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dpR-u0-sV5" secondAttribute="trailing" symbolic="YES" id="XPN-L3-yAn"/>
                             <constraint firstItem="gaa-lh-o5H" firstAttribute="leading" secondItem="RwQ-nd-9ZT" secondAttribute="trailing" constant="1.5" id="Xxr-Mh-nRj"/>
                             <constraint firstItem="gZW-6L-aj4" firstAttribute="leading" secondItem="96M-hM-rPE" secondAttribute="trailing" constant="0.5" id="Y3p-ng-pfn"/>
                             <constraint firstItem="dpR-u0-sV5" firstAttribute="firstBaseline" secondItem="EVB-r3-pkk" secondAttribute="firstBaseline" id="YCA-JZ-Cnr"/>
@@ -1296,8 +1294,8 @@
                         <outlet property="iconKindStringTextField" destination="Ds7-6P-wkV" id="1Q1-u6-czj"/>
                         <outlet property="iconLocationImage" destination="ttn-2G-Cgj" id="cI5-hH-Oiu"/>
                         <outlet property="isPublicSwitch" destination="OQG-Zb-fGD" id="Sre-41-4K5"/>
-                        <outlet property="locationDescribeTextFeild" destination="23A-wZ-hal" id="PWP-Ev-EbR"/>
-                        <outlet property="locationNameTextFeild" destination="dpR-u0-sV5" id="dFe-p1-uyX"/>
+                        <outlet property="locationDescribeTextFeild" destination="23A-wZ-hal" id="Vfp-I7-jtU"/>
+                        <outlet property="locationNameTextFeild" destination="dpR-u0-sV5" id="6nC-me-hPl"/>
                         <outlet property="mapLocationImageButton" destination="vmy-J7-2Kd" id="oJr-hw-oSP"/>
                         <outlet property="mapLocationImageLocationInfoStringLabel" destination="8pS-mf-mEs" id="Jp8-KM-eBg"/>
                         <outlet property="mapLocationImageVIew" destination="BOT-QQ-LI4" id="rsN-Ch-3P6"/>
@@ -1408,29 +1406,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eXc-d7-xra">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eXc-d7-xra" customClass="TextViewWithoutEmoji" customModule="igloo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="20" width="343" height="307"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="307" id="0th-zu-ULV"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11h-dt-7Q1">
-                                <rect key="frame" x="164" y="617" width="47" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="hitButton" destination="sqk-kQ-xwi" eventType="touchUpInside" id="bba-xI-Yqi"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ali" translatesAutoresizingMaskIntoConstraints="NO" id="rpH-cb-HEH">
                                 <rect key="frame" x="0.0" y="267" width="375" height="153"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="rpH-cb-HEH" secondAttribute="height" multiplier="376:153" id="aYk-A8-vFH"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11h-dt-7Q1">
+                                <rect key="frame" x="164" y="237" width="47" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="hitButton" destination="sqk-kQ-xwi" eventType="touchUpInside" id="bba-xI-Yqi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1442,13 +1440,13 @@
                             <constraint firstItem="rpH-cb-HEH" firstAttribute="width" secondItem="kus-jR-0WW" secondAttribute="width" id="mUE-W9-JaL"/>
                             <constraint firstItem="rpH-cb-HEH" firstAttribute="centerY" secondItem="ylU-hB-jqD" secondAttribute="centerY" id="mjj-bX-zf9"/>
                             <constraint firstItem="eXc-d7-xra" firstAttribute="top" secondItem="ylU-hB-jqD" secondAttribute="top" id="oWa-2N-EFv"/>
-                            <constraint firstAttribute="bottom" secondItem="11h-dt-7Q1" secondAttribute="bottom" constant="20" symbolic="YES" id="vrT-do-zwg"/>
+                            <constraint firstAttribute="bottom" secondItem="11h-dt-7Q1" secondAttribute="bottom" constant="400" id="vrT-do-zwg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ylU-hB-jqD"/>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="rpH-cb-HEH" id="i9x-Tg-yWJ"/>
-                        <outlet property="textView" destination="eXc-d7-xra" id="Rup-1C-xDE"/>
+                        <outlet property="textView" destination="eXc-d7-xra" id="05n-we-Woe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AMn-8i-I0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
