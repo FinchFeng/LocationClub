@@ -1009,7 +1009,8 @@
                                     <constraint firstAttribute="width" secondItem="cfv-5a-tp5" secondAttribute="height" multiplier="0.723" id="HlR-kd-3ip"/>
                                     <constraint firstAttribute="height" constant="48" id="WLP-Qn-j7l"/>
                                 </constraints>
-                                <state key="normal" image="Cafe"/>
+                                <state key="normal" title="Cafe" image="Cafe"/>
+                                <state key="disabled" title="Cafe"/>
                                 <state key="selected" image="CafeHighlight"/>
                                 <connections>
                                     <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="IpV-rP-CbJ"/>
@@ -1017,7 +1018,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZW-6L-aj4">
                                 <rect key="frame" x="235.5" y="180" width="34.5" height="48"/>
-                                <state key="normal" image="Bar"/>
+                                <state key="normal" title="Bar" image="Bar"/>
+                                <state key="disabled" title="Bar"/>
                                 <state key="selected" image="BarHighlight-9"/>
                                 <connections>
                                     <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="S37-gu-y0t"/>
@@ -1025,7 +1027,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gaa-lh-o5H">
                                 <rect key="frame" x="301.5" y="180" width="35" height="48"/>
-                                <state key="normal" image="Hotel"/>
+                                <state key="normal" title="Hotel" image="Hotel"/>
                                 <state key="selected" image="HotelHighlight-10"/>
                                 <connections>
                                     <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="iOH-KJ-W6H"/>
@@ -1033,7 +1035,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tF7-xp-z0u">
                                 <rect key="frame" x="37.5" y="180" width="35" height="48"/>
-                                <state key="normal" image="Default-1"/>
+                                <state key="normal" title="Defualt" image="Default-1"/>
+                                <state key="disabled" title="Defualt"/>
                                 <state key="selected" image="DefaultHighlight"/>
                                 <connections>
                                     <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="EGj-hO-tdn"/>
@@ -1041,7 +1044,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gxa-jC-LQZ">
                                 <rect key="frame" x="104.5" y="180" width="34.5" height="48"/>
-                                <state key="normal" image="Views"/>
+                                <state key="normal" title="Views" image="Views"/>
+                                <state key="disabled" title="Views"/>
                                 <state key="selected" image="ViewsHighlight-1"/>
                                 <connections>
                                     <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="MME-hP-DGv"/>
@@ -1050,7 +1054,7 @@
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5N-6s-XjR">
                                 <rect key="frame" x="71" y="236" width="35" height="48"/>
                                 <color key="tintColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="Restaurant"/>
+                                <state key="normal" title="Restaurant" image="Restaurant"/>
                                 <state key="selected" image="RestaurantHighlight-8">
                                     <color key="titleColor" red="0.027450980390000001" green="0.46274509800000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -1060,7 +1064,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOr-4e-Rb9">
                                 <rect key="frame" x="137.5" y="236" width="34.5" height="48"/>
-                                <state key="normal" image="Mall"/>
+                                <state key="normal" title="Mall" image="Mall"/>
                                 <state key="selected" image="MallHighlight"/>
                                 <connections>
                                     <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="xCn-lY-ot8"/>
@@ -1068,7 +1072,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spw-ST-Hza">
                                 <rect key="frame" x="204" y="236" width="34.5" height="48"/>
-                                <state key="normal" image="LovePlace"/>
+                                <state key="normal" title="LovePlace" image="LovePlace"/>
                                 <state key="selected" image="LovePlaceHighlight"/>
                                 <connections>
                                     <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="kKD-wx-2ty"/>
@@ -1076,7 +1080,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3v-ee-STG">
                                 <rect key="frame" x="268" y="236" width="35" height="48"/>
-                                <state key="normal" image="Culture"/>
+                                <state key="normal" title="Culture" image="Culture"/>
                                 <state key="selected" image="CultureHighlight-7"/>
                                 <connections>
                                     <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="UvO-fA-Ui6"/>
@@ -1084,7 +1088,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYF-pi-jqq">
                                 <rect key="frame" x="34.5" y="292" width="35" height="48"/>
-                                <state key="normal" image="Alien"/>
+                                <state key="normal" title="Alien" image="Alien"/>
                                 <state key="selected" image="AlienHighlight-2"/>
                                 <connections>
                                     <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="23m-fb-Uo9"/>
@@ -1092,7 +1096,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nh0-Wv-xHg">
                                 <rect key="frame" x="99" y="292" width="34.5" height="48"/>
-                                <state key="normal" image="DeadFood"/>
+                                <state key="normal" title="DeadFood" image="DeadFood"/>
                                 <state key="selected" image="DeadFoodHighlight-3"/>
                                 <connections>
                                     <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="2SF-0c-BuH"/>
@@ -1100,7 +1104,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKg-vh-j2K">
                                 <rect key="frame" x="170" y="292" width="35" height="48"/>
-                                <state key="normal" image="Sport"/>
+                                <state key="normal" title="Sport" image="Sport"/>
                                 <state key="selected" image="SportHighlight-4"/>
                                 <connections>
                                     <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="LLl-7X-EAq"/>
@@ -1108,7 +1112,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stZ-q5-0Si">
                                 <rect key="frame" x="236.5" y="292" width="34.5" height="48"/>
-                                <state key="normal" image="Chatting"/>
+                                <state key="normal" title="Chatting" image="Chatting"/>
                                 <state key="selected" image="ChattingHighlight-5"/>
                                 <connections>
                                     <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="5Eu-Hh-NBI"/>
@@ -1116,7 +1120,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIg-PV-PWS">
                                 <rect key="frame" x="301.5" y="292" width="35" height="48"/>
-                                <state key="normal" image="Smoking"/>
+                                <state key="normal" title="Smoking" image="Smoking"/>
                                 <state key="selected" image="SmokingHighlight-6"/>
                                 <connections>
                                     <action selector="selectIconWithSender:" destination="EIb-8S-gam" eventType="touchUpInside" id="aLP-0b-R1L"/>

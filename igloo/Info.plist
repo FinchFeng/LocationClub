@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -39,11 +39,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>This app requires access to camera</string>
+	<string>camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This tutorial wants to use your  location</string>
+	<string>打开应用位置来查看附近的地点</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app requires access to photo library</string>
+	<string>打开照片权限来添加照片到你的地点中</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

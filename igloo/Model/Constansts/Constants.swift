@@ -12,7 +12,7 @@ import UIKit
 class Constants {
     
     //MARK:静态文字
-    static let welcomeLoginString = "登陆后使用地点俱乐部探索整个世界"
+    static let welcomeLoginString = "登陆后可以探索所有人创建的地点"
     static let loginButtonString = "手机号登陆"
     
     //MARK: 后端的Keys localBackendUrl

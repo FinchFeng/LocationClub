@@ -45,7 +45,7 @@ class MapSnapShotter{
             options.region = mapRegion
             options.mapType = .standard
             options.showsBuildings = true
-            options.scale = UIScreen.main.scale
+            options.scale = UIScreen.main.scale//地图图片质量参数1.0
             options.size = Constants.mapSnapSize//⚠️size是固定的
             let mapSnapShot = MKMapSnapshotter(options:options)
             mapSnapShot.start{ (snapshot, error) in//分配到主队列

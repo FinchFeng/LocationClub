@@ -85,8 +85,9 @@ class AddNewLocationViewController: UIViewController,UITextFieldDelegate {
         //选择这个sender
         sender.isSelected = true
         //更改与它关联的UI控件
-        let image = sender.image(for: .normal)!
-        let iconData = Constants.getIconStruct(image:image)!
+//        let image = sender.image(for: .normal)!//这一步可能会崩溃
+        let imageString = sender.title(for: .normal)!
+        let iconData = Constants.getIconStruct(name: imageString)!
         currentIconString = iconData.kind
         iconKindStringTextField.text = iconData.kindInChinese
     }
