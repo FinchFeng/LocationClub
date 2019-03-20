@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import Alamofire
 
 class MapSnapShotter{
     
@@ -53,9 +54,18 @@ class MapSnapShotter{
                 guard let snapshot = snapshot, error == nil else {
                     print("MapSnapShotter")
                     print(error!)
+                    //出现错误就使用高德地图的api
+                    gaoDeMapImage(latitude: latitude, longitude: longitude, completeAction: { (image) in
+                        //添加到Pool里
+                        LocalImagePool.set(image: image, url: locationString)
+                        DispatchQueue.main.async {
+                            //执行UI的改变
+                            completeAction(image)
+                        }
+                    })
                     return
                 }
-                //添加到Pool里
+                //(无错误)添加到Pool里
                 LocalImagePool.set(image: snapshot.image, url: locationString)
                 DispatchQueue.main.async {
                     //执行UI的改变
@@ -65,7 +75,29 @@ class MapSnapShotter{
         }
     }
     
-    //给MomentVC使用 还有一个Image
+    //使用高德地图的网页api🌍
+    
+    static func gaoDeMapImage(latitude:Double,longitude:Double,completeAction:@escaping (UIImage)->Void){
+        //转换成api规定的String
+        let locationString = String(longitude)+","+String(latitude)
+        let sizeString = String(Int(Constants.mapSnapSize.height))+"*"+String(Int(Constants.mapSnapSize.width))
+        let key = "306064409c1a7e52fd7fabd82605d946"
+        let scale = 2
+        let zoom = 14
+        //使用parameter发送
+        let url = "https://restapi.amap.com/v3/staticmap"
+        let parameters:Parameters = ["location":locationString,"zoom":zoom,"size":sizeString,"scale":scale,"key":key]
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding(destination: .methodDependent), headers: nil)
+            .responseData { (response) in
+                //获取了Data数据
+                let data = response.result.value!
+                if let image = UIImage(data: data){//图片获取
+                    completeAction(image)
+                }else{
+                    print("高德地图获取出错")
+                }
+        }
+    }
     
 }
 

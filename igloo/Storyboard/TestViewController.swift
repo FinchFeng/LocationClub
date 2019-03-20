@@ -25,8 +25,11 @@ class TestViewController: UIViewController, SwiftPhotoGalleryDataSource, SwiftPh
     @IBOutlet weak var imageView: UIImageView!
     
     @IBAction func hitButton() {
-        print("TestView")
-        print("Have Emoji "+String(textView.text.containsEmoji()))
+        MapSnapShotter.gaoDeMapImage(latitude: 118.14605899999994, longitude: 24.432058999999956) { (image) in
+            self.imageView.image = image
+        }
+//        print("TestView")
+//        print("Have Emoji "+String(textView.text.containsEmoji()))
 //        Network.showAlertNetworkDied()
 //        Network.getImage(at: "0.jpg") { (image) in
 //            self.imageView.image = image
