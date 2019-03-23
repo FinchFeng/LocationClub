@@ -29,6 +29,8 @@ class LoginModel {
                 UserDefaults.standard.set(false, forKey: Constants.isLogin)
                 //禁用喜欢的功能
                 LoginModel.owenLikedLocationIDArray = []
+            }else{
+                UserDefaults.standard.set(true, forKey: Constants.isLogin)
             }
         }
     }
@@ -51,13 +53,23 @@ class LoginModel {
     }
     static var owenLikedLocationIDArray:[String]{
         get{
-            return UserDefaults.standard.object(forKey: Constants.usersLikePlacesDefaultJsonKey) as! [String]
+            return UserDefaults.standard.object(forKey: Constants.usersLikePlacesDefaultJsonKey) as? [String] ?? []
         }
         set{
             UserDefaults.standard.set(newValue, forKey: Constants.usersLikePlacesDefaultJsonKey)
         }
     }
     static var totalLikeAmout:Int = 0 
+    
+    //新方法直接获取igloo ID
+    static func getABrandNewIglooID(){
+        Network.justGetAIglooID { (newIglooID) in
+            LoginModel.iglooID = newIglooID
+            LoginModel.login = true
+            print("LoginModel")
+            print("登陆返回")
+        }
+    }
     
     //内部可改变的状态
     var isLogin:Bool{
@@ -71,12 +83,11 @@ class LoginModel {
     
     static func logout(){
         login = false
-//        owenLocationIDArray = []
         owenLikedLocationIDArray = []//清除喜欢的
     }
     
     //Google登陆方法
-    
+
     func loginWithGoogle(googleID:String,GoogleName:String,action:@escaping (Bool)->Void){
         Network.login(withGoogle: true,GoogleId: googleID,GoogleName: GoogleName) { (JSON) in
             //JSON对象返回

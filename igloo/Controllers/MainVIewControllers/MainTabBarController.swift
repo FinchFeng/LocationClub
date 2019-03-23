@@ -18,6 +18,10 @@ class MainTabBarController: UITabBarController {
                          name: .flagsChanged,
                          object: nil)
         updateUserInterface()
+        //在这里关心一下初次登陆的事情❤️
+        if LoginModel.login != true {
+            LoginModel.getABrandNewIglooID()
+        }
     }
     
     func updateUserInterface() {
@@ -25,7 +29,7 @@ class MainTabBarController: UITabBarController {
         if LoginModel.login {
             switch NetworkForCheck.reachability.status {
             case .unreachable:
-                Network.shouldConneted = false//是否开启网络检测🛰️
+                Network.shouldConneted = true//是否开启网络检测🛰️
             case .wwan,.wifi:
                 Network.shouldConneted = true
             }

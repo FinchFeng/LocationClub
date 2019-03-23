@@ -18,7 +18,7 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
     @IBOutlet weak var indecator: UIActivityIndicatorView!
     @IBOutlet weak var searchLocationButton: UIButton!
     @IBOutlet weak var addNewLocationButton: UIButton!
-    @IBOutlet weak var coverView: UIView!
+    
     var selectedPin:MKPlacemark? = nil
     var resultSearchController:UISearchController? = nil
     
@@ -50,12 +50,6 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //检查是否登陆和是否展示这个view
-        if LoginModel.login {
-            coverView.isHidden = true
-        }else{
-            coverView.isHidden = false
-        }
         //隐藏TopBar
         self.navigationController!.setNavigationBarHidden(true, animated: false)
         if let tabVC =  self.tabBarController as? MainTabBarController{
@@ -66,11 +60,11 @@ class MapViewController: UIViewController,MapViewDelegate,LikeDelegate {
                 return
             }
         }
-        //尝试登陆
-        if LoginModel.login == false {
-            let rootVC  = self.tabBarController! as! MainTabBarController
-            rootVC.login()
-        }
+        //尝试登陆⚠️
+//        if LoginModel.login == false {
+//            let rootVC  = self.tabBarController! as! MainTabBarController
+//            rootVC.login()
+//        }
     }
     
     //这个Manager需要持久化才可以进行界面请求

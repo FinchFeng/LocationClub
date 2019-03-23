@@ -188,19 +188,13 @@
                                     <segue destination="EIb-8S-gam" kind="presentation" id="jfx-FN-ffj"/>
                                 </connections>
                             </button>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNQ-or-Bd4">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="uNQ-or-Bd4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1CJ-Md-GTl"/>
                             <constraint firstAttribute="top" secondItem="md7-dy-WBW" secondAttribute="top" id="4WD-Hl-rIS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="md7-dy-WBW" secondAttribute="bottom" id="AUw-LN-sFG"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="leading" secondItem="md7-dy-WBW" secondAttribute="leading" id="Ay8-rt-Vlt"/>
                             <constraint firstItem="qkd-3m-9sI" firstAttribute="centerX" secondItem="jnS-Nv-v7V" secondAttribute="centerX" id="Cx8-iv-7Wl"/>
-                            <constraint firstItem="uNQ-or-Bd4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ES7-mO-tVO"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="top" secondItem="qkd-3m-9sI" secondAttribute="bottom" constant="8" symbolic="YES" id="FIe-7q-V42"/>
                             <constraint firstItem="r6V-mQ-dG4" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ID1-Sa-fUS"/>
                             <constraint firstItem="md7-dy-WBW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MsX-Py-Brd"/>
@@ -210,9 +204,7 @@
                             <constraint firstItem="Tce-h6-0ZV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="bW3-CB-MIe"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="trailing" secondItem="md7-dy-WBW" secondAttribute="trailing" id="dEI-LH-Hrz"/>
                             <constraint firstItem="jnS-Nv-v7V" firstAttribute="top" secondItem="md7-dy-WBW" secondAttribute="bottom" constant="-243.5" id="ie8-hG-JSN"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uNQ-or-Bd4" secondAttribute="trailing" id="oIm-Xd-WM4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Tce-h6-0ZV" secondAttribute="trailing" constant="10" id="uHz-Et-XQP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uNQ-or-Bd4" secondAttribute="bottom" id="xLH-El-VCc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="md7-dy-WBW" secondAttribute="trailing" id="zw3-Ja-l47"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -221,7 +213,6 @@
                     <navigationItem key="navigationItem" id="HdU-i1-bnc"/>
                     <connections>
                         <outlet property="addNewLocationButton" destination="Tce-h6-0ZV" id="DRI-KP-zXL"/>
-                        <outlet property="coverView" destination="uNQ-or-Bd4" id="CRl-Jo-N15"/>
                         <outlet property="distanceMarsViewShowing" destination="ie8-hG-JSN" id="wDV-il-17D"/>
                         <outlet property="indecator" destination="r6V-mQ-dG4" id="Ko0-xQ-UNU"/>
                         <outlet property="map" destination="md7-dy-WBW" id="R3D-c5-rOI"/>
@@ -2206,7 +2197,7 @@
         <image name="userLocationIcon" width="164" height="164"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ipi-Ha-xW0"/>
+        <segue reference="XoO-yI-eI9"/>
         <segue reference="VRt-x1-aWf"/>
     </inferredMetricsTieBreakers>
 </document>

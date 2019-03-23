@@ -96,7 +96,7 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
     //MARK: TableView Delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -108,9 +108,9 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
             cell.textLabel?.text = "我收到的赞 " + String(LoginModel.totalLikeAmout)
         case 1:
             cell.textLabel?.text = "我赞过的地点"
+//        case 2:
+//            cell.textLabel?.text = "退出登陆"
         case 2:
-            cell.textLabel?.text = "退出登陆"
-        case 3:
             cell.textLabel?.text = "联系我们"
         default: return cell
         }
@@ -128,19 +128,19 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 self.dataArrayToPass = dataArray
                 self.performSegue(withIdentifier: "segueToLikedLocation", sender: nil)
             }
+//        case 2:
+//            let alertController = UIAlertController(title: "您要退出登陆吗？", message: nil, preferredStyle: UIAlertController.Style.alert)
+//            alertController.addAction(UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil))
+//            alertController.addAction(UIAlertAction(title: "退出", style: UIAlertAction.Style.default, handler: { (_) in
+//                //选择了退出登陆
+//                Network.logOut(iglooID: LoginModel.iglooID,landingAction: {
+//                    //返回的时候进行更改
+//                    LoginModel.logout()
+//                })
+//
+//            }))
+//            present(alertController, animated: true, completion: nil)
         case 2:
-            let alertController = UIAlertController(title: "您要退出登陆吗？", message: nil, preferredStyle: UIAlertController.Style.alert)
-            alertController.addAction(UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil))
-            alertController.addAction(UIAlertAction(title: "退出", style: UIAlertAction.Style.default, handler: { (_) in
-                //选择了退出登陆
-                Network.logOut(iglooID: LoginModel.iglooID,landingAction: {
-                    //返回的时候进行更改
-                    LoginModel.logout()
-                })
-                
-            }))
-            present(alertController, animated: true, completion: nil)
-        case 3:
             let alert = UIAlertController(
                 title: "联系我们",
                 message: "请输入您的建议",

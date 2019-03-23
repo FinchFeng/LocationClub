@@ -40,7 +40,14 @@ class Network {
     }
     
     //MARK:登陆接口
-    
+    //取消登陆功能
+    static func justGetAIglooID(landingAction:@escaping (String)->Void){
+        let url = Constants.backendURL + "getABrandNewIglooForUser/"
+        sendRuquest(url: url, method: .get, parameters: [:]) { (data) in
+            let iglooID = data[Constants.iglooID] as! String
+            landingAction(iglooID)
+        }
+    }
     //登陆接口igloo
     static func login(withGoogle:Bool,GoogleId:String? = nil,GoogleName:String? = nil,number:String? = nil,password:String? = nil,action: @escaping ([String:Any])->Void ){
         //配置参数
