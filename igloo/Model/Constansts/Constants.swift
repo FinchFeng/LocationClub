@@ -18,7 +18,7 @@ class Constants {
     //MARK: 后端的Keys localBackendUrl
     static let remoteBackendUrl = "http://118.25.71.200/location/"
     static let localBackendUrl = "http://127.0.0.1:8000/location/"
-    static let backendURL = localBackendUrl
+    static let backendURL = remoteBackendUrl
     static let imagebedURL = "http://sythew.cn/"
     //JsonKeys
     static let locationLongitudeKey = "locationLongitudeKey"

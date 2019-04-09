@@ -12,7 +12,8 @@ class LoginModel {
     
     //配置储存
     let defaults = UserDefaults.standard
-    
+    //sdfhi
+    let a = "d"
     //公开登陆状态
     static var login:Bool{
         get{
